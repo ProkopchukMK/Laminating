@@ -27,10 +27,10 @@ namespace Laminatsia
         private void Add_NewCity_Click(object sender, EventArgs e)
         {
             string message;
-            if (textBoxCity.Text != null || textBoxCity.Text != " ")
+            if (textBoxCity.Text.Trim() != "")
             {
                 CityDTO newCity = new CityDTO();
-                message = newCity.AddCity(textBoxCity.Text);
+                message = newCity.AddCity(textBoxCity.Text.Trim());
                 MessageBox.Show(message);
             }
             else

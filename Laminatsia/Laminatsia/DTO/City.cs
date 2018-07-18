@@ -14,8 +14,8 @@ namespace Laminatsia.DTO
         private LaminatsiaEntities _entity = new LaminatsiaEntities();
         public string AddCity(string cityName)
         {
-            List<string> cityList = _entity.City.Select(x => x.CityDealer).ToList();
-            if (!cityList.Contains(cityName))
+            City cityList = _entity.City.FirstOrDefault(x => x.CityDealer == cityName);
+            if (cityList == null)
             {
                 City newCity = new City();
                 newCity.CityDealer = cityName;
