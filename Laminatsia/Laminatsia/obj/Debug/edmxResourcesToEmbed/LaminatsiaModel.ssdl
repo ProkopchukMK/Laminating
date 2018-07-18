@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityDealer" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ColourGoods">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateComming" Type="smalldatetime" Nullable="false" />
+    <Property Name="Profile_ID" Type="int" Nullable="false" />
+    <Property Name="Dealer_ID" Type="int" Nullable="false" />
+    <Property Name="City_ID" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nchar" MaxLength="100" />
+    <Property Name="Counts" Type="int" Nullable="false" />
+    <Property Name="Colour_ID" Type="int" Nullable="false" />
+    <Property Name="DateToWork" Type="smalldatetime" />
+    <Property Name="StatusProfile" Type="nchar" MaxLength="20" />
+    <Property Name="DateReady" Type="smalldatetime" />
+    <Property Name="StatusGoods" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="ColourProfile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColourProfile" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dealer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DealerName" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NameProfile" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_ColourGoods_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ColourGoods">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ColourGoods_ColourProfile">
+    <End Role="ColourProfile" Type="Self.ColourProfile" Multiplicity="1" />
+    <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ColourProfile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ColourGoods">
+        <PropertyRef Name="Colour_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ColourGoods_Dealer">
+    <End Role="Dealer" Type="Self.Dealer" Multiplicity="1" />
+    <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dealer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ColourGoods">
+        <PropertyRef Name="Dealer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ColourGoods_Profile">
+    <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+    <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ColourGoods">
+        <PropertyRef Name="Profile_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LaminatsiaModelStoreContainer">
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ColourGoods" EntityType="Self.ColourGoods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dealer" EntityType="Self.Dealer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ColourGoods_City" Association="Self.FK_ColourGoods_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="ColourGoods" EntitySet="ColourGoods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
+      <End Role="ColourProfile" EntitySet="ColourProfile" />
+      <End Role="ColourGoods" EntitySet="ColourGoods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ColourGoods_Dealer" Association="Self.FK_ColourGoods_Dealer">
+      <End Role="Dealer" EntitySet="Dealer" />
+      <End Role="ColourGoods" EntitySet="ColourGoods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ColourGoods_Profile" Association="Self.FK_ColourGoods_Profile">
+      <End Role="Profile" EntitySet="Profile" />
+      <End Role="ColourGoods" EntitySet="ColourGoods" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
