@@ -35,7 +35,24 @@ namespace Laminatsia
             }
             else
             {
+                textBoxCity.Text = "";
                 MessageBox.Show("Потрібно написати назву міста!");
+            }
+        }
+
+        private void Add_NewDealer_Click(object sender, EventArgs e)
+        {
+            string message;
+            if (textBoxDealer.Text.Trim() != "")
+            {
+                CityDTO newCity = new CityDTO();
+                message = newCity.AddCity(textBoxDealer.Text.Trim());
+                MessageBox.Show(message);
+            }
+            else
+            {
+                textBoxDealer.Text = "";
+                MessageBox.Show("Потрібно написати назву Дилера!");
             }
         }
     }

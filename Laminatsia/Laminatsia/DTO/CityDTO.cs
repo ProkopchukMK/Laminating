@@ -7,10 +7,7 @@ using Laminatsia;
 namespace Laminatsia.DTO
 {
     public class CityDTO
-    {
-        public int ID { get; private set; }
-        public string CityName { get; set; }
-
+    {    
         private LaminatsiaEntities _entity = new LaminatsiaEntities();
         public string AddCity(string cityName)
         {
@@ -27,7 +24,6 @@ namespace Laminatsia.DTO
             {
                 return "Таке місто в базі вже є!";
             }
-
         }
     }
 }

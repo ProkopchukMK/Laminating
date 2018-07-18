@@ -159,6 +159,7 @@
             this.Add_NewDealer.TabIndex = 5;
             this.Add_NewDealer.Text = "Додати";
             this.Add_NewDealer.UseVisualStyleBackColor = true;
+            this.Add_NewDealer.Click += new System.EventHandler(this.Add_NewDealer_Click);
             // 
             // Add_NewProfile
             // 

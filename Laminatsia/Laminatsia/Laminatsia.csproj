@@ -46,7 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\City.cs" />
+    <Compile Include="DTO\CityDTO.cs" />
+    <Compile Include="DTO\DealerDTO.cs" />
     <Compile Include="LaminatsiaForm.cs">
       <SubType>Form</SubType>
     </Compile>
