@@ -1,0 +1,9 @@
+C:\Users\Логист\Desktop\Ламінування\Laminatsia\Laminatsia\obj\Debug\Laminatsia.LaminatsiaForm.resources
+C:\Users\Логист\Desktop\Ламінування\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Properties.Resources.resources
+C:\Users\Логист\Desktop\Ламінування\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csproj.GenerateResource.Cache
+C:\Users\Логист\Desktop\Ламінування\Laminatsia\Laminatsia\bin\Debug\Laminatsia.exe
+C:\Users\Логист\Desktop\Ламінування\Laminatsia\Laminatsia\bin\Debug\Laminatsia.pdb
+C:\Users\Логист\Desktop\Ламінування\Laminatsia\Laminatsia\obj\Debug\Laminatsia.exe
+C:\Users\Логист\Desktop\Ламінування\Laminatsia\Laminatsia\obj\Debug\Laminatsia.pdb
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.exe
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.pdb
