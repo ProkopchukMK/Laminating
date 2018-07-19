@@ -30,7 +30,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ColourProfile1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Colour" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_ColourProfile" FromRole="ColourProfile" ToRole="ColourGoods" />
   </EntityType>
   <EntityType Name="Dealer">

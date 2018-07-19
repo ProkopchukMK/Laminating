@@ -29,7 +29,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ColourProfile" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Colour" Type="nchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Dealer">
     <Key>
@@ -42,7 +42,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NameProfile" Type="nchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="ID" />
@@ -34,7 +34,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ColourProfile" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Colour" Type="nchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Dealer">
           <Key>
@@ -47,7 +47,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameProfile" Type="nchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -132,8 +132,7 @@
             <End Role="ColourGoods" EntitySet="ColourGoods" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LaminatsiaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -167,7 +166,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ColourProfile1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Colour" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_ColourProfile" FromRole="ColourProfile" ToRole="ColourGoods" />
         </EntityType>
         <EntityType Name="Dealer">
@@ -268,7 +267,7 @@
             <EntityTypeMapping TypeName="LaminatsiaModel.ColourProfile">
               <MappingFragment StoreEntitySet="ColourProfile">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ColourProfile1" ColumnName="ColourProfile" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
