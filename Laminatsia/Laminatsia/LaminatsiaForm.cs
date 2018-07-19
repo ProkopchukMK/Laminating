@@ -12,6 +12,7 @@ namespace Laminatsia
 {
     public partial class LaminatsiaForm : Form
     {
+        private CityDTO cityDTO = new CityDTO();
         public LaminatsiaForm()
         {
             InitializeComponent();
@@ -21,11 +22,11 @@ namespace Laminatsia
             comboBoxStatusGoods.Items.Add("В РОБОТІ");
             comboBoxStatusGoods.Items.Add("НЕ В РОБОТІ");
 
-            //comboBoxCity.Items.AddRange(CityDTO.GetListCity().ToArray());
+            comboBoxCity.Items.AddRange(cityDTO.GetListCity().ToArray());
             comboBoxColour.Items.AddRange(ColourDTO.GetListColour().ToArray());
             comboBoxDealer.Items.AddRange(DealerDTO.GetListDealer().ToArray());
             comboBoxProfile.Items.AddRange(ProfileDTO.GetListProfile().ToArray());
-            //ComboxCityDealer.Items.AddRange(CityDTO.GetListCity().ToArray());
+            ComboxCityDealer.Items.AddRange(cityDTO.GetListCity().ToArray());
 
         }
         //очиста текстбоксов
@@ -61,6 +62,7 @@ namespace Laminatsia
             {
                 CityDTO newCity = new CityDTO();
                 messageCity = newCity.AddCity(textBoxCity.Text.Trim());
+                ComboxCityDealer.Items.Clear();
                 ComboxCityDealer.Items.AddRange(newCity.GetListCity().ToArray());
                 MessageBox.Show(messageCity);
             }
@@ -138,7 +140,7 @@ namespace Laminatsia
         {
             ComboxCityDealer.Items.Clear();
             DealerDTO dealerDTO = new DealerDTO();
-            comboBoxDealer.DataSource = dealerDTO.GetListDealerByCity(comboBoxCity.SelectedValue.ToString());            
+            comboBoxDealer.DataSource = dealerDTO.GetListDealerByCity(comboBoxCity.SelectedItem.ToString());            
             //this.FillUpdateComponent();
         }
     }
