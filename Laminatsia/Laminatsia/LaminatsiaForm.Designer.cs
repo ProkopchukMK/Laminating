@@ -121,9 +121,9 @@
             // dateTimePickerDateReady
             // 
             this.dateTimePickerDateReady.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateReady.Location = new System.Drawing.Point(1020, 59);
+            this.dateTimePickerDateReady.Location = new System.Drawing.Point(1032, 58);
             this.dateTimePickerDateReady.Name = "dateTimePickerDateReady";
-            this.dateTimePickerDateReady.Size = new System.Drawing.Size(99, 20);
+            this.dateTimePickerDateReady.Size = new System.Drawing.Size(78, 20);
             this.dateTimePickerDateReady.TabIndex = 20;
             // 
             // textBoxNotes
@@ -154,7 +154,7 @@
             // labelDateReady
             // 
             this.labelDateReady.AutoSize = true;
-            this.labelDateReady.Location = new System.Drawing.Point(1029, 34);
+            this.labelDateReady.Location = new System.Drawing.Point(1040, 34);
             this.labelDateReady.Name = "labelDateReady";
             this.labelDateReady.Size = new System.Drawing.Size(61, 13);
             this.labelDateReady.TabIndex = 16;
@@ -163,7 +163,7 @@
             // labelStatusProfile
             // 
             this.labelStatusProfile.AutoSize = true;
-            this.labelStatusProfile.Location = new System.Drawing.Point(915, 34);
+            this.labelStatusProfile.Location = new System.Drawing.Point(915, 36);
             this.labelStatusProfile.Name = "labelStatusProfile";
             this.labelStatusProfile.Size = new System.Drawing.Size(66, 13);
             this.labelStatusProfile.TabIndex = 15;
@@ -287,7 +287,7 @@
             this.AddToDB.Location = new System.Drawing.Point(4, 22);
             this.AddToDB.Name = "AddToDB";
             this.AddToDB.Padding = new System.Windows.Forms.Padding(3);
-            this.AddToDB.Size = new System.Drawing.Size(1276, 656);
+            this.AddToDB.Size = new System.Drawing.Size(1276, 980);
             this.AddToDB.TabIndex = 3;
             this.AddToDB.Text = "Додати";
             this.AddToDB.UseVisualStyleBackColor = true;

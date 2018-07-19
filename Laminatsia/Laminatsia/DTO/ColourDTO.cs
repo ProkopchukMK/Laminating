@@ -7,7 +7,7 @@ namespace Laminatsia.DTO
 {
     public class ColourDTO
     {
-        private LaminatsiaEntities _entity = new LaminatsiaEntities();
+        private static LaminatsiaEntities _entity = new LaminatsiaEntities();
         public string AddColour(string colourName)
         {
             ColourProfile colourList = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colourName);
@@ -23,6 +23,12 @@ namespace Laminatsia.DTO
             {
                 return "Такий колір в базі вже є!";
             }
+        }
+        public static List<string> GetListColour()
+        {
+            var listColour = _entity.ColourProfile.Select(x => x.Colour.Trim()).ToList<string>();
+            listColour.Sort();
+            return listColour;
         }
     }
 }

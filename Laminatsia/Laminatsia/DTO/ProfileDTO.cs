@@ -7,7 +7,7 @@ namespace Laminatsia.DTO
 {
    public class ProfileDTO
     {
-        private LaminatsiaEntities _entity = new LaminatsiaEntities();
+        private static LaminatsiaEntities _entity = new LaminatsiaEntities();
         public string AddProfile(string profileName)
         {
             Profile profileList = _entity.Profile.FirstOrDefault(x => x.NameProfile == profileName);
@@ -23,6 +23,12 @@ namespace Laminatsia.DTO
             {
                 return "Такий профіль в базі вже є!";
             }
+        }
+        public static List<string> GetListProfile()
+        {
+            var listProfile = _entity.Profile.Select(x => x.NameProfile.Trim()).ToList<string>();
+            listProfile.Sort();
+            return listProfile;
         }
     }
 }

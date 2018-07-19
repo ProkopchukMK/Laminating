@@ -15,6 +15,17 @@ namespace Laminatsia
         public LaminatsiaForm()
         {
             InitializeComponent();
+            comboBoxStatusProfile.Items.Add("ГОТОВИЙ");
+            comboBoxStatusProfile.Items.Add("НЕ ГОТОВИЙ");
+
+            comboBoxStatusGoods.Items.Add("В РОБОТІ");
+            comboBoxStatusGoods.Items.Add("НЕ В РОБОТІ");
+            
+            comboBoxCity.Items.AddRange(CityDTO.GetListCity().ToArray());
+            comboBoxColour.Items.AddRange(ColourDTO.GetListColour().ToArray());
+            comboBoxDealer.Items.AddRange(DealerDTO.GetListDealer().ToArray());
+            comboBoxProfile.Items.AddRange(ProfileDTO.GetListProfile().ToArray());
+            ComboxCityDealer.Items.AddRange(CityDTO.GetListCity().ToArray());
         }
 
         private void LaminatsiaForm_Load(object sender, EventArgs e)
@@ -42,7 +53,7 @@ namespace Laminatsia
         }
 
         private void Add_NewDealer_Click(object sender, EventArgs e)
-        {
+        {            
             string message;
             if (textBoxDealer.Text.Trim() != "")
             {
