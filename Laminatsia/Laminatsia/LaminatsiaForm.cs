@@ -15,6 +15,17 @@ namespace Laminatsia
         public LaminatsiaForm()
         {
             InitializeComponent();
+            comboBoxStatusProfile.Items.Add("ГОТОВИЙ");
+            comboBoxStatusProfile.Items.Add("НЕ ГОТОВИЙ");
+
+            comboBoxStatusGoods.Items.Add("В РОБОТІ");
+            comboBoxStatusGoods.Items.Add("НЕ В РОБОТІ");
+            
+            comboBoxCity.Items.AddRange(CityDTO.GetListCity().ToArray());
+            comboBoxColour.Items.AddRange(ColourDTO.GetListColour().ToArray());
+            comboBoxDealer.Items.AddRange(DealerDTO.GetListDealer().ToArray());
+            comboBoxProfile.Items.AddRange(ProfileDTO.GetListProfile().ToArray());
+            ComboxCityDealer.Items.AddRange(CityDTO.GetListCity().ToArray());
         }
 
         private void LaminatsiaForm_Load(object sender, EventArgs e)
@@ -26,34 +37,85 @@ namespace Laminatsia
 
         private void Add_NewCity_Click(object sender, EventArgs e)
         {
-            string message;
+            string messageCity;
             if (textBoxCity.Text.Trim() != "")
             {
                 CityDTO newCity = new CityDTO();
-                message = newCity.AddCity(textBoxCity.Text.Trim());
-                MessageBox.Show(message);
+                messageCity = newCity.AddCity(textBoxCity.Text.Trim());
+                MessageBox.Show(messageCity);
             }
             else
             {
                 textBoxCity.Text = "";
                 MessageBox.Show("Потрібно написати назву міста!");
             }
+            this.Clear();
         }
 
         private void Add_NewDealer_Click(object sender, EventArgs e)
-        {
+        {            
             string message;
             if (textBoxDealer.Text.Trim() != "")
             {
-                CityDTO newCity = new CityDTO();
-                message = newCity.AddCity(textBoxDealer.Text.Trim());
+                DealerDTO newCity = new DealerDTO();
+                message = newCity.AddDealer(textBoxDealer.Text.Trim());
                 MessageBox.Show(message);
             }
             else
             {
-                textBoxDealer.Text = "";
                 MessageBox.Show("Потрібно написати назву Дилера!");
             }
+            this.Clear();
+        }      
+
+        private void Add_NewProfile_Click(object sender, EventArgs e)
+        {
+            string message;
+            if (textBoxProfile.Text.Trim() != "")
+            {
+                ProfileDTO newProfile = new ProfileDTO();
+                message = newProfile.AddProfile(textBoxProfile.Text.Trim());
+                MessageBox.Show(message);
+            }
+            else
+            {
+                MessageBox.Show("Потрібно написати назву Профіля!");
+            }
+            this.Clear();
+        }
+
+        private void Add_NewColour_Click(object sender, EventArgs e)
+        {
+            string message;
+            if (textBoxColour.Text.Trim() != "")
+            {
+                ColourDTO newColour = new ColourDTO();
+                message = newColour.AddColour(textBoxColour.Text.Trim());
+                MessageBox.Show(message);
+            }
+            else
+            {
+                MessageBox.Show("Потрібно написати назву Кольору!");
+            }
+            this.Clear();
+        }
+
+        private void textBoxCounts_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if(!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        //очиста текстбоксов
+        private void Clear()
+        {
+            textBoxCity.Text = "";
+            textBoxDealer.Text = "";
+            textBoxColour.Text = "";
+            textBoxProfile.Text = "";
         }
     }
 }

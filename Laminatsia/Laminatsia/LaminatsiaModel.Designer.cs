@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("LaminatsiaModel", "FK_ColourGoods_Profile", "Profile", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Laminatsia.Profile), "ColourGoods", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Laminatsia.ColourGoods))]
 
 // Original file name:
-// Generation date: 18.07.2018 15:59:30
+// Generation date: 19.07.2018 15:24:46
 namespace Laminatsia
 {
     
@@ -534,13 +534,13 @@ namespace Laminatsia
         /// Create a new ColourProfile object.
         /// </summary>
         /// <param name="id">Initial value of ID.</param>
-        /// <param name="colourProfile1">Initial value of ColourProfile1.</param>
+        /// <param name="colour">Initial value of Colour.</param>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public static ColourProfile CreateColourProfile(int id, string colourProfile1)
+        public static ColourProfile CreateColourProfile(int id, string colour)
         {
             ColourProfile colourProfile = new ColourProfile();
             colourProfile.ID = id;
-            colourProfile.ColourProfile1 = colourProfile1;
+            colourProfile.Colour = colour;
             return colourProfile;
         }
         /// <summary>
@@ -571,32 +571,32 @@ namespace Laminatsia
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnIDChanged();
         /// <summary>
-        /// There are no comments for property ColourProfile1 in the schema.
+        /// There are no comments for property Colour in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public string ColourProfile1
+        public string Colour
         {
             get
             {
-                return this._ColourProfile1;
+                return this._Colour;
             }
             set
             {
-                this.OnColourProfile1Changing(value);
-                this.ReportPropertyChanging("ColourProfile1");
-                this._ColourProfile1 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("ColourProfile1");
-                this.OnColourProfile1Changed();
+                this.OnColourChanging(value);
+                this.ReportPropertyChanging("Colour");
+                this._Colour = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Colour");
+                this.OnColourChanged();
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private string _ColourProfile1;
+        private string _Colour;
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnColourProfile1Changing(string value);
+        partial void OnColourChanging(string value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnColourProfile1Changed();
+        partial void OnColourChanged();
         /// <summary>
         /// There are no comments for ColourGoods in the schema.
         /// </summary>

@@ -27,7 +27,7 @@
       <EntityTypeMapping TypeName="LaminatsiaModel.ColourProfile">
         <MappingFragment StoreEntitySet="ColourProfile">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="ColourProfile1" ColumnName="ColourProfile" />
+          <ScalarProperty Name="Colour" ColumnName="Colour" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
