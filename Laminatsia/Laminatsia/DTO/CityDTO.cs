@@ -22,7 +22,7 @@ namespace Laminatsia.DTO
             }
             else
             {
-                return "Таке місто в базі вже є!";
+                return "Таке місто в базі вже є! Змінна";
             }
         }
     }
