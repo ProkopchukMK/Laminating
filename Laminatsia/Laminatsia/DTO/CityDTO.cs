@@ -8,7 +8,7 @@ namespace Laminatsia.DTO
 {
     public class CityDTO
     {    
-        private static LaminatsiaEntities _entity = new LaminatsiaEntities();
+        private LaminatsiaEntities _entity = new LaminatsiaEntities();
 
         public string AddCity(string cityName)
         {
@@ -26,7 +26,7 @@ namespace Laminatsia.DTO
                 return "Таке місто в базі вже є!";
             }
         }
-        public static List<string> GetListCity()
+        public List<string> GetListCity()
         {
             var listCity = _entity.City.Select(x => x.CityDealer.Trim()).ToList<string>();
             listCity.Sort();

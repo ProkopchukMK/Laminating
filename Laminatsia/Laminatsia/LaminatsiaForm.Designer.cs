@@ -30,10 +30,16 @@
         {
             this.MenuTabControl = new System.Windows.Forms.TabControl();
             this.Laminaters = new System.Windows.Forms.TabPage();
+            this.SaveColourGoods = new System.Windows.Forms.Button();
+            this.comboBoxStatusProfile = new System.Windows.Forms.ComboBox();
+            this.comboBoxColour = new System.Windows.Forms.ComboBox();
+            this.comboBoxDealer = new System.Windows.Forms.ComboBox();
+            this.comboBoxCity = new System.Windows.Forms.ComboBox();
+            this.comboBoxProfile = new System.Windows.Forms.ComboBox();
+            this.dateTimePickerDateToWork = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerDateReady = new System.Windows.Forms.DateTimePicker();
             this.textBoxNotes = new System.Windows.Forms.TextBox();
             this.labelNotes = new System.Windows.Forms.Label();
-            this.labelStatusGoods = new System.Windows.Forms.Label();
             this.labelDateReady = new System.Windows.Forms.Label();
             this.labelStatusProfile = new System.Windows.Forms.Label();
             this.labelDateToWork = new System.Windows.Forms.Label();
@@ -47,7 +53,10 @@
             this.textBoxCounts = new System.Windows.Forms.TextBox();
             this.Managers = new System.Windows.Forms.TabPage();
             this.Tehnologers = new System.Windows.Forms.TabPage();
+            this.comboBoxStatusGoods = new System.Windows.Forms.ComboBox();
+            this.labelStatusGoods = new System.Windows.Forms.Label();
             this.AddToDB = new System.Windows.Forms.TabPage();
+            this.ComboxCityDealer = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,16 +69,9 @@
             this.textBoxProfile = new System.Windows.Forms.TextBox();
             this.textBoxDealer = new System.Windows.Forms.TextBox();
             this.textBoxCity = new System.Windows.Forms.TextBox();
-            this.dateTimePickerDateToWork = new System.Windows.Forms.DateTimePicker();
-            this.ComboxCityDealer = new System.Windows.Forms.ComboBox();
-            this.comboBoxProfile = new System.Windows.Forms.ComboBox();
-            this.comboBoxCity = new System.Windows.Forms.ComboBox();
-            this.comboBoxDealer = new System.Windows.Forms.ComboBox();
-            this.comboBoxColour = new System.Windows.Forms.ComboBox();
-            this.comboBoxStatusProfile = new System.Windows.Forms.ComboBox();
-            this.comboBoxStatusGoods = new System.Windows.Forms.ComboBox();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
+            this.Tehnologers.SuspendLayout();
             this.AddToDB.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,12 +85,12 @@
             this.MenuTabControl.Location = new System.Drawing.Point(0, 0);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(1284, 1006);
+            this.MenuTabControl.Size = new System.Drawing.Size(1307, 1006);
             this.MenuTabControl.TabIndex = 0;
             // 
             // Laminaters
             // 
-            this.Laminaters.Controls.Add(this.comboBoxStatusGoods);
+            this.Laminaters.Controls.Add(this.SaveColourGoods);
             this.Laminaters.Controls.Add(this.comboBoxStatusProfile);
             this.Laminaters.Controls.Add(this.comboBoxColour);
             this.Laminaters.Controls.Add(this.comboBoxDealer);
@@ -98,7 +100,6 @@
             this.Laminaters.Controls.Add(this.dateTimePickerDateReady);
             this.Laminaters.Controls.Add(this.textBoxNotes);
             this.Laminaters.Controls.Add(this.labelNotes);
-            this.Laminaters.Controls.Add(this.labelStatusGoods);
             this.Laminaters.Controls.Add(this.labelDateReady);
             this.Laminaters.Controls.Add(this.labelStatusProfile);
             this.Laminaters.Controls.Add(this.labelDateToWork);
@@ -113,10 +114,69 @@
             this.Laminaters.Location = new System.Drawing.Point(4, 22);
             this.Laminaters.Name = "Laminaters";
             this.Laminaters.Padding = new System.Windows.Forms.Padding(3);
-            this.Laminaters.Size = new System.Drawing.Size(1276, 980);
+            this.Laminaters.Size = new System.Drawing.Size(1299, 980);
             this.Laminaters.TabIndex = 0;
             this.Laminaters.Text = "Ламінація";
             this.Laminaters.UseVisualStyleBackColor = true;
+            // 
+            // SaveColourGoods
+            // 
+            this.SaveColourGoods.Location = new System.Drawing.Point(1150, 55);
+            this.SaveColourGoods.Name = "SaveColourGoods";
+            this.SaveColourGoods.Size = new System.Drawing.Size(75, 23);
+            this.SaveColourGoods.TabIndex = 28;
+            this.SaveColourGoods.Text = "Створити";
+            this.SaveColourGoods.UseVisualStyleBackColor = true;
+            this.SaveColourGoods.Click += new System.EventHandler(this.SaveColourGoods_Click);
+            // 
+            // comboBoxStatusProfile
+            // 
+            this.comboBoxStatusProfile.FormattingEnabled = true;
+            this.comboBoxStatusProfile.Location = new System.Drawing.Point(893, 57);
+            this.comboBoxStatusProfile.Name = "comboBoxStatusProfile";
+            this.comboBoxStatusProfile.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxStatusProfile.TabIndex = 27;
+            // 
+            // comboBoxColour
+            // 
+            this.comboBoxColour.FormattingEnabled = true;
+            this.comboBoxColour.Location = new System.Drawing.Point(675, 57);
+            this.comboBoxColour.Name = "comboBoxColour";
+            this.comboBoxColour.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxColour.TabIndex = 26;
+            // 
+            // comboBoxDealer
+            // 
+            this.comboBoxDealer.FormattingEnabled = true;
+            this.comboBoxDealer.Location = new System.Drawing.Point(333, 57);
+            this.comboBoxDealer.Name = "comboBoxDealer";
+            this.comboBoxDealer.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxDealer.TabIndex = 25;
+            // 
+            // comboBoxCity
+            // 
+            this.comboBoxCity.FormattingEnabled = true;
+            this.comboBoxCity.Location = new System.Drawing.Point(204, 57);
+            this.comboBoxCity.Name = "comboBoxCity";
+            this.comboBoxCity.Size = new System.Drawing.Size(107, 21);
+            this.comboBoxCity.TabIndex = 24;
+            this.comboBoxCity.SelectedIndexChanged += new System.EventHandler(this.comboBoxCity_SelectedIndexChanged);
+            // 
+            // comboBoxProfile
+            // 
+            this.comboBoxProfile.FormattingEnabled = true;
+            this.comboBoxProfile.Location = new System.Drawing.Point(94, 57);
+            this.comboBoxProfile.Name = "comboBoxProfile";
+            this.comboBoxProfile.Size = new System.Drawing.Size(90, 21);
+            this.comboBoxProfile.TabIndex = 23;
+            // 
+            // dateTimePickerDateToWork
+            // 
+            this.dateTimePickerDateToWork.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDateToWork.Location = new System.Drawing.Point(802, 58);
+            this.dateTimePickerDateToWork.Name = "dateTimePickerDateToWork";
+            this.dateTimePickerDateToWork.Size = new System.Drawing.Size(75, 20);
+            this.dateTimePickerDateToWork.TabIndex = 22;
             // 
             // dateTimePickerDateReady
             // 
@@ -141,15 +201,6 @@
             this.labelNotes.Size = new System.Drawing.Size(35, 13);
             this.labelNotes.TabIndex = 18;
             this.labelNotes.Text = "Notes";
-            // 
-            // labelStatusGoods
-            // 
-            this.labelStatusGoods.AutoSize = true;
-            this.labelStatusGoods.Location = new System.Drawing.Point(1141, 34);
-            this.labelStatusGoods.Name = "labelStatusGoods";
-            this.labelStatusGoods.Size = new System.Drawing.Size(68, 13);
-            this.labelStatusGoods.TabIndex = 17;
-            this.labelStatusGoods.Text = "StatusGoods";
             // 
             // labelDateReady
             // 
@@ -255,19 +306,38 @@
             this.Managers.Location = new System.Drawing.Point(4, 22);
             this.Managers.Name = "Managers";
             this.Managers.Padding = new System.Windows.Forms.Padding(3);
-            this.Managers.Size = new System.Drawing.Size(1276, 656);
+            this.Managers.Size = new System.Drawing.Size(1299, 980);
             this.Managers.TabIndex = 1;
             this.Managers.Text = "Менеджери";
             this.Managers.UseVisualStyleBackColor = true;
             // 
             // Tehnologers
             // 
+            this.Tehnologers.Controls.Add(this.comboBoxStatusGoods);
+            this.Tehnologers.Controls.Add(this.labelStatusGoods);
             this.Tehnologers.Location = new System.Drawing.Point(4, 22);
             this.Tehnologers.Name = "Tehnologers";
-            this.Tehnologers.Size = new System.Drawing.Size(1276, 656);
+            this.Tehnologers.Size = new System.Drawing.Size(1299, 980);
             this.Tehnologers.TabIndex = 2;
             this.Tehnologers.Text = "Технологи";
             this.Tehnologers.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxStatusGoods
+            // 
+            this.comboBoxStatusGoods.FormattingEnabled = true;
+            this.comboBoxStatusGoods.Location = new System.Drawing.Point(1113, 43);
+            this.comboBoxStatusGoods.Name = "comboBoxStatusGoods";
+            this.comboBoxStatusGoods.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxStatusGoods.TabIndex = 30;
+            // 
+            // labelStatusGoods
+            // 
+            this.labelStatusGoods.AutoSize = true;
+            this.labelStatusGoods.Location = new System.Drawing.Point(1110, 20);
+            this.labelStatusGoods.Name = "labelStatusGoods";
+            this.labelStatusGoods.Size = new System.Drawing.Size(68, 13);
+            this.labelStatusGoods.TabIndex = 29;
+            this.labelStatusGoods.Text = "StatusGoods";
             // 
             // AddToDB
             // 
@@ -287,10 +357,19 @@
             this.AddToDB.Location = new System.Drawing.Point(4, 22);
             this.AddToDB.Name = "AddToDB";
             this.AddToDB.Padding = new System.Windows.Forms.Padding(3);
-            this.AddToDB.Size = new System.Drawing.Size(1276, 980);
+            this.AddToDB.Size = new System.Drawing.Size(1299, 980);
             this.AddToDB.TabIndex = 3;
             this.AddToDB.Text = "Додати";
             this.AddToDB.UseVisualStyleBackColor = true;
+            // 
+            // ComboxCityDealer
+            // 
+            this.ComboxCityDealer.FormattingEnabled = true;
+            this.ComboxCityDealer.Location = new System.Drawing.Point(104, 40);
+            this.ComboxCityDealer.Name = "ComboxCityDealer";
+            this.ComboxCityDealer.Size = new System.Drawing.Size(147, 21);
+            this.ComboxCityDealer.TabIndex = 12;
+            this.ComboxCityDealer.Text = "Виберіть місто";
             // 
             // label4
             // 
@@ -396,76 +475,11 @@
             this.textBoxCity.Size = new System.Drawing.Size(147, 20);
             this.textBoxCity.TabIndex = 0;
             // 
-            // dateTimePickerDateToWork
-            // 
-            this.dateTimePickerDateToWork.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateToWork.Location = new System.Drawing.Point(802, 58);
-            this.dateTimePickerDateToWork.Name = "dateTimePickerDateToWork";
-            this.dateTimePickerDateToWork.Size = new System.Drawing.Size(75, 20);
-            this.dateTimePickerDateToWork.TabIndex = 22;
-            // 
-            // ComboxCityDealer
-            // 
-            this.ComboxCityDealer.FormattingEnabled = true;
-            this.ComboxCityDealer.Location = new System.Drawing.Point(104, 40);
-            this.ComboxCityDealer.Name = "ComboxCityDealer";
-            this.ComboxCityDealer.Size = new System.Drawing.Size(147, 21);
-            this.ComboxCityDealer.TabIndex = 12;
-            this.ComboxCityDealer.Text = "Виберіть місто";
-            // 
-            // comboBoxProfile
-            // 
-            this.comboBoxProfile.FormattingEnabled = true;
-            this.comboBoxProfile.Location = new System.Drawing.Point(94, 57);
-            this.comboBoxProfile.Name = "comboBoxProfile";
-            this.comboBoxProfile.Size = new System.Drawing.Size(90, 21);
-            this.comboBoxProfile.TabIndex = 23;
-            // 
-            // comboBoxCity
-            // 
-            this.comboBoxCity.FormattingEnabled = true;
-            this.comboBoxCity.Location = new System.Drawing.Point(204, 57);
-            this.comboBoxCity.Name = "comboBoxCity";
-            this.comboBoxCity.Size = new System.Drawing.Size(107, 21);
-            this.comboBoxCity.TabIndex = 24;
-            // 
-            // comboBoxDealer
-            // 
-            this.comboBoxDealer.FormattingEnabled = true;
-            this.comboBoxDealer.Location = new System.Drawing.Point(333, 57);
-            this.comboBoxDealer.Name = "comboBoxDealer";
-            this.comboBoxDealer.Size = new System.Drawing.Size(100, 21);
-            this.comboBoxDealer.TabIndex = 25;
-            // 
-            // comboBoxColour
-            // 
-            this.comboBoxColour.FormattingEnabled = true;
-            this.comboBoxColour.Location = new System.Drawing.Point(675, 57);
-            this.comboBoxColour.Name = "comboBoxColour";
-            this.comboBoxColour.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxColour.TabIndex = 26;
-            // 
-            // comboBoxStatusProfile
-            // 
-            this.comboBoxStatusProfile.FormattingEnabled = true;
-            this.comboBoxStatusProfile.Location = new System.Drawing.Point(893, 57);
-            this.comboBoxStatusProfile.Name = "comboBoxStatusProfile";
-            this.comboBoxStatusProfile.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxStatusProfile.TabIndex = 27;
-            // 
-            // comboBoxStatusGoods
-            // 
-            this.comboBoxStatusGoods.FormattingEnabled = true;
-            this.comboBoxStatusGoods.Location = new System.Drawing.Point(1144, 57);
-            this.comboBoxStatusGoods.Name = "comboBoxStatusGoods";
-            this.comboBoxStatusGoods.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxStatusGoods.TabIndex = 28;
-            // 
             // LaminatsiaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 1006);
+            this.ClientSize = new System.Drawing.Size(1307, 1006);
             this.Controls.Add(this.MenuTabControl);
             this.Name = "LaminatsiaForm";
             this.Text = "Ламінація";
@@ -473,6 +487,8 @@
             this.MenuTabControl.ResumeLayout(false);
             this.Laminaters.ResumeLayout(false);
             this.Laminaters.PerformLayout();
+            this.Tehnologers.ResumeLayout(false);
+            this.Tehnologers.PerformLayout();
             this.AddToDB.ResumeLayout(false);
             this.AddToDB.PerformLayout();
             this.ResumeLayout(false);
@@ -501,7 +517,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerDateReady;
         private System.Windows.Forms.TextBox textBoxNotes;
         private System.Windows.Forms.Label labelNotes;
-        private System.Windows.Forms.Label labelStatusGoods;
         private System.Windows.Forms.Label labelDateReady;
         private System.Windows.Forms.Label labelStatusProfile;
         private System.Windows.Forms.Label labelDateToWork;
@@ -519,7 +534,9 @@
         private System.Windows.Forms.ComboBox comboBoxDealer;
         private System.Windows.Forms.ComboBox comboBoxCity;
         private System.Windows.Forms.ComboBox comboBoxProfile;
-        private System.Windows.Forms.ComboBox comboBoxStatusGoods;
         private System.Windows.Forms.ComboBox comboBoxStatusProfile;
+        private System.Windows.Forms.Button SaveColourGoods;
+        private System.Windows.Forms.ComboBox comboBoxStatusGoods;
+        private System.Windows.Forms.Label labelStatusGoods;
     }
 }

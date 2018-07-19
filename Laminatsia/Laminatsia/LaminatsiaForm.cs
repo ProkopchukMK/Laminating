@@ -20,12 +20,31 @@ namespace Laminatsia
 
             comboBoxStatusGoods.Items.Add("В РОБОТІ");
             comboBoxStatusGoods.Items.Add("НЕ В РОБОТІ");
-            
-            comboBoxCity.Items.AddRange(CityDTO.GetListCity().ToArray());
+
+            //comboBoxCity.Items.AddRange(CityDTO.GetListCity().ToArray());
             comboBoxColour.Items.AddRange(ColourDTO.GetListColour().ToArray());
             comboBoxDealer.Items.AddRange(DealerDTO.GetListDealer().ToArray());
             comboBoxProfile.Items.AddRange(ProfileDTO.GetListProfile().ToArray());
-            ComboxCityDealer.Items.AddRange(CityDTO.GetListCity().ToArray());
+            //ComboxCityDealer.Items.AddRange(CityDTO.GetListCity().ToArray());
+
+        }
+        //очиста текстбоксов
+        private void Clear()
+        {
+            textBoxCity.Text = "";
+            textBoxDealer.Text = "";
+            textBoxColour.Text = "";
+            textBoxProfile.Text = "";
+        }
+        private void FillUpdateComponent()
+        {
+            //this.Clear();
+            //comboBoxCity.Items.AddRange(CityDTO.GetListCity().ToArray());
+            //comboBoxColour.Items.AddRange(ColourDTO.GetListColour().ToArray());
+            
+            //comboBoxProfile.Items.AddRange(ProfileDTO.GetListProfile().ToArray());
+            //ComboxCityDealer.Items.Clear();
+            //ComboxCityDealer.DataSource = CityDTO.GetListCity();
         }
 
         private void LaminatsiaForm_Load(object sender, EventArgs e)
@@ -42,6 +61,7 @@ namespace Laminatsia
             {
                 CityDTO newCity = new CityDTO();
                 messageCity = newCity.AddCity(textBoxCity.Text.Trim());
+                ComboxCityDealer.Items.AddRange(newCity.GetListCity().ToArray());
                 MessageBox.Show(messageCity);
             }
             else
@@ -58,7 +78,7 @@ namespace Laminatsia
             if (textBoxDealer.Text.Trim() != "")
             {
                 DealerDTO newCity = new DealerDTO();
-                message = newCity.AddDealer(textBoxDealer.Text.Trim());
+                message = newCity.AddDealer(ComboxCityDealer.SelectedItem.ToString(), textBoxDealer.Text.Trim());
                 MessageBox.Show(message);
             }
             else
@@ -109,13 +129,17 @@ namespace Laminatsia
             }
         }
 
-        //очиста текстбоксов
-        private void Clear()
+        private void SaveColourGoods_Click(object sender, EventArgs e)
         {
-            textBoxCity.Text = "";
-            textBoxDealer.Text = "";
-            textBoxColour.Text = "";
-            textBoxProfile.Text = "";
+
+        }
+
+        private void comboBoxCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboxCityDealer.Items.Clear();
+            DealerDTO dealerDTO = new DealerDTO();
+            comboBoxDealer.DataSource = dealerDTO.GetListDealerByCity(comboBoxCity.SelectedValue.ToString());            
+            //this.FillUpdateComponent();
         }
     }
 }

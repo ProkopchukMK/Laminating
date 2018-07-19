@@ -14,8 +14,8 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DateComming" Type="smalldatetime" Nullable="false" />
     <Property Name="Profile_ID" Type="int" Nullable="false" />
-    <Property Name="Dealer_ID" Type="int" Nullable="false" />
     <Property Name="City_ID" Type="int" Nullable="false" />
+    <Property Name="Dealer_ID" Type="int" Nullable="false" />
     <Property Name="Notes" Type="nchar" MaxLength="100" />
     <Property Name="Counts" Type="int" Nullable="false" />
     <Property Name="Colour_ID" Type="int" Nullable="false" />
@@ -36,6 +36,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City" Type="nchar" MaxLength="50" Nullable="false" />
     <Property Name="DealerName" Type="nchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
@@ -54,6 +55,15 @@
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="UserPassword" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="UserPC" Type="nchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <Association Name="FK_ColourGoods_City">
     <End Role="City" Type="Self.City" Multiplicity="1" />
@@ -110,6 +120,7 @@
     <EntitySet Name="Dealer" EntityType="Self.Dealer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ColourGoods_City" Association="Self.FK_ColourGoods_City">
       <End Role="City" EntitySet="City" />
       <End Role="ColourGoods" EntitySet="ColourGoods" />

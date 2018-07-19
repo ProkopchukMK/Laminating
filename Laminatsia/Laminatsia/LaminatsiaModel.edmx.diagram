@@ -5,16 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="275dfc384b334c91ae61fab5aeb5ca22" Name="Diagram1">
-        <EntityTypeShape EntityType="LaminatsiaModel.City" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.ColourGoods" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.ColourProfile" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.Dealer" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.Profile" Width="1.5" PointX="5.5" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_City" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LaminatsiaModel.ColourProfile" Width="1.5" PointX="0.625" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaminatsiaModel.Dealer" Width="1.5" PointX="5.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaminatsiaModel.Profile" Width="1.5" PointX="0.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaminatsiaModel.sysdiagrams" Width="1.5" PointX="12.625" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_ColourProfile" ManuallyRouted="false" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Dealer" ManuallyRouted="false" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Profile" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LaminatsiaModel.Users" Width="1.5" PointX="8.75" PointY="0.875" />
+        <EntityTypeShape EntityType="LaminatsiaModel.City" Width="1.5" PointX="5.5" PointY="1" />
+        <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_City" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
