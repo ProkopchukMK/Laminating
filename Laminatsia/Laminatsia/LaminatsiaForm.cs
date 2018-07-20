@@ -142,7 +142,10 @@ namespace Laminatsia
                 statusProfile = false;
             }
             DateTime dateReady = dateTimePickerDateReady.Value;
-            
+
+            ColourGoodsDTO colourGoods = new ColourGoodsDTO();
+            colourGoods.AddColourGoods(dateComing,profile,city,dealer,notes,counts,colour,dateToWork,statusProfile,dateReady);
+            MessageBox.Show("Create");
         }
 
         //введення кількості конструкцій
