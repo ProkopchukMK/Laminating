@@ -166,6 +166,7 @@ namespace Laminatsia
             DateTime dateReady = dateTimePickerDateReady.Value;
 
             ColourGoodsDTO colourGoods = new ColourGoodsDTO();
+
             colourGoods.AddColourGoods(dateComing,profile,city,dealer,notes,counts,colour,dateToWork,statusProfile,dateReady);
             this.CleareAllComponent();
             this.FillAlComponent();
