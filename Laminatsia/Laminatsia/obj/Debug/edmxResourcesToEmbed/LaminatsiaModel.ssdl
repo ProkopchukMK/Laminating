@@ -36,8 +36,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="City" Type="nchar" MaxLength="50" Nullable="false" />
     <Property Name="DealerName" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -62,7 +62,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="UserPassword" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="UserPassword" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="UserPC" Type="nchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <Association Name="FK_ColourGoods_City">

@@ -33,7 +33,7 @@ namespace Laminatsia.DTO
         }
         public List<string> GetListDealerByCity(string cityName)
         {
-            var listDealer = _entity.Dealer.Where(x => x.City == cityName).Select(c => c.DealerName).ToList();
+            var listDealer = _entity.Dealer.Where(x => x.City.Trim() == cityName.Trim()).Select(c => c.DealerName.Trim()).ToList();
             listDealer.Sort();
             return listDealer;
         }

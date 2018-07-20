@@ -21,13 +21,12 @@ namespace Laminatsia
 
             comboBoxStatusGoods.Items.Add("В РОБОТІ");
             comboBoxStatusGoods.Items.Add("НЕ В РОБОТІ");
-
-            comboBoxCity.Items.AddRange(cityDTO.GetListCity().ToArray());
+            var listCity = cityDTO.GetListCity().ToArray();
+            comboBoxCity.Items.AddRange(listCity);
+            comboxCityDealer.Items.AddRange(listCity);
             comboBoxColour.Items.AddRange(ColourDTO.GetListColour().ToArray());
             comboBoxDealer.Items.AddRange(DealerDTO.GetListDealer().ToArray());
             comboBoxProfile.Items.AddRange(ProfileDTO.GetListProfile().ToArray());
-            ComboxCityDealer.Items.AddRange(cityDTO.GetListCity().ToArray());
-
         }
         //очиста текстбоксов
         private void Clear()
@@ -37,24 +36,14 @@ namespace Laminatsia
             textBoxColour.Text = "";
             textBoxProfile.Text = "";
         }
-        private void FillUpdateComponent()
-        {
-            //this.Clear();
-            //comboBoxCity.Items.AddRange(CityDTO.GetListCity().ToArray());
-            //comboBoxColour.Items.AddRange(ColourDTO.GetListColour().ToArray());
-            
-            //comboBoxProfile.Items.AddRange(ProfileDTO.GetListProfile().ToArray());
-            //ComboxCityDealer.Items.Clear();
-            //ComboxCityDealer.DataSource = CityDTO.GetListCity();
-        }
-
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.WindowState = FormWindowState.Maximized;
         }
-
+        #region   ВКЛАДКА   Додати
+        //додати нове місто до бази даних
         private void Add_NewCity_Click(object sender, EventArgs e)
         {
             string messageCity;
@@ -62,8 +51,10 @@ namespace Laminatsia
             {
                 CityDTO newCity = new CityDTO();
                 messageCity = newCity.AddCity(textBoxCity.Text.Trim());
-                ComboxCityDealer.Items.Clear();
-                ComboxCityDealer.Items.AddRange(newCity.GetListCity().ToArray());
+                comboxCityDealer.Items.Clear();
+                comboBoxCity.Items.Clear();
+                comboxCityDealer.Items.AddRange(newCity.GetListCity().ToArray());
+                comboBoxCity.Items.AddRange(newCity.GetListCity().ToArray());
                 MessageBox.Show(messageCity);
             }
             else
@@ -73,14 +64,14 @@ namespace Laminatsia
             }
             this.Clear();
         }
-
+        //додати нового диллера до бази даних
         private void Add_NewDealer_Click(object sender, EventArgs e)
-        {            
+        {
             string message;
             if (textBoxDealer.Text.Trim() != "")
             {
                 DealerDTO newCity = new DealerDTO();
-                message = newCity.AddDealer(ComboxCityDealer.SelectedItem.ToString(), textBoxDealer.Text.Trim());
+                message = newCity.AddDealer(comboxCityDealer.SelectedItem.ToString(), textBoxDealer.Text.Trim());
                 MessageBox.Show(message);
             }
             else
@@ -88,8 +79,8 @@ namespace Laminatsia
                 MessageBox.Show("Потрібно написати назву Дилера!");
             }
             this.Clear();
-        }      
-
+        }
+        //додати новий профіль до бази даних
         private void Add_NewProfile_Click(object sender, EventArgs e)
         {
             string message;
@@ -105,7 +96,7 @@ namespace Laminatsia
             }
             this.Clear();
         }
-
+        //додати новий колір до бази даних
         private void Add_NewColour_Click(object sender, EventArgs e)
         {
             string message;
@@ -121,27 +112,43 @@ namespace Laminatsia
             }
             this.Clear();
         }
+        #endregion
 
-        private void textBoxCounts_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-            if(!Char.IsDigit(number) && number != 8)
-            {
-                e.Handled = true;
-            }
-        }
-
+        #region   ВКЛАДКА   Ламінація
+        //додати нове замовлення до бази даних
         private void SaveColourGoods_Click(object sender, EventArgs e)
         {
 
         }
 
+        //введення кількості конструкцій
+        private void textBoxCounts_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+        //фільтрування диллерів по місту
         private void comboBoxCity_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboxCityDealer.Items.Clear();
+            comboBoxDealer.Items.Clear();
             DealerDTO dealerDTO = new DealerDTO();
-            comboBoxDealer.DataSource = dealerDTO.GetListDealerByCity(comboBoxCity.SelectedItem.ToString());            
-            //this.FillUpdateComponent();
+            string cityName = comboBoxCity.SelectedItem.ToString();
+            var listDealer = dealerDTO.GetListDealerByCity(cityName).ToArray();
+            if (listDealer.Length == 0)
+            {
+                comboBoxDealer.Enabled = false;
+                comboBoxDealer.Items.Add("Відсутні дилери");
+                comboBoxDealer.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBoxDealer.Enabled = true;
+                comboBoxDealer.Items.AddRange(listDealer);
+            }
         }
+        #endregion
     }
 }

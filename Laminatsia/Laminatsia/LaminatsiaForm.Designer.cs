@@ -56,7 +56,7 @@
             this.comboBoxStatusGoods = new System.Windows.Forms.ComboBox();
             this.labelStatusGoods = new System.Windows.Forms.Label();
             this.AddToDB = new System.Windows.Forms.TabPage();
-            this.ComboxCityDealer = new System.Windows.Forms.ComboBox();
+            this.comboxCityDealer = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -85,7 +85,7 @@
             this.MenuTabControl.Location = new System.Drawing.Point(0, 0);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(1307, 1006);
+            this.MenuTabControl.Size = new System.Drawing.Size(1284, 1006);
             this.MenuTabControl.TabIndex = 0;
             // 
             // Laminaters
@@ -114,7 +114,7 @@
             this.Laminaters.Location = new System.Drawing.Point(4, 22);
             this.Laminaters.Name = "Laminaters";
             this.Laminaters.Padding = new System.Windows.Forms.Padding(3);
-            this.Laminaters.Size = new System.Drawing.Size(1299, 980);
+            this.Laminaters.Size = new System.Drawing.Size(1276, 980);
             this.Laminaters.TabIndex = 0;
             this.Laminaters.Text = "Ламінація";
             this.Laminaters.UseVisualStyleBackColor = true;
@@ -131,6 +131,7 @@
             // 
             // comboBoxStatusProfile
             // 
+            this.comboBoxStatusProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxStatusProfile.FormattingEnabled = true;
             this.comboBoxStatusProfile.Location = new System.Drawing.Point(893, 57);
             this.comboBoxStatusProfile.Name = "comboBoxStatusProfile";
@@ -139,6 +140,7 @@
             // 
             // comboBoxColour
             // 
+            this.comboBoxColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxColour.FormattingEnabled = true;
             this.comboBoxColour.Location = new System.Drawing.Point(675, 57);
             this.comboBoxColour.Name = "comboBoxColour";
@@ -147,14 +149,16 @@
             // 
             // comboBoxDealer
             // 
+            this.comboBoxDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxDealer.FormattingEnabled = true;
-            this.comboBoxDealer.Location = new System.Drawing.Point(333, 57);
+            this.comboBoxDealer.Location = new System.Drawing.Point(317, 58);
             this.comboBoxDealer.Name = "comboBoxDealer";
-            this.comboBoxDealer.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxDealer.Size = new System.Drawing.Size(111, 21);
             this.comboBoxDealer.TabIndex = 25;
             // 
             // comboBoxCity
             // 
+            this.comboBoxCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCity.FormattingEnabled = true;
             this.comboBoxCity.Location = new System.Drawing.Point(204, 57);
             this.comboBoxCity.Name = "comboBoxCity";
@@ -164,6 +168,7 @@
             // 
             // comboBoxProfile
             // 
+            this.comboBoxProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxProfile.FormattingEnabled = true;
             this.comboBoxProfile.Location = new System.Drawing.Point(94, 57);
             this.comboBoxProfile.Name = "comboBoxProfile";
@@ -306,7 +311,7 @@
             this.Managers.Location = new System.Drawing.Point(4, 22);
             this.Managers.Name = "Managers";
             this.Managers.Padding = new System.Windows.Forms.Padding(3);
-            this.Managers.Size = new System.Drawing.Size(1299, 980);
+            this.Managers.Size = new System.Drawing.Size(1276, 980);
             this.Managers.TabIndex = 1;
             this.Managers.Text = "Менеджери";
             this.Managers.UseVisualStyleBackColor = true;
@@ -317,7 +322,7 @@
             this.Tehnologers.Controls.Add(this.labelStatusGoods);
             this.Tehnologers.Location = new System.Drawing.Point(4, 22);
             this.Tehnologers.Name = "Tehnologers";
-            this.Tehnologers.Size = new System.Drawing.Size(1299, 980);
+            this.Tehnologers.Size = new System.Drawing.Size(1276, 980);
             this.Tehnologers.TabIndex = 2;
             this.Tehnologers.Text = "Технологи";
             this.Tehnologers.UseVisualStyleBackColor = true;
@@ -341,7 +346,7 @@
             // 
             // AddToDB
             // 
-            this.AddToDB.Controls.Add(this.ComboxCityDealer);
+            this.AddToDB.Controls.Add(this.comboxCityDealer);
             this.AddToDB.Controls.Add(this.label4);
             this.AddToDB.Controls.Add(this.label3);
             this.AddToDB.Controls.Add(this.label2);
@@ -357,19 +362,19 @@
             this.AddToDB.Location = new System.Drawing.Point(4, 22);
             this.AddToDB.Name = "AddToDB";
             this.AddToDB.Padding = new System.Windows.Forms.Padding(3);
-            this.AddToDB.Size = new System.Drawing.Size(1299, 980);
+            this.AddToDB.Size = new System.Drawing.Size(1276, 980);
             this.AddToDB.TabIndex = 3;
             this.AddToDB.Text = "Додати";
             this.AddToDB.UseVisualStyleBackColor = true;
             // 
-            // ComboxCityDealer
+            // comboxCityDealer
             // 
-            this.ComboxCityDealer.FormattingEnabled = true;
-            this.ComboxCityDealer.Location = new System.Drawing.Point(104, 40);
-            this.ComboxCityDealer.Name = "ComboxCityDealer";
-            this.ComboxCityDealer.Size = new System.Drawing.Size(147, 21);
-            this.ComboxCityDealer.TabIndex = 12;
-            this.ComboxCityDealer.Text = "Виберіть місто";
+            this.comboxCityDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboxCityDealer.FormattingEnabled = true;
+            this.comboxCityDealer.Location = new System.Drawing.Point(104, 40);
+            this.comboxCityDealer.Name = "comboxCityDealer";
+            this.comboxCityDealer.Size = new System.Drawing.Size(147, 21);
+            this.comboxCityDealer.TabIndex = 12;
             // 
             // label4
             // 
@@ -479,7 +484,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1307, 1006);
+            this.ClientSize = new System.Drawing.Size(1284, 1006);
             this.Controls.Add(this.MenuTabControl);
             this.Name = "LaminatsiaForm";
             this.Text = "Ламінація";
@@ -529,7 +534,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerDateComing;
         private System.Windows.Forms.TextBox textBoxCounts;
         private System.Windows.Forms.DateTimePicker dateTimePickerDateToWork;
-        private System.Windows.Forms.ComboBox ComboxCityDealer;
+        private System.Windows.Forms.ComboBox comboxCityDealer;
         private System.Windows.Forms.ComboBox comboBoxColour;
         private System.Windows.Forms.ComboBox comboBoxDealer;
         private System.Windows.Forms.ComboBox comboBoxCity;

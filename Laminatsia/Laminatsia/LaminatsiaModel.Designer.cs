@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("LaminatsiaModel", "FK_ColourGoods_City", "City", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Laminatsia.City), "ColourGoods", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Laminatsia.ColourGoods))]
 
 // Original file name:
-// Generation date: 20.07.2018 0:09:01
+// Generation date: 20.07.2018 11:54:34
 namespace Laminatsia
 {
     
