@@ -16,26 +16,40 @@ namespace Laminatsia
         public LaminatsiaForm()
         {
             InitializeComponent();
+            FillAlComponent();
+        }   
+        private void FillAlComponent()
+        {
             comboBoxStatusProfile.Items.Add("ГОТОВИЙ");
             comboBoxStatusProfile.Items.Add("НЕ ГОТОВИЙ");
 
             comboBoxStatusGoods.Items.Add("В РОБОТІ");
             comboBoxStatusGoods.Items.Add("НЕ В РОБОТІ");
+
             var listCity = cityDTO.GetListCity().ToArray();
             comboBoxCity.Items.AddRange(listCity);
             comboxCityDealer.Items.AddRange(listCity);
+
             comboBoxColour.Items.AddRange(ColourDTO.GetListColour().ToArray());
             comboBoxDealer.Items.AddRange(DealerDTO.GetListDealer().ToArray());
             comboBoxProfile.Items.AddRange(ProfileDTO.GetListProfile().ToArray());
-        }
-        //очиста текстбоксов
-        private void Clear()
+        }  
+        private void CleareAllComponent()
         {
-            textBoxCity.Text = "";
-            textBoxDealer.Text = "";
-            textBoxColour.Text = "";
-            textBoxProfile.Text = "";
-        }
+            dateTimePickerDateComing.Value = DateTime.Now;
+            comboBoxProfile.Items.Clear();
+            comboBoxCity.Items.Clear();
+            comboxCityDealer.Items.Clear();
+            textBoxNotes.Text = "";
+            textBoxCounts.Text = "";
+            comboBoxColour.Items.Clear();
+            dateTimePickerDateToWork.Value = DateTime.Now;
+            comboBoxDealer.Items.Clear();
+            comboBoxStatusProfile.Items.Clear();
+            dateTimePickerDateReady.Value = DateTime.Now;
+            //
+            comboBoxStatusGoods.Items.Clear();
+        }   
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
@@ -48,6 +62,14 @@ namespace Laminatsia
             textBoxDealer.Enabled = true;
         }
         #region   ВКЛАДКА   Додати
+        //очиста текстбоксов
+        private void Clear()
+        {
+            textBoxCity.Text = "";
+            textBoxDealer.Text = "";
+            textBoxColour.Text = "";
+            textBoxProfile.Text = "";
+        }
         //додати нове місто до бази даних
         private void Add_NewCity_Click(object sender, EventArgs e)
         {
@@ -145,7 +167,8 @@ namespace Laminatsia
 
             ColourGoodsDTO colourGoods = new ColourGoodsDTO();
             colourGoods.AddColourGoods(dateComing,profile,city,dealer,notes,counts,colour,dateToWork,statusProfile,dateReady);
-            MessageBox.Show("Create");
+            this.CleareAllComponent();
+            this.FillAlComponent();
         }
 
         //введення кількості конструкцій
