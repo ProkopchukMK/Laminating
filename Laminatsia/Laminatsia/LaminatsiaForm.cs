@@ -132,8 +132,19 @@ namespace Laminatsia
             string colour = comboBoxColour.SelectedItem.ToString();
             DateTime dateToWork = dateTimePickerDateToWork.Value;
             // потрібно перевести в булеве значення
-            string statusProfile = comboBoxStatusProfile.SelectedItem.ToString();
+            bool statusProfile = false;
+            if (comboBoxStatusProfile.SelectedIndex == 0)
+            {
+                statusProfile = true;
+            }
+            else if (comboBoxStatusProfile.SelectedIndex == 1)
+            {
+                statusProfile = false;
+            }
             DateTime dateReady = dateTimePickerDateReady.Value;
+
+
+
         }
 
         //введення кількості конструкцій

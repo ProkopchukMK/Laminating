@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="DTO\CityDTO.cs" />
     <Compile Include="DTO\ColourDTO.cs" />
+    <Compile Include="DTO\ColourGoodsDTO.cs" />
     <Compile Include="DTO\DealerDTO.cs" />
     <Compile Include="DTO\ProfileDTO.cs" />
     <Compile Include="LaminatsiaForm.cs">
