@@ -10,7 +10,7 @@ namespace Laminatsia.DTO
         private static LaminatsiaEntities _entity = new LaminatsiaEntities();
         public string AddDealer(string cityName, string dealerName)
         {
-            Dealer dealerList = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealerName && x.City == cityName);
+            Dealer dealerList = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealerName);
             if (dealerList == null)
             {
                 Dealer newDealer = new Dealer();

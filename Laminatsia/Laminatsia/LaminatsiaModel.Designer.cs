@@ -9,16 +9,117 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("LaminatsiaModel", "FK_ColourGoods_City", "City", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Laminatsia.City), "ColourGoods", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Laminatsia.ColourGoods))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("LaminatsiaModel", "FK_ColourGoods_ColourProfile", "ColourProfile", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Laminatsia.ColourProfile), "ColourGoods", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Laminatsia.ColourGoods))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("LaminatsiaModel", "FK_ColourGoods_Dealer", "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Laminatsia.Dealer), "ColourGoods", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Laminatsia.ColourGoods))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("LaminatsiaModel", "FK_ColourGoods_Profile", "Profile", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Laminatsia.Profile), "ColourGoods", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Laminatsia.ColourGoods))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("LaminatsiaModel", "FK_ColourGoods_City", "City", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Laminatsia.City), "ColourGoods", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Laminatsia.ColourGoods))]
 
 // Original file name:
-// Generation date: 20.07.2018 11:54:34
+// Generation date: 20.07.2018 13:35:51
 namespace Laminatsia
 {
     
+    /// <summary>
+    /// There are no comments for LaminatsiaModel.City in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="LaminatsiaModel", Name="City")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class City : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new City object.
+        /// </summary>
+        /// <param name="id">Initial value of ID.</param>
+        /// <param name="cityDealer">Initial value of CityDealer.</param>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public static City CreateCity(int id, string cityDealer)
+        {
+            City city = new City();
+            city.ID = id;
+            city.CityDealer = cityDealer;
+            return city;
+        }
+        /// <summary>
+        /// There are no comments for property ID in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public int ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private int _ID;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnIDChanging(int value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnIDChanged();
+        /// <summary>
+        /// There are no comments for property CityDealer in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string CityDealer
+        {
+            get
+            {
+                return this._CityDealer;
+            }
+            set
+            {
+                this.OnCityDealerChanging(value);
+                this.ReportPropertyChanging("CityDealer");
+                this._CityDealer = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("CityDealer");
+                this.OnCityDealerChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _CityDealer;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCityDealerChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCityDealerChanged();
+        /// <summary>
+        /// There are no comments for ColourGoods in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("LaminatsiaModel", "FK_ColourGoods_City", "ColourGoods")]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<ColourGoods> ColourGoods
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<ColourGoods>("LaminatsiaModel.FK_ColourGoods_City", "ColourGoods");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<ColourGoods>("LaminatsiaModel.FK_ColourGoods_City", "ColourGoods", value);
+                }
+            }
+        }
+    }
     /// <summary>
     /// There are no comments for LaminatsiaModel.ColourGoods in the schema.
     /// </summary>
@@ -36,13 +137,17 @@ namespace Laminatsia
         /// <param name="id">Initial value of ID.</param>
         /// <param name="dateComming">Initial value of DateComming.</param>
         /// <param name="counts">Initial value of Counts.</param>
+        /// <param name="dateToWork">Initial value of DateToWork.</param>
+        /// <param name="dateReady">Initial value of DateReady.</param>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public static ColourGoods CreateColourGoods(int id, global::System.DateTime dateComming, int counts)
+        public static ColourGoods CreateColourGoods(int id, global::System.DateTime dateComming, int counts, global::System.DateTime dateToWork, global::System.DateTime dateReady)
         {
             ColourGoods colourGoods = new ColourGoods();
             colourGoods.ID = id;
             colourGoods.DateComming = dateComming;
             colourGoods.Counts = counts;
+            colourGoods.DateToWork = dateToWork;
+            colourGoods.DateReady = dateReady;
             return colourGoods;
         }
         /// <summary>
@@ -156,10 +261,10 @@ namespace Laminatsia
         /// <summary>
         /// There are no comments for property DateToWork in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Nullable<global::System.DateTime> DateToWork
+        public global::System.DateTime DateToWork
         {
             get
             {
@@ -175,9 +280,9 @@ namespace Laminatsia
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Nullable<global::System.DateTime> _DateToWork;
+        private global::System.DateTime _DateToWork;
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnDateToWorkChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnDateToWorkChanging(global::System.DateTime value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnDateToWorkChanged();
         /// <summary>
@@ -186,7 +291,7 @@ namespace Laminatsia
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public string StatusProfile
+        public global::System.Nullable<bool> StatusProfile
         {
             get
             {
@@ -196,24 +301,24 @@ namespace Laminatsia
             {
                 this.OnStatusProfileChanging(value);
                 this.ReportPropertyChanging("StatusProfile");
-                this._StatusProfile = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this._StatusProfile = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
                 this.ReportPropertyChanged("StatusProfile");
                 this.OnStatusProfileChanged();
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private string _StatusProfile;
+        private global::System.Nullable<bool> _StatusProfile;
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnStatusProfileChanging(string value);
+        partial void OnStatusProfileChanging(global::System.Nullable<bool> value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnStatusProfileChanged();
         /// <summary>
         /// There are no comments for property DateReady in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Nullable<global::System.DateTime> DateReady
+        public global::System.DateTime DateReady
         {
             get
             {
@@ -229,9 +334,9 @@ namespace Laminatsia
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Nullable<global::System.DateTime> _DateReady;
+        private global::System.DateTime _DateReady;
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnDateReadyChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnDateReadyChanging(global::System.DateTime value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnDateReadyChanged();
         /// <summary>
@@ -240,7 +345,7 @@ namespace Laminatsia
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public string StatusGoods
+        public global::System.Nullable<bool> StatusGoods
         {
             get
             {
@@ -250,17 +355,56 @@ namespace Laminatsia
             {
                 this.OnStatusGoodsChanging(value);
                 this.ReportPropertyChanging("StatusGoods");
-                this._StatusGoods = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this._StatusGoods = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
                 this.ReportPropertyChanged("StatusGoods");
                 this.OnStatusGoodsChanged();
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private string _StatusGoods;
+        private global::System.Nullable<bool> _StatusGoods;
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnStatusGoodsChanging(string value);
+        partial void OnStatusGoodsChanging(global::System.Nullable<bool> value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnStatusGoodsChanged();
+        /// <summary>
+        /// There are no comments for City in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("LaminatsiaModel", "FK_ColourGoods_City", "City")]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public City City
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("LaminatsiaModel.FK_ColourGoods_City", "City").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("LaminatsiaModel.FK_ColourGoods_City", "City").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for City in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<City> CityReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("LaminatsiaModel.FK_ColourGoods_City", "City");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("LaminatsiaModel.FK_ColourGoods_City", "City", value);
+                }
+            }
+        }
         /// <summary>
         /// There are no comments for ColourProfile in the schema.
         /// </summary>
@@ -375,45 +519,6 @@ namespace Laminatsia
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Profile>("LaminatsiaModel.FK_ColourGoods_Profile", "Profile", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for City in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("LaminatsiaModel", "FK_ColourGoods_City", "City")]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public City City
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("LaminatsiaModel.FK_ColourGoods_City", "City").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("LaminatsiaModel.FK_ColourGoods_City", "City").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for City in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<City> CityReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("LaminatsiaModel.FK_ColourGoods_City", "City");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("LaminatsiaModel.FK_ColourGoods_City", "City", value);
                 }
             }
         }
@@ -913,212 +1018,6 @@ namespace Laminatsia
         partial void OndefinitionChanged();
     }
     /// <summary>
-    /// There are no comments for LaminatsiaEntities in the schema.
-    /// </summary>
-    public partial class LaminatsiaEntities : global::System.Data.Objects.ObjectContext
-    {
-        /// <summary>
-        /// Initializes a new LaminatsiaEntities object using the connection string found in the 'LaminatsiaEntities' section of the application configuration file.
-        /// </summary>
-        public LaminatsiaEntities() : 
-                base("name=LaminatsiaEntities", "LaminatsiaEntities")
-        {
-            this.OnContextCreated();
-        }
-        /// <summary>
-        /// Initialize a new LaminatsiaEntities object.
-        /// </summary>
-        public LaminatsiaEntities(string connectionString) : 
-                base(connectionString, "LaminatsiaEntities")
-        {
-            this.OnContextCreated();
-        }
-        /// <summary>
-        /// Initialize a new LaminatsiaEntities object.
-        /// </summary>
-        public LaminatsiaEntities(global::System.Data.EntityClient.EntityConnection connection) : 
-                base(connection, "LaminatsiaEntities")
-        {
-            this.OnContextCreated();
-        }
-        partial void OnContextCreated();
-        /// <summary>
-        /// There are no comments for ColourGoods in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Data.Objects.ObjectQuery<ColourGoods> ColourGoods
-        {
-            get
-            {
-                if ((this._ColourGoods == null))
-                {
-                    this._ColourGoods = base.CreateQuery<ColourGoods>("[ColourGoods]");
-                }
-                return this._ColourGoods;
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Data.Objects.ObjectQuery<ColourGoods> _ColourGoods;
-        /// <summary>
-        /// There are no comments for ColourProfile in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Data.Objects.ObjectQuery<ColourProfile> ColourProfile
-        {
-            get
-            {
-                if ((this._ColourProfile == null))
-                {
-                    this._ColourProfile = base.CreateQuery<ColourProfile>("[ColourProfile]");
-                }
-                return this._ColourProfile;
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Data.Objects.ObjectQuery<ColourProfile> _ColourProfile;
-        /// <summary>
-        /// There are no comments for Dealer in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Data.Objects.ObjectQuery<Dealer> Dealer
-        {
-            get
-            {
-                if ((this._Dealer == null))
-                {
-                    this._Dealer = base.CreateQuery<Dealer>("[Dealer]");
-                }
-                return this._Dealer;
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Data.Objects.ObjectQuery<Dealer> _Dealer;
-        /// <summary>
-        /// There are no comments for Profile in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Data.Objects.ObjectQuery<Profile> Profile
-        {
-            get
-            {
-                if ((this._Profile == null))
-                {
-                    this._Profile = base.CreateQuery<Profile>("[Profile]");
-                }
-                return this._Profile;
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Data.Objects.ObjectQuery<Profile> _Profile;
-        /// <summary>
-        /// There are no comments for sysdiagrams in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Data.Objects.ObjectQuery<sysdiagrams> sysdiagrams
-        {
-            get
-            {
-                if ((this._sysdiagrams == null))
-                {
-                    this._sysdiagrams = base.CreateQuery<sysdiagrams>("[sysdiagrams]");
-                }
-                return this._sysdiagrams;
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Data.Objects.ObjectQuery<sysdiagrams> _sysdiagrams;
-        /// <summary>
-        /// There are no comments for Users in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Data.Objects.ObjectQuery<Users> Users
-        {
-            get
-            {
-                if ((this._Users == null))
-                {
-                    this._Users = base.CreateQuery<Users>("[Users]");
-                }
-                return this._Users;
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Data.Objects.ObjectQuery<Users> _Users;
-        /// <summary>
-        /// There are no comments for City in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public global::System.Data.Objects.ObjectQuery<City> City
-        {
-            get
-            {
-                if ((this._City == null))
-                {
-                    this._City = base.CreateQuery<City>("[City]");
-                }
-                return this._City;
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private global::System.Data.Objects.ObjectQuery<City> _City;
-        /// <summary>
-        /// There are no comments for ColourGoods in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public void AddToColourGoods(ColourGoods colourGoods)
-        {
-            base.AddObject("ColourGoods", colourGoods);
-        }
-        /// <summary>
-        /// There are no comments for ColourProfile in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public void AddToColourProfile(ColourProfile colourProfile)
-        {
-            base.AddObject("ColourProfile", colourProfile);
-        }
-        /// <summary>
-        /// There are no comments for Dealer in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public void AddToDealer(Dealer dealer)
-        {
-            base.AddObject("Dealer", dealer);
-        }
-        /// <summary>
-        /// There are no comments for Profile in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public void AddToProfile(Profile profile)
-        {
-            base.AddObject("Profile", profile);
-        }
-        /// <summary>
-        /// There are no comments for sysdiagrams in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public void AddTosysdiagrams(sysdiagrams sysdiagrams)
-        {
-            base.AddObject("sysdiagrams", sysdiagrams);
-        }
-        /// <summary>
-        /// There are no comments for Users in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public void AddToUsers(Users users)
-        {
-            base.AddObject("Users", users);
-        }
-        /// <summary>
-        /// There are no comments for City in the schema.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public void AddToCity(City city)
-        {
-            base.AddObject("City", city);
-        }
-    }
-    /// <summary>
     /// There are no comments for LaminatsiaModel.Users in the schema.
     /// </summary>
     /// <KeyProperties>
@@ -1256,104 +1155,209 @@ namespace Laminatsia
         partial void OnUserPCChanged();
     }
     /// <summary>
-    /// There are no comments for LaminatsiaModel.City in the schema.
+    /// There are no comments for LaminatsiaEntities in the schema.
     /// </summary>
-    /// <KeyProperties>
-    /// ID
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="LaminatsiaModel", Name="City")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class City : global::System.Data.Objects.DataClasses.EntityObject
+    public partial class LaminatsiaEntities : global::System.Data.Objects.ObjectContext
     {
         /// <summary>
-        /// Create a new City object.
+        /// Initializes a new LaminatsiaEntities object using the connection string found in the 'LaminatsiaEntities' section of the application configuration file.
         /// </summary>
-        /// <param name="id">Initial value of ID.</param>
-        /// <param name="cityDealer">Initial value of CityDealer.</param>
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public static City CreateCity(int id, string cityDealer)
+        public LaminatsiaEntities() : 
+                base("name=LaminatsiaEntities", "LaminatsiaEntities")
         {
-            City city = new City();
-            city.ID = id;
-            city.CityDealer = cityDealer;
-            return city;
+            this.OnContextCreated();
         }
         /// <summary>
-        /// There are no comments for property ID in the schema.
+        /// Initialize a new LaminatsiaEntities object.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public LaminatsiaEntities(string connectionString) : 
+                base(connectionString, "LaminatsiaEntities")
+        {
+            this.OnContextCreated();
+        }
+        /// <summary>
+        /// Initialize a new LaminatsiaEntities object.
+        /// </summary>
+        public LaminatsiaEntities(global::System.Data.EntityClient.EntityConnection connection) : 
+                base(connection, "LaminatsiaEntities")
+        {
+            this.OnContextCreated();
+        }
+        partial void OnContextCreated();
+        /// <summary>
+        /// There are no comments for City in the schema.
+        /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public int ID
+        public global::System.Data.Objects.ObjectQuery<City> City
         {
             get
             {
-                return this._ID;
-            }
-            set
-            {
-                this.OnIDChanging(value);
-                this.ReportPropertyChanging("ID");
-                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ID");
-                this.OnIDChanged();
+                if ((this._City == null))
+                {
+                    this._City = base.CreateQuery<City>("[City]");
+                }
+                return this._City;
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private int _ID;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnIDChanging(int value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnIDChanged();
-        /// <summary>
-        /// There are no comments for property CityDealer in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public string CityDealer
-        {
-            get
-            {
-                return this._CityDealer;
-            }
-            set
-            {
-                this.OnCityDealerChanging(value);
-                this.ReportPropertyChanging("CityDealer");
-                this._CityDealer = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("CityDealer");
-                this.OnCityDealerChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private string _CityDealer;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnCityDealerChanging(string value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnCityDealerChanged();
+        private global::System.Data.Objects.ObjectQuery<City> _City;
         /// <summary>
         /// There are no comments for ColourGoods in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("LaminatsiaModel", "FK_ColourGoods_City", "ColourGoods")]
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<ColourGoods> ColourGoods
+        public global::System.Data.Objects.ObjectQuery<ColourGoods> ColourGoods
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<ColourGoods>("LaminatsiaModel.FK_ColourGoods_City", "ColourGoods");
-            }
-            set
-            {
-                if ((value != null))
+                if ((this._ColourGoods == null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<ColourGoods>("LaminatsiaModel.FK_ColourGoods_City", "ColourGoods", value);
+                    this._ColourGoods = base.CreateQuery<ColourGoods>("[ColourGoods]");
                 }
+                return this._ColourGoods;
             }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<ColourGoods> _ColourGoods;
+        /// <summary>
+        /// There are no comments for ColourProfile in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<ColourProfile> ColourProfile
+        {
+            get
+            {
+                if ((this._ColourProfile == null))
+                {
+                    this._ColourProfile = base.CreateQuery<ColourProfile>("[ColourProfile]");
+                }
+                return this._ColourProfile;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<ColourProfile> _ColourProfile;
+        /// <summary>
+        /// There are no comments for Dealer in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<Dealer> Dealer
+        {
+            get
+            {
+                if ((this._Dealer == null))
+                {
+                    this._Dealer = base.CreateQuery<Dealer>("[Dealer]");
+                }
+                return this._Dealer;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<Dealer> _Dealer;
+        /// <summary>
+        /// There are no comments for Profile in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<Profile> Profile
+        {
+            get
+            {
+                if ((this._Profile == null))
+                {
+                    this._Profile = base.CreateQuery<Profile>("[Profile]");
+                }
+                return this._Profile;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<Profile> _Profile;
+        /// <summary>
+        /// There are no comments for sysdiagrams in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<sysdiagrams> sysdiagrams
+        {
+            get
+            {
+                if ((this._sysdiagrams == null))
+                {
+                    this._sysdiagrams = base.CreateQuery<sysdiagrams>("[sysdiagrams]");
+                }
+                return this._sysdiagrams;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<sysdiagrams> _sysdiagrams;
+        /// <summary>
+        /// There are no comments for Users in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<Users> Users
+        {
+            get
+            {
+                if ((this._Users == null))
+                {
+                    this._Users = base.CreateQuery<Users>("[Users]");
+                }
+                return this._Users;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<Users> _Users;
+        /// <summary>
+        /// There are no comments for City in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddToCity(City city)
+        {
+            base.AddObject("City", city);
+        }
+        /// <summary>
+        /// There are no comments for ColourGoods in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddToColourGoods(ColourGoods colourGoods)
+        {
+            base.AddObject("ColourGoods", colourGoods);
+        }
+        /// <summary>
+        /// There are no comments for ColourProfile in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddToColourProfile(ColourProfile colourProfile)
+        {
+            base.AddObject("ColourProfile", colourProfile);
+        }
+        /// <summary>
+        /// There are no comments for Dealer in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddToDealer(Dealer dealer)
+        {
+            base.AddObject("Dealer", dealer);
+        }
+        /// <summary>
+        /// There are no comments for Profile in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddToProfile(Profile profile)
+        {
+            base.AddObject("Profile", profile);
+        }
+        /// <summary>
+        /// There are no comments for sysdiagrams in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddTosysdiagrams(sysdiagrams sysdiagrams)
+        {
+            base.AddObject("sysdiagrams", sysdiagrams);
+        }
+        /// <summary>
+        /// There are no comments for Users in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddToUsers(Users users)
+        {
+            base.AddObject("Users", users);
         }
     }
 }

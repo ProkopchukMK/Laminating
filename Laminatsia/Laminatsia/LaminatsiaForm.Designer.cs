@@ -375,6 +375,7 @@
             this.comboxCityDealer.Name = "comboxCityDealer";
             this.comboxCityDealer.Size = new System.Drawing.Size(147, 21);
             this.comboxCityDealer.TabIndex = 12;
+            this.comboxCityDealer.SelectedIndexChanged += new System.EventHandler(this.comboxCityDealer_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -468,6 +469,7 @@
             // 
             // textBoxDealer
             // 
+            this.textBoxDealer.Enabled = false;
             this.textBoxDealer.Location = new System.Drawing.Point(276, 41);
             this.textBoxDealer.Name = "textBoxDealer";
             this.textBoxDealer.Size = new System.Drawing.Size(135, 20);

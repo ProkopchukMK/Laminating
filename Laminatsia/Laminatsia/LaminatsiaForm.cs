@@ -42,6 +42,11 @@ namespace Laminatsia
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.WindowState = FormWindowState.Maximized;
         }
+        //потрібно ввести спочатку місто а потім і
+        private void comboxCityDealer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxDealer.Enabled = true;
+        }
         #region   ВКЛАДКА   Додати
         //додати нове місто до бази даних
         private void Add_NewCity_Click(object sender, EventArgs e)
@@ -118,7 +123,17 @@ namespace Laminatsia
         //додати нове замовлення до бази даних
         private void SaveColourGoods_Click(object sender, EventArgs e)
         {
-
+            DateTime dateComing = dateTimePickerDateComing.Value;
+            string profile = comboBoxProfile.SelectedItem.ToString();
+            string city = comboBoxCity.SelectedItem.ToString();
+            string dealer = comboBoxDealer.SelectedItem.ToString();
+            string notes = textBoxNotes.Text;
+            byte counts =  Byte.Parse(textBoxCounts.Text.TrimStart(new Char[] { '0' }));
+            string colour = comboBoxColour.SelectedItem.ToString();
+            DateTime dateToWork = dateTimePickerDateToWork.Value;
+            // потрібно перевести в булеве значення
+            string statusProfile = comboBoxStatusProfile.SelectedItem.ToString();
+            DateTime dateReady = dateTimePickerDateReady.Value;
         }
 
         //введення кількості конструкцій
@@ -150,5 +165,6 @@ namespace Laminatsia
             }
         }
         #endregion
+        
     }
 }

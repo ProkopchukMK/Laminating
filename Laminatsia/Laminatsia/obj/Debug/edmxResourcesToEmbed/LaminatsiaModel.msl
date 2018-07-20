@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
   <EntityContainerMapping StorageEntityContainer="LaminatsiaModelStoreContainer" CdmEntityContainer="LaminatsiaEntities">
+    <EntitySetMapping Name="City">
+      <EntityTypeMapping TypeName="LaminatsiaModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CityDealer" ColumnName="CityDealer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ColourGoods">
       <EntityTypeMapping TypeName="LaminatsiaModel.ColourGoods">
         <MappingFragment StoreEntitySet="ColourGoods">
@@ -26,9 +34,9 @@
     <EntitySetMapping Name="Dealer">
       <EntityTypeMapping TypeName="LaminatsiaModel.Dealer">
         <MappingFragment StoreEntitySet="Dealer">
-          <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DealerName" ColumnName="DealerName" />
+          <ScalarProperty Name="City" ColumnName="City" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -51,6 +59,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="LaminatsiaModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserPC" ColumnName="UserPC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_ColourGoods_City" TypeName="LaminatsiaModel.FK_ColourGoods_City" StoreEntitySet="ColourGoods">
+      <EndProperty Name="City">
+        <ScalarProperty Name="ID" ColumnName="City_ID" />
+      </EndProperty>
+      <EndProperty Name="ColourGoods">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
     <AssociationSetMapping Name="FK_ColourGoods_ColourProfile" TypeName="LaminatsiaModel.FK_ColourGoods_ColourProfile" StoreEntitySet="ColourGoods">
       <EndProperty Name="ColourProfile">
         <ScalarProperty Name="ID" ColumnName="Colour_ID" />
@@ -73,32 +99,6 @@
       </EndProperty>
       <EndProperty Name="ColourGoods">
         <ScalarProperty Name="ID" ColumnName="ID" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="LaminatsiaModel.Users">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="UserPC" ColumnName="UserPC" />
-          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="City">
-      <EntityTypeMapping TypeName="LaminatsiaModel.City">
-        <MappingFragment StoreEntitySet="City">
-          <ScalarProperty Name="CityDealer" ColumnName="CityDealer" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="FK_ColourGoods_City" TypeName="LaminatsiaModel.FK_ColourGoods_City" StoreEntitySet="ColourGoods">
-      <EndProperty Name="ColourGoods">
-        <ScalarProperty Name="ID" ColumnName="ID" />
-      </EndProperty>
-      <EndProperty Name="City">
-        <ScalarProperty Name="ID" ColumnName="City_ID" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

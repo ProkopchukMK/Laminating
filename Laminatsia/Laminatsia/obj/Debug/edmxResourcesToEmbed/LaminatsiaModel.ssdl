@@ -19,10 +19,10 @@
     <Property Name="Notes" Type="nchar" MaxLength="100" />
     <Property Name="Counts" Type="int" Nullable="false" />
     <Property Name="Colour_ID" Type="int" Nullable="false" />
-    <Property Name="DateToWork" Type="smalldatetime" />
-    <Property Name="StatusProfile" Type="nchar" MaxLength="20" />
-    <Property Name="DateReady" Type="smalldatetime" />
-    <Property Name="StatusGoods" Type="nchar" MaxLength="20" />
+    <Property Name="DateToWork" Type="smalldatetime" Nullable="false" />
+    <Property Name="StatusProfile" Type="bit" />
+    <Property Name="DateReady" Type="smalldatetime" Nullable="false" />
+    <Property Name="StatusGoods" Type="bit" />
   </EntityType>
   <EntityType Name="ColourProfile">
     <Key>
