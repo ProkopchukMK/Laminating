@@ -7,6 +7,10 @@ namespace Laminatsia.DTO
 {
    public class ColourGoodsDTO
     {
+        LaminatsiaEntities _entity = new LaminatsiaEntities();
+        public void AddColourGoods()
+        {
 
+        }
     }
 }

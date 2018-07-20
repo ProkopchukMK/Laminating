@@ -142,9 +142,7 @@ namespace Laminatsia
                 statusProfile = false;
             }
             DateTime dateReady = dateTimePickerDateReady.Value;
-
-
-
+            
         }
 
         //введення кількості конструкцій
