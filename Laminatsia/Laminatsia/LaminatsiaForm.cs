@@ -36,9 +36,7 @@ namespace Laminatsia
             FillAlComponent();
         }
         private void FillAlComponent()
-        {
-            
-            
+        {         
             listCity = cityDTO.GetListCity();
             listProfile = profileDTO.GetListProfile();
             listColour = colourDTO.GetListColour();
@@ -109,9 +107,6 @@ namespace Laminatsia
                 comboxAddCityDealer.Items.Clear();
                 comboBoxCity.Items.Clear();
                 MessageBox.Show(messageCity);
-                comboxAddCityDealer.Items.AddRange(newCity.GetListCity().ToArray());
-                comboBoxCity.Items.AddRange(newCity.GetListCity().ToArray());
-
             }
             else
             {
@@ -119,6 +114,7 @@ namespace Laminatsia
                 MessageBox.Show("Потрібно написати назву міста!");
             }
             this.CleareAllComponent();
+            this.FillAlComponent();
         }
         //додати нового диллера до бази даних
         private void Add_NewDealer_Click(object sender, EventArgs e)

@@ -34,7 +34,7 @@ namespace Laminatsia.DTO
         }
         public List<string> GetListDealer()
         {
-            var listDealer = _entity.Dealer.Select(x => x.DealerName.Trim()).ToList<string>();
+            var listDealer = _entity.Dealer.Select(x => x.DealerName).ToList<string>();
             listDealer.Sort();
             return listDealer;
         }
