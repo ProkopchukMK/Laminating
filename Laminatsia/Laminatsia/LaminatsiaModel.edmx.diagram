@@ -4,14 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3984164b51e4485b90f01a261728d9e2" Name="Diagram1">
-        <EntityTypeShape EntityType="LaminatsiaModel.City" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="b8b665953d2643fabc0f5b219fc2e496" Name="Diagram1">
         <EntityTypeShape EntityType="LaminatsiaModel.ColourGoods" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.ColourProfile" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.Dealer" Width="1.5" PointX="5.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.Profile" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.Users" Width="1.5" PointX="11" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_City" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LaminatsiaModel.ColourProfile" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaminatsiaModel.Dealer" Width="1.5" PointX="5.625" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaminatsiaModel.Profile" Width="1.5" PointX="5.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaminatsiaModel.Users" Width="1.5" PointX="8.25" PointY="0.625" IsExpanded="true" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_ColourProfile" ManuallyRouted="false" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Dealer" ManuallyRouted="false" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Profile" ManuallyRouted="false" />

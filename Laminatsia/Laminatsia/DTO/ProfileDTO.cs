@@ -13,8 +13,7 @@ namespace Laminatsia.DTO
             Profile profileList = _entity.Profile.FirstOrDefault(x => x.NameProfile == profileName);
             if (profileList == null)
             {
-                Profile newProfile = new Profile();
-                newProfile.NameProfile = profileName;
+                Profile newProfile = new Profile{NameProfile = profileName };
                 _entity.AddToProfile(newProfile);
                 _entity.SaveChanges();
                 return "Профіль " + profileName + " добавлено!";

@@ -23,17 +23,18 @@ namespace Laminatsia.DTO
             string city, string dealer, string notes,
             byte counts, string colour, DateTime dateToWork, bool statusProfile, DateTime dateReady)
         {
-            ColourGoods newColourGoods = new ColourGoods();
-            newColourGoods.DateComming = dateComing.Date;
-            newColourGoods.Profile = _entity.Profile.FirstOrDefault(x => x.NameProfile == profile);
-            newColourGoods.City = _entity.City.FirstOrDefault(x => x.CityDealer == city);
-            newColourGoods.Dealer = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealer);
-            newColourGoods.Notes = notes;
-            newColourGoods.Counts = counts;
-            newColourGoods.ColourProfile = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colour);
-            newColourGoods.DateToWork = dateToWork;
-            newColourGoods.StatusProfile = statusProfile;
-            newColourGoods.DateReady = dateReady;
+            ColourGoods newColourGoods = new ColourGoods
+            {
+                DateComming = dateComing.Date,
+                Profile = _entity.Profile.FirstOrDefault(x => x.NameProfile == profile),
+                Dealer = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealer),
+                Notes = notes,
+                Counts = counts,
+                ColourProfile = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colour),
+                DateToWork = dateToWork,
+                StatusProfile = statusProfile,
+                DateReady = dateReady
+            };
             _entity.AddToColourGoods(newColourGoods);
             _entity.SaveChanges();            
         }       
