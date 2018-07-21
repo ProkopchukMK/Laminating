@@ -30,27 +30,28 @@
         {
             this.MenuTabControl = new System.Windows.Forms.TabControl();
             this.Laminaters = new System.Windows.Forms.TabPage();
-            this.SaveColourGoods = new System.Windows.Forms.Button();
-            this.comboBoxStatusProfile = new System.Windows.Forms.ComboBox();
-            this.comboBoxColour = new System.Windows.Forms.ComboBox();
-            this.comboBoxDealer = new System.Windows.Forms.ComboBox();
-            this.comboBoxCity = new System.Windows.Forms.ComboBox();
+            this.groupBoxCreateNewOrder = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerDateComing = new System.Windows.Forms.DateTimePicker();
             this.comboBoxProfile = new System.Windows.Forms.ComboBox();
-            this.dateTimePickerDateToWork = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerDateReady = new System.Windows.Forms.DateTimePicker();
-            this.textBoxNotes = new System.Windows.Forms.TextBox();
-            this.labelNotes = new System.Windows.Forms.Label();
-            this.labelDateReady = new System.Windows.Forms.Label();
-            this.labelStatusProfile = new System.Windows.Forms.Label();
-            this.labelDateToWork = new System.Windows.Forms.Label();
-            this.labelColour_ID = new System.Windows.Forms.Label();
+            this.SaveColourGoods = new System.Windows.Forms.Button();
             this.labelCounts = new System.Windows.Forms.Label();
             this.labelCity_ID = new System.Windows.Forms.Label();
-            this.labelDealer = new System.Windows.Forms.Label();
-            this.labelProfile = new System.Windows.Forms.Label();
-            this.LabelDateComming = new System.Windows.Forms.Label();
-            this.dateTimePickerDateComing = new System.Windows.Forms.DateTimePicker();
             this.textBoxCounts = new System.Windows.Forms.TextBox();
+            this.dateTimePickerDateToWork = new System.Windows.Forms.DateTimePicker();
+            this.labelDateReady = new System.Windows.Forms.Label();
+            this.comboBoxCity = new System.Windows.Forms.ComboBox();
+            this.comboBoxStatusProfile = new System.Windows.Forms.ComboBox();
+            this.labelColour_ID = new System.Windows.Forms.Label();
+            this.labelNotes = new System.Windows.Forms.Label();
+            this.labelDealer = new System.Windows.Forms.Label();
+            this.LabelDateComming = new System.Windows.Forms.Label();
+            this.dateTimePickerDateReady = new System.Windows.Forms.DateTimePicker();
+            this.labelStatusProfile = new System.Windows.Forms.Label();
+            this.comboBoxDealer = new System.Windows.Forms.ComboBox();
+            this.comboBoxColour = new System.Windows.Forms.ComboBox();
+            this.labelDateToWork = new System.Windows.Forms.Label();
+            this.textBoxNotes = new System.Windows.Forms.TextBox();
+            this.labelProfile = new System.Windows.Forms.Label();
             this.Managers = new System.Windows.Forms.TabPage();
             this.Tehnologers = new System.Windows.Forms.TabPage();
             this.comboBoxStatusGoods = new System.Windows.Forms.ComboBox();
@@ -71,10 +72,10 @@
             this.buttonRemoveColour = new System.Windows.Forms.Button();
             this.buttonRemoveProfile = new System.Windows.Forms.Button();
             this.groupBoxAdd = new System.Windows.Forms.GroupBox();
-            this.textBoxCity = new System.Windows.Forms.TextBox();
-            this.textBoxDealer = new System.Windows.Forms.TextBox();
-            this.textBoxProfile = new System.Windows.Forms.TextBox();
-            this.textBoxColour = new System.Windows.Forms.TextBox();
+            this.textBoxAddCity = new System.Windows.Forms.TextBox();
+            this.textBoxAddDealer = new System.Windows.Forms.TextBox();
+            this.textBoxAddProfile = new System.Windows.Forms.TextBox();
+            this.textBoxAddColour = new System.Windows.Forms.TextBox();
             this.Add_NewCity = new System.Windows.Forms.Button();
             this.Add_NewDealer = new System.Windows.Forms.Button();
             this.Add_NewProfile = new System.Windows.Forms.Button();
@@ -83,15 +84,14 @@
             this.labelAddDealer = new System.Windows.Forms.Label();
             this.labelAddProfile = new System.Windows.Forms.Label();
             this.labelAddColour = new System.Windows.Forms.Label();
-            this.comboxCityDealer = new System.Windows.Forms.ComboBox();
-            this.groupBoxCreateNewOrder = new System.Windows.Forms.GroupBox();
+            this.comboxAddCityDealer = new System.Windows.Forms.ComboBox();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
+            this.groupBoxCreateNewOrder.SuspendLayout();
             this.Tehnologers.SuspendLayout();
             this.AddRemove.SuspendLayout();
             this.groupBoxRemove.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
-            this.groupBoxCreateNewOrder.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuTabControl
@@ -119,52 +119,46 @@
             this.Laminaters.Text = "Ламінація";
             this.Laminaters.UseVisualStyleBackColor = true;
             // 
-            // SaveColourGoods
+            // groupBoxCreateNewOrder
             // 
-            this.SaveColourGoods.Location = new System.Drawing.Point(1448, 73);
-            this.SaveColourGoods.Name = "SaveColourGoods";
-            this.SaveColourGoods.Size = new System.Drawing.Size(98, 28);
-            this.SaveColourGoods.TabIndex = 28;
-            this.SaveColourGoods.Text = "Створити";
-            this.SaveColourGoods.UseVisualStyleBackColor = true;
-            this.SaveColourGoods.Click += new System.EventHandler(this.SaveColourGoods_Click);
+            this.groupBoxCreateNewOrder.Controls.Add(this.dateTimePickerDateComing);
+            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxProfile);
+            this.groupBoxCreateNewOrder.Controls.Add(this.SaveColourGoods);
+            this.groupBoxCreateNewOrder.Controls.Add(this.labelCounts);
+            this.groupBoxCreateNewOrder.Controls.Add(this.labelCity_ID);
+            this.groupBoxCreateNewOrder.Controls.Add(this.textBoxCounts);
+            this.groupBoxCreateNewOrder.Controls.Add(this.dateTimePickerDateToWork);
+            this.groupBoxCreateNewOrder.Controls.Add(this.labelDateReady);
+            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxCity);
+            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxStatusProfile);
+            this.groupBoxCreateNewOrder.Controls.Add(this.labelColour_ID);
+            this.groupBoxCreateNewOrder.Controls.Add(this.labelNotes);
+            this.groupBoxCreateNewOrder.Controls.Add(this.labelDealer);
+            this.groupBoxCreateNewOrder.Controls.Add(this.LabelDateComming);
+            this.groupBoxCreateNewOrder.Controls.Add(this.dateTimePickerDateReady);
+            this.groupBoxCreateNewOrder.Controls.Add(this.labelStatusProfile);
+            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxDealer);
+            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxColour);
+            this.groupBoxCreateNewOrder.Controls.Add(this.labelDateToWork);
+            this.groupBoxCreateNewOrder.Controls.Add(this.textBoxNotes);
+            this.groupBoxCreateNewOrder.Controls.Add(this.labelProfile);
+            this.groupBoxCreateNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxCreateNewOrder.Location = new System.Drawing.Point(18, 19);
+            this.groupBoxCreateNewOrder.Name = "groupBoxCreateNewOrder";
+            this.groupBoxCreateNewOrder.Size = new System.Drawing.Size(1552, 132);
+            this.groupBoxCreateNewOrder.TabIndex = 29;
+            this.groupBoxCreateNewOrder.TabStop = false;
+            this.groupBoxCreateNewOrder.Text = "Створити нове замовлення";
             // 
-            // comboBoxStatusProfile
+            // dateTimePickerDateComing
             // 
-            this.comboBoxStatusProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxStatusProfile.FormattingEnabled = true;            
-            this.comboBoxStatusProfile.Location = new System.Drawing.Point(1165, 72);
-            this.comboBoxStatusProfile.Name = "comboBoxStatusProfile";
-            this.comboBoxStatusProfile.Size = new System.Drawing.Size(150, 28);
-            this.comboBoxStatusProfile.TabIndex = 27;
-            // 
-            // comboBoxColour
-            // 
-            this.comboBoxColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxColour.FormattingEnabled = true;
-            this.comboBoxColour.Location = new System.Drawing.Point(883, 73);
-            this.comboBoxColour.Name = "comboBoxColour";
-            this.comboBoxColour.Size = new System.Drawing.Size(150, 28);
-            this.comboBoxColour.TabIndex = 26;
-            // 
-            // comboBoxDealer
-            // 
-            this.comboBoxDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxDealer.FormattingEnabled = true;
-            this.comboBoxDealer.Location = new System.Drawing.Point(474, 72);
-            this.comboBoxDealer.Name = "comboBoxDealer";
-            this.comboBoxDealer.Size = new System.Drawing.Size(150, 28);
-            this.comboBoxDealer.TabIndex = 25;
-            // 
-            // comboBoxCity
-            // 
-            this.comboBoxCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCity.FormattingEnabled = true;
-            this.comboBoxCity.Location = new System.Drawing.Point(301, 71);
-            this.comboBoxCity.Name = "comboBoxCity";
-            this.comboBoxCity.Size = new System.Drawing.Size(150, 28);
-            this.comboBoxCity.TabIndex = 24;
-            this.comboBoxCity.SelectedIndexChanged += new System.EventHandler(this.comboBoxCity_SelectedIndexChanged);
+            this.dateTimePickerDateComing.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateComing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateComing.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDateComing.Location = new System.Drawing.Point(10, 75);
+            this.dateTimePickerDateComing.Name = "dateTimePickerDateComing";
+            this.dateTimePickerDateComing.Size = new System.Drawing.Size(102, 26);
+            this.dateTimePickerDateComing.TabIndex = 22;
             // 
             // comboBoxProfile
             // 
@@ -175,73 +169,15 @@
             this.comboBoxProfile.Size = new System.Drawing.Size(150, 28);
             this.comboBoxProfile.TabIndex = 23;
             // 
-            // dateTimePickerDateToWork
+            // SaveColourGoods
             // 
-            this.dateTimePickerDateToWork.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateToWork.Location = new System.Drawing.Point(1047, 74);
-            this.dateTimePickerDateToWork.Name = "dateTimePickerDateToWork";
-            this.dateTimePickerDateToWork.Size = new System.Drawing.Size(102, 26);
-            this.dateTimePickerDateToWork.TabIndex = 22;
-            // 
-            // dateTimePickerDateReady
-            // 
-            this.dateTimePickerDateReady.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateReady.Location = new System.Drawing.Point(1340, 75);
-            this.dateTimePickerDateReady.Name = "dateTimePickerDateReady";
-            this.dateTimePickerDateReady.Size = new System.Drawing.Size(102, 26);
-            this.dateTimePickerDateReady.TabIndex = 20;
-            // 
-            // textBoxNotes
-            // 
-            this.textBoxNotes.Location = new System.Drawing.Point(645, 75);
-            this.textBoxNotes.Name = "textBoxNotes";
-            this.textBoxNotes.Size = new System.Drawing.Size(149, 26);
-            this.textBoxNotes.TabIndex = 19;
-            // 
-            // labelNotes
-            // 
-            this.labelNotes.AutoSize = true;
-            this.labelNotes.Location = new System.Drawing.Point(677, 36);
-            this.labelNotes.Name = "labelNotes";
-            this.labelNotes.Size = new System.Drawing.Size(51, 20);
-            this.labelNotes.TabIndex = 18;
-            this.labelNotes.Text = "Notes";
-            // 
-            // labelDateReady
-            // 
-            this.labelDateReady.AutoSize = true;
-            this.labelDateReady.Location = new System.Drawing.Point(1336, 36);
-            this.labelDateReady.Name = "labelDateReady";
-            this.labelDateReady.Size = new System.Drawing.Size(90, 20);
-            this.labelDateReady.TabIndex = 16;
-            this.labelDateReady.Text = "DateReady";
-            // 
-            // labelStatusProfile
-            // 
-            this.labelStatusProfile.AutoSize = true;
-            this.labelStatusProfile.Location = new System.Drawing.Point(1188, 36);
-            this.labelStatusProfile.Name = "labelStatusProfile";
-            this.labelStatusProfile.Size = new System.Drawing.Size(100, 20);
-            this.labelStatusProfile.TabIndex = 15;
-            this.labelStatusProfile.Text = "StatusProfile";
-            // 
-            // labelDateToWork
-            // 
-            this.labelDateToWork.AutoSize = true;
-            this.labelDateToWork.Location = new System.Drawing.Point(1050, 36);
-            this.labelDateToWork.Name = "labelDateToWork";
-            this.labelDateToWork.Size = new System.Drawing.Size(99, 20);
-            this.labelDateToWork.TabIndex = 14;
-            this.labelDateToWork.Text = "DateToWork";
-            // 
-            // labelColour_ID
-            // 
-            this.labelColour_ID.AutoSize = true;
-            this.labelColour_ID.Location = new System.Drawing.Point(910, 36);
-            this.labelColour_ID.Name = "labelColour_ID";
-            this.labelColour_ID.Size = new System.Drawing.Size(81, 20);
-            this.labelColour_ID.TabIndex = 13;
-            this.labelColour_ID.Text = "Colour_ID";
+            this.SaveColourGoods.Location = new System.Drawing.Point(1448, 73);
+            this.SaveColourGoods.Name = "SaveColourGoods";
+            this.SaveColourGoods.Size = new System.Drawing.Size(98, 28);
+            this.SaveColourGoods.TabIndex = 28;
+            this.SaveColourGoods.Text = "Створити";
+            this.SaveColourGoods.UseVisualStyleBackColor = true;
+            this.SaveColourGoods.Click += new System.EventHandler(this.SaveColourGoods_Click);
             // 
             // labelCounts
             // 
@@ -261,6 +197,69 @@
             this.labelCity_ID.TabIndex = 11;
             this.labelCity_ID.Text = "City_ID";
             // 
+            // textBoxCounts
+            // 
+            this.textBoxCounts.Location = new System.Drawing.Point(823, 74);
+            this.textBoxCounts.MaxLength = 3;
+            this.textBoxCounts.Name = "textBoxCounts";
+            this.textBoxCounts.Size = new System.Drawing.Size(37, 26);
+            this.textBoxCounts.TabIndex = 3;
+            this.textBoxCounts.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCounts_KeyPress);
+            // 
+            // dateTimePickerDateToWork
+            // 
+            this.dateTimePickerDateToWork.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDateToWork.Location = new System.Drawing.Point(1047, 74);
+            this.dateTimePickerDateToWork.Name = "dateTimePickerDateToWork";
+            this.dateTimePickerDateToWork.Size = new System.Drawing.Size(102, 26);
+            this.dateTimePickerDateToWork.TabIndex = 22;
+            // 
+            // labelDateReady
+            // 
+            this.labelDateReady.AutoSize = true;
+            this.labelDateReady.Location = new System.Drawing.Point(1336, 36);
+            this.labelDateReady.Name = "labelDateReady";
+            this.labelDateReady.Size = new System.Drawing.Size(90, 20);
+            this.labelDateReady.TabIndex = 16;
+            this.labelDateReady.Text = "DateReady";
+            // 
+            // comboBoxCity
+            // 
+            this.comboBoxCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCity.FormattingEnabled = true;
+            this.comboBoxCity.Location = new System.Drawing.Point(301, 71);
+            this.comboBoxCity.Name = "comboBoxCity";
+            this.comboBoxCity.Size = new System.Drawing.Size(150, 28);
+            this.comboBoxCity.TabIndex = 24;
+            this.comboBoxCity.SelectedIndexChanged += new System.EventHandler(this.comboBoxCity_SelectedIndexChanged);
+            // 
+            // comboBoxStatusProfile
+            // 
+            this.comboBoxStatusProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStatusProfile.FormattingEnabled = true;
+            this.comboBoxStatusProfile.Location = new System.Drawing.Point(1165, 72);
+            this.comboBoxStatusProfile.Name = "comboBoxStatusProfile";
+            this.comboBoxStatusProfile.Size = new System.Drawing.Size(150, 28);
+            this.comboBoxStatusProfile.TabIndex = 27;
+            // 
+            // labelColour_ID
+            // 
+            this.labelColour_ID.AutoSize = true;
+            this.labelColour_ID.Location = new System.Drawing.Point(910, 36);
+            this.labelColour_ID.Name = "labelColour_ID";
+            this.labelColour_ID.Size = new System.Drawing.Size(81, 20);
+            this.labelColour_ID.TabIndex = 13;
+            this.labelColour_ID.Text = "Colour_ID";
+            // 
+            // labelNotes
+            // 
+            this.labelNotes.AutoSize = true;
+            this.labelNotes.Location = new System.Drawing.Point(677, 36);
+            this.labelNotes.Name = "labelNotes";
+            this.labelNotes.Size = new System.Drawing.Size(51, 20);
+            this.labelNotes.TabIndex = 18;
+            this.labelNotes.Text = "Notes";
+            // 
             // labelDealer
             // 
             this.labelDealer.AutoSize = true;
@@ -269,15 +268,6 @@
             this.labelDealer.Size = new System.Drawing.Size(82, 20);
             this.labelDealer.TabIndex = 10;
             this.labelDealer.Text = "Dealer_ID";
-            // 
-            // labelProfile
-            // 
-            this.labelProfile.AutoSize = true;
-            this.labelProfile.Location = new System.Drawing.Point(151, 36);
-            this.labelProfile.Name = "labelProfile";
-            this.labelProfile.Size = new System.Drawing.Size(79, 20);
-            this.labelProfile.TabIndex = 9;
-            this.labelProfile.Text = "Profile_ID";
             // 
             // LabelDateComming
             // 
@@ -288,31 +278,72 @@
             this.LabelDateComming.TabIndex = 8;
             this.LabelDateComming.Text = "DateComing";
             // 
-            // dateTimePickerDateComing
+            // dateTimePickerDateReady
             // 
-            this.dateTimePickerDateComing.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePickerDateComing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePickerDateComing.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateComing.Location = new System.Drawing.Point(10, 75);
-            this.dateTimePickerDateComing.Name = "dateTimePickerDateComing";
-            this.dateTimePickerDateComing.Size = new System.Drawing.Size(102, 26);
-            this.dateTimePickerDateComing.TabIndex = 22;
+            this.dateTimePickerDateReady.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDateReady.Location = new System.Drawing.Point(1340, 75);
+            this.dateTimePickerDateReady.Name = "dateTimePickerDateReady";
+            this.dateTimePickerDateReady.Size = new System.Drawing.Size(102, 26);
+            this.dateTimePickerDateReady.TabIndex = 20;
             // 
-            // textBoxCounts
+            // labelStatusProfile
             // 
-            this.textBoxCounts.Location = new System.Drawing.Point(823, 74);
-            this.textBoxCounts.MaxLength = 3;
-            this.textBoxCounts.Name = "textBoxCounts";
-            this.textBoxCounts.Size = new System.Drawing.Size(37, 26);
-            this.textBoxCounts.TabIndex = 3;
-            this.textBoxCounts.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCounts_KeyPress);
+            this.labelStatusProfile.AutoSize = true;
+            this.labelStatusProfile.Location = new System.Drawing.Point(1188, 36);
+            this.labelStatusProfile.Name = "labelStatusProfile";
+            this.labelStatusProfile.Size = new System.Drawing.Size(100, 20);
+            this.labelStatusProfile.TabIndex = 15;
+            this.labelStatusProfile.Text = "StatusProfile";
+            // 
+            // comboBoxDealer
+            // 
+            this.comboBoxDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDealer.FormattingEnabled = true;
+            this.comboBoxDealer.Location = new System.Drawing.Point(474, 72);
+            this.comboBoxDealer.Name = "comboBoxDealer";
+            this.comboBoxDealer.Size = new System.Drawing.Size(150, 28);
+            this.comboBoxDealer.TabIndex = 25;
+            // 
+            // comboBoxColour
+            // 
+            this.comboBoxColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxColour.FormattingEnabled = true;
+            this.comboBoxColour.Location = new System.Drawing.Point(883, 73);
+            this.comboBoxColour.Name = "comboBoxColour";
+            this.comboBoxColour.Size = new System.Drawing.Size(150, 28);
+            this.comboBoxColour.TabIndex = 26;
+            // 
+            // labelDateToWork
+            // 
+            this.labelDateToWork.AutoSize = true;
+            this.labelDateToWork.Location = new System.Drawing.Point(1050, 36);
+            this.labelDateToWork.Name = "labelDateToWork";
+            this.labelDateToWork.Size = new System.Drawing.Size(99, 20);
+            this.labelDateToWork.TabIndex = 14;
+            this.labelDateToWork.Text = "DateToWork";
+            // 
+            // textBoxNotes
+            // 
+            this.textBoxNotes.Location = new System.Drawing.Point(645, 75);
+            this.textBoxNotes.Name = "textBoxNotes";
+            this.textBoxNotes.Size = new System.Drawing.Size(149, 26);
+            this.textBoxNotes.TabIndex = 19;
+            // 
+            // labelProfile
+            // 
+            this.labelProfile.AutoSize = true;
+            this.labelProfile.Location = new System.Drawing.Point(151, 36);
+            this.labelProfile.Name = "labelProfile";
+            this.labelProfile.Size = new System.Drawing.Size(79, 20);
+            this.labelProfile.TabIndex = 9;
+            this.labelProfile.Text = "Profile_ID";
             // 
             // Managers
             // 
             this.Managers.Location = new System.Drawing.Point(4, 25);
             this.Managers.Name = "Managers";
             this.Managers.Padding = new System.Windows.Forms.Padding(3);
-            this.Managers.Size = new System.Drawing.Size(1276, 977);
+            this.Managers.Size = new System.Drawing.Size(1655, 977);
             this.Managers.TabIndex = 1;
             this.Managers.Text = "Менеджери";
             this.Managers.UseVisualStyleBackColor = true;
@@ -323,7 +354,7 @@
             this.Tehnologers.Controls.Add(this.labelStatusGoods);
             this.Tehnologers.Location = new System.Drawing.Point(4, 25);
             this.Tehnologers.Name = "Tehnologers";
-            this.Tehnologers.Size = new System.Drawing.Size(1276, 977);
+            this.Tehnologers.Size = new System.Drawing.Size(1655, 977);
             this.Tehnologers.TabIndex = 2;
             this.Tehnologers.Text = "Технологи";
             this.Tehnologers.UseVisualStyleBackColor = true;
@@ -331,7 +362,7 @@
             // comboBoxStatusGoods
             // 
             this.comboBoxStatusGoods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxStatusGoods.FormattingEnabled = true;            
+            this.comboBoxStatusGoods.FormattingEnabled = true;
             this.comboBoxStatusGoods.Location = new System.Drawing.Point(1113, 43);
             this.comboBoxStatusGoods.Name = "comboBoxStatusGoods";
             this.comboBoxStatusGoods.Size = new System.Drawing.Size(121, 24);
@@ -353,7 +384,7 @@
             this.AddRemove.Location = new System.Drawing.Point(4, 25);
             this.AddRemove.Name = "AddRemove";
             this.AddRemove.Padding = new System.Windows.Forms.Padding(3);
-            this.AddRemove.Size = new System.Drawing.Size(1276, 977);
+            this.AddRemove.Size = new System.Drawing.Size(1655, 977);
             this.AddRemove.TabIndex = 3;
             this.AddRemove.Text = "Додати/Видалити";
             this.AddRemove.UseVisualStyleBackColor = true;
@@ -506,10 +537,10 @@
             // 
             // groupBoxAdd
             // 
-            this.groupBoxAdd.Controls.Add(this.textBoxCity);
-            this.groupBoxAdd.Controls.Add(this.textBoxDealer);
-            this.groupBoxAdd.Controls.Add(this.textBoxProfile);
-            this.groupBoxAdd.Controls.Add(this.textBoxColour);
+            this.groupBoxAdd.Controls.Add(this.textBoxAddCity);
+            this.groupBoxAdd.Controls.Add(this.textBoxAddDealer);
+            this.groupBoxAdd.Controls.Add(this.textBoxAddProfile);
+            this.groupBoxAdd.Controls.Add(this.textBoxAddColour);
             this.groupBoxAdd.Controls.Add(this.Add_NewCity);
             this.groupBoxAdd.Controls.Add(this.Add_NewDealer);
             this.groupBoxAdd.Controls.Add(this.Add_NewProfile);
@@ -518,7 +549,7 @@
             this.groupBoxAdd.Controls.Add(this.labelAddDealer);
             this.groupBoxAdd.Controls.Add(this.labelAddProfile);
             this.groupBoxAdd.Controls.Add(this.labelAddColour);
-            this.groupBoxAdd.Controls.Add(this.comboxCityDealer);
+            this.groupBoxAdd.Controls.Add(this.comboxAddCityDealer);
             this.groupBoxAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxAdd.Location = new System.Drawing.Point(30, 8);
             this.groupBoxAdd.Name = "groupBoxAdd";
@@ -527,34 +558,34 @@
             this.groupBoxAdd.TabStop = false;
             this.groupBoxAdd.Text = "Додати інформацію до бази данних";
             // 
-            // textBoxCity
+            // textBoxAddCity
             // 
-            this.textBoxCity.Location = new System.Drawing.Point(119, 129);
-            this.textBoxCity.Name = "textBoxCity";
-            this.textBoxCity.Size = new System.Drawing.Size(150, 26);
-            this.textBoxCity.TabIndex = 0;
+            this.textBoxAddCity.Location = new System.Drawing.Point(119, 129);
+            this.textBoxAddCity.Name = "textBoxAddCity";
+            this.textBoxAddCity.Size = new System.Drawing.Size(150, 26);
+            this.textBoxAddCity.TabIndex = 0;
             // 
-            // textBoxDealer
+            // textBoxAddDealer
             // 
-            this.textBoxDealer.Enabled = false;
-            this.textBoxDealer.Location = new System.Drawing.Point(291, 76);
-            this.textBoxDealer.Name = "textBoxDealer";
-            this.textBoxDealer.Size = new System.Drawing.Size(150, 26);
-            this.textBoxDealer.TabIndex = 1;
+            this.textBoxAddDealer.Enabled = false;
+            this.textBoxAddDealer.Location = new System.Drawing.Point(291, 76);
+            this.textBoxAddDealer.Name = "textBoxAddDealer";
+            this.textBoxAddDealer.Size = new System.Drawing.Size(150, 26);
+            this.textBoxAddDealer.TabIndex = 1;
             // 
-            // textBoxProfile
+            // textBoxAddProfile
             // 
-            this.textBoxProfile.Location = new System.Drawing.Point(119, 181);
-            this.textBoxProfile.Name = "textBoxProfile";
-            this.textBoxProfile.Size = new System.Drawing.Size(150, 26);
-            this.textBoxProfile.TabIndex = 2;
+            this.textBoxAddProfile.Location = new System.Drawing.Point(119, 181);
+            this.textBoxAddProfile.Name = "textBoxAddProfile";
+            this.textBoxAddProfile.Size = new System.Drawing.Size(150, 26);
+            this.textBoxAddProfile.TabIndex = 2;
             // 
-            // textBoxColour
+            // textBoxAddColour
             // 
-            this.textBoxColour.Location = new System.Drawing.Point(119, 238);
-            this.textBoxColour.Name = "textBoxColour";
-            this.textBoxColour.Size = new System.Drawing.Size(150, 26);
-            this.textBoxColour.TabIndex = 3;
+            this.textBoxAddColour.Location = new System.Drawing.Point(119, 238);
+            this.textBoxAddColour.Name = "textBoxAddColour";
+            this.textBoxAddColour.Size = new System.Drawing.Size(150, 26);
+            this.textBoxAddColour.TabIndex = 3;
             // 
             // Add_NewCity
             // 
@@ -632,46 +663,15 @@
             this.labelAddColour.TabIndex = 11;
             this.labelAddColour.Text = "Колір";
             // 
-            // comboxCityDealer
+            // comboxAddCityDealer
             // 
-            this.comboxCityDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboxCityDealer.FormattingEnabled = true;
-            this.comboxCityDealer.Location = new System.Drawing.Point(119, 75);
-            this.comboxCityDealer.Name = "comboxCityDealer";
-            this.comboxCityDealer.Size = new System.Drawing.Size(150, 28);
-            this.comboxCityDealer.TabIndex = 12;
-            this.comboxCityDealer.SelectedIndexChanged += new System.EventHandler(this.comboxCityDealer_SelectedIndexChanged);
-            // 
-            // groupBoxCreateNewOrder
-            // 
-            this.groupBoxCreateNewOrder.Controls.Add(this.dateTimePickerDateComing);
-            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxProfile);
-            this.groupBoxCreateNewOrder.Controls.Add(this.SaveColourGoods);
-            this.groupBoxCreateNewOrder.Controls.Add(this.labelCounts);
-            this.groupBoxCreateNewOrder.Controls.Add(this.labelCity_ID);
-            this.groupBoxCreateNewOrder.Controls.Add(this.textBoxCounts);
-            this.groupBoxCreateNewOrder.Controls.Add(this.dateTimePickerDateToWork);
-            this.groupBoxCreateNewOrder.Controls.Add(this.labelDateReady);
-            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxCity);
-            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxStatusProfile);
-            this.groupBoxCreateNewOrder.Controls.Add(this.labelColour_ID);
-            this.groupBoxCreateNewOrder.Controls.Add(this.labelNotes);
-            this.groupBoxCreateNewOrder.Controls.Add(this.labelDealer);
-            this.groupBoxCreateNewOrder.Controls.Add(this.LabelDateComming);
-            this.groupBoxCreateNewOrder.Controls.Add(this.dateTimePickerDateReady);
-            this.groupBoxCreateNewOrder.Controls.Add(this.labelStatusProfile);
-            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxDealer);
-            this.groupBoxCreateNewOrder.Controls.Add(this.comboBoxColour);
-            this.groupBoxCreateNewOrder.Controls.Add(this.labelDateToWork);
-            this.groupBoxCreateNewOrder.Controls.Add(this.textBoxNotes);
-            this.groupBoxCreateNewOrder.Controls.Add(this.labelProfile);
-            this.groupBoxCreateNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxCreateNewOrder.Location = new System.Drawing.Point(18, 19);
-            this.groupBoxCreateNewOrder.Name = "groupBoxCreateNewOrder";
-            this.groupBoxCreateNewOrder.Size = new System.Drawing.Size(1552, 132);
-            this.groupBoxCreateNewOrder.TabIndex = 29;
-            this.groupBoxCreateNewOrder.TabStop = false;
-            this.groupBoxCreateNewOrder.Text = "Створити нове замовлення";
+            this.comboxAddCityDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboxAddCityDealer.FormattingEnabled = true;
+            this.comboxAddCityDealer.Location = new System.Drawing.Point(119, 75);
+            this.comboxAddCityDealer.Name = "comboxAddCityDealer";
+            this.comboxAddCityDealer.Size = new System.Drawing.Size(150, 28);
+            this.comboxAddCityDealer.TabIndex = 12;
+            this.comboxAddCityDealer.SelectedIndexChanged += new System.EventHandler(this.comboxCityDealer_SelectedIndexChanged);
             // 
             // LaminatsiaForm
             // 
@@ -684,6 +684,8 @@
             this.Load += new System.EventHandler(this.LaminatsiaForm_Load);
             this.MenuTabControl.ResumeLayout(false);
             this.Laminaters.ResumeLayout(false);
+            this.groupBoxCreateNewOrder.ResumeLayout(false);
+            this.groupBoxCreateNewOrder.PerformLayout();
             this.Tehnologers.ResumeLayout(false);
             this.Tehnologers.PerformLayout();
             this.AddRemove.ResumeLayout(false);
@@ -691,8 +693,6 @@
             this.groupBoxRemove.PerformLayout();
             this.groupBoxAdd.ResumeLayout(false);
             this.groupBoxAdd.PerformLayout();
-            this.groupBoxCreateNewOrder.ResumeLayout(false);
-            this.groupBoxCreateNewOrder.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -712,10 +712,10 @@
         private System.Windows.Forms.Button Add_NewProfile;
         private System.Windows.Forms.Button Add_NewDealer;
         private System.Windows.Forms.Button Add_NewCity;
-        private System.Windows.Forms.TextBox textBoxColour;
-        private System.Windows.Forms.TextBox textBoxProfile;
-        private System.Windows.Forms.TextBox textBoxDealer;
-        private System.Windows.Forms.TextBox textBoxCity;
+        private System.Windows.Forms.TextBox textBoxAddColour;
+        private System.Windows.Forms.TextBox textBoxAddProfile;
+        private System.Windows.Forms.TextBox textBoxAddDealer;
+        private System.Windows.Forms.TextBox textBoxAddCity;
         private System.Windows.Forms.DateTimePicker dateTimePickerDateReady;
         private System.Windows.Forms.TextBox textBoxNotes;
         private System.Windows.Forms.Label labelNotes;
@@ -731,7 +731,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerDateComing;
         private System.Windows.Forms.TextBox textBoxCounts;
         private System.Windows.Forms.DateTimePicker dateTimePickerDateToWork;
-        private System.Windows.Forms.ComboBox comboxCityDealer;
+        private System.Windows.Forms.ComboBox comboxAddCityDealer;
         private System.Windows.Forms.ComboBox comboBoxColour;
         private System.Windows.Forms.ComboBox comboBoxDealer;
         private System.Windows.Forms.ComboBox comboBoxCity;
