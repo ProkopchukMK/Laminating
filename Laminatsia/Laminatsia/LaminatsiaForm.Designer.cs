@@ -57,10 +57,10 @@
             this.labelStatusGoods = new System.Windows.Forms.Label();
             this.AddToDB = new System.Windows.Forms.TabPage();
             this.comboxCityDealer = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.LabelCity = new System.Windows.Forms.Label();
+            this.labelAddColour = new System.Windows.Forms.Label();
+            this.labelAddProfile = new System.Windows.Forms.Label();
+            this.labelAddDealer = new System.Windows.Forms.Label();
+            this.LabelAddCity = new System.Windows.Forms.Label();
             this.Add_NewColour = new System.Windows.Forms.Button();
             this.Add_NewProfile = new System.Windows.Forms.Button();
             this.Add_NewDealer = new System.Windows.Forms.Button();
@@ -69,10 +69,27 @@
             this.textBoxProfile = new System.Windows.Forms.TextBox();
             this.textBoxDealer = new System.Windows.Forms.TextBox();
             this.textBoxCity = new System.Windows.Forms.TextBox();
+            this.comboBoxRemoveCityDealer = new System.Windows.Forms.ComboBox();
+            this.comboBoxRemoveDealer = new System.Windows.Forms.ComboBox();
+            this.comboBoxRemoveCity = new System.Windows.Forms.ComboBox();
+            this.comboBoxRemoveProfile = new System.Windows.Forms.ComboBox();
+            this.comboBoxRemoveColour = new System.Windows.Forms.ComboBox();
+            this.buttonRemoveDealer = new System.Windows.Forms.Button();
+            this.buttonRemoveCity = new System.Windows.Forms.Button();
+            this.buttonRemoveProfile = new System.Windows.Forms.Button();
+            this.buttonRemoveColour = new System.Windows.Forms.Button();
+            this.labelRemoveDealer = new System.Windows.Forms.Label();
+            this.labelRemoveCity = new System.Windows.Forms.Label();
+            this.labelRemoveProfile = new System.Windows.Forms.Label();
+            this.labelRemoveColour = new System.Windows.Forms.Label();
+            this.groupBoxAdd = new System.Windows.Forms.GroupBox();
+            this.groupBoxRemove = new System.Windows.Forms.GroupBox();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
             this.Tehnologers.SuspendLayout();
             this.AddToDB.SuspendLayout();
+            this.groupBoxAdd.SuspendLayout();
+            this.groupBoxRemove.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuTabControl
@@ -346,19 +363,8 @@
             // 
             // AddToDB
             // 
-            this.AddToDB.Controls.Add(this.comboxCityDealer);
-            this.AddToDB.Controls.Add(this.label4);
-            this.AddToDB.Controls.Add(this.label3);
-            this.AddToDB.Controls.Add(this.label2);
-            this.AddToDB.Controls.Add(this.LabelCity);
-            this.AddToDB.Controls.Add(this.Add_NewColour);
-            this.AddToDB.Controls.Add(this.Add_NewProfile);
-            this.AddToDB.Controls.Add(this.Add_NewDealer);
-            this.AddToDB.Controls.Add(this.Add_NewCity);
-            this.AddToDB.Controls.Add(this.textBoxColour);
-            this.AddToDB.Controls.Add(this.textBoxProfile);
-            this.AddToDB.Controls.Add(this.textBoxDealer);
-            this.AddToDB.Controls.Add(this.textBoxCity);
+            this.AddToDB.Controls.Add(this.groupBoxRemove);
+            this.AddToDB.Controls.Add(this.groupBoxAdd);
             this.AddToDB.Location = new System.Drawing.Point(4, 22);
             this.AddToDB.Name = "AddToDB";
             this.AddToDB.Padding = new System.Windows.Forms.Padding(3);
@@ -371,51 +377,51 @@
             // 
             this.comboxCityDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboxCityDealer.FormattingEnabled = true;
-            this.comboxCityDealer.Location = new System.Drawing.Point(104, 40);
+            this.comboxCityDealer.Location = new System.Drawing.Point(102, 59);
             this.comboxCityDealer.Name = "comboxCityDealer";
             this.comboxCityDealer.Size = new System.Drawing.Size(147, 21);
             this.comboxCityDealer.TabIndex = 12;
             this.comboxCityDealer.SelectedIndexChanged += new System.EventHandler(this.comboxCityDealer_SelectedIndexChanged);
             // 
-            // label4
+            // labelAddColour
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 192);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Колір";
+            this.labelAddColour.AutoSize = true;
+            this.labelAddColour.Location = new System.Drawing.Point(22, 222);
+            this.labelAddColour.Name = "labelAddColour";
+            this.labelAddColour.Size = new System.Drawing.Size(34, 13);
+            this.labelAddColour.TabIndex = 11;
+            this.labelAddColour.Text = "Колір";
             // 
-            // label3
+            // labelAddProfile
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 152);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Профіль";
+            this.labelAddProfile.AutoSize = true;
+            this.labelAddProfile.Location = new System.Drawing.Point(22, 165);
+            this.labelAddProfile.Name = "labelAddProfile";
+            this.labelAddProfile.Size = new System.Drawing.Size(49, 13);
+            this.labelAddProfile.TabIndex = 10;
+            this.labelAddProfile.Text = "Профіль";
             // 
-            // label2
+            // labelAddDealer
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Дилера";
+            this.labelAddDealer.AutoSize = true;
+            this.labelAddDealer.Location = new System.Drawing.Point(22, 59);
+            this.labelAddDealer.Name = "labelAddDealer";
+            this.labelAddDealer.Size = new System.Drawing.Size(46, 13);
+            this.labelAddDealer.TabIndex = 9;
+            this.labelAddDealer.Text = "Дилера";
             // 
-            // LabelCity
+            // LabelAddCity
             // 
-            this.LabelCity.AutoSize = true;
-            this.LabelCity.Location = new System.Drawing.Point(24, 118);
-            this.LabelCity.Name = "LabelCity";
-            this.LabelCity.Size = new System.Drawing.Size(35, 13);
-            this.LabelCity.TabIndex = 8;
-            this.LabelCity.Text = "Місто";
+            this.LabelAddCity.AutoSize = true;
+            this.LabelAddCity.Location = new System.Drawing.Point(22, 120);
+            this.LabelAddCity.Name = "LabelAddCity";
+            this.LabelAddCity.Size = new System.Drawing.Size(35, 13);
+            this.LabelAddCity.TabIndex = 8;
+            this.LabelAddCity.Text = "Місто";
             // 
             // Add_NewColour
             // 
-            this.Add_NewColour.Location = new System.Drawing.Point(276, 187);
+            this.Add_NewColour.Location = new System.Drawing.Point(274, 217);
             this.Add_NewColour.Name = "Add_NewColour";
             this.Add_NewColour.Size = new System.Drawing.Size(75, 23);
             this.Add_NewColour.TabIndex = 7;
@@ -425,7 +431,7 @@
             // 
             // Add_NewProfile
             // 
-            this.Add_NewProfile.Location = new System.Drawing.Point(276, 147);
+            this.Add_NewProfile.Location = new System.Drawing.Point(274, 160);
             this.Add_NewProfile.Name = "Add_NewProfile";
             this.Add_NewProfile.Size = new System.Drawing.Size(75, 23);
             this.Add_NewProfile.TabIndex = 6;
@@ -435,7 +441,7 @@
             // 
             // Add_NewDealer
             // 
-            this.Add_NewDealer.Location = new System.Drawing.Point(449, 40);
+            this.Add_NewDealer.Location = new System.Drawing.Point(447, 59);
             this.Add_NewDealer.Name = "Add_NewDealer";
             this.Add_NewDealer.Size = new System.Drawing.Size(75, 23);
             this.Add_NewDealer.TabIndex = 5;
@@ -445,7 +451,7 @@
             // 
             // Add_NewCity
             // 
-            this.Add_NewCity.Location = new System.Drawing.Point(276, 107);
+            this.Add_NewCity.Location = new System.Drawing.Point(274, 109);
             this.Add_NewCity.Name = "Add_NewCity";
             this.Add_NewCity.Size = new System.Drawing.Size(75, 23);
             this.Add_NewCity.TabIndex = 4;
@@ -455,14 +461,14 @@
             // 
             // textBoxColour
             // 
-            this.textBoxColour.Location = new System.Drawing.Point(104, 192);
+            this.textBoxColour.Location = new System.Drawing.Point(102, 222);
             this.textBoxColour.Name = "textBoxColour";
             this.textBoxColour.Size = new System.Drawing.Size(147, 20);
             this.textBoxColour.TabIndex = 3;
             // 
             // textBoxProfile
             // 
-            this.textBoxProfile.Location = new System.Drawing.Point(104, 152);
+            this.textBoxProfile.Location = new System.Drawing.Point(102, 165);
             this.textBoxProfile.Name = "textBoxProfile";
             this.textBoxProfile.Size = new System.Drawing.Size(147, 20);
             this.textBoxProfile.TabIndex = 2;
@@ -470,17 +476,179 @@
             // textBoxDealer
             // 
             this.textBoxDealer.Enabled = false;
-            this.textBoxDealer.Location = new System.Drawing.Point(276, 41);
+            this.textBoxDealer.Location = new System.Drawing.Point(274, 60);
             this.textBoxDealer.Name = "textBoxDealer";
             this.textBoxDealer.Size = new System.Drawing.Size(135, 20);
             this.textBoxDealer.TabIndex = 1;
             // 
             // textBoxCity
             // 
-            this.textBoxCity.Location = new System.Drawing.Point(104, 111);
+            this.textBoxCity.Location = new System.Drawing.Point(102, 113);
             this.textBoxCity.Name = "textBoxCity";
             this.textBoxCity.Size = new System.Drawing.Size(147, 20);
             this.textBoxCity.TabIndex = 0;
+            // 
+            // comboBoxRemoveCityDealer
+            // 
+            this.comboBoxRemoveCityDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRemoveCityDealer.FormattingEnabled = true;
+            this.comboBoxRemoveCityDealer.Location = new System.Drawing.Point(119, 64);
+            this.comboBoxRemoveCityDealer.Name = "comboBoxRemoveCityDealer";
+            this.comboBoxRemoveCityDealer.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxRemoveCityDealer.TabIndex = 13;
+            // 
+            // comboBoxRemoveDealer
+            // 
+            this.comboBoxRemoveDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRemoveDealer.FormattingEnabled = true;
+            this.comboBoxRemoveDealer.Location = new System.Drawing.Point(291, 63);
+            this.comboBoxRemoveDealer.Name = "comboBoxRemoveDealer";
+            this.comboBoxRemoveDealer.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxRemoveDealer.TabIndex = 14;
+            // 
+            // comboBoxRemoveCity
+            // 
+            this.comboBoxRemoveCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRemoveCity.FormattingEnabled = true;
+            this.comboBoxRemoveCity.Location = new System.Drawing.Point(119, 125);
+            this.comboBoxRemoveCity.Name = "comboBoxRemoveCity";
+            this.comboBoxRemoveCity.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxRemoveCity.TabIndex = 15;
+            // 
+            // comboBoxRemoveProfile
+            // 
+            this.comboBoxRemoveProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRemoveProfile.FormattingEnabled = true;
+            this.comboBoxRemoveProfile.Location = new System.Drawing.Point(119, 185);
+            this.comboBoxRemoveProfile.Name = "comboBoxRemoveProfile";
+            this.comboBoxRemoveProfile.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxRemoveProfile.TabIndex = 16;
+            // 
+            // comboBoxRemoveColour
+            // 
+            this.comboBoxRemoveColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRemoveColour.FormattingEnabled = true;
+            this.comboBoxRemoveColour.Location = new System.Drawing.Point(119, 241);
+            this.comboBoxRemoveColour.Name = "comboBoxRemoveColour";
+            this.comboBoxRemoveColour.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxRemoveColour.TabIndex = 17;
+            // 
+            // buttonRemoveDealer
+            // 
+            this.buttonRemoveDealer.Location = new System.Drawing.Point(464, 61);
+            this.buttonRemoveDealer.Name = "buttonRemoveDealer";
+            this.buttonRemoveDealer.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemoveDealer.TabIndex = 18;
+            this.buttonRemoveDealer.Text = "Видалити";
+            this.buttonRemoveDealer.UseVisualStyleBackColor = true;
+            this.buttonRemoveDealer.Click += new System.EventHandler(this.buttonRemoveDealer_Click);
+            // 
+            // buttonRemoveCity
+            // 
+            this.buttonRemoveCity.Location = new System.Drawing.Point(291, 122);
+            this.buttonRemoveCity.Name = "buttonRemoveCity";
+            this.buttonRemoveCity.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemoveCity.TabIndex = 19;
+            this.buttonRemoveCity.Text = "Видалити";
+            this.buttonRemoveCity.UseVisualStyleBackColor = true;
+            // 
+            // buttonRemoveProfile
+            // 
+            this.buttonRemoveProfile.Location = new System.Drawing.Point(291, 182);
+            this.buttonRemoveProfile.Name = "buttonRemoveProfile";
+            this.buttonRemoveProfile.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemoveProfile.TabIndex = 20;
+            this.buttonRemoveProfile.Text = "Видалити";
+            this.buttonRemoveProfile.UseVisualStyleBackColor = true;
+            // 
+            // buttonRemoveColour
+            // 
+            this.buttonRemoveColour.Location = new System.Drawing.Point(291, 241);
+            this.buttonRemoveColour.Name = "buttonRemoveColour";
+            this.buttonRemoveColour.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemoveColour.TabIndex = 21;
+            this.buttonRemoveColour.Text = "Видалити";
+            this.buttonRemoveColour.UseVisualStyleBackColor = true;
+            // 
+            // labelRemoveDealer
+            // 
+            this.labelRemoveDealer.AutoSize = true;
+            this.labelRemoveDealer.Location = new System.Drawing.Point(42, 71);
+            this.labelRemoveDealer.Name = "labelRemoveDealer";
+            this.labelRemoveDealer.Size = new System.Drawing.Size(46, 13);
+            this.labelRemoveDealer.TabIndex = 22;
+            this.labelRemoveDealer.Text = "Дилера";
+            // 
+            // labelRemoveCity
+            // 
+            this.labelRemoveCity.AutoSize = true;
+            this.labelRemoveCity.Location = new System.Drawing.Point(42, 132);
+            this.labelRemoveCity.Name = "labelRemoveCity";
+            this.labelRemoveCity.Size = new System.Drawing.Size(35, 13);
+            this.labelRemoveCity.TabIndex = 23;
+            this.labelRemoveCity.Text = "Місто";
+            // 
+            // labelRemoveProfile
+            // 
+            this.labelRemoveProfile.AutoSize = true;
+            this.labelRemoveProfile.Location = new System.Drawing.Point(42, 192);
+            this.labelRemoveProfile.Name = "labelRemoveProfile";
+            this.labelRemoveProfile.Size = new System.Drawing.Size(49, 13);
+            this.labelRemoveProfile.TabIndex = 24;
+            this.labelRemoveProfile.Text = "Профіль";
+            // 
+            // labelRemoveColour
+            // 
+            this.labelRemoveColour.AutoSize = true;
+            this.labelRemoveColour.Location = new System.Drawing.Point(42, 248);
+            this.labelRemoveColour.Name = "labelRemoveColour";
+            this.labelRemoveColour.Size = new System.Drawing.Size(34, 13);
+            this.labelRemoveColour.TabIndex = 25;
+            this.labelRemoveColour.Text = "Колір";
+            // 
+            // groupBoxAdd
+            // 
+            this.groupBoxAdd.Controls.Add(this.textBoxCity);
+            this.groupBoxAdd.Controls.Add(this.textBoxDealer);
+            this.groupBoxAdd.Controls.Add(this.textBoxProfile);
+            this.groupBoxAdd.Controls.Add(this.textBoxColour);
+            this.groupBoxAdd.Controls.Add(this.Add_NewCity);
+            this.groupBoxAdd.Controls.Add(this.Add_NewDealer);
+            this.groupBoxAdd.Controls.Add(this.Add_NewProfile);
+            this.groupBoxAdd.Controls.Add(this.Add_NewColour);
+            this.groupBoxAdd.Controls.Add(this.LabelAddCity);
+            this.groupBoxAdd.Controls.Add(this.labelAddDealer);
+            this.groupBoxAdd.Controls.Add(this.labelAddProfile);
+            this.groupBoxAdd.Controls.Add(this.labelAddColour);
+            this.groupBoxAdd.Controls.Add(this.comboxCityDealer);
+            this.groupBoxAdd.Location = new System.Drawing.Point(30, 8);
+            this.groupBoxAdd.Name = "groupBoxAdd";
+            this.groupBoxAdd.Size = new System.Drawing.Size(666, 288);
+            this.groupBoxAdd.TabIndex = 28;
+            this.groupBoxAdd.TabStop = false;
+            this.groupBoxAdd.Text = "Додати інформацію до бази данних";
+            // 
+            // groupBoxRemove
+            // 
+            this.groupBoxRemove.Controls.Add(this.comboBoxRemoveCityDealer);
+            this.groupBoxRemove.Controls.Add(this.comboBoxRemoveDealer);
+            this.groupBoxRemove.Controls.Add(this.comboBoxRemoveCity);
+            this.groupBoxRemove.Controls.Add(this.labelRemoveColour);
+            this.groupBoxRemove.Controls.Add(this.comboBoxRemoveProfile);
+            this.groupBoxRemove.Controls.Add(this.labelRemoveProfile);
+            this.groupBoxRemove.Controls.Add(this.comboBoxRemoveColour);
+            this.groupBoxRemove.Controls.Add(this.labelRemoveCity);
+            this.groupBoxRemove.Controls.Add(this.buttonRemoveDealer);
+            this.groupBoxRemove.Controls.Add(this.labelRemoveDealer);
+            this.groupBoxRemove.Controls.Add(this.buttonRemoveCity);
+            this.groupBoxRemove.Controls.Add(this.buttonRemoveColour);
+            this.groupBoxRemove.Controls.Add(this.buttonRemoveProfile);
+            this.groupBoxRemove.Location = new System.Drawing.Point(30, 329);
+            this.groupBoxRemove.Name = "groupBoxRemove";
+            this.groupBoxRemove.Size = new System.Drawing.Size(666, 305);
+            this.groupBoxRemove.TabIndex = 29;
+            this.groupBoxRemove.TabStop = false;
+            this.groupBoxRemove.Text = "Видалити інформацію з бази данних";
             // 
             // LaminatsiaForm
             // 
@@ -497,7 +665,10 @@
             this.Tehnologers.ResumeLayout(false);
             this.Tehnologers.PerformLayout();
             this.AddToDB.ResumeLayout(false);
-            this.AddToDB.PerformLayout();
+            this.groupBoxAdd.ResumeLayout(false);
+            this.groupBoxAdd.PerformLayout();
+            this.groupBoxRemove.ResumeLayout(false);
+            this.groupBoxRemove.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -509,10 +680,10 @@
         private System.Windows.Forms.TabPage Managers;
         private System.Windows.Forms.TabPage Tehnologers;
         private System.Windows.Forms.TabPage AddToDB;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label LabelCity;
+        private System.Windows.Forms.Label labelAddColour;
+        private System.Windows.Forms.Label labelAddProfile;
+        private System.Windows.Forms.Label labelAddDealer;
+        private System.Windows.Forms.Label LabelAddCity;
         private System.Windows.Forms.Button Add_NewColour;
         private System.Windows.Forms.Button Add_NewProfile;
         private System.Windows.Forms.Button Add_NewDealer;
@@ -545,5 +716,20 @@
         private System.Windows.Forms.Button SaveColourGoods;
         private System.Windows.Forms.ComboBox comboBoxStatusGoods;
         private System.Windows.Forms.Label labelStatusGoods;
+        private System.Windows.Forms.Label labelRemoveColour;
+        private System.Windows.Forms.Label labelRemoveProfile;
+        private System.Windows.Forms.Label labelRemoveCity;
+        private System.Windows.Forms.Label labelRemoveDealer;
+        private System.Windows.Forms.Button buttonRemoveColour;
+        private System.Windows.Forms.Button buttonRemoveProfile;
+        private System.Windows.Forms.Button buttonRemoveCity;
+        private System.Windows.Forms.Button buttonRemoveDealer;
+        private System.Windows.Forms.ComboBox comboBoxRemoveColour;
+        private System.Windows.Forms.ComboBox comboBoxRemoveProfile;
+        private System.Windows.Forms.ComboBox comboBoxRemoveCity;
+        private System.Windows.Forms.ComboBox comboBoxRemoveDealer;
+        private System.Windows.Forms.ComboBox comboBoxRemoveCityDealer;
+        private System.Windows.Forms.GroupBox groupBoxRemove;
+        private System.Windows.Forms.GroupBox groupBoxAdd;
     }
 }

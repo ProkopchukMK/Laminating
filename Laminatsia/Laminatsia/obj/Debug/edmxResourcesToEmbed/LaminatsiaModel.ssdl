@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+<Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
   <EntityType Name="City">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CityDealer" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="CityDealer" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="ColourGoods">
     <Key>
@@ -16,11 +16,11 @@
     <Property Name="Profile_ID" Type="int" Nullable="false" />
     <Property Name="City_ID" Type="int" Nullable="false" />
     <Property Name="Dealer_ID" Type="int" Nullable="false" />
-    <Property Name="Notes" Type="nchar" MaxLength="100" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="100" />
     <Property Name="Counts" Type="int" Nullable="false" />
     <Property Name="Colour_ID" Type="int" Nullable="false" />
     <Property Name="DateToWork" Type="smalldatetime" Nullable="false" />
-    <Property Name="StatusProfile" Type="bit" />
+    <Property Name="StatusProfile" Type="bit" Nullable="false" />
     <Property Name="DateReady" Type="smalldatetime" Nullable="false" />
     <Property Name="StatusGoods" Type="bit" />
   </EntityType>
@@ -29,32 +29,22 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Colour" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="Colour" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Dealer">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DealerName" Type="nchar" MaxLength="50" Nullable="false" />
-    <Property Name="City" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DealerName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NameProfile" Type="nchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
+    <Property Name="NameProfile" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -62,7 +52,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="UserPassword" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserPassword" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="UserPC" Type="nchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <Association Name="FK_ColourGoods_City">
@@ -119,7 +109,6 @@
     <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Dealer" EntityType="Self.Dealer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ColourGoods_City" Association="Self.FK_ColourGoods_City">
       <End Role="City" EntitySet="City" />

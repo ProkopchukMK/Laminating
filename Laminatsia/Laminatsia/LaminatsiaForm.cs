@@ -80,9 +80,10 @@ namespace Laminatsia
                 messageCity = newCity.AddCity(textBoxCity.Text.Trim());
                 comboxCityDealer.Items.Clear();
                 comboBoxCity.Items.Clear();
+                MessageBox.Show(messageCity);
                 comboxCityDealer.Items.AddRange(newCity.GetListCity().ToArray());
                 comboBoxCity.Items.AddRange(newCity.GetListCity().ToArray());
-                MessageBox.Show(messageCity);
+                
             }
             else
             {
@@ -97,9 +98,11 @@ namespace Laminatsia
             string message;
             if (textBoxDealer.Text.Trim() != "")
             {
-                DealerDTO newCity = new DealerDTO();
-                message = newCity.AddDealer(comboxCityDealer.SelectedItem.ToString(), textBoxDealer.Text.Trim());
+                DealerDTO newDealer = new DealerDTO();
+                message = newDealer.AddDealer(comboxCityDealer.SelectedItem.ToString(), textBoxDealer.Text.Trim());                
                 MessageBox.Show(message);
+                this.CleareAllComponent();
+                this.FillAlComponent();
             }
             else
             {
@@ -139,6 +142,33 @@ namespace Laminatsia
             }
             this.Clear();
         }
+
+        #region Видалення інформації з бази данних
+        private void buttonRemoveDealer_Click(object sender, EventArgs e)
+        {
+            string message;
+            if (comboBoxRemoveCityDealer.SelectedItem.ToString() !="" )
+            {
+                if(comboBoxRemoveCity.SelectedItem.ToString() != "")
+                {
+                    DealerDTO newDealer = new DealerDTO();
+                message = newDealer.AddDealer(comboxCityDealer.SelectedItem.ToString(), textBoxDealer.Text.Trim());
+                MessageBox.Show(message);
+                this.CleareAllComponent();
+                this.FillAlComponent();
+                }
+                else
+                {
+                    MessageBox.Show("Потрібно вибрати Дилера!");
+                }                
+            }
+            else
+            {
+                MessageBox.Show("Потрібно вибрати Місто!");
+            }
+            this.Clear();
+        }
+        #endregion
         #endregion
 
         #region   ВКЛАДКА   Ламінація
@@ -201,6 +231,7 @@ namespace Laminatsia
             }
         }
         #endregion
+
         
     }
 }
