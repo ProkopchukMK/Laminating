@@ -106,7 +106,7 @@
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
             this.MenuTabControl.Size = new System.Drawing.Size(1663, 1006);
-            this.MenuTabControl.TabIndex = 0;
+            this.MenuTabControl.TabIndex = 11;
             // 
             // Laminaters
             // 
@@ -155,10 +155,10 @@
             this.dateTimePickerDateComing.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerDateComing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerDateComing.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateComing.Location = new System.Drawing.Point(10, 75);
+            this.dateTimePickerDateComing.Location = new System.Drawing.Point(12, 75);
             this.dateTimePickerDateComing.Name = "dateTimePickerDateComing";
             this.dateTimePickerDateComing.Size = new System.Drawing.Size(102, 26);
-            this.dateTimePickerDateComing.TabIndex = 22;
+            this.dateTimePickerDateComing.TabIndex = 0;
             // 
             // comboBoxProfile
             // 
@@ -167,14 +167,14 @@
             this.comboBoxProfile.Location = new System.Drawing.Point(128, 71);
             this.comboBoxProfile.Name = "comboBoxProfile";
             this.comboBoxProfile.Size = new System.Drawing.Size(150, 28);
-            this.comboBoxProfile.TabIndex = 23;
+            this.comboBoxProfile.TabIndex = 1;
             // 
             // SaveColourGoods
             // 
             this.SaveColourGoods.Location = new System.Drawing.Point(1448, 73);
             this.SaveColourGoods.Name = "SaveColourGoods";
             this.SaveColourGoods.Size = new System.Drawing.Size(98, 28);
-            this.SaveColourGoods.TabIndex = 28;
+            this.SaveColourGoods.TabIndex = 10;
             this.SaveColourGoods.Text = "Створити";
             this.SaveColourGoods.UseVisualStyleBackColor = true;
             this.SaveColourGoods.Click += new System.EventHandler(this.SaveColourGoods_Click);
@@ -203,7 +203,7 @@
             this.textBoxCounts.MaxLength = 3;
             this.textBoxCounts.Name = "textBoxCounts";
             this.textBoxCounts.Size = new System.Drawing.Size(37, 26);
-            this.textBoxCounts.TabIndex = 3;
+            this.textBoxCounts.TabIndex = 5;
             this.textBoxCounts.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCounts_KeyPress);
             // 
             // dateTimePickerDateToWork
@@ -212,7 +212,7 @@
             this.dateTimePickerDateToWork.Location = new System.Drawing.Point(1047, 74);
             this.dateTimePickerDateToWork.Name = "dateTimePickerDateToWork";
             this.dateTimePickerDateToWork.Size = new System.Drawing.Size(102, 26);
-            this.dateTimePickerDateToWork.TabIndex = 22;
+            this.dateTimePickerDateToWork.TabIndex = 7;
             // 
             // labelDateReady
             // 
@@ -230,7 +230,7 @@
             this.comboBoxCity.Location = new System.Drawing.Point(301, 71);
             this.comboBoxCity.Name = "comboBoxCity";
             this.comboBoxCity.Size = new System.Drawing.Size(150, 28);
-            this.comboBoxCity.TabIndex = 24;
+            this.comboBoxCity.TabIndex = 2;
             this.comboBoxCity.SelectedIndexChanged += new System.EventHandler(this.comboBoxCity_SelectedIndexChanged);
             // 
             // comboBoxStatusProfile
@@ -240,7 +240,7 @@
             this.comboBoxStatusProfile.Location = new System.Drawing.Point(1165, 72);
             this.comboBoxStatusProfile.Name = "comboBoxStatusProfile";
             this.comboBoxStatusProfile.Size = new System.Drawing.Size(150, 28);
-            this.comboBoxStatusProfile.TabIndex = 27;
+            this.comboBoxStatusProfile.TabIndex = 8;
             // 
             // labelColour_ID
             // 
@@ -284,7 +284,7 @@
             this.dateTimePickerDateReady.Location = new System.Drawing.Point(1340, 75);
             this.dateTimePickerDateReady.Name = "dateTimePickerDateReady";
             this.dateTimePickerDateReady.Size = new System.Drawing.Size(102, 26);
-            this.dateTimePickerDateReady.TabIndex = 20;
+            this.dateTimePickerDateReady.TabIndex = 9;
             // 
             // labelStatusProfile
             // 
@@ -302,7 +302,7 @@
             this.comboBoxDealer.Location = new System.Drawing.Point(474, 72);
             this.comboBoxDealer.Name = "comboBoxDealer";
             this.comboBoxDealer.Size = new System.Drawing.Size(150, 28);
-            this.comboBoxDealer.TabIndex = 25;
+            this.comboBoxDealer.TabIndex = 3;
             // 
             // comboBoxColour
             // 
@@ -311,7 +311,7 @@
             this.comboBoxColour.Location = new System.Drawing.Point(883, 73);
             this.comboBoxColour.Name = "comboBoxColour";
             this.comboBoxColour.Size = new System.Drawing.Size(150, 28);
-            this.comboBoxColour.TabIndex = 26;
+            this.comboBoxColour.TabIndex = 6;
             // 
             // labelDateToWork
             // 
@@ -327,7 +327,7 @@
             this.textBoxNotes.Location = new System.Drawing.Point(645, 75);
             this.textBoxNotes.Name = "textBoxNotes";
             this.textBoxNotes.Size = new System.Drawing.Size(149, 26);
-            this.textBoxNotes.TabIndex = 19;
+            this.textBoxNotes.TabIndex = 4;
             // 
             // labelProfile
             // 
@@ -677,6 +677,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1663, 1006);
             this.Controls.Add(this.MenuTabControl);
             this.Name = "LaminatsiaForm";

@@ -45,6 +45,7 @@ namespace Laminatsia
             //заповнення ламінації комбобоксів
             comboBoxProfile.Items.AddRange(listProfile.ToArray());
             //comboBoxDealer.Items.AddRange(dealerDTO.GetListDealer().ToArray());                   заповнюється відповідно до вибраного міста
+            comboBoxDealer.Enabled = false;
             comboBoxCity.Items.AddRange(listCity.ToArray());
             comboBoxColour.Items.AddRange(listColour.ToArray());
             comboBoxStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
@@ -88,8 +89,8 @@ namespace Laminatsia
         }
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.WindowState = FormWindowState.Normal;
         }
         //потрібно ввести спочатку місто а потім і
         private void comboxCityDealer_SelectedIndexChanged(object sender, EventArgs e)
