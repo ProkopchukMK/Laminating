@@ -7,7 +7,7 @@ namespace Laminatsia.DTO
 {
     public class ColourDTO
     {
-        private static LaminatsiaEntities _entity = new LaminatsiaEntities();
+        private LaminatsiaEntities _entity = new LaminatsiaEntities();
         public string AddColour(string colourName)
         {
             ColourProfile colourList = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colourName);
@@ -24,7 +24,21 @@ namespace Laminatsia.DTO
                 return "Такий колір в базі вже є!";
             }
         }
-        public static List<string> GetListColour()
+        public string RemoveColour(string colourName)
+        {
+            ColourProfile removeColour = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colourName);
+            if (removeColour != null)
+            {
+                _entity.DeleteObject(removeColour);
+                _entity.SaveChanges();
+                return "Колір " + colourName + " видалено!";
+            }
+            else
+            {
+                return "Такого кольору в базі немає!";
+            }
+        }
+        public List<string> GetListColour()
         {
             var listColour = _entity.ColourProfile.Select(x => x.Colour.Trim()).ToList<string>();
             listColour.Sort();

@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3984164b51e4485b90f01a261728d9e2" Name="Diagram1">
-        <EntityTypeShape EntityType="LaminatsiaModel.City" Width="1.5" PointX="5.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaminatsiaModel.City" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.ColourGoods" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.ColourProfile" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.Dealer" Width="1.5" PointX="5.75" PointY="1.625" IsExpanded="true" />

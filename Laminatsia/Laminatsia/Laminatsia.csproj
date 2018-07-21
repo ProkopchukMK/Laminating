@@ -51,6 +51,7 @@
     <Compile Include="DTO\ColourGoodsDTO.cs" />
     <Compile Include="DTO\DealerDTO.cs" />
     <Compile Include="DTO\ProfileDTO.cs" />
+    <Compile Include="DTO\UsersDTO.cs" />
     <Compile Include="LaminatsiaForm.cs">
       <SubType>Form</SubType>
     </Compile>

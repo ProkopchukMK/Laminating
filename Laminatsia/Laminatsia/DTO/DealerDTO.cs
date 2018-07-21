@@ -7,7 +7,7 @@ namespace Laminatsia.DTO
 {
     public class DealerDTO
     {
-        private static LaminatsiaEntities _entity = new LaminatsiaEntities();
+        private  LaminatsiaEntities _entity = new LaminatsiaEntities();
         public string AddDealer(string cityName, string dealerName)
         {
             Dealer dealerList = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealerName);
@@ -25,7 +25,14 @@ namespace Laminatsia.DTO
                 return "Такий дилер в базі вже є!";
             }
         }
-        public static List<string> GetListDealer()
+        public string RemoveDealer(string cityDealer, string dealerName)
+        {
+            Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealerName && x.City == cityDealer);
+            _entity.DeleteObject(removeDealer);
+            _entity.SaveChanges();
+                return "Дилера видаленно!";
+        }
+        public List<string> GetListDealer()
         {
             var listDealer = _entity.Dealer.Select(x => x.DealerName.Trim()).ToList<string>();
             listDealer.Sort();
