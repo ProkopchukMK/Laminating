@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="LaminatsiaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+<Schema Namespace="LaminatsiaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityType Name="ColourGoods">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DateComming" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Profile_ID" Type="Int32" Nullable="false" />
+    <Property Name="Dealer_ID" Type="Int32" Nullable="false" />
     <Property Name="Notes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Counts" Type="Int32" Nullable="false" />
+    <Property Name="Colour_ID" Type="Int32" Nullable="false" />
     <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="StatusProfile" Type="Boolean" Nullable="false" />
     <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="0" />
@@ -41,6 +44,16 @@
     <Property Name="NameProfile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_Profile" FromRole="Profile" ToRole="ColourGoods" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="ID" />
@@ -53,20 +66,45 @@
   <Association Name="FK_ColourGoods_ColourProfile">
     <End Role="ColourProfile" Type="Self.ColourProfile" Multiplicity="1" />
     <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ColourProfile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ColourGoods">
+        <PropertyRef Name="Colour_ID" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
   <Association Name="FK_ColourGoods_Dealer">
     <End Role="Dealer" Type="Self.Dealer" Multiplicity="1" />
     <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dealer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ColourGoods">
+        <PropertyRef Name="Dealer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
   <Association Name="FK_ColourGoods_Profile">
     <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
     <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ColourGoods">
+        <PropertyRef Name="Profile_ID" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="LaminatsiaEntities">
+  <EntityContainer Name="LaminatsiaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ColourGoods" EntityType="Self.ColourGoods" />
     <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" />
     <EntitySet Name="Dealer" EntityType="Self.Dealer" />
     <EntitySet Name="Profile" EntityType="Self.Profile" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Users" EntityType="Self.Users" />
     <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
       <End Role="ColourProfile" EntitySet="ColourProfile" />

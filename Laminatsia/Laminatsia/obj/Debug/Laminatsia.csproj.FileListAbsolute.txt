@@ -24,3 +24,6 @@ D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.pdb
 D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Laminatsia.exe.config
 D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Laminatsia.exe
 D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Laminatsia.pdb
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\EntityFramework.dll
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\EntityFramework.xml
+D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csproj.CopyComplete

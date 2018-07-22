@@ -14,7 +14,7 @@ namespace Laminatsia.DTO
             if (profileList == null)
             {
                 Profile newProfile = new Profile{NameProfile = profileName };
-                _entity.AddToProfile(newProfile);
+                _entity.Profile.Add(newProfile);
                 _entity.SaveChanges();
                 return "Профіль " + profileName + " добавлено!";
             }
@@ -28,7 +28,7 @@ namespace Laminatsia.DTO
             Profile removeProfile = _entity.Profile.FirstOrDefault(x => x.NameProfile == profileName);
             if (removeProfile != null)
             {
-                _entity.DeleteObject(removeProfile);
+                _entity.Profile.Add(removeProfile);
                 _entity.SaveChanges();
                 return "Профіль " + profileName + " видалено!";
             }

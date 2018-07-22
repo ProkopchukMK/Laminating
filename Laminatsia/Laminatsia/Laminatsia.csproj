@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Laminatsia</RootNamespace>
     <AssemblyName>Laminatsia</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,7 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -46,24 +51,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColourGoods.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ColourProfile.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dealer.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTO\ColourDTO.cs" />
     <Compile Include="DTO\ColourGoodsDTO.cs" />
     <Compile Include="DTO\DealerDTO.cs" />
     <Compile Include="DTO\ProfileDTO.cs" />
     <Compile Include="DTO\UsersDTO.cs" />
+    <Compile Include="LaminatsiaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaminatsiaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LaminatsiaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LaminatsiaForm.Designer.cs">
       <DependentUpon>LaminatsiaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LaminatsiaModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaminatsiaModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LaminatsiaModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LaminatsiaModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Profile.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="LaminatsiaForm.resx">
       <DependentUpon>LaminatsiaForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -75,8 +113,20 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.Config" />
+    <None Include="LaminatsiaDataSet.xsc">
+      <DependentUpon>LaminatsiaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LaminatsiaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LaminatsiaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LaminatsiaDataSet.xss">
+      <DependentUpon>LaminatsiaDataSet.xsd</DependentUpon>
+    </None>
     <EntityDeploy Include="LaminatsiaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LaminatsiaModel.Designer.cs</LastGenOutput>
@@ -84,6 +134,7 @@
     <None Include="LaminatsiaModel.edmx.diagram">
       <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,7 +145,21 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="LaminatsiaModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LaminatsiaModel.Context.cs</LastGenOutput>
+      <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="LaminatsiaModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
+      <LastGenOutput>LaminatsiaModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

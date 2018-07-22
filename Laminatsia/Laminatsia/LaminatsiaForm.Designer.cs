@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.MenuTabControl = new System.Windows.Forms.TabControl();
             this.Laminaters = new System.Windows.Forms.TabPage();
             this.groupBoxCreateNewOrder = new System.Windows.Forms.GroupBox();
@@ -53,6 +54,7 @@
             this.textBoxNotes = new System.Windows.Forms.TextBox();
             this.labelProfile = new System.Windows.Forms.Label();
             this.Managers = new System.Windows.Forms.TabPage();
+            this.dataGridViewManagers = new System.Windows.Forms.DataGridView();
             this.Tehnologers = new System.Windows.Forms.TabPage();
             this.comboBoxStatusGoods = new System.Windows.Forms.ComboBox();
             this.labelStatusGoods = new System.Windows.Forms.Label();
@@ -81,13 +83,31 @@
             this.labelAddProfile = new System.Windows.Forms.Label();
             this.labelAddColour = new System.Windows.Forms.Label();
             this.сomboxAddCity = new System.Windows.Forms.ComboBox();
+            this.laminatsiaDataSet = new Laminatsia.LaminatsiaDataSet();
+            this.colourGoodsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colourGoodsTableAdapter = new Laminatsia.LaminatsiaDataSetTableAdapters.ColourGoodsTableAdapter();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateCommingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.profileIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dealerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colourIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateToWorkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusProfileDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dateReadyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusGoodsDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
             this.groupBoxCreateNewOrder.SuspendLayout();
+            this.Managers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewManagers)).BeginInit();
             this.Tehnologers.SuspendLayout();
             this.AddRemove.SuspendLayout();
             this.groupBoxRemove.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.laminatsiaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colourGoodsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuTabControl
@@ -204,6 +224,8 @@
             // 
             // dateTimePickerDateToWork
             // 
+            this.dateTimePickerDateToWork.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateToWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerDateToWork.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerDateToWork.Location = new System.Drawing.Point(1047, 74);
             this.dateTimePickerDateToWork.Name = "dateTimePickerDateToWork";
@@ -276,6 +298,8 @@
             // 
             // dateTimePickerDateReady
             // 
+            this.dateTimePickerDateReady.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateReady.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerDateReady.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerDateReady.Location = new System.Drawing.Point(1340, 75);
             this.dateTimePickerDateReady.Name = "dateTimePickerDateReady";
@@ -336,6 +360,7 @@
             // 
             // Managers
             // 
+            this.Managers.Controls.Add(this.dataGridViewManagers);
             this.Managers.Location = new System.Drawing.Point(4, 25);
             this.Managers.Name = "Managers";
             this.Managers.Padding = new System.Windows.Forms.Padding(3);
@@ -343,6 +368,28 @@
             this.Managers.TabIndex = 1;
             this.Managers.Text = "Менеджери";
             this.Managers.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewManagers
+            // 
+            this.dataGridViewManagers.AutoGenerateColumns = false;
+            this.dataGridViewManagers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
+            this.dateCommingDataGridViewTextBoxColumn,
+            this.profileIDDataGridViewTextBoxColumn,
+            this.dealerIDDataGridViewTextBoxColumn,
+            this.notesDataGridViewTextBoxColumn,
+            this.countsDataGridViewTextBoxColumn,
+            this.colourIDDataGridViewTextBoxColumn,
+            this.dateToWorkDataGridViewTextBoxColumn,
+            this.statusProfileDataGridViewCheckBoxColumn,
+            this.dateReadyDataGridViewTextBoxColumn,
+            this.statusGoodsDataGridViewCheckBoxColumn});
+            this.dataGridViewManagers.DataSource = this.colourGoodsBindingSource;
+            this.dataGridViewManagers.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridViewManagers.Location = new System.Drawing.Point(3, 79);
+            this.dataGridViewManagers.Name = "dataGridViewManagers";
+            this.dataGridViewManagers.Size = new System.Drawing.Size(1649, 895);
+            this.dataGridViewManagers.TabIndex = 0;
             // 
             // Tehnologers
             // 
@@ -629,6 +676,97 @@
             this.сomboxAddCity.TabIndex = 12;
             this.сomboxAddCity.SelectedIndexChanged += new System.EventHandler(this.ComboxAddCity_SelectedIndexChanged);
             // 
+            // laminatsiaDataSet
+            // 
+            this.laminatsiaDataSet.DataSetName = "LaminatsiaDataSet";
+            this.laminatsiaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // colourGoodsBindingSource
+            // 
+            this.colourGoodsBindingSource.DataMember = "ColourGoods";
+            this.colourGoodsBindingSource.DataSource = this.laminatsiaDataSet;
+            // 
+            // colourGoodsTableAdapter
+            // 
+            this.colourGoodsTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateCommingDataGridViewTextBoxColumn
+            // 
+            this.dateCommingDataGridViewTextBoxColumn.DataPropertyName = "DateComming";
+            this.dateCommingDataGridViewTextBoxColumn.HeaderText = "DateComming";
+            this.dateCommingDataGridViewTextBoxColumn.Name = "dateCommingDataGridViewTextBoxColumn";
+            this.dateCommingDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // profileIDDataGridViewTextBoxColumn
+            // 
+            this.profileIDDataGridViewTextBoxColumn.DataPropertyName = "Profile_ID";
+            this.profileIDDataGridViewTextBoxColumn.HeaderText = "Profile_ID";
+            this.profileIDDataGridViewTextBoxColumn.Name = "profileIDDataGridViewTextBoxColumn";
+            this.profileIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dealerIDDataGridViewTextBoxColumn
+            // 
+            this.dealerIDDataGridViewTextBoxColumn.DataPropertyName = "Dealer_ID";
+            this.dealerIDDataGridViewTextBoxColumn.HeaderText = "Dealer_ID";
+            this.dealerIDDataGridViewTextBoxColumn.Name = "dealerIDDataGridViewTextBoxColumn";
+            this.dealerIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // notesDataGridViewTextBoxColumn
+            // 
+            this.notesDataGridViewTextBoxColumn.DataPropertyName = "Notes";
+            this.notesDataGridViewTextBoxColumn.HeaderText = "Notes";
+            this.notesDataGridViewTextBoxColumn.Name = "notesDataGridViewTextBoxColumn";
+            this.notesDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // countsDataGridViewTextBoxColumn
+            // 
+            this.countsDataGridViewTextBoxColumn.DataPropertyName = "Counts";
+            this.countsDataGridViewTextBoxColumn.HeaderText = "Counts";
+            this.countsDataGridViewTextBoxColumn.Name = "countsDataGridViewTextBoxColumn";
+            this.countsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // colourIDDataGridViewTextBoxColumn
+            // 
+            this.colourIDDataGridViewTextBoxColumn.DataPropertyName = "Colour_ID";
+            this.colourIDDataGridViewTextBoxColumn.HeaderText = "Colour_ID";
+            this.colourIDDataGridViewTextBoxColumn.Name = "colourIDDataGridViewTextBoxColumn";
+            this.colourIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateToWorkDataGridViewTextBoxColumn
+            // 
+            this.dateToWorkDataGridViewTextBoxColumn.DataPropertyName = "DateToWork";
+            this.dateToWorkDataGridViewTextBoxColumn.HeaderText = "DateToWork";
+            this.dateToWorkDataGridViewTextBoxColumn.Name = "dateToWorkDataGridViewTextBoxColumn";
+            this.dateToWorkDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusProfileDataGridViewCheckBoxColumn
+            // 
+            this.statusProfileDataGridViewCheckBoxColumn.DataPropertyName = "StatusProfile";
+            this.statusProfileDataGridViewCheckBoxColumn.HeaderText = "StatusProfile";
+            this.statusProfileDataGridViewCheckBoxColumn.Name = "statusProfileDataGridViewCheckBoxColumn";
+            this.statusProfileDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // dateReadyDataGridViewTextBoxColumn
+            // 
+            this.dateReadyDataGridViewTextBoxColumn.DataPropertyName = "DateReady";
+            this.dateReadyDataGridViewTextBoxColumn.HeaderText = "DateReady";
+            this.dateReadyDataGridViewTextBoxColumn.Name = "dateReadyDataGridViewTextBoxColumn";
+            this.dateReadyDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusGoodsDataGridViewCheckBoxColumn
+            // 
+            this.statusGoodsDataGridViewCheckBoxColumn.DataPropertyName = "StatusGoods";
+            this.statusGoodsDataGridViewCheckBoxColumn.HeaderText = "StatusGoods";
+            this.statusGoodsDataGridViewCheckBoxColumn.Name = "statusGoodsDataGridViewCheckBoxColumn";
+            this.statusGoodsDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
             // LaminatsiaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -643,6 +781,8 @@
             this.Laminaters.ResumeLayout(false);
             this.groupBoxCreateNewOrder.ResumeLayout(false);
             this.groupBoxCreateNewOrder.PerformLayout();
+            this.Managers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewManagers)).EndInit();
             this.Tehnologers.ResumeLayout(false);
             this.Tehnologers.PerformLayout();
             this.AddRemove.ResumeLayout(false);
@@ -650,6 +790,8 @@
             this.groupBoxRemove.PerformLayout();
             this.groupBoxAdd.ResumeLayout(false);
             this.groupBoxAdd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.laminatsiaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colourGoodsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -709,5 +851,20 @@
         private System.Windows.Forms.GroupBox groupBoxRemove;
         private System.Windows.Forms.GroupBox groupBoxAdd;
         private System.Windows.Forms.GroupBox groupBoxCreateNewOrder;
+        private System.Windows.Forms.DataGridView dataGridViewManagers;
+        private LaminatsiaDataSet laminatsiaDataSet;
+        private System.Windows.Forms.BindingSource colourGoodsBindingSource;
+        private LaminatsiaDataSetTableAdapters.ColourGoodsTableAdapter colourGoodsTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateCommingDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn profileIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dealerIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn countsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colourIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateToWorkDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusProfileDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateReadyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn statusGoodsDataGridViewCheckBoxColumn;
     }
 }

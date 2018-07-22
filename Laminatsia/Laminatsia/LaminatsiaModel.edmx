@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+      <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="ColourGoods">
           <Key>
             <PropertyRef Name="ID" />
@@ -42,6 +42,16 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameProfile" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -93,6 +103,7 @@
           <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dealer" EntityType="Self.Dealer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
             <End Role="ColourProfile" EntitySet="ColourProfile" />
@@ -111,15 +122,18 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LaminatsiaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <Schema Namespace="LaminatsiaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityType Name="ColourGoods">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DateComming" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Profile_ID" Type="Int32" Nullable="false" />
+          <Property Name="Dealer_ID" Type="Int32" Nullable="false" />
           <Property Name="Notes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Counts" Type="Int32" Nullable="false" />
+          <Property Name="Colour_ID" Type="Int32" Nullable="false" />
           <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="StatusProfile" Type="Boolean" Nullable="false" />
           <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="0" />
@@ -153,6 +167,16 @@
           <Property Name="NameProfile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_Profile" FromRole="Profile" ToRole="ColourGoods" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -165,20 +189,45 @@
         <Association Name="FK_ColourGoods_ColourProfile">
           <End Role="ColourProfile" Type="Self.ColourProfile" Multiplicity="1" />
           <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ColourProfile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ColourGoods">
+              <PropertyRef Name="Colour_ID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_ColourGoods_Dealer">
           <End Role="Dealer" Type="Self.Dealer" Multiplicity="1" />
           <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ColourGoods">
+              <PropertyRef Name="Dealer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_ColourGoods_Profile">
           <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
           <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ColourGoods">
+              <PropertyRef Name="Profile_ID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LaminatsiaEntities">
+        <EntityContainer Name="LaminatsiaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ColourGoods" EntityType="Self.ColourGoods" />
           <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" />
           <EntitySet Name="Dealer" EntityType="Self.Dealer" />
           <EntitySet Name="Profile" EntityType="Self.Profile" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
             <End Role="ColourProfile" EntitySet="ColourProfile" />
@@ -197,15 +246,18 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LaminatsiaModelStoreContainer" CdmEntityContainer="LaminatsiaEntities">
           <EntitySetMapping Name="ColourGoods">
             <EntityTypeMapping TypeName="LaminatsiaModel.ColourGoods">
               <MappingFragment StoreEntitySet="ColourGoods">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DateComming" ColumnName="DateComming" />
+                <ScalarProperty Name="Profile_ID" ColumnName="Profile_ID" />
+                <ScalarProperty Name="Dealer_ID" ColumnName="Dealer_ID" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="Counts" ColumnName="Counts" />
+                <ScalarProperty Name="Colour_ID" ColumnName="Colour_ID" />
                 <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
                 <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
                 <ScalarProperty Name="DateReady" ColumnName="DateReady" />
@@ -238,6 +290,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LaminatsiaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="LaminatsiaModel.Users">
               <MappingFragment StoreEntitySet="Users">
@@ -248,36 +311,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK_ColourGoods_ColourProfile" TypeName="LaminatsiaModel.FK_ColourGoods_ColourProfile" StoreEntitySet="ColourGoods">
-            <EndProperty Name="ColourProfile">
-              <ScalarProperty Name="ID" ColumnName="Colour_ID" />
-            </EndProperty>
-            <EndProperty Name="ColourGoods">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_ColourGoods_Dealer" TypeName="LaminatsiaModel.FK_ColourGoods_Dealer" StoreEntitySet="ColourGoods">
-            <EndProperty Name="Dealer">
-              <ScalarProperty Name="ID" ColumnName="Dealer_ID" />
-            </EndProperty>
-            <EndProperty Name="ColourGoods">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_ColourGoods_Profile" TypeName="LaminatsiaModel.FK_ColourGoods_Profile" StoreEntitySet="ColourGoods">
-            <EndProperty Name="Profile">
-              <ScalarProperty Name="ID" ColumnName="Profile_ID" />
-            </EndProperty>
-            <EndProperty Name="ColourGoods">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
@@ -287,8 +326,9 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

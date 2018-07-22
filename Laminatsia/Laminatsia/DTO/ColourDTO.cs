@@ -13,9 +13,8 @@ namespace Laminatsia.DTO
             ColourProfile colourList = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colourName);
             if (colourList == null)
             {
-                ColourProfile newColour = new ColourProfile();
-                newColour.Colour = colourName;
-                _entity.AddToColourProfile(newColour);
+                ColourProfile newColour = new ColourProfile { Colour = colourName };
+                _entity.ColourProfile.Add(newColour);
                 _entity.SaveChanges();
                 return "Колір " + colourName + " добавлено!";
             }
@@ -29,7 +28,7 @@ namespace Laminatsia.DTO
             ColourProfile removeColour = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colourName);
             if (removeColour != null)
             {
-                _entity.DeleteObject(removeColour);
+                _entity.ColourProfile.Remove(removeColour);
                 _entity.SaveChanges();
                 return "Колір " + colourName + " видалено!";
             }

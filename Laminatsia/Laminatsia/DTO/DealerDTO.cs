@@ -14,7 +14,7 @@ namespace Laminatsia.DTO
             if (dealerList == null)
             {
                 Dealer newDealer = new Dealer { DealerName = dealerName, City = city };
-                _entity.AddToDealer(newDealer);
+                _entity.Dealer.Add(newDealer);
                 _entity.SaveChanges();
                 return "Дилера " + city + " " + dealerName + " добавлено!";
             }
@@ -26,7 +26,7 @@ namespace Laminatsia.DTO
         public string RemoveDealer(string cityDealer, string dealerName)
         {
             Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer && x.DealerName == dealerName);
-            _entity.DeleteObject(removeDealer);
+            _entity.Dealer.Remove(removeDealer);
             _entity.SaveChanges();
             return "Дилера видаленно!";
         }
