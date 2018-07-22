@@ -16,7 +16,7 @@ namespace Laminatsia.DTO
                 Dealer newDealer = new Dealer { DealerName = dealerName, City = city };
                 _entity.AddToDealer(newDealer);
                 _entity.SaveChanges();
-                return "Дилера " + dealerName + " добавлено!";
+                return "Дилера " + city + " " + dealerName + " добавлено!";
             }
             else
             {

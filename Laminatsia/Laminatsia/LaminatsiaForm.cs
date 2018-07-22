@@ -265,7 +265,7 @@ namespace Laminatsia
                 {
                     if (ComboBoxDealer.SelectedItem != null)
                     {
-                        if (textBoxCounts.Text != null && textBoxCounts.Text.Trim() != "")
+                        if (textBoxCounts.Text != "" && textBoxCounts.Text.Trim() != "0")
                         {
                             if (comboBoxColour.SelectedItem != null)
                             {
