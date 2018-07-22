@@ -28,7 +28,7 @@ namespace Laminatsia.DTO
             Profile removeProfile = _entity.Profile.FirstOrDefault(x => x.NameProfile == profileName);
             if (removeProfile != null)
             {
-                _entity.Profile.Add(removeProfile);
+                _entity.Profile.Remove(removeProfile);
                 _entity.SaveChanges();
                 return "Профіль " + profileName + " видалено!";
             }

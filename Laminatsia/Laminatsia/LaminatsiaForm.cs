@@ -39,7 +39,17 @@ namespace Laminatsia
         {
             InitializeComponent();
             FillAlComponent();
-            dataGridViewManagers.DataSource = colourGoodsDTO.GetListColourGoods();
+            FillGridView();
+        }
+        private void FillGridView()
+        {
+            List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
+            for (int i = 0; i < listColourGoodsDTO.Count; i++)
+            {
+                dataGridViewManagers.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.ToShortDateString(), listColourGoodsDTO[i].Profile,
+                    listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
+                    listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.ToShortDateString(), listColourGoodsDTO[i].StatusProfile, listColourGoodsDTO[i].DateReady.ToShortDateString(), listColourGoodsDTO[i].StatusGoods);
+            }
         }
         private void FillAlComponent()
         {
@@ -61,14 +71,14 @@ namespace Laminatsia
             comboBoxRemoveDealer.Enabled = false;
             comboBoxRemoveProfile.Items.AddRange(listProfile.ToArray());
             comboBoxRemoveColour.Items.AddRange(listColour.ToArray());
-
-        }
+        }        
         private void CleareAllComponent()
         {
             //очищення вкладки ламінація(додати нове замовлення)
             dateTimePickerDateComing.Value = DateTime.Now;
             ComboBoxProfile.Items.Clear();
             ComboBoxCity.Items.Clear();
+            сomboxAddCity.Text = "";
             ComboBoxDealer.Items.Clear();
             textBoxNotes.Text = "";
             textBoxCounts.Text = "";
@@ -81,6 +91,7 @@ namespace Laminatsia
             //очищення вкладки додати\видалити(додати нове знчення)
             сomboxAddCity.Items.Clear();
             textBoxAddDealer.Text = "";
+            textBoxAddDealer.Enabled = false;
             textBoxAddProfile.Text = "";
             textBoxAddColour.Text = "";
 
@@ -104,7 +115,7 @@ namespace Laminatsia
             if (addDealer != "")
             {
                 DealerDTO newDealer = new DealerDTO();
-                string message = newDealer.AddDealer(сomboxAddCity.SelectedItem.ToString(), addDealer);
+                string message = newDealer.AddDealer(сomboxAddCity.Text.Trim(), addDealer);
                 MessageBox.Show(message);
             }
             else
@@ -210,8 +221,6 @@ namespace Laminatsia
                     ProfileDTO removeProfile = new ProfileDTO();
                     string message = removeProfile.RemoveProfile(comboBoxRemoveProfile.SelectedItem.ToString());
                     MessageBox.Show(message);
-                    this.CleareAllComponent();
-                    this.FillAlComponent();
                 }
                 else
                 {
@@ -239,8 +248,6 @@ namespace Laminatsia
                     ColourDTO removeColour = new ColourDTO();
                     string message = removeColour.RemoveColour(comboBoxRemoveColour.SelectedItem.ToString());
                     MessageBox.Show(message);
-                    this.CleareAllComponent();
-                    this.FillAlComponent();
                 }
                 else
                 {
@@ -348,5 +355,43 @@ namespace Laminatsia
         }
 
         #endregion
+        //sorted gridview
+        private void dataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewColumn newColumn = dataGridViewManagers.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = dataGridViewManagers.SortedColumn;
+            ListSortDirection direction;
+            if(oldColumn != null)
+            {
+                if(oldColumn == newColumn && dataGridViewManagers.SortOrder == SortOrder.Ascending)
+                {
+                    direction = ListSortDirection.Descending;
+                }
+                else
+                {
+                    direction = ListSortDirection.Ascending;
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                }
+            }
+            else
+            {
+                direction = ListSortDirection.Ascending;
+            }
+            dataGridViewManagers.Sort(newColumn, direction);
+            newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+        }
+
+        private void dataGridViewManagers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dataGridViewManagers.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.Automatic;
+            }
+        }
+
+        private void сomboxAddCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            textBoxAddDealer.Enabled = true;
+        }
     }
 }
