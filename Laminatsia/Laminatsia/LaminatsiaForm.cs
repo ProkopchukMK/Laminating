@@ -355,6 +355,7 @@ namespace Laminatsia
         }
 
         #endregion
+        #region вкладка менеджери
         //sorted gridview
         private void dataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -388,8 +389,13 @@ namespace Laminatsia
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
             }
         }
-
+        #endregion
         private void сomboxAddCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            textBoxAddDealer.Enabled = true;
+        }
+
+        private void сomboxAddCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxAddDealer.Enabled = true;
         }

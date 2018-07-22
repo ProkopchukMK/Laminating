@@ -768,6 +768,7 @@
             this.сomboxAddCity.Name = "сomboxAddCity";
             this.сomboxAddCity.Size = new System.Drawing.Size(150, 28);
             this.сomboxAddCity.TabIndex = 12;
+            this.сomboxAddCity.SelectedIndexChanged += new System.EventHandler(this.сomboxAddCity_SelectedIndexChanged);
             this.сomboxAddCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.сomboxAddCity_KeyDown);
             // 
             // LaminatsiaForm

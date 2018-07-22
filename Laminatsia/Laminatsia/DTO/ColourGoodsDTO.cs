@@ -41,16 +41,16 @@ namespace Laminatsia.DTO
                 ColourGoodsDTO newcolourGoodsDTO = new ColourGoodsDTO
                 {
                     ID = listColourGoods[i].ID,
-                    DateComing = listColourGoods[0].DateComming,
+                    DateComing = listColourGoods[i].DateComming.Date,
                     Profile = _entity.Profile.FirstOrDefault(x => x.ID == id_profile).NameProfile,
                     City = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).City,
                     Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).DealerName,
                     Notes = listColourGoods[i].Notes,
                     Counts = (byte)listColourGoods[i].Counts,
                     Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == id_colour).Colour,
-                    DateToWork = listColourGoods[i].DateToWork,
+                    DateToWork = listColourGoods[i].DateToWork.Date,
                     StatusProfile = listColourGoods[i].StatusProfile,
-                    DateReady = listColourGoods[i].DateReady,
+                    DateReady = listColourGoods[i].DateReady.Date,
                     StatusGoods = listColourGoods[i].StatusGoods
                 };
 
