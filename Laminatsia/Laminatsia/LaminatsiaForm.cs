@@ -259,37 +259,68 @@ namespace Laminatsia
         //додати нове замовлення до бази даних
         private void SaveColourGoods_Click(object sender, EventArgs e)
         {
-            if ()
+            if (ComboBoxProfile.SelectedItem != null)
             {
-                DateTime dateComing = dateTimePickerDateComing.Value;
-                string profile = ComboBoxProfile.SelectedItem.ToString();
-                string city = ComboBoxCity.SelectedItem.ToString();
-                string dealer = ComboBoxDealer.SelectedItem.ToString();
-                string notes = textBoxNotes.Text;
-                byte counts = Byte.Parse(textBoxCounts.Text.TrimStart(new Char[] { '0' }));
-                string colour = comboBoxColour.SelectedItem.ToString();
-                DateTime dateToWork = dateTimePickerDateToWork.Value;
-                // потрібно перевести в булеве значення
-                bool statusProfile = false;
-                if (comboBoxStatusProfile.SelectedIndex == 0)
+                if (ComboBoxCity.SelectedItem != null)
                 {
-                    statusProfile = true;
+                    if (ComboBoxDealer.SelectedItem != null)
+                    {
+                        if (textBoxCounts.Text != null && textBoxCounts.Text.Trim() != "")
+                        {
+                            if (comboBoxColour.SelectedItem != null)
+                            {
+                                if (comboBoxStatusProfile.SelectedItem != null)
+                                {
+                                    DateTime dateComing = dateTimePickerDateComing.Value;
+                                    string profile = ComboBoxProfile.SelectedItem.ToString();
+                                    string city = ComboBoxCity.SelectedItem.ToString();
+                                    string dealer = ComboBoxDealer.SelectedItem.ToString();
+                                    string notes = textBoxNotes.Text;
+                                    byte counts = Byte.Parse(textBoxCounts.Text.TrimStart(new Char[] { '0' }));
+                                    string colour = comboBoxColour.SelectedItem.ToString();
+                                    DateTime dateToWork = dateTimePickerDateToWork.Value;
+                                    // перевадимо в булеве значення
+                                    bool statusProfile = false;
+                                    if (comboBoxStatusProfile.SelectedIndex == 0)
+                                    {
+                                        statusProfile = true;
+                                    }
+                                    DateTime dateReady = dateTimePickerDateReady.Value;
+                                    ColourGoodsDTO colourGoods = new ColourGoodsDTO();
+                                    string message = colourGoods.AddColourGoods(dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
+                                    MessageBox.Show(message);
+                                    this.CleareAllComponent();
+                                    this.FillAlComponent();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Ви не вказали Статус профілю!");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ви не вказали Колір профілю!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ви не вказали Кількість виробів!!");
+                            textBoxCounts.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ви не вказали Дилера!");
+                    }
                 }
-                else if (comboBoxStatusProfile.SelectedIndex == 1)
+                else
                 {
-                    statusProfile = false;
+                    MessageBox.Show("Ви не вказали Місто!");
                 }
-                DateTime dateReady = dateTimePickerDateReady.Value;
-
-                ColourGoodsDTO colourGoods = new ColourGoodsDTO();
-
-                colourGoods.AddColourGoods(dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
-                this.CleareAllComponent();
-                this.FillAlComponent();
             }
             else
             {
-
+                MessageBox.Show("Ви не вказали профіль!");
             }
 
         }
