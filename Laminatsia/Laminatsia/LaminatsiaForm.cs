@@ -28,7 +28,13 @@ namespace Laminatsia
         private List<DateTime> listDateReady = new List<DateTime>();
         private List<string> listStatusGoods = new List<string>();
 
-
+        private void LaminatsiaForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'laminatsiaDataSet.ColourGoods' table. You can move, or remove it, as needed.
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.WindowState = FormWindowState.Maximized;
+            this.Size = Screen.PrimaryScreen.Bounds.Size;
+        }
         public LaminatsiaForm()
         {
             InitializeComponent();
@@ -82,12 +88,6 @@ namespace Laminatsia
             comboBoxRemoveDealer.Items.Clear();
             comboBoxRemoveProfile.Items.Clear();
             comboBoxRemoveColour.Items.Clear();
-        }
-        private void LaminatsiaForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'laminatsiaDataSet.ColourGoods' table. You can move, or remove it, as needed.
-            this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.WindowState = FormWindowState.Maximized;
         }
 
 

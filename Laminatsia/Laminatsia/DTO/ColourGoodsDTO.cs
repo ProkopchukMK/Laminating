@@ -35,26 +35,37 @@ namespace Laminatsia.DTO
             List<ColourGoodsDTO> listColourGoodsDTO = new List<ColourGoodsDTO>(listColourGoods.Count);
             for (int i = 0; i < listColourGoods.Count; i++)
             {
-                ColourGoodsDTO newcolourGoodsDTO = new ColourGoodsDTO();
-                newcolourGoodsDTO.ID = listColourGoods[i].ID;
-                newcolourGoodsDTO.DateComing = listColourGoods[0].DateComming;
                 int id_profile = listColourGoods[i].Profile_ID;
-                newcolourGoodsDTO.Profile = _entity.Profile.FirstOrDefault(x => x.ID == id_profile).NameProfile;
                 int id_dealer = listColourGoods[i].Dealer_ID;
-                newcolourGoodsDTO.City = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).City;
-                newcolourGoodsDTO.Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).DealerName;
-                newcolourGoodsDTO.Notes = listColourGoods[i].Notes;
-                newcolourGoodsDTO.Counts = (byte)listColourGoods[i].Counts;
                 int id_colour = listColourGoods[i].Colour_ID;
-                newcolourGoodsDTO.Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == id_colour).Colour;
-                newcolourGoodsDTO.DateToWork = listColourGoods[i].DateToWork;
-                newcolourGoodsDTO.StatusProfile = listColourGoods[i].StatusProfile;
-                newcolourGoodsDTO.DateReady = listColourGoods[i].DateReady;
-                newcolourGoodsDTO.StatusGoods = listColourGoods[i].StatusGoods;
+                ColourGoodsDTO newcolourGoodsDTO = new ColourGoodsDTO
+                {
+                    ID = listColourGoods[i].ID,
+                    DateComing = listColourGoods[0].DateComming,
+                    Profile = _entity.Profile.FirstOrDefault(x => x.ID == id_profile).NameProfile,
+                    City = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).City,
+                    Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).DealerName,
+                    Notes = listColourGoods[i].Notes,
+                    Counts = (byte)listColourGoods[i].Counts,
+                    Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == id_colour).Colour,
+                    DateToWork = listColourGoods[i].DateToWork,
+                    StatusProfile = listColourGoods[i].StatusProfile,
+                    DateReady = listColourGoods[i].DateReady,
+                    StatusGoods = listColourGoods[i].StatusGoods
+                };
 
                 listColourGoodsDTO.Add(newcolourGoodsDTO);
             }
             return listColourGoodsDTO;
+        }
+        public List<ColourGoodsDTO> GetSortedList(int id, DateTime dateComingStart,DateTime dateComingEnd, string profile,
+                                                    string city,string dealer,string notes, byte counts, string color,
+                                                    DateTime dateToWorkStart, DateTime dateToWorkEnd, bool statusProfile,
+                                                    DateTime dateReady, bool statusGoods)
+        {
+
+
+            return new List<ColourGoodsDTO>();
         }
         public int ID { get; set; }
         public DateTime DateComing { get; set; }

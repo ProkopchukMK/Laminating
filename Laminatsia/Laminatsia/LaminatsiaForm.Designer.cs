@@ -55,7 +55,6 @@
             this.labelProfile = new System.Windows.Forms.Label();
             this.Managers = new System.Windows.Forms.TabPage();
             this.dataGridViewManagers = new System.Windows.Forms.DataGridView();
-            this.colourGoodsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Tehnologers = new System.Windows.Forms.TabPage();
             this.comboBoxStatusGoods = new System.Windows.Forms.ComboBox();
             this.labelStatusGoods = new System.Windows.Forms.Label();
@@ -84,16 +83,17 @@
             this.labelAddProfile = new System.Windows.Forms.Label();
             this.labelAddColour = new System.Windows.Forms.Label();
             this.сomboxAddCity = new System.Windows.Forms.ComboBox();
+            this.colourGoodsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
             this.groupBoxCreateNewOrder.SuspendLayout();
             this.Managers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewManagers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colourGoodsBindingSource)).BeginInit();
             this.Tehnologers.SuspendLayout();
             this.AddRemove.SuspendLayout();
             this.groupBoxRemove.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.colourGoodsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuTabControl
@@ -357,11 +357,15 @@
             // 
             // dataGridViewManagers
             // 
-            this.dataGridViewManagers.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridViewManagers.Location = new System.Drawing.Point(3, 79);
+            this.dataGridViewManagers.AllowUserToAddRows = false;
+            this.dataGridViewManagers.AllowUserToDeleteRows = false;
+            this.dataGridViewManagers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewManagers.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewManagers.Name = "dataGridViewManagers";
-            this.dataGridViewManagers.Size = new System.Drawing.Size(1649, 895);
-            this.dataGridViewManagers.TabIndex = 0;             
+            this.dataGridViewManagers.ReadOnly = true;
+            this.dataGridViewManagers.Size = new System.Drawing.Size(1649, 971);
+            this.dataGridViewManagers.TabIndex = 0;
+            // 
             // Tehnologers
             // 
             this.Tehnologers.Controls.Add(this.comboBoxStatusGoods);
@@ -663,7 +667,6 @@
             this.groupBoxCreateNewOrder.PerformLayout();
             this.Managers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewManagers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colourGoodsBindingSource)).EndInit();
             this.Tehnologers.ResumeLayout(false);
             this.Tehnologers.PerformLayout();
             this.AddRemove.ResumeLayout(false);
@@ -671,6 +674,7 @@
             this.groupBoxRemove.PerformLayout();
             this.groupBoxAdd.ResumeLayout(false);
             this.groupBoxAdd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.colourGoodsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
