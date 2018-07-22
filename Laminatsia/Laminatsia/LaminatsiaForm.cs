@@ -86,9 +86,8 @@ namespace Laminatsia
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'laminatsiaDataSet.ColourGoods' table. You can move, or remove it, as needed.
-            this.colourGoodsTableAdapter.Fill(this.laminatsiaDataSet.ColourGoods);
             this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.WindowState = FormWindowState.Normal;
+            this.WindowState = FormWindowState.Maximized;
         }
 
 
