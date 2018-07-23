@@ -568,18 +568,18 @@ namespace Laminatsia
 
         private void ButtonResetFilter_Click(object sender, EventArgs e)
         {
-            var dateTImeNow = DateTime.Now;
-            dateTimePickerFilterDataToWork1.Value = dateTImeNow;
-            dateTimePickerFilterDataToWork2.Value = dateTImeNow;
+            var dateTimeNow = DateTime.Now;
+            dateTimePickerFilterDateComing1.Value = dateTimeNow;
+            dateTimePickerFilterDateComing2.Value = dateTimeNow;
             comboBoxFilterProfile.Items.Clear();
             comboBoxFilterCity.Items.Clear();
             comboBoxFilterDealer.Items.Clear();
             comboBoxFilterColour.Items.Clear();
-            dateTimePickerFilterDataToWork1.Value = dateTImeNow;
-            dateTimePickerFilterDataToWork2.Value = dateTImeNow;
+            dateTimePickerFilterDataToWork1.Value = dateTimeNow;
+            dateTimePickerFilterDataToWork2.Value = dateTimeNow;
             comboBoxFilterStatusProfile.Items.Clear();
-            dateTimePickerFilterDateReady1.Value = dateTImeNow;
-            dateTimePickerFilterDateReady2.Value = dateTImeNow;
+            dateTimePickerFilterDateReady1.Value = dateTimeNow;
+            dateTimePickerFilterDateReady2.Value = dateTimeNow;
             comboBoxFilterStatusGoods.Items.Clear();
 
             comboBoxFilterProfile.Items.AddRange(listProfile.ToArray());
