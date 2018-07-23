@@ -123,6 +123,7 @@
             this.labelAddProfile = new System.Windows.Forms.Label();
             this.labelAddColour = new System.Windows.Forms.Label();
             this.сomboBoxAddCityDealer = new System.Windows.Forms.ComboBox();
+            this.dataGridViewTehnolog = new System.Windows.Forms.DataGridView();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
             this.groupBoxCreateNewOrder.SuspendLayout();
@@ -132,6 +133,7 @@
             this.AddRemove.SuspendLayout();
             this.groupBoxRemove.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTehnolog)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuTabControl
@@ -804,6 +806,7 @@
             // 
             // Tehnologers
             // 
+            this.Tehnologers.Controls.Add(this.dataGridViewTehnolog);
             this.Tehnologers.Controls.Add(this.comboBoxStatusGoods);
             this.Tehnologers.Controls.Add(this.labelStatusGoods);
             this.Tehnologers.Location = new System.Drawing.Point(4, 25);
@@ -1120,6 +1123,17 @@
             this.сomboBoxAddCityDealer.SelectedIndexChanged += new System.EventHandler(this.СomboxAddCity_SelectedIndexChanged);
             this.сomboBoxAddCityDealer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.СomboxAddCity_KeyDown);
             // 
+            // dataGridViewTehnolog
+            // 
+            this.dataGridViewTehnolog.AllowUserToAddRows = false;
+            this.dataGridViewTehnolog.AllowUserToDeleteRows = false;
+            this.dataGridViewTehnolog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTehnolog.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridViewTehnolog.Location = new System.Drawing.Point(0, 97);
+            this.dataGridViewTehnolog.Name = "dataGridViewTehnolog";
+            this.dataGridViewTehnolog.Size = new System.Drawing.Size(1250, 880);
+            this.dataGridViewTehnolog.TabIndex = 31;
+            // 
             // LaminatsiaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1144,6 +1158,7 @@
             this.groupBoxRemove.PerformLayout();
             this.groupBoxAdd.ResumeLayout(false);
             this.groupBoxAdd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTehnolog)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1245,5 +1260,6 @@
         private System.Windows.Forms.CheckBox checkBoxFilterDate;
         private System.Windows.Forms.Button buttonResetFilter;
         private System.Windows.Forms.Button buttonSetFilter;
+        private System.Windows.Forms.DataGridView dataGridViewTehnolog;
     }
 }

@@ -38,9 +38,10 @@ namespace Laminatsia
         {
             InitializeComponent();
             FillAlComponent();
-            FillGridView(null);
+            FillGridView(null,dataGridViewManagers);
+            //FillGridView(null, dataGridViewTehnolog); 
         }
-        private void FillGridView(List<ColourGoodsDTO> enterList)
+        private void FillGridView(List<ColourGoodsDTO> enterList, DataGridView dataGridView)
         {
             if (enterList == null)
             {
@@ -49,7 +50,7 @@ namespace Laminatsia
                 {
                     string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
                     string statusGoods = listColourGoodsDTO[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
-                    dataGridViewManagers.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
+                    dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
                         listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
                         listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
                 }
@@ -60,7 +61,7 @@ namespace Laminatsia
                 {
                     string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
                     string statusGoods = enterList[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
-                    dataGridViewManagers.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
+                    dataGridView.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
                         enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
                         enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods);
                 }
@@ -397,7 +398,7 @@ namespace Laminatsia
                                     string message = colourGoods.AddColourGoods(dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
                                     MessageBox.Show(message);
                                     this.CleareAllComponent();
-                                    this.FillGridView(null);
+                                    this.FillGridView(null,dataGridViewManagers);
                                     this.FillAlComponent();
                                 }
                                 else { MessageBox.Show("Ви не вказали Статус профілю!"); }
@@ -559,7 +560,7 @@ namespace Laminatsia
                     dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, filterStatusGoods);
             }
             dataGridViewManagers.Rows.Clear();
-            this.FillGridView(filteredList);
+            this.FillGridView(filteredList,dataGridViewManagers);
         }
 
         #endregion
@@ -588,7 +589,7 @@ namespace Laminatsia
             comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
             comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
             this.dataGridViewManagers.Rows.Clear();
-            this.FillGridView(null);
+            this.FillGridView(null,dataGridViewManagers);
         }
     }
 }
