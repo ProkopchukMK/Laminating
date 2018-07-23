@@ -49,7 +49,8 @@ namespace Laminatsia.DTO
         }
         public List<string> GetListCity()
         {
-            List<string> listCity = _entity.City.Select(x => x.CityDealer).ToList();            
+            //List<string> listCity = _entity.City.Select(x => x.CityDealer).ToList();            
+            List<string> listCity = new List<string>();
             listCity.Sort();                        
             return listCity;
         }

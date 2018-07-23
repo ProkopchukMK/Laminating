@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("LaminatsiaModel", "FK_ColourGoods_Profile", "Profile", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Laminatsia.Profile), "ColourGoods", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Laminatsia.ColourGoods))]
 
 // Original file name:
-// Generation date: 21.07.2018 13:07:35
+// Generation date: 21.07.2018 23:16:52
 namespace Laminatsia
 {
     
@@ -641,15 +641,15 @@ namespace Laminatsia
         /// Create a new Dealer object.
         /// </summary>
         /// <param name="id">Initial value of ID.</param>
-        /// <param name="city">Initial value of City.</param>
         /// <param name="dealerName">Initial value of DealerName.</param>
+        /// <param name="city">Initial value of City.</param>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public static Dealer CreateDealer(int id, string city, string dealerName)
+        public static Dealer CreateDealer(int id, string dealerName, string city)
         {
             Dealer dealer = new Dealer();
             dealer.ID = id;
-            dealer.City = city;
             dealer.DealerName = dealerName;
+            dealer.City = city;
             return dealer;
         }
         /// <summary>
@@ -680,33 +680,6 @@ namespace Laminatsia
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnIDChanged();
         /// <summary>
-        /// There are no comments for property City in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public string City
-        {
-            get
-            {
-                return this._City;
-            }
-            set
-            {
-                this.OnCityChanging(value);
-                this.ReportPropertyChanging("City");
-                this._City = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("City");
-                this.OnCityChanged();
-            }
-        }
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        private string _City;
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnCityChanging(string value);
-        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        partial void OnCityChanged();
-        /// <summary>
         /// There are no comments for property DealerName in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
@@ -733,6 +706,33 @@ namespace Laminatsia
         partial void OnDealerNameChanging(string value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnDealerNameChanged();
+        /// <summary>
+        /// There are no comments for property City in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string City
+        {
+            get
+            {
+                return this._City;
+            }
+            set
+            {
+                this.OnCityChanging(value);
+                this.ReportPropertyChanging("City");
+                this._City = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("City");
+                this.OnCityChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _City;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCityChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnCityChanged();
         /// <summary>
         /// There are no comments for ColourGoods in the schema.
         /// </summary>
@@ -856,6 +856,168 @@ namespace Laminatsia
                 }
             }
         }
+    }
+    /// <summary>
+    /// There are no comments for LaminatsiaModel.sysdiagrams in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// diagram_id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="LaminatsiaModel", Name="sysdiagrams")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class sysdiagrams : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new sysdiagrams object.
+        /// </summary>
+        /// <param name="name">Initial value of name.</param>
+        /// <param name="principal_id">Initial value of principal_id.</param>
+        /// <param name="diagram_id">Initial value of diagram_id.</param>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public static sysdiagrams Createsysdiagrams(string name, int principal_id, int diagram_id)
+        {
+            sysdiagrams sysdiagrams = new sysdiagrams();
+            sysdiagrams.name = name;
+            sysdiagrams.principal_id = principal_id;
+            sysdiagrams.diagram_id = diagram_id;
+            return sysdiagrams;
+        }
+        /// <summary>
+        /// There are no comments for property name in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string name
+        {
+            get
+            {
+                return this._name;
+            }
+            set
+            {
+                this.OnnameChanging(value);
+                this.ReportPropertyChanging("name");
+                this._name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("name");
+                this.OnnameChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _name;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnnameChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnnameChanged();
+        /// <summary>
+        /// There are no comments for property principal_id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public int principal_id
+        {
+            get
+            {
+                return this._principal_id;
+            }
+            set
+            {
+                this.Onprincipal_idChanging(value);
+                this.ReportPropertyChanging("principal_id");
+                this._principal_id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("principal_id");
+                this.Onprincipal_idChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private int _principal_id;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void Onprincipal_idChanging(int value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void Onprincipal_idChanged();
+        /// <summary>
+        /// There are no comments for property diagram_id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public int diagram_id
+        {
+            get
+            {
+                return this._diagram_id;
+            }
+            set
+            {
+                this.Ondiagram_idChanging(value);
+                this.ReportPropertyChanging("diagram_id");
+                this._diagram_id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("diagram_id");
+                this.Ondiagram_idChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private int _diagram_id;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void Ondiagram_idChanging(int value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void Ondiagram_idChanged();
+        /// <summary>
+        /// There are no comments for property version in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Nullable<int> version
+        {
+            get
+            {
+                return this._version;
+            }
+            set
+            {
+                this.OnversionChanging(value);
+                this.ReportPropertyChanging("version");
+                this._version = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("version");
+                this.OnversionChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Nullable<int> _version;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnversionChanging(global::System.Nullable<int> value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnversionChanged();
+        /// <summary>
+        /// There are no comments for property definition in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public byte[] definition
+        {
+            get
+            {
+                return global::System.Data.Objects.DataClasses.StructuralObject.GetValidValue(this._definition);
+            }
+            set
+            {
+                this.OndefinitionChanging(value);
+                this.ReportPropertyChanging("definition");
+                this._definition = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("definition");
+                this.OndefinitionChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private byte[] _definition;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OndefinitionChanging(byte[] value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OndefinitionChanged();
     }
     /// <summary>
     /// There are no comments for LaminatsiaModel.Users in the schema.
@@ -1110,6 +1272,23 @@ namespace Laminatsia
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         private global::System.Data.Objects.ObjectQuery<Profile> _Profile;
         /// <summary>
+        /// There are no comments for sysdiagrams in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public global::System.Data.Objects.ObjectQuery<sysdiagrams> sysdiagrams
+        {
+            get
+            {
+                if ((this._sysdiagrams == null))
+                {
+                    this._sysdiagrams = base.CreateQuery<sysdiagrams>("[sysdiagrams]");
+                }
+                return this._sysdiagrams;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private global::System.Data.Objects.ObjectQuery<sysdiagrams> _sysdiagrams;
+        /// <summary>
         /// There are no comments for Users in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
@@ -1165,6 +1344,14 @@ namespace Laminatsia
         public void AddToProfile(Profile profile)
         {
             base.AddObject("Profile", profile);
+        }
+        /// <summary>
+        /// There are no comments for sysdiagrams in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public void AddTosysdiagrams(sysdiagrams sysdiagrams)
+        {
+            base.AddObject("sysdiagrams", sysdiagrams);
         }
         /// <summary>
         /// There are no comments for Users in the schema.

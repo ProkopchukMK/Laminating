@@ -40,7 +40,8 @@ namespace Laminatsia.DTO
         }
         public List<string> GetListColour()
         {
-            var listColour = _entity.ColourProfile.Select(x => x.Colour.Trim()).ToList<string>();
+            //List<string> listColour = _entity.ColourProfile.Select(x => x.Colour.Trim()).ToList<string>();
+            List<string> listColour = new List<string>();
             listColour.Sort();
             return listColour;
         }
