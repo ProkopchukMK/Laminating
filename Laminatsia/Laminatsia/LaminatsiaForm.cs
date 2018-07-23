@@ -49,7 +49,7 @@ namespace Laminatsia
                 string statusGoods = listColourGoodsDTO[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
                 dataGridViewManagers.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
                     listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
-                    listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Year + "-" + listColourGoodsDTO[i].DateToWork.Month + "-" + listColourGoodsDTO[i].DateToWork.Day, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
+                    listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
             }
         }
         private void FillAlComponent()
