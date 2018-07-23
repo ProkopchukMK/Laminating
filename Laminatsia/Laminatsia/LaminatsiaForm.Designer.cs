@@ -404,8 +404,9 @@
             // 
             // comboBox6
             // 
+            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(1145, 28);
+            this.comboBox6.Location = new System.Drawing.Point(1063, 26);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(83, 24);
             this.comboBox6.TabIndex = 9;
@@ -413,15 +414,16 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(1043, 28);
+            this.dateTimePicker2.Location = new System.Drawing.Point(932, 28);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(85, 23);
             this.dateTimePicker2.TabIndex = 8;
             // 
             // comboBoxFilterStatusProfile
             // 
+            this.comboBoxFilterStatusProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterStatusProfile.FormattingEnabled = true;
-            this.comboBoxFilterStatusProfile.Location = new System.Drawing.Point(955, 25);
+            this.comboBoxFilterStatusProfile.Location = new System.Drawing.Point(817, 28);
             this.comboBoxFilterStatusProfile.Name = "comboBoxFilterStatusProfile";
             this.comboBoxFilterStatusProfile.Size = new System.Drawing.Size(71, 24);
             this.comboBoxFilterStatusProfile.TabIndex = 7;
@@ -429,21 +431,24 @@
             // dateTimePickerFilterDataToWork
             // 
             this.dateTimePickerFilterDataToWork.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFilterDataToWork.Location = new System.Drawing.Point(852, 26);
+            this.dateTimePickerFilterDataToWork.Location = new System.Drawing.Point(705, 25);
             this.dateTimePickerFilterDataToWork.Name = "dateTimePickerFilterDataToWork";
             this.dateTimePickerFilterDataToWork.Size = new System.Drawing.Size(86, 23);
             this.dateTimePickerFilterDataToWork.TabIndex = 6;
             // 
             // comboBoxFilterColour
             // 
+            this.comboBoxFilterColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterColour.FormattingEnabled = true;
-            this.comboBoxFilterColour.Location = new System.Drawing.Point(739, 24);
+            this.comboBoxFilterColour.Location = new System.Drawing.Point(592, 24);
             this.comboBoxFilterColour.Name = "comboBoxFilterColour";
             this.comboBoxFilterColour.Size = new System.Drawing.Size(89, 24);
             this.comboBoxFilterColour.TabIndex = 5;
             // 
             // comboBoxFilterDealer
             // 
+            this.comboBoxFilterDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxFilterDealer.Enabled = false;
             this.comboBoxFilterDealer.FormattingEnabled = true;
             this.comboBoxFilterDealer.Location = new System.Drawing.Point(422, 23);
             this.comboBoxFilterDealer.Name = "comboBoxFilterDealer";
@@ -452,14 +457,17 @@
             // 
             // comboBoxFilterCity
             // 
+            this.comboBoxFilterCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterCity.FormattingEnabled = true;
             this.comboBoxFilterCity.Location = new System.Drawing.Point(317, 23);
             this.comboBoxFilterCity.Name = "comboBoxFilterCity";
             this.comboBoxFilterCity.Size = new System.Drawing.Size(88, 24);
             this.comboBoxFilterCity.TabIndex = 3;
+            this.comboBoxFilterCity.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilterCity_SelectedIndexChanged);
             // 
             // comboBoxFilterProfile
             // 
+            this.comboBoxFilterProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterProfile.FormattingEnabled = true;
             this.comboBoxFilterProfile.Location = new System.Drawing.Point(203, 23);
             this.comboBoxFilterProfile.Name = "comboBoxFilterProfile";
@@ -469,7 +477,7 @@
             // dateTimePickerFilter
             // 
             this.dateTimePickerFilter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFilter.Location = new System.Drawing.Point(115, 24);
+            this.dateTimePickerFilter.Location = new System.Drawing.Point(115, 23);
             this.dateTimePickerFilter.Name = "dateTimePickerFilter";
             this.dateTimePickerFilter.Size = new System.Drawing.Size(82, 23);
             this.dateTimePickerFilter.TabIndex = 1;
@@ -873,7 +881,7 @@
             // 
             // ColumnNotes
             // 
-            this.ColumnNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.ColumnNotes.HeaderText = "Примітки";
             this.ColumnNotes.Name = "ColumnNotes";
             this.ColumnNotes.ReadOnly = true;
@@ -882,7 +890,7 @@
             // 
             // ColumnCounts
             // 
-            this.ColumnCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.ColumnCounts.HeaderText = "Кількість";
             this.ColumnCounts.Name = "ColumnCounts";
             this.ColumnCounts.ReadOnly = true;

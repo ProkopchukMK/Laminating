@@ -49,7 +49,7 @@ namespace Laminatsia
                 string statusGoods = listColourGoodsDTO[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
                 dataGridViewManagers.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
                     listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
-                    listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Year + "-"+ listColourGoodsDTO[i].DateToWork.Month + "-" + listColourGoodsDTO[i].DateToWork.Day, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
+                    listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Year + "-" + listColourGoodsDTO[i].DateToWork.Month + "-" + listColourGoodsDTO[i].DateToWork.Day, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
             }
         }
         private void FillAlComponent()
@@ -57,21 +57,27 @@ namespace Laminatsia
             listProfile = profileDTO.GetListProfile();
             listColour = colourDTO.GetListColour();
             listCity = dealerDTO.GetListCity();
+
+            var arrayCity = listCity.ToArray();
+            var arrayProfile = listProfile.ToArray();
             //заповнення ламінації комбобоксів
             ComboBoxProfile.Items.AddRange(listProfile.ToArray());
             //comboBoxDealer.Items.AddRange(dealerDTO.GetListDealer().ToArray());                   заповнюється відповідно до вибраного міста
             ComboBoxDealer.Enabled = false;
-            ComboBoxCity.Items.AddRange(listCity.ToArray());
+            ComboBoxCity.Items.AddRange(arrayCity);
             comboBoxColour.Items.AddRange(listColour.ToArray());
             comboBoxStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
             comboBoxStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
             //заповнення додати\видалити комбобоксів
-            сomboBoxAddCityDealer.Items.AddRange(listCity.ToArray());
-            comboBoxRemoveCity.Items.AddRange(listCity.ToArray());
+            сomboBoxAddCityDealer.Items.AddRange(arrayCity);
+            comboBoxRemoveCity.Items.AddRange(arrayCity);
             //comboBoxRemoveDealer.Items.AddRange(dealerDTO.GetListDealer().ToArray());              заповнюється відповідно до вибраного міста
             comboBoxRemoveDealer.Enabled = false;
-            comboBoxRemoveProfile.Items.AddRange(listProfile.ToArray());
+            comboBoxRemoveProfile.Items.AddRange(arrayProfile);
             comboBoxRemoveColour.Items.AddRange(listColour.ToArray());
+
+            comboBoxFilterCity.Items.AddRange(arrayCity);
+            comboBoxFilterProfile.Items.AddRange(arrayProfile);
         }
         private void CleareAllComponent()
         {
@@ -364,8 +370,8 @@ namespace Laminatsia
                                     string notes = richTextBoxNotes.Text;
                                     byte counts = Byte.Parse(textBoxCounts.Text.TrimStart(new Char[] { '0' }));
                                     string colour = comboBoxColour.SelectedItem.ToString();
-                                    DateTime dateToWork = dateTimePickerDateToWork.Value;                                    
-                                    bool statusProfile = comboBoxStatusProfile.SelectedIndex == 0 ? false : true;                                    
+                                    DateTime dateToWork = dateTimePickerDateToWork.Value;
+                                    bool statusProfile = comboBoxStatusProfile.SelectedIndex == 0 ? false : true;
                                     DateTime dateReady = dateTimePickerDateReady.Value;
                                     ColourGoodsDTO colourGoods = new ColourGoodsDTO();
                                     string message = colourGoods.AddColourGoods(dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
@@ -457,5 +463,13 @@ namespace Laminatsia
 
         #endregion
 
+        private void comboBoxFilterCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxFilterDealer.Items.Clear();
+            string filterCityName = comboBoxFilterCity.SelectedItem.ToString();
+            var listDealerByCity = dealerDTO.GetListDealerByCity(filterCityName).ToArray();
+            comboBoxFilterDealer.Enabled = true;
+            comboBoxFilterDealer.Items.AddRange(listDealerByCity);
+        }
     }
 }
