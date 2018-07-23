@@ -7,18 +7,16 @@ namespace Laminatsia.DTO
 {
     public class DealerDTO
     {
-        private  LaminatsiaEntities _entity = new LaminatsiaEntities();
-        public string AddDealer(string cityName, string dealerName)
+        private LaminatsiaEntities _entity = new LaminatsiaEntities();
+        public string AddDealer(string city, string dealerName)
         {
-            Dealer dealerList = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealerName);
+            Dealer dealerList = _entity.Dealer.FirstOrDefault(x => x.City == city && x.DealerName == dealerName);
             if (dealerList == null)
             {
-                Dealer newDealer = new Dealer();
-                newDealer.DealerName = dealerName;
-                newDealer.City = cityName;
+                Dealer newDealer = new Dealer { DealerName = dealerName, City = city };
                 _entity.AddToDealer(newDealer);
                 _entity.SaveChanges();
-                return "Дилера " + dealerName + " добавлено!";
+                return "Дилера " + city + " " + dealerName + " добавлено!";
             }
             else
             {
@@ -27,16 +25,24 @@ namespace Laminatsia.DTO
         }
         public string RemoveDealer(string cityDealer, string dealerName)
         {
-            Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealerName && x.City == cityDealer);
+            Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer && x.DealerName == dealerName);
             _entity.DeleteObject(removeDealer);
             _entity.SaveChanges();
-                return "Дилера видаленно!";
+            return "Дилера видаленно!";
         }
         public List<string> GetListDealer()
         {
-            var listDealer = _entity.Dealer.Select(x => x.DealerName.Trim()).ToList<string>();
+            var listDealer = _entity.Dealer.Select(x => x.DealerName).ToList<string>();
+            listDealer = listDealer.Distinct().ToList();
             listDealer.Sort();
             return listDealer;
+        }
+        public List<string> GetListCity()
+        {
+            var listCity = _entity.Dealer.Select(x => x.City).ToList<string>();
+            listCity = listCity.Distinct().ToList();
+            listCity.Sort();
+            return listCity;
         }
         public List<string> GetListDealerByCity(string cityName)
         {
