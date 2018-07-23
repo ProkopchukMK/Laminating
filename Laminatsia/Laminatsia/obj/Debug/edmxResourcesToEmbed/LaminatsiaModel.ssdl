@@ -29,7 +29,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="DealerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DealerName" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>

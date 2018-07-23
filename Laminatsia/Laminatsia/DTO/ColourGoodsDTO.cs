@@ -63,8 +63,7 @@ namespace Laminatsia.DTO
                                                     DateTime dateToWorkStart, DateTime dateToWorkEnd, bool statusProfile,
                                                     DateTime dateReady, bool statusGoods)
         {
-
-
+            ///TODO filter
             return new List<ColourGoodsDTO>();
         }
         public int ID { get; set; }

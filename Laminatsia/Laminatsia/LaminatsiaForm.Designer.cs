@@ -83,6 +83,7 @@
             this.buttonRemoveColour = new System.Windows.Forms.Button();
             this.buttonRemoveProfile = new System.Windows.Forms.Button();
             this.groupBoxAdd = new System.Windows.Forms.GroupBox();
+            this.buttonAddCity = new System.Windows.Forms.Button();
             this.textBoxAddDealer = new System.Windows.Forms.TextBox();
             this.textBoxAddProfile = new System.Windows.Forms.TextBox();
             this.textBoxAddColour = new System.Windows.Forms.TextBox();
@@ -93,7 +94,9 @@
             this.labelAddDealer = new System.Windows.Forms.Label();
             this.labelAddProfile = new System.Windows.Forms.Label();
             this.labelAddColour = new System.Windows.Forms.Label();
-            this.сomboxAddCity = new System.Windows.Forms.ComboBox();
+            this.сomboBoxAddCityDealer = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxAddCity = new System.Windows.Forms.TextBox();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
             this.groupBoxCreateNewOrder.SuspendLayout();
@@ -396,8 +399,8 @@
             this.dataGridViewManagers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewManagers.Size = new System.Drawing.Size(1649, 907);
             this.dataGridViewManagers.TabIndex = 0;
-            this.dataGridViewManagers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewManagers_ColumnHeaderMouseClick);
-            this.dataGridViewManagers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridViewManagers_DataBindingComplete);
+            this.dataGridViewManagers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewManagers_ColumnHeaderMouseClick);
+            this.dataGridViewManagers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DataGridViewManagers_DataBindingComplete);
             // 
             // ColumnID
             // 
@@ -652,6 +655,9 @@
             // 
             // groupBoxAdd
             // 
+            this.groupBoxAdd.Controls.Add(this.textBoxAddCity);
+            this.groupBoxAdd.Controls.Add(this.label1);
+            this.groupBoxAdd.Controls.Add(this.buttonAddCity);
             this.groupBoxAdd.Controls.Add(this.textBoxAddDealer);
             this.groupBoxAdd.Controls.Add(this.textBoxAddProfile);
             this.groupBoxAdd.Controls.Add(this.textBoxAddColour);
@@ -662,7 +668,7 @@
             this.groupBoxAdd.Controls.Add(this.labelAddDealer);
             this.groupBoxAdd.Controls.Add(this.labelAddProfile);
             this.groupBoxAdd.Controls.Add(this.labelAddColour);
-            this.groupBoxAdd.Controls.Add(this.сomboxAddCity);
+            this.groupBoxAdd.Controls.Add(this.сomboBoxAddCityDealer);
             this.groupBoxAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxAdd.Location = new System.Drawing.Point(30, 8);
             this.groupBoxAdd.Name = "groupBoxAdd";
@@ -670,6 +676,16 @@
             this.groupBoxAdd.TabIndex = 28;
             this.groupBoxAdd.TabStop = false;
             this.groupBoxAdd.Text = "Додати інформацію до бази данних";
+            // 
+            // buttonAddCity
+            // 
+            this.buttonAddCity.Location = new System.Drawing.Point(294, 144);
+            this.buttonAddCity.Name = "buttonAddCity";
+            this.buttonAddCity.Size = new System.Drawing.Size(79, 28);
+            this.buttonAddCity.TabIndex = 14;
+            this.buttonAddCity.Text = "Додати";
+            this.buttonAddCity.UseVisualStyleBackColor = true;
+            this.buttonAddCity.Click += new System.EventHandler(this.ButtonAddCity_Click);
             // 
             // textBoxAddDealer
             // 
@@ -759,17 +775,34 @@
             this.labelAddColour.TabIndex = 11;
             this.labelAddColour.Text = "Колір";
             // 
-            // сomboxAddCity
+            // сomboBoxAddCityDealer
             // 
-            this.сomboxAddCity.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.сomboxAddCity.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.сomboxAddCity.FormattingEnabled = true;
-            this.сomboxAddCity.Location = new System.Drawing.Point(119, 75);
-            this.сomboxAddCity.Name = "сomboxAddCity";
-            this.сomboxAddCity.Size = new System.Drawing.Size(150, 28);
-            this.сomboxAddCity.TabIndex = 12;
-            this.сomboxAddCity.SelectedIndexChanged += new System.EventHandler(this.сomboxAddCity_SelectedIndexChanged);
-            this.сomboxAddCity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.сomboxAddCity_KeyDown);
+            this.сomboBoxAddCityDealer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.сomboBoxAddCityDealer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.сomboBoxAddCityDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.сomboBoxAddCityDealer.FormattingEnabled = true;
+            this.сomboBoxAddCityDealer.Location = new System.Drawing.Point(119, 75);
+            this.сomboBoxAddCityDealer.Name = "сomboBoxAddCityDealer";
+            this.сomboBoxAddCityDealer.Size = new System.Drawing.Size(150, 28);
+            this.сomboBoxAddCityDealer.TabIndex = 12;
+            this.сomboBoxAddCityDealer.SelectedIndexChanged += new System.EventHandler(this.СomboxAddCity_SelectedIndexChanged);
+            this.сomboBoxAddCityDealer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.СomboxAddCity_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Місто";
+            // 
+            // textBoxAddCity
+            // 
+            this.textBoxAddCity.Location = new System.Drawing.Point(119, 143);
+            this.textBoxAddCity.Name = "textBoxAddCity";
+            this.textBoxAddCity.Size = new System.Drawing.Size(153, 26);
+            this.textBoxAddCity.TabIndex = 16;
             // 
             // LaminatsiaForm
             // 
@@ -830,7 +863,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerDateComing;
         private System.Windows.Forms.TextBox textBoxCounts;
         private System.Windows.Forms.DateTimePicker dateTimePickerDateToWork;
-        private System.Windows.Forms.ComboBox сomboxAddCity;
+        private System.Windows.Forms.ComboBox сomboBoxAddCityDealer;
         private System.Windows.Forms.ComboBox comboBoxColour;
         private System.Windows.Forms.ComboBox ComboBoxDealer;
         private System.Windows.Forms.ComboBox ComboBoxCity;
@@ -866,5 +899,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateReady;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusGoods;
+        private System.Windows.Forms.Button buttonAddCity;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxAddCity;
     }
 }

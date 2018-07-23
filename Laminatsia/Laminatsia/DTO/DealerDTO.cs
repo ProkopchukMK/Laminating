@@ -23,6 +23,21 @@ namespace Laminatsia.DTO
                 return "Такий дилер в базі вже є!";
             }
         }
+        public string AddCity(string city)
+        {
+            Dealer cityList = _entity.Dealer.FirstOrDefault(x => x.City == city && x.DealerName == null);
+            if (cityList == null)
+            {
+                Dealer newDealer = new Dealer { DealerName = null, City = city };
+                _entity.Dealer.Add(newDealer);
+                _entity.SaveChanges();
+                return "Місто " + city + " добавлено!";
+            }
+            else
+            {
+                return "Таке місто в базі вже є!";
+            }
+        }
         public string RemoveDealer(string cityDealer, string dealerName)
         {
             Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer && x.DealerName == dealerName);

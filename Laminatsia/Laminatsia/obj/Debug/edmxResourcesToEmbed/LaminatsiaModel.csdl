@@ -33,7 +33,7 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="DealerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DealerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_Dealer" FromRole="Dealer" ToRole="ColourGoods" />
   </EntityType>
   <EntityType Name="Profile">

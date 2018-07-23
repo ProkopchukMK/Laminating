@@ -18,15 +18,15 @@ namespace Laminatsia
         private ProfileDTO profileDTO = new ProfileDTO();
         private UsersDTO users = new UsersDTO();
 
-        private List<DateTime> listDateComing = new List<DateTime>();
+        //private List<DateTime> listDateComing = new List<DateTime>();
         private List<string> listProfile = new List<string>();
         private List<string> listCity = new List<string>();
-        private List<string> listDealer = new List<string>();
+        //private List<string> listDealer = new List<string>();
         private List<string> listColour = new List<string>();
-        private List<DateTime> listDateToWork = new List<DateTime>();
-        private List<string> listStatusProfile = new List<string>();
-        private List<DateTime> listDateReady = new List<DateTime>();
-        private List<string> listStatusGoods = new List<string>();
+        //private List<DateTime> listDateToWork = new List<DateTime>();
+        //private List<string> listStatusProfile = new List<string>();
+        //private List<DateTime> listDateReady = new List<DateTime>();
+        //private List<string> listStatusGoods = new List<string>();
 
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
@@ -65,20 +65,20 @@ namespace Laminatsia
             comboBoxStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
             comboBoxStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
             //заповнення додати\видалити комбобоксів
-            сomboxAddCity.Items.AddRange(listCity.ToArray());
+            сomboBoxAddCityDealer.Items.AddRange(listCity.ToArray());
             comboBoxRemoveCity.Items.AddRange(listCity.ToArray());
             //comboBoxRemoveDealer.Items.AddRange(dealerDTO.GetListDealer().ToArray());              заповнюється відповідно до вибраного міста
             comboBoxRemoveDealer.Enabled = false;
             comboBoxRemoveProfile.Items.AddRange(listProfile.ToArray());
             comboBoxRemoveColour.Items.AddRange(listColour.ToArray());
-        }        
+        }
         private void CleareAllComponent()
         {
             //очищення вкладки ламінація(додати нове замовлення)
             dateTimePickerDateComing.Value = DateTime.Now;
             ComboBoxProfile.Items.Clear();
             ComboBoxCity.Items.Clear();
-            сomboxAddCity.Text = "";
+            сomboBoxAddCityDealer.Text = "";
             ComboBoxDealer.Items.Clear();
             textBoxNotes.Text = "";
             textBoxCounts.Text = "";
@@ -89,11 +89,12 @@ namespace Laminatsia
             comboBoxStatusGoods.Items.Clear();
 
             //очищення вкладки додати\видалити(додати нове знчення)
-            сomboxAddCity.Items.Clear();
+            сomboBoxAddCityDealer.Items.Clear();
             textBoxAddDealer.Text = "";
             textBoxAddDealer.Enabled = false;
             textBoxAddProfile.Text = "";
             textBoxAddColour.Text = "";
+            textBoxAddCity.Text = "";
 
             comboBoxRemoveCity.Items.Clear();
             comboBoxRemoveDealer.Items.Clear();
@@ -114,8 +115,7 @@ namespace Laminatsia
             string addDealer = textBoxAddDealer.Text.Trim();
             if (addDealer != "")
             {
-                DealerDTO newDealer = new DealerDTO();
-                string message = newDealer.AddDealer(сomboxAddCity.Text.Trim(), addDealer);
+                string message = dealerDTO.AddDealer(сomboBoxAddCityDealer.Text, addDealer);
                 MessageBox.Show(message);
             }
             else
@@ -126,12 +126,25 @@ namespace Laminatsia
             this.FillAlComponent();
         }
         //додати новий профіль до бази даних
+        private void ButtonAddCity_Click(object sender, EventArgs e)
+        {
+            if (textBoxAddCity.Text.Trim() == "")
+            {
+                string message = dealerDTO.AddCity(textBoxAddCity.Text.Trim());
+                MessageBox.Show(message);
+            }
+            else
+            {
+                MessageBox.Show("Потрібно написати назву Міста!");
+            }
+            this.CleareAllComponent();
+            this.FillAlComponent();
+        }
         private void Add_NewProfile_Click(object sender, EventArgs e)
         {
             if (textBoxAddProfile.Text.Trim() != "")
             {
-                ProfileDTO newProfile = new ProfileDTO();
-                string message = newProfile.AddProfile(textBoxAddProfile.Text.Trim());
+                string message = profileDTO.AddProfile(textBoxAddProfile.Text.Trim());
                 MessageBox.Show(message);
             }
             else
@@ -355,16 +368,17 @@ namespace Laminatsia
         }
 
         #endregion
-        #region вкладка менеджери
+
+        #region ВКЛАДКА Менеджери
         //sorted gridview
-        private void dataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewColumn newColumn = dataGridViewManagers.Columns[e.ColumnIndex];
             DataGridViewColumn oldColumn = dataGridViewManagers.SortedColumn;
             ListSortDirection direction;
-            if(oldColumn != null)
+            if (oldColumn != null)
             {
-                if(oldColumn == newColumn && dataGridViewManagers.SortOrder == SortOrder.Ascending)
+                if (oldColumn == newColumn && dataGridViewManagers.SortOrder == SortOrder.Ascending)
                 {
                     direction = ListSortDirection.Descending;
                 }
@@ -382,7 +396,7 @@ namespace Laminatsia
             newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
         }
 
-        private void dataGridViewManagers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void DataGridViewManagers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             foreach (DataGridViewColumn column in dataGridViewManagers.Columns)
             {
@@ -390,14 +404,17 @@ namespace Laminatsia
             }
         }
         #endregion
-        private void сomboxAddCity_KeyDown(object sender, KeyEventArgs e)
+
+        private void СomboxAddCity_KeyDown(object sender, KeyEventArgs e)
         {
             textBoxAddDealer.Enabled = true;
         }
 
-        private void сomboxAddCity_SelectedIndexChanged(object sender, EventArgs e)
+        private void СomboxAddCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxAddDealer.Enabled = true;
         }
+
+
     }
 }
