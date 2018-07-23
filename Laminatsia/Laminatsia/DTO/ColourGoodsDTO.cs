@@ -73,73 +73,159 @@ namespace Laminatsia.DTO
         //фільтр за датою в замовлення
         public List<ColourGoodsDTO> FilterByDateComing(List<ColourGoodsDTO> enterList, DateTime startDate, DateTime endDate)
         {
-            List<ColourGoodsDTO> newFilterList = enterList.Where(x => x.DateReady >= startDate && x.DateReady <= endDate).ToList();
-            return newFilterList;
+            if (startDate == null && endDate == null)
+            {
+                return enterList;
+            }
+            else
+            {
+                enterList = enterList.Where(x => x.DateReady >= startDate && x.DateReady <= endDate).ToList();
+                return enterList;
+            }
         }
         //фільтр за профілем
         public List<ColourGoodsDTO> FilterByProfile(List<ColourGoodsDTO> enterList, string profile)
         {
-            List<ColourGoodsDTO> newFilterList = enterList.Where(x => x.Profile == profile).ToList();
-            return newFilterList;
+            if (profile == "")
+            {
+                return enterList;
+            }
+            else
+            {
+                enterList = enterList.Where(x => x.Profile == profile).ToList();
+                return enterList;
+            }
         }
         //фільтр за містом
         public List<ColourGoodsDTO> FilterByCity(List<ColourGoodsDTO> enterList, string city)
         {
-            List<ColourGoodsDTO> newFilterList = enterList.Where(x => x.City == city).ToList();
-            return newFilterList;
+            if (city == "")
+            {
+                return enterList;
+            }
+            else
+            {
+                enterList = enterList.Where(x => x.City == city).ToList();
+                return enterList;
+            }
         }
         //фільтр за дилером
         public List<ColourGoodsDTO> FilterByDealer(List<ColourGoodsDTO> enterList, string dealer, string city)
         {
-            List<ColourGoodsDTO> newFilterList = enterList.Where(x => x.City == city && x.Dealer == dealer).ToList();
-            return newFilterList;
+            if (dealer == "" && city == "")
+            {
+                return enterList;
+            }
+            else
+            {
+                enterList = enterList.Where(x => x.City == city && x.Dealer == dealer).ToList();
+                return enterList;
+            }
         }
         //фільтр за кольором
         public List<ColourGoodsDTO> FilterByColour(List<ColourGoodsDTO> enterList, string colour)
         {
-            List<ColourGoodsDTO> newFilterList = enterList.Where(x => x.Colour == colour).ToList();
-            return newFilterList;
+            if (colour == "")
+            {
+                return enterList;
+            }
+            else
+            {
+                enterList = enterList.Where(x => x.Colour == colour).ToList();
+                return enterList;
+            }
         }
         //фільтр за датою в роботі        
         public List<ColourGoodsDTO> FilterByDateToWork(List<ColourGoodsDTO> enterList, DateTime startDate, DateTime endDate)
         {
-            List<ColourGoodsDTO> newFilterList = enterList.Where(x => x.DateToWork >= startDate && x.DateToWork <= endDate).ToList();
-            return newFilterList;
+            if (startDate == null && endDate == null)
+            {
+                return enterList;
+            }
+            else
+            {
+                enterList = enterList.Where(x => x.DateToWork >= startDate && x.DateToWork <= endDate).ToList();
+                return enterList;
+            }
         }
         //фільтр за статусом профілю
-        public List<ColourGoodsDTO> FilterByStatusProfile(List<ColourGoodsDTO> enterList, bool statusProfile)
+        public List<ColourGoodsDTO> FilterByStatusProfile(List<ColourGoodsDTO> enterList, bool? statusProfile)
         {
-            List<ColourGoodsDTO> newFilterList = enterList.Where(x => x.StatusProfile == statusProfile).ToList();
-            return newFilterList;
+            if (statusProfile == null)
+            {
+                return enterList;
+            }
+            else
+            {
+                enterList = enterList.Where(x => x.StatusProfile == statusProfile).ToList();
+                return enterList;
+            }
         }
         //фільтр за датою готовності
         public List<ColourGoodsDTO> FilterByDateReady(List<ColourGoodsDTO> enterList, DateTime startDate, DateTime endDate)
         {
-            List<ColourGoodsDTO> newFilterList = enterList.Where(x => x.DateReady >= startDate && x.DateReady <= endDate).ToList();
-            return newFilterList;
+            if (startDate == null && endDate == null)
+            {
+                return enterList;
+            }
+            else
+            {
+                enterList = enterList.Where(x => x.DateReady >= startDate && x.DateReady <= endDate).ToList();
+                return enterList;
+            }
         }
         //фільтр за статусу замовлення
-        public List<ColourGoodsDTO> FilterByStatusGoods(List<ColourGoodsDTO> enterList, bool statusGoods)
+        public List<ColourGoodsDTO> FilterByStatusGoods(List<ColourGoodsDTO> enterList, bool? statusGoods)
         {
-            List<ColourGoodsDTO> newFilterList = enterList.Where(x => x.StatusGoods == statusGoods).ToList();
-            return newFilterList;
-        }
-        public List<ColourGoodsDTO> FilterList(DateTime dateTimePickerFilterDataComing1, DateTime dateTimePickerFilterDataComing2, string comboBoxFilterProfile, string comboBoxFilterCity,
-                   string comboBoxFilterDealer, string comboBoxFilterColour, DateTime dateTimePickerFilterDataToWork1, DateTime dateTimePickerFilterDataToWork2, bool comboBoxFilterStatusProfile,
-                  DateTime dateTimePickerFilterDateReady1, DateTime dateTimePickerFilterDateReady2, bool comboBoxFilterStatusGoods)
-        {
-            List<ColourGoodsDTO> filteredList = new List<ColourGoodsDTO>(); 
-            if ()
+            if (statusGoods == null)
             {
-
+                return enterList;
             }
-            return new List<ColourGoodsDTO>();
+            else
+            {
+                enterList = enterList.Where(x => x.StatusGoods == statusGoods).ToList();
+                return enterList;
+            }
         }
-        public List<ColourGoodsDTO> FilterList(string comboBoxFilterProfile, string comboBoxFilterCity,
-                   string comboBoxFilterDealer, string comboBoxFilterColour, bool comboBoxFilterStatusProfile, bool comboBoxFilterStatusGoods)
+        public List<ColourGoodsDTO> FilterList(DateTime dateTimePickerFilterDataComing1, DateTime dateTimePickerFilterDataComing2, object comboBoxFilterProfile, object comboBoxFilterCity,
+                   object comboBoxFilterDealer, object comboBoxFilterColour, DateTime dateTimePickerFilterDataToWork1, DateTime dateTimePickerFilterDataToWork2, bool? comboBoxFilterStatusProfile,
+                  DateTime dateTimePickerFilterDateReady1, DateTime dateTimePickerFilterDateReady2, bool? comboBoxFilterStatusGoods)
         {
-
-            return new List<ColourGoodsDTO>();
+            List<ColourGoodsDTO> filteredList = this.GetListColourGoods();
+            filteredList = this.FilterByDateComing(filteredList, dateTimePickerFilterDataComing1.Date, dateTimePickerFilterDataComing2.Date);
+            filteredList = this.FilterByProfile(filteredList, (string)comboBoxFilterProfile ?? "");
+            if (comboBoxFilterDealer == null)
+            {
+                filteredList = this.FilterByCity(filteredList, (string)comboBoxFilterCity ?? "");
+            }
+            else
+            {
+                filteredList = this.FilterByDealer(filteredList, (string)comboBoxFilterDealer ?? "", (string)comboBoxFilterCity ?? "");
+            }
+            filteredList = this.FilterByColour(filteredList, (string)comboBoxFilterColour ?? "");
+            filteredList = this.FilterByDateToWork(filteredList, dateTimePickerFilterDataToWork1, dateTimePickerFilterDataToWork2);
+            filteredList = this.FilterByStatusProfile(filteredList, comboBoxFilterStatusProfile);
+            filteredList = this.FilterByDateReady(filteredList, dateTimePickerFilterDateReady1, dateTimePickerFilterDateReady2);
+            filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
+            return filteredList;
+        }
+        public List<ColourGoodsDTO> FilterList(object comboBoxFilterProfile, object comboBoxFilterCity,
+                   object comboBoxFilterDealer, object comboBoxFilterColour, bool? comboBoxFilterStatusProfile, bool? comboBoxFilterStatusGoods)
+        {
+            List<ColourGoodsDTO> filteredList = this.GetListColourGoods();
+            filteredList = this.FilterByProfile(filteredList, (string)comboBoxFilterProfile ?? "");
+            if (comboBoxFilterDealer == null)
+            {
+                filteredList = this.FilterByCity(filteredList, (string)comboBoxFilterCity ?? "");
+            }
+            else
+            {
+                filteredList = this.FilterByDealer(filteredList, (string)comboBoxFilterDealer ?? "", (string)comboBoxFilterCity ?? "");
+            }
+            filteredList = this.FilterByColour(filteredList, (string)comboBoxFilterColour ?? "");
+            filteredList = this.FilterByStatusProfile(filteredList, comboBoxFilterStatusProfile);
+            filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
+            return filteredList;
         }
     }
 }

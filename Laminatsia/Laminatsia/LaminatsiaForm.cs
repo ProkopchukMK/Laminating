@@ -518,18 +518,47 @@ namespace Laminatsia
         private void ButtonSetFilter_Click(object sender, EventArgs e)
         {
             List<ColourGoodsDTO> filteredList = new List<ColourGoodsDTO>();
-            if (checkBoxFilterDate.Checked == false)
+            bool? filterStatusGoods = null;
+            bool? filterStatusProfile = null;
+            if (comboBoxFilterStatusGoods.SelectedItem == null)
             {
-                filteredList = colourGoodsDTO.FilterList(comboBoxFilterProfile.SelectedItem.ToString(), comboBoxFilterCity.SelectedItem.ToString(),
-                    comboBoxFilterDealer.SelectedItem.ToString(), comboBoxFilterColour.SelectedItem.ToString(), comboBoxFilterStatusProfile.SelectedItem.ToString(),
-                   comboBoxFilterStatusGoods.SelectedItem.ToString());
+                filterStatusGoods = null;
+            }
+            else if(comboBoxFilterStatusGoods.SelectedItem.ToString() == "В РОБОТІ")
+            {
+                filterStatusGoods = true;
+            }
+            else if (comboBoxFilterStatusGoods.SelectedItem.ToString() == "НЕ В РОБОТІ")
+            {
+                filterStatusGoods = false;
+            }
+            if (comboBoxFilterStatusProfile.SelectedItem == null)
+            {
+                filterStatusProfile = null;
+            }
+            else if (comboBoxFilterStatusProfile.SelectedItem.ToString() == "ГОТОВИЙ")
+            {
+                filterStatusProfile = true;
+            }
+            else if (comboBoxFilterStatusProfile.SelectedItem.ToString() == "НЕ ГОТОВИЙ")
+            {
+                filterStatusProfile = false;
+            }
+
+            if (checkBoxFilterDate.Checked == true)
+            {
+                filteredList = colourGoodsDTO.FilterList(comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem,
+                    comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem, filterStatusProfile,
+                   filterStatusGoods);
             }
             else
             {
-                filteredList = colourGoodsDTO.FilterList(dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, comboBoxFilterProfile.SelectedItem.ToString(), comboBoxFilterCity.SelectedItem.ToString(),
-                    comboBoxFilterDealer.SelectedItem.ToString(), comboBoxFilterColour.SelectedItem.ToString(), dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, comboBoxFilterStatusProfile.SelectedItem.ToString(),
-                    dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, comboBoxFilterStatusGoods.SelectedItem.ToString());
+                filteredList = colourGoodsDTO.FilterList(dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, comboBoxFilterProfile.SelectedItem,
+                    comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem, 
+                    dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, filterStatusProfile,
+                    dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, filterStatusGoods);
             }
+            dataGridViewManagers.Rows.Clear();
             this.FillGridView(filteredList);
         }
 
@@ -539,24 +568,27 @@ namespace Laminatsia
 
         private void ButtonResetFilter_Click(object sender, EventArgs e)
         {
-            dateTimePickerFilterDataToWork1.Value = DateTime.Now;
-            dateTimePickerFilterDataToWork2.Value = DateTime.Now;
+            var dateTImeNow = DateTime.Now;
+            dateTimePickerFilterDataToWork1.Value = dateTImeNow;
+            dateTimePickerFilterDataToWork2.Value = dateTImeNow;
             comboBoxFilterProfile.Items.Clear();
             comboBoxFilterCity.Items.Clear();
             comboBoxFilterDealer.Items.Clear();
             comboBoxFilterColour.Items.Clear();
-            dateTimePickerFilterDataToWork1.Value = DateTime.Now;
-            dateTimePickerFilterDataToWork2.Value = DateTime.Now;
+            dateTimePickerFilterDataToWork1.Value = dateTImeNow;
+            dateTimePickerFilterDataToWork2.Value = dateTImeNow;
             comboBoxFilterStatusProfile.Items.Clear();
-            dateTimePickerFilterDateReady1.Value = DateTime.Now;
-            dateTimePickerFilterDateReady2.Value = DateTime.Now;
+            dateTimePickerFilterDateReady1.Value = dateTImeNow;
+            dateTimePickerFilterDateReady2.Value = dateTImeNow;
             comboBoxFilterStatusGoods.Items.Clear();
 
             comboBoxFilterProfile.Items.AddRange(listProfile.ToArray());
             comboBoxFilterCity.Items.AddRange(listCity.ToArray());
             comboBoxFilterColour.Items.AddRange(listColour.ToArray());
-            comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
             comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
+            comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
+            this.dataGridViewManagers.Rows.Clear();
+            this.FillGridView(null);
         }
     }
 }
