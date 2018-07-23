@@ -29,7 +29,6 @@ namespace Laminatsia
         public DbSet<ColourProfile> ColourProfile { get; set; }
         public DbSet<Dealer> Dealer { get; set; }
         public DbSet<Profile> Profile { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Users> Users { get; set; }
     }
 }

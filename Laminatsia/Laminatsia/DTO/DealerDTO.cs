@@ -40,10 +40,21 @@ namespace Laminatsia.DTO
         }
         public string RemoveDealer(string cityDealer, string dealerName)
         {
-            Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer && x.DealerName == dealerName);
-            _entity.Dealer.Remove(removeDealer);
-            _entity.SaveChanges();
-            return "Дилера видаленно!";
+            if (dealerName == null)
+            {
+                Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer);
+                _entity.Dealer.Remove(removeDealer);
+                _entity.SaveChanges();
+                return "Місто видаленно!";
+            }
+            else
+            {
+                Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer && x.DealerName == dealerName);
+                _entity.Dealer.Remove(removeDealer);
+                _entity.SaveChanges();
+                return "Дилера видаленно!";
+            }            
+           
         }
         public List<string> GetListDealer()
         {
@@ -61,7 +72,7 @@ namespace Laminatsia.DTO
         }
         public List<string> GetListDealerByCity(string cityName)
         {
-            var listDealer = _entity.Dealer.Where(x => x.City == cityName).Select(c => c.DealerName).ToList();
+            var listDealer = _entity.Dealer.Where(x => x.City == cityName && x.DealerName != null).Select(c => c.DealerName).ToList();
             listDealer.Sort();
             return listDealer;
         }

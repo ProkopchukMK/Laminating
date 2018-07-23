@@ -30,7 +30,6 @@ namespace Laminatsia
 
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'laminatsiaDataSet.ColourGoods' table. You can move, or remove it, as needed.
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.WindowState = FormWindowState.Maximized;
             this.Size = Screen.PrimaryScreen.Bounds.Size;
@@ -46,9 +45,11 @@ namespace Laminatsia
             List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
             for (int i = 0; i < listColourGoodsDTO.Count; i++)
             {
-                dataGridViewManagers.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.ToShortDateString(), listColourGoodsDTO[i].Profile,
+                string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
+                string statusGoods = listColourGoodsDTO[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
+                dataGridViewManagers.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
                     listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
-                    listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.ToShortDateString(), listColourGoodsDTO[i].StatusProfile, listColourGoodsDTO[i].DateReady.ToShortDateString(), listColourGoodsDTO[i].StatusGoods);
+                    listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Year + "-"+ listColourGoodsDTO[i].DateToWork.Month + "-" + listColourGoodsDTO[i].DateToWork.Day, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
             }
         }
         private void FillAlComponent()
@@ -80,7 +81,7 @@ namespace Laminatsia
             ComboBoxCity.Items.Clear();
             сomboBoxAddCityDealer.Text = "";
             ComboBoxDealer.Items.Clear();
-            textBoxNotes.Text = "";
+            richTextBoxNotes.Text = "";
             textBoxCounts.Text = "";
             comboBoxColour.Items.Clear();
             dateTimePickerDateToWork.Value = DateTime.Now;
@@ -100,6 +101,7 @@ namespace Laminatsia
             comboBoxRemoveDealer.Items.Clear();
             comboBoxRemoveProfile.Items.Clear();
             comboBoxRemoveColour.Items.Clear();
+            dataGridViewManagers.Rows.Clear();
         }
 
 
@@ -113,14 +115,21 @@ namespace Laminatsia
         private void Add_NewDealer_Click(object sender, EventArgs e)
         {
             string addDealer = textBoxAddDealer.Text.Trim();
-            if (addDealer != "")
+            if (сomboBoxAddCityDealer.SelectedItem != null)
             {
-                string message = dealerDTO.AddDealer(сomboBoxAddCityDealer.Text, addDealer);
-                MessageBox.Show(message);
+                if (addDealer != "")
+                {
+                    string message = dealerDTO.AddDealer(сomboBoxAddCityDealer.Text, addDealer);
+                    MessageBox.Show(message);
+                }
+                else
+                {
+                    MessageBox.Show("Потрібно написати назву Дилера!");
+                }
             }
             else
             {
-                MessageBox.Show("Потрібно написати назву Дилера!");
+                MessageBox.Show("Потрібно вибрати Місто!");
             }
             this.CleareAllComponent();
             this.FillAlComponent();
@@ -128,7 +137,7 @@ namespace Laminatsia
         //додати новий профіль до бази даних
         private void ButtonAddCity_Click(object sender, EventArgs e)
         {
-            if (textBoxAddCity.Text.Trim() == "")
+            if (textBoxAddCity.Text.Trim() != "")
             {
                 string message = dealerDTO.AddCity(textBoxAddCity.Text.Trim());
                 MessageBox.Show(message);
@@ -175,17 +184,25 @@ namespace Laminatsia
         private void ComboBoxRemoveCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxRemoveDealer.Items.Clear();
-            DealerDTO dealerDTO = new DealerDTO();
             string removeCityName = comboBoxRemoveCity.SelectedItem.ToString();
             var listDealerByCity = dealerDTO.GetListDealerByCity(removeCityName).ToArray();
-            comboBoxRemoveDealer.Enabled = true;
-            comboBoxRemoveDealer.Items.AddRange(listDealerByCity);
+
+            if (listDealerByCity.Length == 0)
+            {
+
+            }
+            else
+            {
+                comboBoxRemoveDealer.Enabled = true;
+                comboBoxRemoveDealer.Items.AddRange(listDealerByCity);
+            }
         }
         private void ButtonRemoveDealer_Click(object sender, EventArgs e)
         {
             if (comboBoxRemoveCity.SelectedItem != null)
             {
-                if (comboBoxRemoveDealer.SelectedItem != null)
+                var listDealer = dealerDTO.GetListDealerByCity(comboBoxRemoveCity.SelectedItem.ToString());
+                if (listDealer.Count > 0 && comboBoxRemoveDealer.SelectedItem != null)
                 {
                     string messageToRemove = "Дійсно видалити Дилера " + comboBoxRemoveCity.SelectedItem.ToString() + " - " + comboBoxRemoveDealer.SelectedItem.ToString() + " ?";
                     string caption = "Видалення з бази данних!";
@@ -194,8 +211,7 @@ namespace Laminatsia
                                  MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        DealerDTO newDealer = new DealerDTO();
-                        string message = newDealer.RemoveDealer(comboBoxRemoveCity.SelectedItem.ToString(), comboBoxRemoveDealer.SelectedItem.ToString());
+                        string message = dealerDTO.RemoveDealer(comboBoxRemoveCity.SelectedItem.ToString(), comboBoxRemoveDealer.SelectedItem.ToString());
                         MessageBox.Show(message);
                         this.CleareAllComponent();
                         this.FillAlComponent();
@@ -205,24 +221,43 @@ namespace Laminatsia
                     {
                         MessageBox.Show("Ви відмінили операцію видалення!");
                     }
-                    this.CleareAllComponent();
-                    this.FillAlComponent();
+                }
+                else if (listDealer.Count == 0 && comboBoxRemoveDealer.SelectedItem == null)
+                {
+                    string messageToRemove = "Дійсно видалити Місто " + comboBoxRemoveCity.SelectedItem.ToString() + " ?";
+                    string caption = "Видалення з бази данних!";
+                    DialogResult result = MessageBox.Show(messageToRemove, caption,
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        string message = dealerDTO.RemoveDealer(comboBoxRemoveCity.SelectedItem.ToString(), null);
+                        MessageBox.Show(message);
+                        this.CleareAllComponent();
+                        this.FillAlComponent();
+                        comboBoxRemoveDealer.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ви відмінили операцію видалення!");
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Потрібно вибрати Дилера!");
                 }
+
             }
             else
             {
                 MessageBox.Show("Потрібно вибрати Місто!");
-                this.CleareAllComponent();
-                this.FillAlComponent();
             }
+            this.CleareAllComponent();
+            this.FillAlComponent();
         }
         private void ButtonRemoveProfile_Click(object sender, EventArgs e)
         {
-            if (comboBoxRemoveProfile.SelectedItem.ToString() != null)
+            if (comboBoxRemoveProfile.SelectedItem != null)
             {
                 string messageToRemove = "Дійсно видалити профіль " + comboBoxRemoveProfile.SelectedItem.ToString() + " ?";
                 string caption = "Видалення з бази данних!";
@@ -249,7 +284,7 @@ namespace Laminatsia
         }
         private void ButtonRemoveColour_Click(object sender, EventArgs e)
         {
-            if (comboBoxRemoveColour.SelectedItem.ToString() != null)
+            if (comboBoxRemoveColour.SelectedItem != null)
             {
                 string messageToRemove = "Дійсно видалити колір " + comboBoxRemoveColour.SelectedItem.ToString() + " ?";
                 string caption = "Видалення з бази данних!";
@@ -274,6 +309,35 @@ namespace Laminatsia
             this.CleareAllComponent();
             this.FillAlComponent();
         }
+        private void СomboxAddCity_KeyDown(object sender, KeyEventArgs e)
+        {
+            textBoxAddDealer.Enabled = true;
+        }
+        private void СomboxAddCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxAddDealer.Enabled = true;
+        }
+        //ведення значення
+        private void textBoxAddCity_Enter(object sender, EventArgs e)
+        {
+            SetKeyboardLayout(GetInputLanguageByName("uk"));
+        }
+        //встановлення розкладки по дефолту
+        private void SetKeyboardLayout(InputLanguage layout)
+        {
+            InputLanguage.CurrentInputLanguage = layout;
+        }
+        public static InputLanguage GetInputLanguageByName(string inputName)
+        {
+            foreach (InputLanguage lang in InputLanguage.InstalledInputLanguages)
+            {
+                if (lang.Culture.EnglishName.ToLower().StartsWith(inputName))
+                {
+                    return lang;
+                }
+            }
+            return null;
+        }
         #endregion
         #endregion
 
@@ -297,54 +361,30 @@ namespace Laminatsia
                                     string profile = ComboBoxProfile.SelectedItem.ToString();
                                     string city = ComboBoxCity.SelectedItem.ToString();
                                     string dealer = ComboBoxDealer.SelectedItem.ToString();
-                                    string notes = textBoxNotes.Text;
+                                    string notes = richTextBoxNotes.Text;
                                     byte counts = Byte.Parse(textBoxCounts.Text.TrimStart(new Char[] { '0' }));
                                     string colour = comboBoxColour.SelectedItem.ToString();
-                                    DateTime dateToWork = dateTimePickerDateToWork.Value;
-                                    // перевадимо в булеве значення
-                                    bool statusProfile = false;
-                                    if (comboBoxStatusProfile.SelectedIndex == 0)
-                                    {
-                                        statusProfile = true;
-                                    }
+                                    DateTime dateToWork = dateTimePickerDateToWork.Value;                                    
+                                    bool statusProfile = comboBoxStatusProfile.SelectedIndex == 0 ? false : true;                                    
                                     DateTime dateReady = dateTimePickerDateReady.Value;
                                     ColourGoodsDTO colourGoods = new ColourGoodsDTO();
                                     string message = colourGoods.AddColourGoods(dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
                                     MessageBox.Show(message);
                                     this.CleareAllComponent();
+                                    this.FillGridView();
                                     this.FillAlComponent();
                                 }
-                                else
-                                {
-                                    MessageBox.Show("Ви не вказали Статус профілю!");
-                                }
+                                else { MessageBox.Show("Ви не вказали Статус профілю!"); }
                             }
-                            else
-                            {
-                                MessageBox.Show("Ви не вказали Колір профілю!");
-                            }
+                            else { MessageBox.Show("Ви не вказали Колір профілю!"); }
                         }
-                        else
-                        {
-                            MessageBox.Show("Ви не вказали Кількість виробів!!");
-                            textBoxCounts.Text = "";
-                        }
+                        else { MessageBox.Show("Ви не вказали Кількість виробів!!"); textBoxCounts.Text = ""; }
                     }
-                    else
-                    {
-                        MessageBox.Show("Ви не вказали Дилера!");
-                    }
+                    else { MessageBox.Show("Ви не вказали Дилера!"); }
                 }
-                else
-                {
-                    MessageBox.Show("Ви не вказали Місто!");
-                }
+                else { MessageBox.Show("Ви не вказали Місто!"); }
             }
-            else
-            {
-                MessageBox.Show("Ви не вказали профіль!");
-            }
-
+            else { MessageBox.Show("Ви не вказали профіль!"); }
         }
 
         //введення кількості конструкцій
@@ -366,7 +406,18 @@ namespace Laminatsia
             ComboBoxDealer.Enabled = true;
             ComboBoxDealer.Items.AddRange(listDealerByCity);
         }
-
+        private void richTextBoxNotes_ContentsResized(object sender, ContentsResizedEventArgs e)
+        {
+            var richTextBoxNotes = (RichTextBox)sender;
+            if (e.NewRectangle.Height > 26)
+            {
+                richTextBoxNotes.Height = e.NewRectangle.Height;
+            }
+            else
+            {
+                richTextBoxNotes.Height = 26;
+            }
+        }
         #endregion
 
         #region ВКЛАДКА Менеджери
@@ -403,18 +454,8 @@ namespace Laminatsia
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
             }
         }
+
         #endregion
-
-        private void СomboxAddCity_KeyDown(object sender, KeyEventArgs e)
-        {
-            textBoxAddDealer.Enabled = true;
-        }
-
-        private void СomboxAddCity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textBoxAddDealer.Enabled = true;
-        }
-
 
     }
 }

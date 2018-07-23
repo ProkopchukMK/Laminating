@@ -20,8 +20,8 @@ namespace Laminatsia
         }
     
         public int ID { get; set; }
-        public string City { get; set; }
         public string DealerName { get; set; }
+        public string City { get; set; }
     
         public virtual ICollection<ColourGoods> ColourGoods { get; set; }
     }
