@@ -7,10 +7,9 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DateComming" Type="date" Nullable="false" />
     <Property Name="Profile_ID" Type="int" Nullable="false" />
-    <Property Name="City_ID" Type="int" Nullable="false" />
     <Property Name="Dealer_ID" Type="int" Nullable="false" />
-    <Property Name="Notes" Type="nvarchar" MaxLength="200" />
-    <Property Name="Counts" Type="tinyint" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="100" />
+    <Property Name="Counts" Type="int" Nullable="false" />
     <Property Name="Colour_ID" Type="int" Nullable="false" />
     <Property Name="DateToWork" Type="date" Nullable="false" />
     <Property Name="StatusProfile" Type="bit" Nullable="false" />
@@ -29,8 +28,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DealerName" Type="nvarchar" MaxLength="50" />
     <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DealerName" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -45,7 +44,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="UserPassword" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserPassword" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="UserPC" Type="nchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <Association Name="FK_ColourGoods_ColourProfile">

@@ -38,19 +38,35 @@ namespace Laminatsia
         {
             InitializeComponent();
             FillAlComponent();
-            FillGridView();
+            FillGridView(null,dataGridViewManagers);
+            //FillGridView(null, dataGridViewTehnolog); 
         }
-        private void FillGridView()
+        private void FillGridView(List<ColourGoodsDTO> enterList, DataGridView dataGridView)
         {
-            List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
-            for (int i = 0; i < listColourGoodsDTO.Count; i++)
+            if (enterList == null)
             {
-                string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                string statusGoods = listColourGoodsDTO[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
-                dataGridViewManagers.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
-                    listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
-                    listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
+                List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
+                for (int i = 0; i < listColourGoodsDTO.Count; i++)
+                {
+                    string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
+                    string statusGoods = listColourGoodsDTO[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
+                    dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
+                        listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
+                        listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
+                }
             }
+            else
+            {
+                for (int i = 0; i < enterList.Count; i++)
+                {
+                    string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
+                    string statusGoods = enterList[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
+                    dataGridView.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
+                        enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
+                        enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods);
+                }
+            }
+
         }
         private void FillAlComponent()
         {
@@ -60,6 +76,7 @@ namespace Laminatsia
 
             var arrayCity = listCity.ToArray();
             var arrayProfile = listProfile.ToArray();
+            var arrayColour = listColour.ToArray();
             //заповнення ламінації комбобоксів
             ComboBoxProfile.Items.AddRange(listProfile.ToArray());
             //comboBoxDealer.Items.AddRange(dealerDTO.GetListDealer().ToArray());                   заповнюється відповідно до вибраного міста
@@ -78,6 +95,10 @@ namespace Laminatsia
 
             comboBoxFilterCity.Items.AddRange(arrayCity);
             comboBoxFilterProfile.Items.AddRange(arrayProfile);
+            comboBoxFilterColour.Items.AddRange(arrayColour);
+            comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
+            comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
+
         }
         private void CleareAllComponent()
         {
@@ -324,7 +345,7 @@ namespace Laminatsia
             textBoxAddDealer.Enabled = true;
         }
         //ведення значення
-        private void textBoxAddCity_Enter(object sender, EventArgs e)
+        private void TextBoxAddCity_Enter(object sender, EventArgs e)
         {
             SetKeyboardLayout(GetInputLanguageByName("uk"));
         }
@@ -377,7 +398,7 @@ namespace Laminatsia
                                     string message = colourGoods.AddColourGoods(dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
                                     MessageBox.Show(message);
                                     this.CleareAllComponent();
-                                    this.FillGridView();
+                                    this.FillGridView(null,dataGridViewManagers);
                                     this.FillAlComponent();
                                 }
                                 else { MessageBox.Show("Ви не вказали Статус профілю!"); }
@@ -412,7 +433,7 @@ namespace Laminatsia
             ComboBoxDealer.Enabled = true;
             ComboBoxDealer.Items.AddRange(listDealerByCity);
         }
-        private void richTextBoxNotes_ContentsResized(object sender, ContentsResizedEventArgs e)
+        private void RichTextBoxNotes_ContentsResized(object sender, ContentsResizedEventArgs e)
         {
             var richTextBoxNotes = (RichTextBox)sender;
             if (e.NewRectangle.Height > 26)
@@ -460,16 +481,115 @@ namespace Laminatsia
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
             }
         }
-
-        #endregion
-
-        private void comboBoxFilterCity_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxFilterCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxFilterDealer.Items.Clear();
             string filterCityName = comboBoxFilterCity.SelectedItem.ToString();
             var listDealerByCity = dealerDTO.GetListDealerByCity(filterCityName).ToArray();
             comboBoxFilterDealer.Enabled = true;
             comboBoxFilterDealer.Items.AddRange(listDealerByCity);
+        }
+
+        #region Фільтри
+        private void CheckBoxFilterDate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFilterDate.Checked == false)
+            {
+                dateTimePickerFilterDateComing1.Enabled = true;
+                dateTimePickerFilterDateComing2.Enabled = true;
+
+                dateTimePickerFilterDataToWork1.Enabled = true;
+                dateTimePickerFilterDataToWork2.Enabled = true;
+
+                dateTimePickerFilterDateReady1.Enabled = true;
+                dateTimePickerFilterDateReady2.Enabled = true;
+            }
+            else
+            {
+                dateTimePickerFilterDateComing1.Enabled = false;
+                dateTimePickerFilterDateComing2.Enabled = false;
+
+                dateTimePickerFilterDataToWork1.Enabled = false;
+                dateTimePickerFilterDataToWork2.Enabled = false;
+
+                dateTimePickerFilterDateReady1.Enabled = false;
+                dateTimePickerFilterDateReady2.Enabled = false;
+            }
+        }
+        private void ButtonSetFilter_Click(object sender, EventArgs e)
+        {
+            List<ColourGoodsDTO> filteredList = new List<ColourGoodsDTO>();
+            bool? filterStatusGoods = null;
+            bool? filterStatusProfile = null;
+            if (comboBoxFilterStatusGoods.SelectedItem == null)
+            {
+                filterStatusGoods = null;
+            }
+            else if(comboBoxFilterStatusGoods.SelectedItem.ToString() == "В РОБОТІ")
+            {
+                filterStatusGoods = true;
+            }
+            else if (comboBoxFilterStatusGoods.SelectedItem.ToString() == "НЕ В РОБОТІ")
+            {
+                filterStatusGoods = false;
+            }
+            if (comboBoxFilterStatusProfile.SelectedItem == null)
+            {
+                filterStatusProfile = null;
+            }
+            else if (comboBoxFilterStatusProfile.SelectedItem.ToString() == "ГОТОВИЙ")
+            {
+                filterStatusProfile = true;
+            }
+            else if (comboBoxFilterStatusProfile.SelectedItem.ToString() == "НЕ ГОТОВИЙ")
+            {
+                filterStatusProfile = false;
+            }
+
+            if (checkBoxFilterDate.Checked == true)
+            {
+                filteredList = colourGoodsDTO.FilterList(comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem,
+                    comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem, filterStatusProfile,
+                   filterStatusGoods);
+            }
+            else
+            {
+                filteredList = colourGoodsDTO.FilterList(dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, comboBoxFilterProfile.SelectedItem,
+                    comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem, 
+                    dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, filterStatusProfile,
+                    dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, filterStatusGoods);
+            }
+            dataGridViewManagers.Rows.Clear();
+            this.FillGridView(filteredList,dataGridViewManagers);
+        }
+
+        #endregion
+
+        #endregion
+
+        private void ButtonResetFilter_Click(object sender, EventArgs e)
+        {
+            var dateTimeNow = DateTime.Now;
+            dateTimePickerFilterDateComing1.Value = dateTimeNow;
+            dateTimePickerFilterDateComing2.Value = dateTimeNow;
+            comboBoxFilterProfile.Items.Clear();
+            comboBoxFilterCity.Items.Clear();
+            comboBoxFilterDealer.Items.Clear();
+            comboBoxFilterColour.Items.Clear();
+            dateTimePickerFilterDataToWork1.Value = dateTimeNow;
+            dateTimePickerFilterDataToWork2.Value = dateTimeNow;
+            comboBoxFilterStatusProfile.Items.Clear();
+            dateTimePickerFilterDateReady1.Value = dateTimeNow;
+            dateTimePickerFilterDateReady2.Value = dateTimeNow;
+            comboBoxFilterStatusGoods.Items.Clear();
+
+            comboBoxFilterProfile.Items.AddRange(listProfile.ToArray());
+            comboBoxFilterCity.Items.AddRange(listCity.ToArray());
+            comboBoxFilterColour.Items.AddRange(listColour.ToArray());
+            comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
+            comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
+            this.dataGridViewManagers.Rows.Clear();
+            this.FillGridView(null,dataGridViewManagers);
         }
     }
 }
