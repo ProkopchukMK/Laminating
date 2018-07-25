@@ -39,21 +39,9 @@ namespace Laminatsia
             InitializeComponent();
             FillAlComponent();
             FillGridView(null, dataGridViewManagers);
-            //FillGridView(null, dataGridViewTehnolog); 
         }
         private void FillGridView(List<ColourGoodsDTO> enterList, DataGridView dataGridView)
         {
-            var button = new DataGridViewButtonColumn
-            {
-                Name = "UpdateRow",
-                HeaderText = "Змінити",
-                Text = "Зиінити",
-                UseColumnTextForButtonValue = true,
-                SortMode = DataGridViewColumnSortMode.NotSortable,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
-            };
-            dataGridView.Columns.Add(button);
-
             if (enterList == null)
             {
                 List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
@@ -97,7 +85,6 @@ namespace Laminatsia
             ComboBoxCity.Items.AddRange(arrayCity);
             comboBoxColour.Items.AddRange(listColour.ToArray());
             comboBoxStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
-            comboBoxStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
             //заповнення додати\видалити комбобоксів
             сomboBoxAddCityDealer.Items.AddRange(arrayCity);
             comboBoxRemoveCity.Items.AddRange(arrayCity);
@@ -127,7 +114,6 @@ namespace Laminatsia
             dateTimePickerDateToWork.Value = DateTime.Now;
             comboBoxStatusProfile.Items.Clear();
             dateTimePickerDateReady.Value = DateTime.Now;
-            comboBoxStatusGoods.Items.Clear();
 
             //очищення вкладки додати\видалити(додати нове знчення)
             сomboBoxAddCityDealer.Items.Clear();

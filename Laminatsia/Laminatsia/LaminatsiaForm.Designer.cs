@@ -79,22 +79,6 @@
             this.comboBoxFilterProfile = new System.Windows.Forms.ComboBox();
             this.dateTimePickerFilterDateComing1 = new System.Windows.Forms.DateTimePicker();
             this.dataGridViewManagers = new System.Windows.Forms.DataGridView();
-            this.Tehnologers = new System.Windows.Forms.TabPage();
-            this.dataGridViewTehnolog = new System.Windows.Forms.DataGridView();
-            this.ColumnTehID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehDateComing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehDealer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehCounts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehColour = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehDateToWork = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehStatusProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehDateReady = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehStatusGoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBoxStatusGoods = new System.Windows.Forms.ComboBox();
-            this.labelStatusGoods = new System.Windows.Forms.Label();
             this.AddRemove = new System.Windows.Forms.TabPage();
             this.groupBoxRemove = new System.Windows.Forms.GroupBox();
             this.comboBoxRemoveCity = new System.Windows.Forms.ComboBox();
@@ -132,16 +116,14 @@
             this.ColumnCounts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnColour = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDateToWork = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnStatusProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnStatusProfile = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ColumnDateReady = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnStatusGoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnStatusGoods = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
             this.groupBoxCreateNewOrder.SuspendLayout();
             this.Managers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewManagers)).BeginInit();
-            this.Tehnologers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTehnolog)).BeginInit();
             this.AddRemove.SuspendLayout();
             this.groupBoxRemove.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
@@ -151,14 +133,13 @@
             // 
             this.MenuTabControl.Controls.Add(this.Laminaters);
             this.MenuTabControl.Controls.Add(this.Managers);
-            this.MenuTabControl.Controls.Add(this.Tehnologers);
             this.MenuTabControl.Controls.Add(this.AddRemove);
             this.MenuTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MenuTabControl.Location = new System.Drawing.Point(0, 0);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(1158, 1006);
+            this.MenuTabControl.Size = new System.Drawing.Size(1194, 1006);
             this.MenuTabControl.TabIndex = 11;
             // 
             // Laminaters
@@ -167,7 +148,7 @@
             this.Laminaters.Location = new System.Drawing.Point(4, 25);
             this.Laminaters.Name = "Laminaters";
             this.Laminaters.Padding = new System.Windows.Forms.Padding(3);
-            this.Laminaters.Size = new System.Drawing.Size(1150, 977);
+            this.Laminaters.Size = new System.Drawing.Size(1186, 977);
             this.Laminaters.TabIndex = 0;
             this.Laminaters.Text = "Ламінація";
             this.Laminaters.UseVisualStyleBackColor = true;
@@ -430,9 +411,9 @@
             this.Managers.Location = new System.Drawing.Point(4, 25);
             this.Managers.Name = "Managers";
             this.Managers.Padding = new System.Windows.Forms.Padding(3);
-            this.Managers.Size = new System.Drawing.Size(1150, 977);
+            this.Managers.Size = new System.Drawing.Size(1186, 977);
             this.Managers.TabIndex = 1;
-            this.Managers.Text = "Менеджери";
+            this.Managers.Text = "Менеджери/Технологи";
             this.Managers.UseVisualStyleBackColor = true;
             // 
             // checkBoxFilterDateToReady
@@ -705,159 +686,10 @@
             this.dataGridViewManagers.RowHeadersVisible = false;
             this.dataGridViewManagers.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewManagers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewManagers.Size = new System.Drawing.Size(1139, 765);
+            this.dataGridViewManagers.Size = new System.Drawing.Size(1158, 765);
             this.dataGridViewManagers.TabIndex = 0;
             this.dataGridViewManagers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewManagers_ColumnHeaderMouseClick);
             this.dataGridViewManagers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DataGridViewManagers_DataBindingComplete);
-            // 
-            // Tehnologers
-            // 
-            this.Tehnologers.Controls.Add(this.dataGridViewTehnolog);
-            this.Tehnologers.Controls.Add(this.comboBoxStatusGoods);
-            this.Tehnologers.Controls.Add(this.labelStatusGoods);
-            this.Tehnologers.Location = new System.Drawing.Point(4, 25);
-            this.Tehnologers.Name = "Tehnologers";
-            this.Tehnologers.Size = new System.Drawing.Size(1150, 977);
-            this.Tehnologers.TabIndex = 2;
-            this.Tehnologers.Text = "Технологи";
-            this.Tehnologers.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewTehnolog
-            // 
-            this.dataGridViewTehnolog.AllowUserToAddRows = false;
-            this.dataGridViewTehnolog.AllowUserToDeleteRows = false;
-            this.dataGridViewTehnolog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewTehnolog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewTehnolog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTehnolog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnTehID,
-            this.ColumnTehDateComing,
-            this.ColumnTehProfile,
-            this.ColumnTehCity,
-            this.ColumnTehDealer,
-            this.ColumnTehNotes,
-            this.ColumnTehCounts,
-            this.ColumnTehColour,
-            this.ColumnTehDateToWork,
-            this.ColumnTehStatusProfile,
-            this.ColumnTehDateReady,
-            this.ColumnTehStatusGoods});
-            this.dataGridViewTehnolog.Location = new System.Drawing.Point(0, 97);
-            this.dataGridViewTehnolog.Name = "dataGridViewTehnolog";
-            this.dataGridViewTehnolog.RowHeadersVisible = false;
-            this.dataGridViewTehnolog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTehnolog.Size = new System.Drawing.Size(1250, 880);
-            this.dataGridViewTehnolog.TabIndex = 0;
-            // 
-            // ColumnTehID
-            // 
-            this.ColumnTehID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehID.HeaderText = "ID";
-            this.ColumnTehID.Name = "ColumnTehID";
-            this.ColumnTehID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehID.Width = 46;
-            // 
-            // ColumnTehDateComing
-            // 
-            this.ColumnTehDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnTehDateComing.HeaderText = "Дата замовлення";
-            this.ColumnTehDateComing.Name = "ColumnTehDateComing";
-            this.ColumnTehDateComing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnTehProfile
-            // 
-            this.ColumnTehProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehProfile.HeaderText = "Профіль";
-            this.ColumnTehProfile.Name = "ColumnTehProfile";
-            this.ColumnTehProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehProfile.Width = 88;
-            // 
-            // ColumnTehCity
-            // 
-            this.ColumnTehCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehCity.HeaderText = "Місто";
-            this.ColumnTehCity.Name = "ColumnTehCity";
-            this.ColumnTehCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehCity.Width = 69;
-            // 
-            // ColumnTehDealer
-            // 
-            this.ColumnTehDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnTehDealer.HeaderText = "Дилер";
-            this.ColumnTehDealer.Name = "ColumnTehDealer";
-            this.ColumnTehDealer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnTehNotes
-            // 
-            this.ColumnTehNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnTehNotes.HeaderText = "Примітки";
-            this.ColumnTehNotes.Name = "ColumnTehNotes";
-            this.ColumnTehNotes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnTehCounts
-            // 
-            this.ColumnTehCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColumnTehCounts.HeaderText = "Кількість";
-            this.ColumnTehCounts.Name = "ColumnTehCounts";
-            this.ColumnTehCounts.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehCounts.Width = 91;
-            // 
-            // ColumnTehColour
-            // 
-            this.ColumnTehColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehColour.HeaderText = "Колір";
-            this.ColumnTehColour.Name = "ColumnTehColour";
-            this.ColumnTehColour.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehColour.Width = 69;
-            // 
-            // ColumnTehDateToWork
-            // 
-            this.ColumnTehDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnTehDateToWork.HeaderText = "Дата в роботу";
-            this.ColumnTehDateToWork.Name = "ColumnTehDateToWork";
-            this.ColumnTehDateToWork.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnTehStatusProfile
-            // 
-            this.ColumnTehStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehStatusProfile.HeaderText = "Статус профілю";
-            this.ColumnTehStatusProfile.Name = "ColumnTehStatusProfile";
-            this.ColumnTehStatusProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehStatusProfile.Width = 126;
-            // 
-            // ColumnTehDateReady
-            // 
-            this.ColumnTehDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnTehDateReady.HeaderText = "Дата готовності";
-            this.ColumnTehDateReady.Name = "ColumnTehDateReady";
-            // 
-            // ColumnTehStatusGoods
-            // 
-            this.ColumnTehStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehStatusGoods.HeaderText = "Статус виробу(ів)";
-            this.ColumnTehStatusGoods.Name = "ColumnTehStatusGoods";
-            this.ColumnTehStatusGoods.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehStatusGoods.Width = 135;
-            // 
-            // comboBoxStatusGoods
-            // 
-            this.comboBoxStatusGoods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxStatusGoods.FormattingEnabled = true;
-            this.comboBoxStatusGoods.Location = new System.Drawing.Point(973, 51);
-            this.comboBoxStatusGoods.Name = "comboBoxStatusGoods";
-            this.comboBoxStatusGoods.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxStatusGoods.TabIndex = 30;
-            // 
-            // labelStatusGoods
-            // 
-            this.labelStatusGoods.AutoSize = true;
-            this.labelStatusGoods.Location = new System.Drawing.Point(991, 22);
-            this.labelStatusGoods.Name = "labelStatusGoods";
-            this.labelStatusGoods.Size = new System.Drawing.Size(90, 17);
-            this.labelStatusGoods.TabIndex = 29;
-            this.labelStatusGoods.Text = "StatusGoods";
             // 
             // AddRemove
             // 
@@ -1230,6 +1062,7 @@
             this.ColumnStatusProfile.HeaderText = "Статус профілю";
             this.ColumnStatusProfile.Name = "ColumnStatusProfile";
             this.ColumnStatusProfile.ReadOnly = true;
+            this.ColumnStatusProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnStatusProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.ColumnStatusProfile.Width = 126;
             // 
@@ -1247,6 +1080,7 @@
             this.ColumnStatusGoods.HeaderText = "Статус виробу(ів)";
             this.ColumnStatusGoods.Name = "ColumnStatusGoods";
             this.ColumnStatusGoods.ReadOnly = true;
+            this.ColumnStatusGoods.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnStatusGoods.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.ColumnStatusGoods.Width = 135;
             // 
@@ -1255,7 +1089,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1158, 1006);
+            this.ClientSize = new System.Drawing.Size(1194, 1006);
             this.Controls.Add(this.MenuTabControl);
             this.Name = "LaminatsiaForm";
             this.Text = "Ламінація";
@@ -1267,9 +1101,6 @@
             this.Managers.ResumeLayout(false);
             this.Managers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewManagers)).EndInit();
-            this.Tehnologers.ResumeLayout(false);
-            this.Tehnologers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTehnolog)).EndInit();
             this.AddRemove.ResumeLayout(false);
             this.groupBoxRemove.ResumeLayout(false);
             this.groupBoxRemove.PerformLayout();
@@ -1284,7 +1115,6 @@
         private System.Windows.Forms.TabControl MenuTabControl;
         private System.Windows.Forms.TabPage Laminaters;
         private System.Windows.Forms.TabPage Managers;
-        private System.Windows.Forms.TabPage Tehnologers;
         private System.Windows.Forms.TabPage AddRemove;
         private System.Windows.Forms.Label labelAddColour;
         private System.Windows.Forms.Label labelAddProfile;
@@ -1317,8 +1147,6 @@
         private System.Windows.Forms.ComboBox ComboBoxProfile;
         private System.Windows.Forms.ComboBox comboBoxStatusProfile;
         private System.Windows.Forms.Button SaveColourGoods;
-        private System.Windows.Forms.ComboBox comboBoxStatusGoods;
-        private System.Windows.Forms.Label labelStatusGoods;
         private System.Windows.Forms.Label labelRemoveColour;
         private System.Windows.Forms.Label labelRemoveProfile;
         private System.Windows.Forms.Label labelRemoveCity;
@@ -1360,19 +1188,6 @@
         private System.Windows.Forms.Label labelFilterProfile;
         private System.Windows.Forms.Button buttonResetFilter;
         private System.Windows.Forms.Button buttonSetFilter;
-        private System.Windows.Forms.DataGridView dataGridViewTehnolog;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehDateComing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehProfile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehCity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehDealer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehNotes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehCounts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehColour;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehDateToWork;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehStatusProfile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehDateReady;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehStatusGoods;
         private System.Windows.Forms.CheckBox checkBoxFilterDateToReady;
         private System.Windows.Forms.CheckBox checkBoxFilterDateToWork;
         private System.Windows.Forms.CheckBox checkBoxFilterDateComing;
@@ -1385,8 +1200,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCounts;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnColour;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateToWork;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusProfile;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ColumnStatusProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateReady;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusGoods;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ColumnStatusGoods;
     }
 }
