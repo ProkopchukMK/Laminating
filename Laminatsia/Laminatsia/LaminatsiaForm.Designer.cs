@@ -53,14 +53,13 @@
             this.labelDateToWork = new System.Windows.Forms.Label();
             this.labelProfile = new System.Windows.Forms.Label();
             this.Managers = new System.Windows.Forms.TabPage();
+            this.checkBoxFilterDateToReady = new System.Windows.Forms.CheckBox();
+            this.checkBoxFilterDateToWork = new System.Windows.Forms.CheckBox();
+            this.checkBoxFilterDateComing = new System.Windows.Forms.CheckBox();
             this.buttonResetFilter = new System.Windows.Forms.Button();
             this.buttonSetFilter = new System.Windows.Forms.Button();
-            this.checkBoxFilterDate = new System.Windows.Forms.CheckBox();
             this.labelFilterToStatusGoods = new System.Windows.Forms.Label();
-            this.labelFilterDateToReady = new System.Windows.Forms.Label();
             this.labelFilterStatusProfile = new System.Windows.Forms.Label();
-            this.labelFilterDataToWork = new System.Windows.Forms.Label();
-            this.labelFilterDataComing = new System.Windows.Forms.Label();
             this.labelFilterColour = new System.Windows.Forms.Label();
             this.labelFilterDealer = new System.Windows.Forms.Label();
             this.labelFilterCity = new System.Windows.Forms.Label();
@@ -94,6 +93,18 @@
             this.ColumnStatusGoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tehnologers = new System.Windows.Forms.TabPage();
             this.dataGridViewTehnolog = new System.Windows.Forms.DataGridView();
+            this.ColumnTehID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehDateComing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehDealer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehCounts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehColour = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehDateToWork = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehStatusProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehDateReady = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTehStatusGoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxStatusGoods = new System.Windows.Forms.ComboBox();
             this.labelStatusGoods = new System.Windows.Forms.Label();
             this.AddRemove = new System.Windows.Forms.TabPage();
@@ -124,18 +135,6 @@
             this.labelAddProfile = new System.Windows.Forms.Label();
             this.labelAddColour = new System.Windows.Forms.Label();
             this.сomboBoxAddCityDealer = new System.Windows.Forms.ComboBox();
-            this.ColumnTehID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehDateComing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehDealer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehCounts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehColour = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehDateToWork = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehStatusProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehDateReady = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTehStatusGoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
             this.groupBoxCreateNewOrder.SuspendLayout();
@@ -168,7 +167,7 @@
             this.Laminaters.Location = new System.Drawing.Point(4, 25);
             this.Laminaters.Name = "Laminaters";
             this.Laminaters.Padding = new System.Windows.Forms.Padding(3);
-            this.Laminaters.Size = new System.Drawing.Size(1250, 977);
+            this.Laminaters.Size = new System.Drawing.Size(1150, 977);
             this.Laminaters.TabIndex = 0;
             this.Laminaters.Text = "Ламінація";
             this.Laminaters.UseVisualStyleBackColor = true;
@@ -402,14 +401,13 @@
             // 
             // Managers
             // 
+            this.Managers.Controls.Add(this.checkBoxFilterDateToReady);
+            this.Managers.Controls.Add(this.checkBoxFilterDateToWork);
+            this.Managers.Controls.Add(this.checkBoxFilterDateComing);
             this.Managers.Controls.Add(this.buttonResetFilter);
             this.Managers.Controls.Add(this.buttonSetFilter);
-            this.Managers.Controls.Add(this.checkBoxFilterDate);
             this.Managers.Controls.Add(this.labelFilterToStatusGoods);
-            this.Managers.Controls.Add(this.labelFilterDateToReady);
             this.Managers.Controls.Add(this.labelFilterStatusProfile);
-            this.Managers.Controls.Add(this.labelFilterDataToWork);
-            this.Managers.Controls.Add(this.labelFilterDataComing);
             this.Managers.Controls.Add(this.labelFilterColour);
             this.Managers.Controls.Add(this.labelFilterDealer);
             this.Managers.Controls.Add(this.labelFilterCity);
@@ -437,9 +435,42 @@
             this.Managers.Text = "Менеджери";
             this.Managers.UseVisualStyleBackColor = true;
             // 
+            // checkBoxFilterDateToReady
+            // 
+            this.checkBoxFilterDateToReady.AutoSize = true;
+            this.checkBoxFilterDateToReady.Location = new System.Drawing.Point(882, 80);
+            this.checkBoxFilterDateToReady.Name = "checkBoxFilterDateToReady";
+            this.checkBoxFilterDateToReady.Size = new System.Drawing.Size(133, 21);
+            this.checkBoxFilterDateToReady.TabIndex = 31;
+            this.checkBoxFilterDateToReady.Text = "Дата готовності";
+            this.checkBoxFilterDateToReady.UseVisualStyleBackColor = true;
+            this.checkBoxFilterDateToReady.CheckedChanged += new System.EventHandler(this.CheckBoxFilterDateToReady_CheckedChanged);
+            // 
+            // checkBoxFilterDateToWork
+            // 
+            this.checkBoxFilterDateToWork.AutoSize = true;
+            this.checkBoxFilterDateToWork.Location = new System.Drawing.Point(639, 79);
+            this.checkBoxFilterDateToWork.Name = "checkBoxFilterDateToWork";
+            this.checkBoxFilterDateToWork.Size = new System.Drawing.Size(118, 21);
+            this.checkBoxFilterDateToWork.TabIndex = 30;
+            this.checkBoxFilterDateToWork.Text = "Дата в роботі";
+            this.checkBoxFilterDateToWork.UseVisualStyleBackColor = true;
+            this.checkBoxFilterDateToWork.CheckedChanged += new System.EventHandler(this.CheckBoxFilterDateToWork_CheckedChanged);
+            // 
+            // checkBoxFilterDateComing
+            // 
+            this.checkBoxFilterDateComing.AutoSize = true;
+            this.checkBoxFilterDateComing.Location = new System.Drawing.Point(29, 80);
+            this.checkBoxFilterDateComing.Name = "checkBoxFilterDateComing";
+            this.checkBoxFilterDateComing.Size = new System.Drawing.Size(144, 21);
+            this.checkBoxFilterDateComing.TabIndex = 29;
+            this.checkBoxFilterDateComing.Text = "Дата замовлення";
+            this.checkBoxFilterDateComing.UseVisualStyleBackColor = true;
+            this.checkBoxFilterDateComing.CheckedChanged += new System.EventHandler(this.CheckBoxFilterDateComing_CheckedChanged);
+            // 
             // buttonResetFilter
             // 
-            this.buttonResetFilter.Location = new System.Drawing.Point(694, 6);
+            this.buttonResetFilter.Location = new System.Drawing.Point(639, 20);
             this.buttonResetFilter.Name = "buttonResetFilter";
             this.buttonResetFilter.Size = new System.Drawing.Size(159, 33);
             this.buttonResetFilter.TabIndex = 28;
@@ -449,26 +480,13 @@
             // 
             // buttonSetFilter
             // 
-            this.buttonSetFilter.Location = new System.Drawing.Point(432, 8);
+            this.buttonSetFilter.Location = new System.Drawing.Point(324, 20);
             this.buttonSetFilter.Name = "buttonSetFilter";
             this.buttonSetFilter.Size = new System.Drawing.Size(159, 31);
             this.buttonSetFilter.TabIndex = 27;
             this.buttonSetFilter.Text = "Застосувати фільтри";
             this.buttonSetFilter.UseVisualStyleBackColor = true;
             this.buttonSetFilter.Click += new System.EventHandler(this.ButtonSetFilter_Click);
-            // 
-            // checkBoxFilterDate
-            // 
-            this.checkBoxFilterDate.AutoSize = true;
-            this.checkBoxFilterDate.Checked = true;
-            this.checkBoxFilterDate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxFilterDate.Location = new System.Drawing.Point(245, 18);
-            this.checkBoxFilterDate.Name = "checkBoxFilterDate";
-            this.checkBoxFilterDate.Size = new System.Drawing.Size(127, 21);
-            this.checkBoxFilterDate.TabIndex = 26;
-            this.checkBoxFilterDate.Text = "Фільтр без дат";
-            this.checkBoxFilterDate.UseVisualStyleBackColor = true;
-            this.checkBoxFilterDate.CheckedChanged += new System.EventHandler(this.CheckBoxFilterDate_CheckedChanged);
             // 
             // labelFilterToStatusGoods
             // 
@@ -479,15 +497,6 @@
             this.labelFilterToStatusGoods.TabIndex = 24;
             this.labelFilterToStatusGoods.Text = "Статус замовлення";
             // 
-            // labelFilterDateToReady
-            // 
-            this.labelFilterDateToReady.AutoSize = true;
-            this.labelFilterDateToReady.Location = new System.Drawing.Point(886, 76);
-            this.labelFilterDateToReady.Name = "labelFilterDateToReady";
-            this.labelFilterDateToReady.Size = new System.Drawing.Size(114, 17);
-            this.labelFilterDateToReady.TabIndex = 23;
-            this.labelFilterDateToReady.Text = "Дата готовності";
-            // 
             // labelFilterStatusProfile
             // 
             this.labelFilterStatusProfile.AutoSize = true;
@@ -496,24 +505,6 @@
             this.labelFilterStatusProfile.Size = new System.Drawing.Size(113, 17);
             this.labelFilterStatusProfile.TabIndex = 22;
             this.labelFilterStatusProfile.Text = "Статус профілю";
-            // 
-            // labelFilterDataToWork
-            // 
-            this.labelFilterDataToWork.AutoSize = true;
-            this.labelFilterDataToWork.Location = new System.Drawing.Point(645, 76);
-            this.labelFilterDataToWork.Name = "labelFilterDataToWork";
-            this.labelFilterDataToWork.Size = new System.Drawing.Size(99, 17);
-            this.labelFilterDataToWork.TabIndex = 21;
-            this.labelFilterDataToWork.Text = "Дата в роботі";
-            // 
-            // labelFilterDataComing
-            // 
-            this.labelFilterDataComing.AutoSize = true;
-            this.labelFilterDataComing.Location = new System.Drawing.Point(40, 76);
-            this.labelFilterDataComing.Name = "labelFilterDataComing";
-            this.labelFilterDataComing.Size = new System.Drawing.Size(125, 17);
-            this.labelFilterDataComing.TabIndex = 20;
-            this.labelFilterDataComing.Text = "Дата замовлення";
             // 
             // labelFilterColour
             // 
@@ -857,6 +848,96 @@
             this.dataGridViewTehnolog.Size = new System.Drawing.Size(1250, 880);
             this.dataGridViewTehnolog.TabIndex = 0;
             // 
+            // ColumnTehID
+            // 
+            this.ColumnTehID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnTehID.HeaderText = "ID";
+            this.ColumnTehID.Name = "ColumnTehID";
+            this.ColumnTehID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnTehID.Width = 46;
+            // 
+            // ColumnTehDateComing
+            // 
+            this.ColumnTehDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnTehDateComing.HeaderText = "Дата замовлення";
+            this.ColumnTehDateComing.Name = "ColumnTehDateComing";
+            this.ColumnTehDateComing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // ColumnTehProfile
+            // 
+            this.ColumnTehProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnTehProfile.HeaderText = "Профіль";
+            this.ColumnTehProfile.Name = "ColumnTehProfile";
+            this.ColumnTehProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnTehProfile.Width = 88;
+            // 
+            // ColumnTehCity
+            // 
+            this.ColumnTehCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnTehCity.HeaderText = "Місто";
+            this.ColumnTehCity.Name = "ColumnTehCity";
+            this.ColumnTehCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnTehCity.Width = 69;
+            // 
+            // ColumnTehDealer
+            // 
+            this.ColumnTehDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnTehDealer.HeaderText = "Дилер";
+            this.ColumnTehDealer.Name = "ColumnTehDealer";
+            this.ColumnTehDealer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // ColumnTehNotes
+            // 
+            this.ColumnTehNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnTehNotes.HeaderText = "Примітки";
+            this.ColumnTehNotes.Name = "ColumnTehNotes";
+            this.ColumnTehNotes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // ColumnTehCounts
+            // 
+            this.ColumnTehCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnTehCounts.HeaderText = "Кількість";
+            this.ColumnTehCounts.Name = "ColumnTehCounts";
+            this.ColumnTehCounts.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnTehCounts.Width = 91;
+            // 
+            // ColumnTehColour
+            // 
+            this.ColumnTehColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnTehColour.HeaderText = "Колір";
+            this.ColumnTehColour.Name = "ColumnTehColour";
+            this.ColumnTehColour.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnTehColour.Width = 69;
+            // 
+            // ColumnTehDateToWork
+            // 
+            this.ColumnTehDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnTehDateToWork.HeaderText = "Дата в роботу";
+            this.ColumnTehDateToWork.Name = "ColumnTehDateToWork";
+            this.ColumnTehDateToWork.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // ColumnTehStatusProfile
+            // 
+            this.ColumnTehStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnTehStatusProfile.HeaderText = "Статус профілю";
+            this.ColumnTehStatusProfile.Name = "ColumnTehStatusProfile";
+            this.ColumnTehStatusProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnTehStatusProfile.Width = 126;
+            // 
+            // ColumnTehDateReady
+            // 
+            this.ColumnTehDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnTehDateReady.HeaderText = "Дата готовності";
+            this.ColumnTehDateReady.Name = "ColumnTehDateReady";
+            // 
+            // ColumnTehStatusGoods
+            // 
+            this.ColumnTehStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnTehStatusGoods.HeaderText = "Статус виробу(ів)";
+            this.ColumnTehStatusGoods.Name = "ColumnTehStatusGoods";
+            this.ColumnTehStatusGoods.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnTehStatusGoods.Width = 135;
+            // 
             // comboBoxStatusGoods
             // 
             this.comboBoxStatusGoods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -882,7 +963,7 @@
             this.AddRemove.Location = new System.Drawing.Point(4, 25);
             this.AddRemove.Name = "AddRemove";
             this.AddRemove.Padding = new System.Windows.Forms.Padding(3);
-            this.AddRemove.Size = new System.Drawing.Size(1250, 977);
+            this.AddRemove.Size = new System.Drawing.Size(1150, 977);
             this.AddRemove.TabIndex = 3;
             this.AddRemove.Text = "Додати/Видалити";
             this.AddRemove.UseVisualStyleBackColor = true;
@@ -1164,96 +1245,6 @@
             this.сomboBoxAddCityDealer.SelectedIndexChanged += new System.EventHandler(this.СomboxAddCity_SelectedIndexChanged);
             this.сomboBoxAddCityDealer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.СomboxAddCity_KeyDown);
             // 
-            // ColumnTehID
-            // 
-            this.ColumnTehID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehID.HeaderText = "ID";
-            this.ColumnTehID.Name = "ColumnTehID";
-            this.ColumnTehID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehID.Width = 46;
-            // 
-            // ColumnTehDateComing
-            // 
-            this.ColumnTehDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnTehDateComing.HeaderText = "Дата замовлення";
-            this.ColumnTehDateComing.Name = "ColumnTehDateComing";
-            this.ColumnTehDateComing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnTehProfile
-            // 
-            this.ColumnTehProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehProfile.HeaderText = "Профіль";
-            this.ColumnTehProfile.Name = "ColumnTehProfile";
-            this.ColumnTehProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehProfile.Width = 88;
-            // 
-            // ColumnTehCity
-            // 
-            this.ColumnTehCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehCity.HeaderText = "Місто";
-            this.ColumnTehCity.Name = "ColumnTehCity";
-            this.ColumnTehCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehCity.Width = 69;
-            // 
-            // ColumnTehDealer
-            // 
-            this.ColumnTehDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnTehDealer.HeaderText = "Дилер";
-            this.ColumnTehDealer.Name = "ColumnTehDealer";
-            this.ColumnTehDealer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnTehNotes
-            // 
-            this.ColumnTehNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnTehNotes.HeaderText = "Примітки";
-            this.ColumnTehNotes.Name = "ColumnTehNotes";
-            this.ColumnTehNotes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnTehCounts
-            // 
-            this.ColumnTehCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColumnTehCounts.HeaderText = "Кількість";
-            this.ColumnTehCounts.Name = "ColumnTehCounts";
-            this.ColumnTehCounts.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehCounts.Width = 91;
-            // 
-            // ColumnTehColour
-            // 
-            this.ColumnTehColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehColour.HeaderText = "Колір";
-            this.ColumnTehColour.Name = "ColumnTehColour";
-            this.ColumnTehColour.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehColour.Width = 69;
-            // 
-            // ColumnTehDateToWork
-            // 
-            this.ColumnTehDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnTehDateToWork.HeaderText = "Дата в роботу";
-            this.ColumnTehDateToWork.Name = "ColumnTehDateToWork";
-            this.ColumnTehDateToWork.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnTehStatusProfile
-            // 
-            this.ColumnTehStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehStatusProfile.HeaderText = "Статус профілю";
-            this.ColumnTehStatusProfile.Name = "ColumnTehStatusProfile";
-            this.ColumnTehStatusProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehStatusProfile.Width = 126;
-            // 
-            // ColumnTehDateReady
-            // 
-            this.ColumnTehDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnTehDateReady.HeaderText = "Дата готовності";
-            this.ColumnTehDateReady.Name = "ColumnTehDateReady";
-            // 
-            // ColumnTehStatusGoods
-            // 
-            this.ColumnTehStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTehStatusGoods.HeaderText = "Статус виробу(ів)";
-            this.ColumnTehStatusGoods.Name = "ColumnTehStatusGoods";
-            this.ColumnTehStatusGoods.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnTehStatusGoods.Width = 135;
-            // 
             // LaminatsiaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1357,10 +1348,7 @@
         private System.Windows.Forms.Label labelFilterStartDateComing;
         private System.Windows.Forms.DateTimePicker dateTimePickerFilterDateReady2;
         private System.Windows.Forms.Label labelFilterToStatusGoods;
-        private System.Windows.Forms.Label labelFilterDateToReady;
         private System.Windows.Forms.Label labelFilterStatusProfile;
-        private System.Windows.Forms.Label labelFilterDataToWork;
-        private System.Windows.Forms.Label labelFilterDataComing;
         private System.Windows.Forms.Label labelFilterColour;
         private System.Windows.Forms.Label labelFilterDealer;
         private System.Windows.Forms.Label labelFilterCity;
@@ -1377,7 +1365,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateReady;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusGoods;
-        private System.Windows.Forms.CheckBox checkBoxFilterDate;
         private System.Windows.Forms.Button buttonResetFilter;
         private System.Windows.Forms.Button buttonSetFilter;
         private System.Windows.Forms.DataGridView dataGridViewTehnolog;
@@ -1393,5 +1380,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehStatusProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehDateReady;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTehStatusGoods;
+        private System.Windows.Forms.CheckBox checkBoxFilterDateToReady;
+        private System.Windows.Forms.CheckBox checkBoxFilterDateToWork;
+        private System.Windows.Forms.CheckBox checkBoxFilterDateComing;
     }
 }

@@ -38,7 +38,7 @@ namespace Laminatsia
         {
             InitializeComponent();
             FillAlComponent();
-            FillGridView(null,dataGridViewManagers);
+            FillGridView(null, dataGridViewManagers);
             //FillGridView(null, dataGridViewTehnolog); 
         }
         private void FillGridView(List<ColourGoodsDTO> enterList, DataGridView dataGridView)
@@ -398,7 +398,7 @@ namespace Laminatsia
                                     string message = colourGoods.AddColourGoods(dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
                                     MessageBox.Show(message);
                                     this.CleareAllComponent();
-                                    this.FillGridView(null,dataGridViewManagers);
+                                    this.FillGridView(null, dataGridViewManagers);
                                     this.FillAlComponent();
                                 }
                                 else { MessageBox.Show("Ви не вказали Статус профілю!"); }
@@ -525,7 +525,7 @@ namespace Laminatsia
             {
                 filterStatusGoods = null;
             }
-            else if(comboBoxFilterStatusGoods.SelectedItem.ToString() == "В РОБОТІ")
+            else if (comboBoxFilterStatusGoods.SelectedItem.ToString() == "В РОБОТІ")
             {
                 filterStatusGoods = true;
             }
@@ -555,17 +555,18 @@ namespace Laminatsia
             else
             {
                 filteredList = colourGoodsDTO.FilterList(dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, comboBoxFilterProfile.SelectedItem,
-                    comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem, 
+                    comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
                     dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, filterStatusProfile,
                     dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, filterStatusGoods);
             }
             dataGridViewManagers.Rows.Clear();
-            this.FillGridView(filteredList,dataGridViewManagers);
+            this.FillGridView(filteredList, dataGridViewManagers);
         }
 
         #endregion
 
         #endregion
+        #region ВКАЛДА ТЕХНОЛОГИ
 
         private void ButtonResetFilter_Click(object sender, EventArgs e)
         {
@@ -589,7 +590,50 @@ namespace Laminatsia
             comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
             comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
             this.dataGridViewManagers.Rows.Clear();
-            this.FillGridView(null,dataGridViewManagers);
+            this.FillGridView(null, dataGridViewManagers);
+        }
+        #endregion
+
+        private void CheckBoxFilterDateToReady_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFilterDateToReady.Checked == true)
+            {
+                dateTimePickerFilterDateReady1.Enabled = true;
+                dateTimePickerFilterDateReady2.Enabled = true;
+            }
+            else
+            {
+                dateTimePickerFilterDateReady1.Enabled = false;
+                dateTimePickerFilterDateReady2.Enabled = false;
+            }
+        }
+
+        private void CheckBoxFilterDateToWork_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFilterDateToWork.Checked == true)
+            {
+                dateTimePickerFilterDataToWork1.Enabled = true;
+                dateTimePickerFilterDataToWork2.Enabled = true;
+            }
+            else
+            {
+                dateTimePickerFilterDataToWork1.Enabled = false;
+                dateTimePickerFilterDataToWork2.Enabled = false;
+            }
+        }
+
+        private void CheckBoxFilterDateComing_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxFilterDateComing.Checked == true)
+            {
+                dateTimePickerFilterDateComing1.Enabled = true;
+                dateTimePickerFilterDateComing2.Enabled = true;
+            }
+            else
+            {
+                dateTimePickerFilterDateComing1.Enabled = false;
+                dateTimePickerFilterDateComing2.Enabled = false;
+            }
         }
     }
 }
