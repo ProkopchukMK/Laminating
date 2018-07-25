@@ -57,11 +57,6 @@
     <Compile Include="LaminatsiaForm.Designer.cs">
       <DependentUpon>LaminatsiaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LaminatsiaModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="LaminatsiaForm.resx">
@@ -77,13 +72,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="App.Config" />
-    <EntityDeploy Include="LaminatsiaModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LaminatsiaModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="LaminatsiaModel.edmx.diagram">
-      <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
