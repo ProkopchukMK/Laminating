@@ -7,6 +7,7 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DateComming" ColumnName="DateComming" />
           <ScalarProperty Name="Profile_ID" ColumnName="Profile_ID" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
           <ScalarProperty Name="Dealer_ID" ColumnName="Dealer_ID" />
           <ScalarProperty Name="Notes" ColumnName="Notes" />
           <ScalarProperty Name="Counts" ColumnName="Counts" />
@@ -30,8 +31,8 @@
       <EntityTypeMapping TypeName="LaminatsiaModel.Dealer">
         <MappingFragment StoreEntitySet="Dealer">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="DealerName" ColumnName="DealerName" />
+          <ScalarProperty Name="City" ColumnName="City" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -545,8 +545,7 @@ namespace Laminatsia
             {
                 filterStatusProfile = false;
             }
-
-            if (checkBoxFilterDate.Checked == true)
+            if (checkBoxFilterDate.Checked != true)
             {
                 filteredList = colourGoodsDTO.FilterList(comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem,
                     comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem, filterStatusProfile,
@@ -559,7 +558,7 @@ namespace Laminatsia
                     dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, filterStatusProfile,
                     dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, filterStatusGoods);
             }
-            dataGridViewManagers.Rows.Clear();
+            this.dataGridViewManagers.Rows.Clear();
             this.FillGridView(filteredList,dataGridViewManagers);
         }
 
@@ -575,6 +574,7 @@ namespace Laminatsia
             comboBoxFilterProfile.Items.Clear();
             comboBoxFilterCity.Items.Clear();
             comboBoxFilterDealer.Items.Clear();
+            comboBoxFilterDealer.Enabled = false;
             comboBoxFilterColour.Items.Clear();
             dateTimePickerFilterDataToWork1.Value = dateTimeNow;
             dateTimePickerFilterDataToWork2.Value = dateTimeNow;
