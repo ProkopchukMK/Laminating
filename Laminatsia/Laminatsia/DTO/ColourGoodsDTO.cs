@@ -19,7 +19,7 @@ namespace Laminatsia.DTO
         public DateTime DateToWork { get; set; }
         public bool StatusProfile { get; set; }
         public DateTime DateReady { get; set; }
-        public bool? StatusGoods { get; set; }
+        public bool StatusGoods { get; set; }
 
         public string AddColourGoods(DateTime dateComing, string profile,
             string city, string dealer, string notes,
@@ -41,12 +41,19 @@ namespace Laminatsia.DTO
             _entity.SaveChanges();
             return "Замовлення збережено до бази даних!";
         }
-        public string Update(int id, string editStatusProfile)
+        public bool Update(int id, string editStatusGoods)
         {
             ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            editColourGoods.StatusProfile = editStatusProfile == "ГОТОВИЙ" ? true : false;
-            _entity.SaveChanges();
-            return "Updated!";
+            if(editStatusGoods == "В РОБОТІ")
+            {
+                editColourGoods.StatusGoods = false; //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - НЕ В РОБОТІ
+            }
+            else
+            {
+                editColourGoods.StatusGoods = true;  //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - В РОБОТІ
+            }            
+            _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
+            return true;          
         }
         public List<ColourGoodsDTO> GetListColourGoods()
         {
@@ -75,7 +82,7 @@ namespace Laminatsia.DTO
 
                 listColourGoodsDTO.Add(newcolourGoodsDTO);
             }
-            return listColourGoodsDTO;
+            return listColourGoodsDTO.OrderByDescending(x => x.DateComing).ToList();
         }
 
         #region фільтр датагрідвью

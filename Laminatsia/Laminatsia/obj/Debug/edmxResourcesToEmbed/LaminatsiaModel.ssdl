@@ -15,7 +15,7 @@
     <Property Name="DateToWork" Type="date" Nullable="false" />
     <Property Name="StatusProfile" Type="bit" Nullable="false" />
     <Property Name="DateReady" Type="date" Nullable="false" />
-    <Property Name="StatusGoods" Type="bit" />
+    <Property Name="StatusGoods" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ColourProfile">
     <Key>

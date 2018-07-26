@@ -1083,7 +1083,6 @@
             this.ColumnStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ColumnStatusGoods.HeaderText = "Статус виробу(ів)";
             this.ColumnStatusGoods.Items.AddRange(new object[] {
-            "НЕ НАЗНАЧЕНО",
             "В РОБОТІ",
             "НЕ В РОБОТІ"});
             this.ColumnStatusGoods.Name = "ColumnStatusGoods";

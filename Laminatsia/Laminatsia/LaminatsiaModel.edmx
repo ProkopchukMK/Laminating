@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="ColourGoods">
           <Key>
             <PropertyRef Name="ID" />
@@ -20,7 +20,7 @@
           <Property Name="DateToWork" Type="date" Nullable="false" />
           <Property Name="StatusProfile" Type="bit" Nullable="false" />
           <Property Name="DateReady" Type="date" Nullable="false" />
-          <Property Name="StatusGoods" Type="bit" />
+          <Property Name="StatusGoods" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ColourProfile">
           <Key>
@@ -108,8 +108,7 @@
             <End Role="ColourGoods" EntitySet="ColourGoods" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LaminatsiaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -128,7 +127,7 @@
           <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="StatusProfile" Type="Boolean" Nullable="false" />
           <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="StatusGoods" Type="Boolean" />
+          <Property Name="StatusGoods" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ColourProfile" Relationship="Self.FK_ColourGoods_ColourProfile" FromRole="ColourGoods" ToRole="ColourProfile" />
           <NavigationProperty Name="Dealer" Relationship="Self.FK_ColourGoods_Dealer" FromRole="ColourGoods" ToRole="Dealer" />
           <NavigationProperty Name="Profile" Relationship="Self.FK_ColourGoods_Profile" FromRole="ColourGoods" ToRole="Profile" />

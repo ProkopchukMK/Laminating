@@ -48,7 +48,7 @@ namespace Laminatsia
                 for (int i = 0; i < listColourGoodsDTO.Count; i++)
                 {
                     string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                    string statusGoods = listColourGoodsDTO[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
+                    string statusGoods = listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
 
                     dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
                         listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
@@ -57,10 +57,11 @@ namespace Laminatsia
             }
             else
             {
+                enterList = enterList.OrderByDescending(x => x.DateComing).ToList();
                 for (int i = 0; i < enterList.Count; i++)
                 {
                     string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                    string statusGoods = enterList[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
+                    string statusGoods = enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
 
                     dataGridView.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
                         enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
@@ -451,7 +452,7 @@ namespace Laminatsia
         }
         #endregion
 
-        #region ВКЛАДКА Менеджери
+        #region ВКЛАДКА МЕНЕДЖЕРИ ТЕХНОЛОГИ
         //sorted gridview
         private void DataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -497,6 +498,10 @@ namespace Laminatsia
         #region Фільтри        
         private void ButtonSetFilter_Click(object sender, EventArgs e)
         {
+            SetFilter();
+        }
+        private void SetFilter()
+        {
             List<ColourGoodsDTO> filteredList = new List<ColourGoodsDTO>();
             bool? filterStatusGoods = null;
             bool? filterStatusProfile = null;
@@ -532,10 +537,12 @@ namespace Laminatsia
         filterStatusProfile,
         checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, // true
         filterStatusGoods);
-
+            filteredList = filteredList.OrderByDescending(x => x.DateComing).ToList();
             dataGridViewManagers.Rows.Clear();
             this.FillGridView(filteredList, dataGridViewManagers);
         }
+        #region DateTimePickerFilterDate
+
 
         // відсікає помилку коли вибраний не вірний діапазон дат, коли перша дата більша за другу. два датапікера висят на циї івентах
         private void DateTimePickerFilterDateComing2_ValueChanged(object sender, EventArgs e)
@@ -547,7 +554,6 @@ namespace Laminatsia
                 dateTimePickerFilterDateComing1.Value = dateTimeNow;
             }
         }
-
         private void DateTimePickerFilterDataToWork2_ValueChanged(object sender, EventArgs e)
         {
             DateTime dateTimeNow = new DateTime();
@@ -580,7 +586,6 @@ namespace Laminatsia
                 return false;
             }
         }
-
         #endregion
 
         #region чек бокси дат
@@ -623,11 +628,7 @@ namespace Laminatsia
                 dateTimePickerFilterDateReady2.Enabled = false;
             }
         }
-        #endregion
-        #endregion
-
-        #region ВКАЛДА ТЕХНОЛОГИ
-
+        #endregion              
         private void ButtonResetFilter_Click(object sender, EventArgs e)
         {
             var dateTimeNow = DateTime.Now;
@@ -656,30 +657,29 @@ namespace Laminatsia
             this.dataGridViewManagers.Rows.Clear();
             this.FillGridView(null, dataGridViewManagers);
         }
-
         #endregion
-
+        
         private void dataGridViewManagers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
-            messageBoxCS.AppendFormat("{0} = {1}", "ColumnIndex", e.ColumnIndex);
-            messageBoxCS.AppendLine();
-            messageBoxCS.AppendFormat("{0} = {1}", "RowIndex", e.RowIndex);
-            messageBoxCS.AppendLine();
-            MessageBox.Show(messageBoxCS.ToString());
             dataGridViewManagers.ReadOnly = false;
-            if (e.ColumnIndex == 9)
+            if (e.ColumnIndex == 11)
             {
-                MessageBox.Show("Вірна ячейка");
-                dataGridViewManagers.Rows[e.ColumnIndex].Cells[e.RowIndex].ReadOnly = false;
-                this.dataGridViewManagers.BeginEdit(true);
+                dataGridViewManagers.BeginEdit(true);
+                DataGridViewRow editRow = dataGridViewManagers.Rows[e.RowIndex];
+                int id = int.Parse(editRow.Cells[0].Value.ToString());
+                DataGridViewCell editCell = dataGridViewManagers.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                string editStatusGoods = editCell.Value.ToString();
+                MessageBox.Show(colourGoodsDTO.Update(id, editStatusGoods).ToString());
+                this.SetFilter();
+                //MessageBox.Show(editStatusRofile);
             }
             else
             {
-                MessageBox.Show("Не вірна ячейка");
+                MessageBox.Show("Не вірно вибрана ячейка для редагування!");
             }
-            //dataGridViewManagers.EndEdit();
-            colourGoodsDTO.Update((int)dataGridViewManagers.Rows[0].Cells[e.RowIndex].Value, dataGridViewManagers.Rows[e.ColumnIndex].Cells[e.RowIndex].Value.ToString());
+
         }
+        #endregion
+        
     }
 }
