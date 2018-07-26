@@ -37,7 +37,7 @@ namespace Laminatsia
         public LaminatsiaForm()
         {
             InitializeComponent();
-            FillAlComponent();
+            FillAllComponent();
             FillGridView(null, dataGridViewManagers);
         }
         private void FillGridView(List<ColourGoodsDTO> enterList, DataGridView dataGridView)
@@ -49,10 +49,10 @@ namespace Laminatsia
                 {
                     string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
                     string statusGoods = listColourGoodsDTO[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
+
                     dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
                         listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
                         listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
-
                 }
             }
             else
@@ -61,6 +61,7 @@ namespace Laminatsia
                 {
                     string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
                     string statusGoods = enterList[i].StatusGoods == null ? "НЕ НАЗНАЧЕНО" : (enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ");
+
                     dataGridView.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
                         enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
                         enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods);
@@ -69,7 +70,7 @@ namespace Laminatsia
             }
 
         }
-        private void FillAlComponent()
+        private void FillAllComponent()
         {
             listProfile = profileDTO.GetListProfile();
             listColour = colourDTO.GetListColour();
@@ -128,6 +129,10 @@ namespace Laminatsia
             comboBoxRemoveProfile.Items.Clear();
             comboBoxRemoveColour.Items.Clear();
             dataGridViewManagers.Rows.Clear();
+
+            comboBoxFilterStatusGoods.Items.Clear();
+            comboBoxFilterStatusProfile.Items.Clear();
+
         }
 
 
@@ -158,7 +163,7 @@ namespace Laminatsia
                 MessageBox.Show("Потрібно вибрати Місто!");
             }
             this.CleareAllComponent();
-            this.FillAlComponent();
+            this.FillAllComponent();
         }
         //додати новий профіль до бази даних
         private void ButtonAddCity_Click(object sender, EventArgs e)
@@ -173,7 +178,7 @@ namespace Laminatsia
                 MessageBox.Show("Потрібно написати назву Міста!");
             }
             this.CleareAllComponent();
-            this.FillAlComponent();
+            this.FillAllComponent();
         }
         private void Add_NewProfile_Click(object sender, EventArgs e)
         {
@@ -187,7 +192,7 @@ namespace Laminatsia
                 MessageBox.Show("Потрібно написати назву Профіля!");
             }
             this.CleareAllComponent();
-            this.FillAlComponent();
+            this.FillAllComponent();
         }
         //додати новий колір до бази даних
         private void Add_NewColour_Click(object sender, EventArgs e)
@@ -203,7 +208,7 @@ namespace Laminatsia
                 MessageBox.Show("Потрібно написати назву Кольору!");
             }
             this.CleareAllComponent();
-            this.FillAlComponent();
+            this.FillAllComponent();
         }
 
         #region Видалення інформації з бази данних
@@ -240,7 +245,7 @@ namespace Laminatsia
                         string message = dealerDTO.RemoveDealer(comboBoxRemoveCity.SelectedItem.ToString(), comboBoxRemoveDealer.SelectedItem.ToString());
                         MessageBox.Show(message);
                         this.CleareAllComponent();
-                        this.FillAlComponent();
+                        this.FillAllComponent();
                         comboBoxRemoveDealer.Enabled = false;
                     }
                     else
@@ -260,7 +265,7 @@ namespace Laminatsia
                         string message = dealerDTO.RemoveDealer(comboBoxRemoveCity.SelectedItem.ToString(), null);
                         MessageBox.Show(message);
                         this.CleareAllComponent();
-                        this.FillAlComponent();
+                        this.FillAllComponent();
                         comboBoxRemoveDealer.Enabled = false;
                     }
                     else
@@ -279,7 +284,7 @@ namespace Laminatsia
                 MessageBox.Show("Потрібно вибрати Місто!");
             }
             this.CleareAllComponent();
-            this.FillAlComponent();
+            this.FillAllComponent();
         }
         private void ButtonRemoveProfile_Click(object sender, EventArgs e)
         {
@@ -306,7 +311,7 @@ namespace Laminatsia
                 MessageBox.Show("Потрібно вибрати назву Профілю!");
             }
             this.CleareAllComponent();
-            this.FillAlComponent();
+            this.FillAllComponent();
         }
         private void ButtonRemoveColour_Click(object sender, EventArgs e)
         {
@@ -333,7 +338,7 @@ namespace Laminatsia
                 MessageBox.Show("Потрібно вибрати назву Кольру!");
             }
             this.CleareAllComponent();
-            this.FillAlComponent();
+            this.FillAllComponent();
         }
         private void СomboxAddCity_KeyDown(object sender, KeyEventArgs e)
         {
@@ -398,7 +403,7 @@ namespace Laminatsia
                                     MessageBox.Show(message);
                                     this.CleareAllComponent();
                                     this.FillGridView(null, dataGridViewManagers);
-                                    this.FillAlComponent();
+                                    this.FillAllComponent();
                                 }
                                 else { MessageBox.Show("Ви не вказали Статус профілю!"); }
                             }
@@ -520,75 +525,14 @@ namespace Laminatsia
                 filterStatusProfile = false;
             }
 
-            if (checkBoxFilterDateComing.Checked == true)
-            {
-                if (checkBoxFilterDateToWork.Checked == true)
-                {
-                    if (checkBoxFilterDateToReady.Checked == true) // true true true
-                    {
-                        filteredList = colourGoodsDTO.FilterList(dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, comboBoxFilterProfile.SelectedItem,
-                    comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-                    dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, filterStatusProfile,
-                    dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, filterStatusGoods);
-                    }
-                    else // true true false
-                    {
-                        filteredList = colourGoodsDTO.FilterList(dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value,
-                            comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-                                            dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, filterStatusProfile, filterStatusGoods);
-                    }
-                }
-                else
-                {
-                    if (checkBoxFilterDateToReady.Checked == true)      // true false true
-                    {
-                        filteredList = colourGoodsDTO.FilterList(dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value,
-                            comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-                            filterStatusProfile, dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, filterStatusGoods);
-                    }
-                    else // true false false
-                    {
-                        filteredList = colourGoodsDTO.FilterList(dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value,
-                            comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-                            filterStatusProfile, filterStatusGoods);
-                    }
-                }
+            filteredList = colourGoodsDTO.FilterList(
+                checkBoxFilterDateComing.Checked, dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, // true
+                comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
+        checkBoxFilterDateToWork.Checked, dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, // true
+        filterStatusProfile,
+        checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, // true
+        filterStatusGoods);
 
-            }
-            else
-            {
-                if (checkBoxFilterDateToWork.Checked == true)
-                {
-                    if (checkBoxFilterDateToReady.Checked == true) // false true true
-                    {
-                        filteredList = colourGoodsDTO.FilterList(comboBoxFilterProfile.SelectedItem,
-                    comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-                    dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, filterStatusProfile,
-                    dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, filterStatusGoods);
-                    }
-                    else // false true false
-                    {
-                        filteredList = colourGoodsDTO.FilterList(comboBoxFilterProfile.SelectedItem,
-                                            comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-                                            dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, filterStatusProfile, filterStatusGoods);
-                    }
-                }
-                else
-                {
-                    if (checkBoxFilterDateToReady.Checked == true)      // false false true
-                    {
-                        filteredList = colourGoodsDTO.FilterList(comboBoxFilterProfile.SelectedItem,
-                    comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem, filterStatusProfile,
-                    dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, filterStatusGoods);
-                    }
-                    else // false false false
-                    {
-                        filteredList = colourGoodsDTO.FilterList(comboBoxFilterProfile.SelectedItem,
-                                            comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem,
-                                            comboBoxFilterColour.SelectedItem, filterStatusProfile, filterStatusGoods);
-                    }
-                }
-            }
             dataGridViewManagers.Rows.Clear();
             this.FillGridView(filteredList, dataGridViewManagers);
         }
@@ -712,8 +656,30 @@ namespace Laminatsia
             this.dataGridViewManagers.Rows.Clear();
             this.FillGridView(null, dataGridViewManagers);
         }
+
         #endregion
 
-
+        private void dataGridViewManagers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+            messageBoxCS.AppendFormat("{0} = {1}", "ColumnIndex", e.ColumnIndex);
+            messageBoxCS.AppendLine();
+            messageBoxCS.AppendFormat("{0} = {1}", "RowIndex", e.RowIndex);
+            messageBoxCS.AppendLine();
+            MessageBox.Show(messageBoxCS.ToString());
+            dataGridViewManagers.ReadOnly = false;
+            if (e.ColumnIndex == 9)
+            {
+                MessageBox.Show("Вірна ячейка");
+                dataGridViewManagers.Rows[e.ColumnIndex].Cells[e.RowIndex].ReadOnly = false;
+                this.dataGridViewManagers.BeginEdit(true);
+            }
+            else
+            {
+                MessageBox.Show("Не вірна ячейка");
+            }
+            //dataGridViewManagers.EndEdit();
+            colourGoodsDTO.Update((int)dataGridViewManagers.Rows[0].Cells[e.RowIndex].Value, dataGridViewManagers.Rows[e.ColumnIndex].Cells[e.RowIndex].Value.ToString());
+        }
     }
 }

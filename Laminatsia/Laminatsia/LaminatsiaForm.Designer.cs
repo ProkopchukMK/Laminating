@@ -688,6 +688,7 @@
             this.dataGridViewManagers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewManagers.Size = new System.Drawing.Size(1158, 765);
             this.dataGridViewManagers.TabIndex = 0;
+            this.dataGridViewManagers.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewManagers_CellMouseDoubleClick);
             this.dataGridViewManagers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewManagers_ColumnHeaderMouseClick);
             this.dataGridViewManagers.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DataGridViewManagers_DataBindingComplete);
             // 
@@ -698,7 +699,7 @@
             this.AddRemove.Location = new System.Drawing.Point(4, 25);
             this.AddRemove.Name = "AddRemove";
             this.AddRemove.Padding = new System.Windows.Forms.Padding(3);
-            this.AddRemove.Size = new System.Drawing.Size(1150, 977);
+            this.AddRemove.Size = new System.Drawing.Size(1186, 977);
             this.AddRemove.TabIndex = 3;
             this.AddRemove.Text = "Додати/Видалити";
             this.AddRemove.UseVisualStyleBackColor = true;
@@ -1060,6 +1061,9 @@
             // 
             this.ColumnStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ColumnStatusProfile.HeaderText = "Статус профілю";
+            this.ColumnStatusProfile.Items.AddRange(new object[] {
+            "ГОТОВИЙ",
+            "НЕ ГОТОВИЙ"});
             this.ColumnStatusProfile.Name = "ColumnStatusProfile";
             this.ColumnStatusProfile.ReadOnly = true;
             this.ColumnStatusProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1078,6 +1082,10 @@
             // 
             this.ColumnStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ColumnStatusGoods.HeaderText = "Статус виробу(ів)";
+            this.ColumnStatusGoods.Items.AddRange(new object[] {
+            "НЕ НАЗНАЧЕНО",
+            "В РОБОТІ",
+            "НЕ В РОБОТІ"});
             this.ColumnStatusGoods.Name = "ColumnStatusGoods";
             this.ColumnStatusGoods.ReadOnly = true;
             this.ColumnStatusGoods.Resizable = System.Windows.Forms.DataGridViewTriState.True;
