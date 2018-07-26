@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="07723228e438415ab0cac7171cb129e9" Name="Diagram1">
+      <Diagram DiagramId="cc65c4334d954da39e0adcaa13de6756" Name="Diagram1">
         <EntityTypeShape EntityType="LaminatsiaModel.ColourGoods" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.ColourProfile" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.Dealer" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.Profile" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.Users" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaminatsiaModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaminatsiaModel.Users" Width="1.5" PointX="2.75" PointY="7.125" IsExpanded="true" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_ColourProfile" ManuallyRouted="false" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Dealer" ManuallyRouted="false" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Profile" ManuallyRouted="false" />

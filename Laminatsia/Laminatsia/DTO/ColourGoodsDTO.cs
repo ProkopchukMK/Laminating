@@ -187,6 +187,7 @@ namespace Laminatsia.DTO
                 return enterList;
             }
         }
+        //true true true
         public List<ColourGoodsDTO> FilterList(DateTime dateTimePickerFilterDataComing1, DateTime dateTimePickerFilterDataComing2, object comboBoxFilterProfile, object comboBoxFilterCity,
                    object comboBoxFilterDealer, object comboBoxFilterColour, DateTime dateTimePickerFilterDataToWork1, DateTime dateTimePickerFilterDataToWork2, bool? comboBoxFilterStatusProfile,
                   DateTime dateTimePickerFilterDateReady1, DateTime dateTimePickerFilterDateReady2, bool? comboBoxFilterStatusGoods)
@@ -209,6 +210,136 @@ namespace Laminatsia.DTO
             filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
             return filteredList;
         }
+        //true  true false
+        public List<ColourGoodsDTO> FilterList(DateTime dateTimePickerFilterDataComing1, DateTime dateTimePickerFilterDataComing2, object comboBoxFilterProfile, object comboBoxFilterCity,
+                   object comboBoxFilterDealer, object comboBoxFilterColour, DateTime dateTimePickerFilterDataToWork1, DateTime dateTimePickerFilterDataToWork2, bool? comboBoxFilterStatusProfile,
+                  bool? comboBoxFilterStatusGoods)
+        {
+            List<ColourGoodsDTO> filteredList = this.GetListColourGoods();
+            filteredList = this.FilterByDateComing(filteredList, dateTimePickerFilterDataComing1.Date, dateTimePickerFilterDataComing2.Date);
+            filteredList = this.FilterByProfile(filteredList, (string)comboBoxFilterProfile ?? "");
+            if (comboBoxFilterDealer == null)
+            {
+                filteredList = this.FilterByCity(filteredList, (string)comboBoxFilterCity ?? "");
+            }
+            else
+            {
+                filteredList = this.FilterByDealer(filteredList, (string)comboBoxFilterDealer ?? "", (string)comboBoxFilterCity ?? "");
+            }
+            filteredList = this.FilterByColour(filteredList, (string)comboBoxFilterColour ?? "");
+            filteredList = this.FilterByDateToWork(filteredList, dateTimePickerFilterDataToWork1, dateTimePickerFilterDataToWork2);
+            filteredList = this.FilterByStatusProfile(filteredList, comboBoxFilterStatusProfile);
+            filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
+            return filteredList;
+        }
+        //true false true
+        public List<ColourGoodsDTO> FilterList(DateTime dateTimePickerFilterDataComing1, DateTime dateTimePickerFilterDataComing2, object comboBoxFilterProfile, object comboBoxFilterCity,
+                   object comboBoxFilterDealer, object comboBoxFilterColour, bool? comboBoxFilterStatusProfile,
+                  DateTime dateTimePickerFilterDateReady1, DateTime dateTimePickerFilterDateReady2, bool? comboBoxFilterStatusGoods)
+        {
+            List<ColourGoodsDTO> filteredList = this.GetListColourGoods();
+            filteredList = this.FilterByDateComing(filteredList, dateTimePickerFilterDataComing1.Date, dateTimePickerFilterDataComing2.Date);
+            filteredList = this.FilterByProfile(filteredList, (string)comboBoxFilterProfile ?? "");
+            if (comboBoxFilterDealer == null)
+            {
+                filteredList = this.FilterByCity(filteredList, (string)comboBoxFilterCity ?? "");
+            }
+            else
+            {
+                filteredList = this.FilterByDealer(filteredList, (string)comboBoxFilterDealer ?? "", (string)comboBoxFilterCity ?? "");
+            }
+            filteredList = this.FilterByColour(filteredList, (string)comboBoxFilterColour ?? "");
+            filteredList = this.FilterByStatusProfile(filteredList, comboBoxFilterStatusProfile);
+            filteredList = this.FilterByDateReady(filteredList, dateTimePickerFilterDateReady1, dateTimePickerFilterDateReady2);
+            filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
+            return filteredList;
+        }
+        //true false false
+        public List<ColourGoodsDTO> FilterList(DateTime dateTimePickerFilterDataComing1, DateTime dateTimePickerFilterDataComing2, object comboBoxFilterProfile, object comboBoxFilterCity,
+                   object comboBoxFilterDealer, object comboBoxFilterColour, bool? comboBoxFilterStatusProfile,
+                   bool? comboBoxFilterStatusGoods)
+        {
+            List<ColourGoodsDTO> filteredList = this.GetListColourGoods();
+            filteredList = this.FilterByDateComing(filteredList, dateTimePickerFilterDataComing1.Date, dateTimePickerFilterDataComing2.Date);
+            filteredList = this.FilterByProfile(filteredList, (string)comboBoxFilterProfile ?? "");
+            if (comboBoxFilterDealer == null)
+            {
+                filteredList = this.FilterByCity(filteredList, (string)comboBoxFilterCity ?? "");
+            }
+            else
+            {
+                filteredList = this.FilterByDealer(filteredList, (string)comboBoxFilterDealer ?? "", (string)comboBoxFilterCity ?? "");
+            }
+            filteredList = this.FilterByColour(filteredList, (string)comboBoxFilterColour ?? "");
+            filteredList = this.FilterByStatusProfile(filteredList, comboBoxFilterStatusProfile);
+            filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
+            return filteredList;
+        }
+        //false true true
+        public List<ColourGoodsDTO> FilterList( object comboBoxFilterProfile, object comboBoxFilterCity,
+                   object comboBoxFilterDealer, object comboBoxFilterColour, DateTime dateTimePickerFilterDataToWork1, DateTime dateTimePickerFilterDataToWork2, bool? comboBoxFilterStatusProfile,
+                  DateTime dateTimePickerFilterDateReady1, DateTime dateTimePickerFilterDateReady2, bool? comboBoxFilterStatusGoods)
+        {
+            List<ColourGoodsDTO> filteredList = this.GetListColourGoods();
+            filteredList = this.FilterByProfile(filteredList, (string)comboBoxFilterProfile ?? "");
+            if (comboBoxFilterDealer == null)
+            {
+                filteredList = this.FilterByCity(filteredList, (string)comboBoxFilterCity ?? "");
+            }
+            else
+            {
+                filteredList = this.FilterByDealer(filteredList, (string)comboBoxFilterDealer ?? "", (string)comboBoxFilterCity ?? "");
+            }
+            filteredList = this.FilterByColour(filteredList, (string)comboBoxFilterColour ?? "");
+            filteredList = this.FilterByDateToWork(filteredList, dateTimePickerFilterDataToWork1, dateTimePickerFilterDataToWork2);
+            filteredList = this.FilterByStatusProfile(filteredList, comboBoxFilterStatusProfile);
+            filteredList = this.FilterByDateReady(filteredList, dateTimePickerFilterDateReady1, dateTimePickerFilterDateReady2);
+            filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
+            return filteredList;
+        }
+        //false true false
+        public List<ColourGoodsDTO> FilterList( object comboBoxFilterProfile, object comboBoxFilterCity,
+                   object comboBoxFilterDealer, object comboBoxFilterColour, DateTime dateTimePickerFilterDataToWork1, DateTime dateTimePickerFilterDataToWork2, bool? comboBoxFilterStatusProfile,
+                   bool? comboBoxFilterStatusGoods)
+        {
+            List<ColourGoodsDTO> filteredList = this.GetListColourGoods();
+            filteredList = this.FilterByProfile(filteredList, (string)comboBoxFilterProfile ?? "");
+            if (comboBoxFilterDealer == null)
+            {
+                filteredList = this.FilterByCity(filteredList, (string)comboBoxFilterCity ?? "");
+            }
+            else
+            {
+                filteredList = this.FilterByDealer(filteredList, (string)comboBoxFilterDealer ?? "", (string)comboBoxFilterCity ?? "");
+            }
+            filteredList = this.FilterByColour(filteredList, (string)comboBoxFilterColour ?? "");
+            filteredList = this.FilterByDateToWork(filteredList, dateTimePickerFilterDataToWork1, dateTimePickerFilterDataToWork2);
+            filteredList = this.FilterByStatusProfile(filteredList, comboBoxFilterStatusProfile);
+            filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
+            return filteredList;
+        }
+        //false false true
+        public List<ColourGoodsDTO> FilterList( object comboBoxFilterProfile, object comboBoxFilterCity,
+                   object comboBoxFilterDealer, object comboBoxFilterColour, bool? comboBoxFilterStatusProfile,
+                  DateTime dateTimePickerFilterDateReady1, DateTime dateTimePickerFilterDateReady2, bool? comboBoxFilterStatusGoods)
+        {
+            List<ColourGoodsDTO> filteredList = this.GetListColourGoods();
+            filteredList = this.FilterByProfile(filteredList, (string)comboBoxFilterProfile ?? "");
+            if (comboBoxFilterDealer == null)
+            {
+                filteredList = this.FilterByCity(filteredList, (string)comboBoxFilterCity ?? "");
+            }
+            else
+            {
+                filteredList = this.FilterByDealer(filteredList, (string)comboBoxFilterDealer ?? "", (string)comboBoxFilterCity ?? "");
+            }
+            filteredList = this.FilterByColour(filteredList, (string)comboBoxFilterColour ?? "");
+            filteredList = this.FilterByStatusProfile(filteredList, comboBoxFilterStatusProfile);
+            filteredList = this.FilterByDateReady(filteredList, dateTimePickerFilterDateReady1, dateTimePickerFilterDateReady2);
+            filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
+            return filteredList;
+        }
+        //false false false    
         public List<ColourGoodsDTO> FilterList(object comboBoxFilterProfile, object comboBoxFilterCity,
                    object comboBoxFilterDealer, object comboBoxFilterColour, bool? comboBoxFilterStatusProfile, bool? comboBoxFilterStatusGoods)
         {

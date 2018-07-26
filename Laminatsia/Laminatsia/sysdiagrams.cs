@@ -12,17 +12,12 @@ namespace Laminatsia
     using System;
     using System.Collections.Generic;
     
-    public partial class Dealer
+    public partial class sysdiagrams
     {
-        public Dealer()
-        {
-            this.ColourGoods = new HashSet<ColourGoods>();
-        }
-    
-        public int ID { get; set; }
-        public string City { get; set; }
-        public string DealerName { get; set; }
-    
-        public virtual ICollection<ColourGoods> ColourGoods { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
