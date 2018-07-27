@@ -86,19 +86,21 @@ namespace Laminatsia.DTO
         public ColourGoodsDTO GetColourGoodsByID(int id)
         {
             ColourGoods selectColourGoods = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
-            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-            colourGoodsDTO.ID = selectColourGoods.ID;
-            colourGoodsDTO.DateComing = selectColourGoods.DateComming.Date;
-            colourGoodsDTO.Profile = _entity.Profile.FirstOrDefault(x => x.ID == selectColourGoods.Profile_ID).NameProfile;
-            colourGoodsDTO.City = _entity.Dealer.FirstOrDefault(x => x.ID == selectColourGoods.Dealer_ID).City;
-            colourGoodsDTO.Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == selectColourGoods.Dealer_ID).DealerName;
-            colourGoodsDTO.Notes = selectColourGoods.Notes;
-            colourGoodsDTO.Counts = selectColourGoods.Counts;
-            colourGoodsDTO.Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == selectColourGoods.Colour_ID).Colour;
-            colourGoodsDTO.DateToWork = selectColourGoods.DateToWork.Date;
-            colourGoodsDTO.StatusProfile = selectColourGoods.StatusProfile;
-            colourGoodsDTO.DateReady = selectColourGoods.DateReady.Date;
-            colourGoodsDTO.StatusGoods = selectColourGoods.StatusGoods;
+            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO
+            {
+                ID = selectColourGoods.ID,
+                DateComing = selectColourGoods.DateComming.Date,
+                Profile = _entity.Profile.FirstOrDefault(x => x.ID == selectColourGoods.Profile_ID).NameProfile,
+                City = _entity.Dealer.FirstOrDefault(x => x.ID == selectColourGoods.Dealer_ID).City,
+                Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == selectColourGoods.Dealer_ID).DealerName,
+                Notes = selectColourGoods.Notes,
+                Counts = (byte)selectColourGoods.Counts,
+                Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == selectColourGoods.Colour_ID).Colour,
+                DateToWork = selectColourGoods.DateToWork.Date,
+                StatusProfile = selectColourGoods.StatusProfile,
+                DateReady = selectColourGoods.DateReady.Date,
+                StatusGoods = selectColourGoods.StatusGoods
+            };
             return colourGoodsDTO;
         }
         #region фільтр датагрідвью
