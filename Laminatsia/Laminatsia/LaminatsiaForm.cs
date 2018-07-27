@@ -37,7 +37,7 @@ namespace Laminatsia
         public LaminatsiaForm()
         {
             InitializeComponent();
-            FillAllComponentManagers();
+            FillAllComponentManagersTab();
             FillAllComponentLaminatsiaTab();
             FillAllComponentAddRemoveTab();
             FillAllComponentLaminatsiaTab();
@@ -76,9 +76,6 @@ namespace Laminatsia
             comboBoxRemoveProfile.Items.Clear();
             comboBoxRemoveColour.Items.Clear();
             dataGridViewManagers.Rows.Clear();
-
-            comboBoxFilterStatusGoods.Items.Clear();
-            comboBoxFilterStatusProfile.Items.Clear();
 
         }
 
@@ -774,7 +771,7 @@ namespace Laminatsia
                 }
             }
         }
-        private void FillAllComponentManagers()
+        private void FillAllComponentManagersTab()
         {
             listProfile = profileDTO.GetListProfile();
             listColour = colourDTO.GetListColour();
@@ -790,6 +787,7 @@ namespace Laminatsia
             comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
             comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
         }
+        
         #endregion
     }
 }
