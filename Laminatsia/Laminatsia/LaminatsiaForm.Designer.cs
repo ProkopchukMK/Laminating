@@ -123,6 +123,7 @@
             this.labelAddProfile = new System.Windows.Forms.Label();
             this.labelAddColour = new System.Windows.Forms.Label();
             this.сomboBoxAddCityDealer = new System.Windows.Forms.ComboBox();
+            this.dataGridViewLaminatsia = new System.Windows.Forms.DataGridView();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
             this.groupBoxCreateNewOrder.SuspendLayout();
@@ -131,6 +132,7 @@
             this.AddRemove.SuspendLayout();
             this.groupBoxRemove.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLaminatsia)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuTabControl
@@ -143,18 +145,19 @@
             this.MenuTabControl.Location = new System.Drawing.Point(0, 0);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(1194, 1006);
+            this.MenuTabControl.Size = new System.Drawing.Size(1267, 1006);
             this.MenuTabControl.TabIndex = 11;
             this.MenuTabControl.SelectedIndexChanged += new System.EventHandler(this.MenuTabControl_SelectedIndexChanged);
             // 
             // Laminaters
             // 
             this.Laminaters.AutoScroll = true;
+            this.Laminaters.Controls.Add(this.dataGridViewLaminatsia);
             this.Laminaters.Controls.Add(this.groupBoxCreateNewOrder);
             this.Laminaters.Location = new System.Drawing.Point(4, 25);
             this.Laminaters.Name = "Laminaters";
             this.Laminaters.Padding = new System.Windows.Forms.Padding(3);
-            this.Laminaters.Size = new System.Drawing.Size(1186, 977);
+            this.Laminaters.Size = new System.Drawing.Size(1259, 977);
             this.Laminaters.TabIndex = 0;
             this.Laminaters.Text = "Ламінація";
             this.Laminaters.UseVisualStyleBackColor = true;
@@ -418,7 +421,7 @@
             this.Managers.Location = new System.Drawing.Point(4, 25);
             this.Managers.Name = "Managers";
             this.Managers.Padding = new System.Windows.Forms.Padding(3);
-            this.Managers.Size = new System.Drawing.Size(1186, 977);
+            this.Managers.Size = new System.Drawing.Size(1259, 977);
             this.Managers.TabIndex = 1;
             this.Managers.Text = "Менеджери/Технологи";
             this.Managers.UseVisualStyleBackColor = true;
@@ -696,7 +699,7 @@
             this.dataGridViewManagers.RowHeadersVisible = false;
             this.dataGridViewManagers.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewManagers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewManagers.Size = new System.Drawing.Size(1158, 765);
+            this.dataGridViewManagers.Size = new System.Drawing.Size(1231, 765);
             this.dataGridViewManagers.TabIndex = 0;
             this.dataGridViewManagers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewManagers_CellClick);
             this.dataGridViewManagers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewManagers_ColumnHeaderMouseClick);
@@ -1112,12 +1115,25 @@
             this.сomboBoxAddCityDealer.SelectedIndexChanged += new System.EventHandler(this.СomboxAddCity_SelectedIndexChanged);
             this.сomboBoxAddCityDealer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.СomboxAddCity_KeyDown);
             // 
+            // dataGridViewLaminatsia
+            // 
+            this.dataGridViewLaminatsia.AllowUserToAddRows = false;
+            this.dataGridViewLaminatsia.AllowUserToDeleteRows = false;
+            this.dataGridViewLaminatsia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewLaminatsia.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewLaminatsia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewLaminatsia.Location = new System.Drawing.Point(9, 220);
+            this.dataGridViewLaminatsia.Name = "dataGridViewLaminatsia";
+            this.dataGridViewLaminatsia.ReadOnly = true;
+            this.dataGridViewLaminatsia.Size = new System.Drawing.Size(1238, 749);
+            this.dataGridViewLaminatsia.TabIndex = 30;
+            // 
             // LaminatsiaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1194, 1006);
+            this.ClientSize = new System.Drawing.Size(1267, 1006);
             this.Controls.Add(this.MenuTabControl);
             this.Name = "LaminatsiaForm";
             this.Text = "Ламінація";
@@ -1134,6 +1150,7 @@
             this.groupBoxRemove.PerformLayout();
             this.groupBoxAdd.ResumeLayout(false);
             this.groupBoxAdd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLaminatsia)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1231,5 +1248,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn ColumnStatusProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateReady;
         private System.Windows.Forms.DataGridViewComboBoxColumn ColumnStatusGoods;
+        private System.Windows.Forms.DataGridView dataGridViewLaminatsia;
     }
 }
