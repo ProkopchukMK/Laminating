@@ -44,16 +44,16 @@ namespace Laminatsia.DTO
         public bool Update(int id, string editStatusGoods)
         {
             ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if(editStatusGoods == "В РОБОТІ")
+            if (editStatusGoods == "В РОБОТІ")
             {
-                editColourGoods.StatusGoods = false; //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - НЕ В РОБОТІ
+                editColourGoods.StatusGoods = true; //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - НЕ В РОБОТІ
             }
             else
             {
-                editColourGoods.StatusGoods = true;  //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - В РОБОТІ
-            }            
+                editColourGoods.StatusGoods = false;  //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - В РОБОТІ
+            }
             _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-            return true;          
+            return true;
         }
         public List<ColourGoodsDTO> GetListColourGoods()
         {
@@ -79,12 +79,28 @@ namespace Laminatsia.DTO
                     DateReady = listColourGoods[i].DateReady.Date,
                     StatusGoods = listColourGoods[i].StatusGoods
                 };
-
                 listColourGoodsDTO.Add(newcolourGoodsDTO);
             }
             return listColourGoodsDTO.OrderByDescending(x => x.DateComing).ToList();
         }
-
+        public ColourGoodsDTO GetColourGoodsByID(int id)
+        {
+            ColourGoods selectColourGoods = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
+            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+            colourGoodsDTO.ID = selectColourGoods.ID;
+            colourGoodsDTO.DateComing = selectColourGoods.DateComming.Date;
+            colourGoodsDTO.Profile = _entity.Profile.FirstOrDefault(x => x.ID == selectColourGoods.Profile_ID).NameProfile;
+            colourGoodsDTO.City = _entity.Dealer.FirstOrDefault(x => x.ID == selectColourGoods.Dealer_ID).City;
+            colourGoodsDTO.Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == selectColourGoods.Dealer_ID).DealerName;
+            colourGoodsDTO.Notes = selectColourGoods.Notes;
+            colourGoodsDTO.Counts = selectColourGoods.Counts;
+            colourGoodsDTO.Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == selectColourGoods.Colour_ID).Colour;
+            colourGoodsDTO.DateToWork = selectColourGoods.DateToWork.Date;
+            colourGoodsDTO.StatusProfile = selectColourGoods.StatusProfile;
+            colourGoodsDTO.DateReady = selectColourGoods.DateReady.Date;
+            colourGoodsDTO.StatusGoods = selectColourGoods.StatusGoods;
+            return colourGoodsDTO;
+        }
         #region фільтр датагрідвью
 
         //фільтр за датою в замовлення
@@ -241,6 +257,6 @@ namespace Laminatsia.DTO
             filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);
             return filteredList;
         }
-#endregion
+        #endregion
     }
 }

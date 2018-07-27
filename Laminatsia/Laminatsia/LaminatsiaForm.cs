@@ -658,28 +658,79 @@ namespace Laminatsia
             this.FillGridView(null, dataGridViewManagers);
         }
         #endregion
-        
-        private void dataGridViewManagers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+
+        #endregion
+
+          #region Update для технологів
+        private void dataGridViewManagers_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             dataGridViewManagers.ReadOnly = false;
-            if (e.ColumnIndex == 11)
+            if (dataGridViewManagers.CurrentCell.ColumnIndex == 11)
             {
-                dataGridViewManagers.BeginEdit(true);
-                DataGridViewRow editRow = dataGridViewManagers.Rows[e.RowIndex];
-                int id = int.Parse(editRow.Cells[0].Value.ToString());
-                DataGridViewCell editCell = dataGridViewManagers.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                string editStatusGoods = editCell.Value.ToString();
-                MessageBox.Show(colourGoodsDTO.Update(id, editStatusGoods).ToString());
-                this.SetFilter();
-                //MessageBox.Show(editStatusRofile);
+                ComboBox comboBox = e.Control as ComboBox;
+                comboBox.SelectedIndexChanged -= LastColumnComboSelectionChanged;
+                comboBox.SelectedIndexChanged += LastColumnComboSelectionChanged;
+            }
+        }
+        private void LastColumnComboSelectionChanged(object sender, EventArgs e)
+        {
+            var currentcell = dataGridViewManagers.CurrentCellAddress;
+            int id = (int)dataGridViewManagers.Rows[currentcell.Y].Cells[0].Value;
+            var sendingCB = sender as DataGridViewComboBoxEditingControl;
+            string editStatusGoods = sendingCB.EditingControlFormattedValue.ToString();
+            string messageToRemove = "Дійсно змінити інформацію про статус профіля?";
+            string caption = "Змінити інформацію в базі данних!";
+            DialogResult result = MessageBox.Show(messageToRemove, caption,
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (colourGoodsDTO.Update(id, editStatusGoods))
+                {
+                    MessageBox.Show("Зміни збережені до бази даних!");
+                }
+                else
+                {
+                    MessageBox.Show("Зміни не збережено до бази даних!");
+                }
             }
             else
             {
-                MessageBox.Show("Не вірно вибрана ячейка для редагування!");
+                MessageBox.Show("Ви відмінили редагування!");
             }
+        }
 
+        private void dataGridViewManagers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewManagers.CurrentCell.ColumnIndex == 11)
+            {
+                dataGridViewManagers.ReadOnly = false;
+                dataGridViewManagers.CurrentCell.ReadOnly = false;
+                dataGridViewManagers.EditingControlShowing -= dataGridViewManagers_EditingControlShowing;
+                dataGridViewManagers.EditingControlShowing += dataGridViewManagers_EditingControlShowing;
+            }
+            else
+            {
+                dataGridViewManagers.ReadOnly = true;
+            }
         }
         #endregion
-        
+
+        private void MenuTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (MenuTabControl.SelectedIndex == 0)
+            {
+                //  MessageBox.Show("Ламінація");
+
+            }
+            else if (MenuTabControl.SelectedIndex == 1)
+            {
+                // MessageBox.Show("Менеджери Технологи");
+            }
+            else if (MenuTabControl.SelectedIndex == 2)
+            {
+                //  MessageBox.Show("Додавання");
+            }
+        }
     }
 }
