@@ -942,11 +942,13 @@ namespace Laminatsia
                 if (FindByID(dataGridViewLaminatsia, id) == null)
                 {
                     MessageBox.Show("Немає замовлення за " + id + " номером!");
+                    textBoxID.Clear();
                 }
                 else
                 {
-                    CleareAllComponentLaminatsiaTab();
+                    dataGridViewLaminatsia.Rows.Clear();
                     FillGridViewLaminatsiaTab(new List<ColourGoodsDTO> { FindByID(dataGridViewLaminatsia, id) });
+                    textBoxID.Clear();
                 }
             }
             else
@@ -965,6 +967,37 @@ namespace Laminatsia
             if (!Char.IsDigit(number) && number != 8)
             {
                 e.Handled = true;
+            }
+        }
+
+        private void TextBoxTehnologFindByID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ButtonTehnologFindByID_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBoxTehnologFindByID.Text, out int id))
+            {
+                if (FindByID(dataGridViewManagers, id) == null)
+                {
+                    MessageBox.Show("Немає замовлення за " + id + " номером!");
+                    textBoxTehnologFindByID.Clear();
+                }
+                else
+                {
+                    dataGridViewManagers.Rows.Clear();
+                    FillGridViewManagers(new List<ColourGoodsDTO> { FindByID(dataGridViewManagers, id) });
+                    textBoxTehnologFindByID.Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Не вірний номер замовлення!");
             }
         }
     }
