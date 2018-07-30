@@ -152,6 +152,8 @@
             this.labelAddProfile = new System.Windows.Forms.Label();
             this.labelAddColour = new System.Windows.Forms.Label();
             this.сomboBoxAddCityDealer = new System.Windows.Forms.ComboBox();
+            this.tabPageLogs = new System.Windows.Forms.TabPage();
+            this.dataGridViewLogs = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.calendarColumn1 = new Laminatsia.CalendarColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -181,6 +183,8 @@
             this.AddRemove.SuspendLayout();
             this.groupBoxRemove.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
+            this.tabPageLogs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLogs)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuTabControl
@@ -188,6 +192,7 @@
             this.MenuTabControl.Controls.Add(this.Laminaters);
             this.MenuTabControl.Controls.Add(this.Managers);
             this.MenuTabControl.Controls.Add(this.AddRemove);
+            this.MenuTabControl.Controls.Add(this.tabPageLogs);
             this.MenuTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MenuTabControl.Location = new System.Drawing.Point(0, 0);
@@ -215,7 +220,8 @@
             this.dataGridViewLaminatsia.AllowUserToAddRows = false;
             this.dataGridViewLaminatsia.AllowUserToDeleteRows = false;
             this.dataGridViewLaminatsia.AllowUserToResizeRows = false;
-            this.dataGridViewLaminatsia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewLaminatsia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewLaminatsia.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewLaminatsia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLaminatsia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1385,6 +1391,30 @@
             this.сomboBoxAddCityDealer.SelectedIndexChanged += new System.EventHandler(this.СomboxAddCity_SelectedIndexChanged);
             this.сomboBoxAddCityDealer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.СomboxAddCity_KeyDown);
             // 
+            // tabPageLogs
+            // 
+            this.tabPageLogs.Controls.Add(this.dataGridViewLogs);
+            this.tabPageLogs.Location = new System.Drawing.Point(4, 25);
+            this.tabPageLogs.Name = "tabPageLogs";
+            this.tabPageLogs.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLogs.Size = new System.Drawing.Size(1259, 977);
+            this.tabPageLogs.TabIndex = 4;
+            this.tabPageLogs.Text = "Журнал операцій";
+            this.tabPageLogs.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewLogs
+            // 
+            this.dataGridViewLogs.AllowUserToAddRows = false;
+            this.dataGridViewLogs.AllowUserToDeleteRows = false;
+            this.dataGridViewLogs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewLogs.Location = new System.Drawing.Point(6, 79);
+            this.dataGridViewLogs.Name = "dataGridViewLogs";
+            this.dataGridViewLogs.ReadOnly = true;
+            this.dataGridViewLogs.Size = new System.Drawing.Size(1245, 895);
+            this.dataGridViewLogs.TabIndex = 0;
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -1569,6 +1599,8 @@
             this.groupBoxRemove.PerformLayout();
             this.groupBoxAdd.ResumeLayout(false);
             this.groupBoxAdd.PerformLayout();
+            this.tabPageLogs.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLogs)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1704,5 +1736,7 @@
         private CalendarColumn ColumnLamDateReady;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamStatusGoods;
         private System.Windows.Forms.Button buttonUpdateRowLaminatsia;
+        private System.Windows.Forms.TabPage tabPageLogs;
+        private System.Windows.Forms.DataGridView dataGridViewLogs;
     }
 }

@@ -89,6 +89,7 @@ namespace Laminatsia
                 }
             }
         }
+        
         #region   ВКЛАДКА   Додати\Видалити   
         //потрібно ввести спочатку місто а потім дилера
         private void ComboxAddCity_SelectedIndexChanged(object sender, EventArgs e)
@@ -512,321 +513,15 @@ namespace Laminatsia
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
             }
         }
-
-        #region Update Ламінації      
-        private void DataGridViewLaminatsia_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        #endregion
-        #endregion
-        #region ВКЛАДКА МЕНЕДЖЕРИ ТЕХНОЛОГИ
-        //sorted gridview
-        private void DataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            DataGridViewColumn newColumn = dataGridViewManagers.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = dataGridViewManagers.SortedColumn;
-            ListSortDirection direction;
-            if (oldColumn != null)
-            {
-                if (oldColumn == newColumn && dataGridViewManagers.SortOrder == SortOrder.Ascending)
-                {
-                    direction = ListSortDirection.Descending;
-                }
-                else
-                {
-                    direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            dataGridViewManagers.Sort(newColumn, direction);
-            newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
-        }
-        private void DataGridViewManagers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            foreach (DataGridViewColumn column in dataGridViewManagers.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.Automatic;
-            }
-        }
-        //заповнення комбобокса дилерів за містом
-        private void ComboBoxFilterCity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            comboBoxFilterDealer.Items.Clear();
-            string filterCityName = comboBoxFilterCity.SelectedItem.ToString();
-            var listDealerByCity = dealerDTO.GetListDealerByCity(filterCityName).ToArray();
-            comboBoxFilterDealer.Enabled = true;
-            comboBoxFilterDealer.Items.AddRange(listDealerByCity);
-        }
-
-        #region Фільтри        
-        private void ButtonSetFilter_Click(object sender, EventArgs e)
-        {
-            SetFilter();
-        }
-        private void SetFilter()
-        {
-            List<ColourGoodsDTO> filteredList = new List<ColourGoodsDTO>();
-            bool? filterStatusGoods = null;
-            bool? filterStatusProfile = null;
-            if (comboBoxFilterStatusGoods.SelectedItem == null)
-            {
-                filterStatusGoods = null;
-            }
-            else if (comboBoxFilterStatusGoods.SelectedItem.ToString() == "В РОБОТІ")
-            {
-                filterStatusGoods = true;
-            }
-            else if (comboBoxFilterStatusGoods.SelectedItem.ToString() == "НЕ В РОБОТІ")
-            {
-                filterStatusGoods = false;
-            }
-            if (comboBoxFilterStatusProfile.SelectedItem == null)
-            {
-                filterStatusProfile = null;
-            }
-            else if (comboBoxFilterStatusProfile.SelectedItem.ToString() == "ГОТОВИЙ")
-            {
-                filterStatusProfile = true;
-            }
-            else if (comboBoxFilterStatusProfile.SelectedItem.ToString() == "НЕ ГОТОВИЙ")
-            {
-                filterStatusProfile = false;
-            }
-
-
-            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-            filteredList = colourGoodsDTO.FilterList(
-                    checkBoxFilterDateComing.Checked, dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, // true
-                    comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-            checkBoxFilterDateToWork.Checked, dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, // true
-            filterStatusProfile,
-            checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, // true
-            filterStatusGoods);
-            filteredList = filteredList.OrderByDescending(x => x.DateComing).ToList();
-            dataGridViewManagers.Rows.Clear();
-            this.FillGridViewManagers(filteredList);
-        }
-        #region DateTimePickerFilterDate
-        // відсікає помилку коли вибраний не вірний діапазон дат, коли перша дата більша за другу. два датапікера висят на циї івентах
-        private void DateTimePickerFilterDateComing2_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime dateTimeNow = new DateTime();
-            if (CompareDate(dateTimePickerFilterDateComing2.Value.Date, dateTimePickerFilterDateComing1.Value.Date, out dateTimeNow))
-            {
-                dateTimePickerFilterDateComing2.Value = dateTimeNow;
-                dateTimePickerFilterDateComing1.Value = dateTimeNow;
-            }
-        }
-        private void DateTimePickerFilterDataToWork2_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime dateTimeNow = new DateTime();
-            if (CompareDate(dateTimePickerFilterDataToWork2.Value.Date, dateTimePickerFilterDataToWork1.Value.Date, out dateTimeNow))
-            {
-                dateTimePickerFilterDataToWork2.Value = dateTimeNow;
-                dateTimePickerFilterDataToWork1.Value = dateTimeNow;
-            }
-        }
-        private void DateTimePickerFilterDateReady2_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime dateTimeNow = new DateTime();
-            if (CompareDate(dateTimePickerFilterDateReady2.Value.Date, dateTimePickerFilterDateReady1.Value.Date, out dateTimeNow))
-            {
-                dateTimePickerFilterDateReady2.Value = dateTimeNow;
-                dateTimePickerFilterDateReady1.Value = dateTimeNow;
-            }
-        }
-        private bool CompareDate(DateTime dateTime2, DateTime dateTime1, out DateTime dateTimeNow)
-        {
-            if (dateTime2.Date < dateTime1.Date)
-            {
-                MessageBox.Show("Не вірно вказано діапазон дат!");
-                dateTimeNow = DateTime.Now.Date;
-                return true;
-            }
-            else
-            {
-                dateTimeNow = DateTime.Now.Date;
-                return false;
-            }
-        }
-        #endregion
-
-        #region чек бокси дат
-        private void CheckBoxFilterDateToWork_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxFilterDateToWork.Checked == true)
-            {
-                dateTimePickerFilterDataToWork1.Enabled = true;
-                dateTimePickerFilterDataToWork2.Enabled = true;
-            }
-            else
-            {
-                dateTimePickerFilterDataToWork1.Enabled = false;
-                dateTimePickerFilterDataToWork2.Enabled = false;
-            }
-        }
-        private void CheckBoxFilterDateComing_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxFilterDateComing.Checked == true)
-            {
-                dateTimePickerFilterDateComing1.Enabled = true;
-                dateTimePickerFilterDateComing2.Enabled = true;
-            }
-            else
-            {
-                dateTimePickerFilterDateComing1.Enabled = false;
-                dateTimePickerFilterDateComing2.Enabled = false;
-            }
-        }
-        private void CheckBoxFilterDateToReady_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxFilterDateToReady.Checked == true)
-            {
-                dateTimePickerFilterDateReady1.Enabled = true;
-                dateTimePickerFilterDateReady2.Enabled = true;
-            }
-            else
-            {
-                dateTimePickerFilterDateReady1.Enabled = false;
-                dateTimePickerFilterDateReady2.Enabled = false;
-            }
-        }
-        #endregion              
-        private void ButtonResetFilter_Click(object sender, EventArgs e)
-        {
-            var dateTimeNow = DateTime.Now;
-            dateTimePickerFilterDateComing1.Value = dateTimeNow;
-            dateTimePickerFilterDateComing2.Value = dateTimeNow;
-            comboBoxFilterProfile.Items.Clear();
-            comboBoxFilterCity.Items.Clear();
-            comboBoxFilterDealer.Items.Clear();
-            comboBoxFilterColour.Items.Clear();
-            dateTimePickerFilterDataToWork1.Value = dateTimeNow;
-            dateTimePickerFilterDataToWork2.Value = dateTimeNow;
-            comboBoxFilterStatusProfile.Items.Clear();
-            dateTimePickerFilterDateReady1.Value = dateTimeNow;
-            dateTimePickerFilterDateReady2.Value = dateTimeNow;
-            comboBoxFilterStatusGoods.Items.Clear();
-
-            checkBoxFilterDateComing.Checked = false;
-            checkBoxFilterDateToReady.Checked = false;
-            checkBoxFilterDateToWork.Checked = false;
-
-            comboBoxFilterProfile.Items.AddRange(listProfile.ToArray());
-            comboBoxFilterCity.Items.AddRange(listCity.ToArray());
-            comboBoxFilterColour.Items.AddRange(listColour.ToArray());
-            comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
-            comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
-            this.dataGridViewManagers.Rows.Clear();
-            this.FillGridViewManagers(null);
-        }
-        #endregion        
-
-        #region Update для технологів
-        private void DataGridViewManagers_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            dataGridViewManagers.ReadOnly = false;
-            if (dataGridViewManagers.CurrentCell.ColumnIndex == 11)
-            {
-                ComboBox comboBox = e.Control as ComboBox;
-                comboBox.SelectedIndexChanged -= LastColumnComboSelectionChanged;
-                comboBox.SelectedIndexChanged += LastColumnComboSelectionChanged;
-            }
-        }
-        private void LastColumnComboSelectionChanged(object sender, EventArgs e)
-        {
-            var currentcell = dataGridViewManagers.CurrentCellAddress;
-            int id = (int)dataGridViewManagers.Rows[currentcell.Y].Cells[0].Value;
-            var sendingCB = sender as DataGridViewComboBoxEditingControl;
-            bool editStatusGoods = sendingCB.EditingControlFormattedValue.ToString() == "В РОБОТІ" ? true : false;
-            string messageToRemove = "Дійсно змінити інформацію про статус профіля?";
-            string caption = "Змінити інформацію в базі данних!";
-            DialogResult result = MessageBox.Show(messageToRemove, caption,
-                                 MessageBoxButtons.YesNo,
-                                 MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-
-
-                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-                if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
-                {
-                    MessageBox.Show("Зміни збережені до бази даних!");
-                }
-                else
-                {
-                    MessageBox.Show("Зміни не збережено до бази даних!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Ви відмінили редагування!");
-            }
-        }
-
-        private void DataGridViewManagers_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridViewManagers.CurrentCell.ColumnIndex == 11)
-            {
-                dataGridViewManagers.ReadOnly = false;
-                dataGridViewManagers.EditingControlShowing -= DataGridViewManagers_EditingControlShowing;
-                dataGridViewManagers.EditingControlShowing += DataGridViewManagers_EditingControlShowing;
-            }
-            else
-            {
-                if (dataGridViewManagers.ReadOnly != true)
-                    dataGridViewManagers.ReadOnly = true;
-            }
-        }
-        #endregion    
-
-        #region Заповнення всіх елементів у вкладці Менеджери Технологи
-        private void FillGridViewManagers(List<ColourGoodsDTO> enterList)
-        {
-            FillGridView(enterList, dataGridViewManagers);
-        }
-        private void FillAllComponentManagersTab()
-        {
-            listProfile = profileDTO.GetListProfile();
-            listColour = colourDTO.GetListColour();
-            listCity = dealerDTO.GetListCity();
-
-            var arrayCity = listCity.ToArray();
-            var arrayProfile = listProfile.ToArray();
-            var arrayColour = listColour.ToArray();
-            comboBoxFilterProfile.Items.AddRange(arrayProfile);
-            comboBoxFilterCity.Items.AddRange(arrayCity);
-            //дилери заповнюються від міста
-            comboBoxFilterColour.Items.AddRange(arrayColour);
-            comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
-            comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
-            FillGridViewManagers(null);
-        }
-        private void CleareAllComponentManagersTab()
-        {
-            comboBoxFilterProfile.Items.Clear();
-            comboBoxFilterCity.Items.Clear();
-            comboBoxFilterDealer.Items.Clear();
-            comboBoxFilterDealer.Enabled = false;
-            comboBoxFilterColour.Items.Clear();
-            comboBoxFilterStatusProfile.Items.Clear();
-            comboBoxFilterStatusGoods.Items.Clear();
-
-            dataGridViewManagers.Rows.Clear();
-        }
-        #endregion
-        #endregion
+        //пошук за номером ID
         private void ButtonFindByID_Click(object sender, EventArgs e)
         {
             int id;
             if (int.TryParse(textBoxID.Text, out id))
             {
-                if (FindByID(dataGridViewLaminatsia, id) == null)
+                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                colourGoodsDTO = colourGoodsDTO.GetColourGoodsByID(id);
+                if (colourGoodsDTO == null)
                 {
                     MessageBox.Show("Немає замовлення за " + id + " номером!");
                     textBoxID.Clear();
@@ -834,7 +529,7 @@ namespace Laminatsia
                 else
                 {
                     dataGridViewLaminatsia.Rows.Clear();
-                    FillGridViewLaminatsiaTab(new List<ColourGoodsDTO> { FindByID(dataGridViewLaminatsia, id) });
+                    FillGridViewLaminatsiaTab(new List<ColourGoodsDTO> { colourGoodsDTO });
                     textBoxID.Clear();
                 }
             }
@@ -842,13 +537,6 @@ namespace Laminatsia
             {
                 MessageBox.Show("Не вірний номер замовлення!");
             }
-        }
-        private ColourGoodsDTO FindByID(DataGridView dataGridView, int id)
-        {
-
-
-            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-            return colourGoodsDTO.GetColourGoodsByID(id);
         }
 
         private void TextBoxID_KeyPress(object sender, KeyPressEventArgs e)
@@ -860,38 +548,7 @@ namespace Laminatsia
             }
         }
 
-        private void TextBoxTehnologFindByID_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char number = e.KeyChar;
-            if (!Char.IsDigit(number) && number != 8)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void ButtonTehnologFindByID_Click(object sender, EventArgs e)
-        {
-            int id;
-            if (int.TryParse(textBoxTehnologFindByID.Text, out id))
-            {
-                if (FindByID(dataGridViewManagers, id) == null)
-                {
-                    MessageBox.Show("Немає замовлення за " + id + " номером!");
-                    textBoxTehnologFindByID.Clear();
-                }
-                else
-                {
-                    dataGridViewManagers.Rows.Clear();
-                    FillGridViewManagers(new List<ColourGoodsDTO> { FindByID(dataGridViewManagers, id) });
-                    textBoxTehnologFindByID.Clear();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Не вірний номер замовлення!");
-            }
-        }
-
+        #region Update Ламінації      
         private void ButtonUpdateRowLaminatsia_Click(object sender, EventArgs e)
         {
             ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
@@ -961,6 +618,347 @@ namespace Laminatsia
             }
             else { MessageBox.Show("Ви не вказали профіль!"); }
         }
+
+        #endregion
+        #endregion
+
+        #region ВКЛАДКА МЕНЕДЖЕРИ ТЕХНОЛОГИ
+
+        #region Заповнення всіх елементів у вкладці Менеджери Технологи
+        private void FillGridViewManagers(List<ColourGoodsDTO> enterList)
+        {
+            FillGridView(enterList, dataGridViewManagers);
+        }
+        private void FillAllComponentManagersTab()
+        {
+            listProfile = profileDTO.GetListProfile();
+            listColour = colourDTO.GetListColour();
+            listCity = dealerDTO.GetListCity();
+
+            var arrayCity = listCity.ToArray();
+            var arrayProfile = listProfile.ToArray();
+            var arrayColour = listColour.ToArray();
+            comboBoxFilterProfile.Items.AddRange(arrayProfile);
+            comboBoxFilterCity.Items.AddRange(arrayCity);
+            //дилери заповнюються від міста
+            comboBoxFilterColour.Items.AddRange(arrayColour);
+            comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
+            comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
+            FillGridViewManagers(null);
+        }
+        private void CleareAllComponentManagersTab()
+        {
+            comboBoxFilterProfile.Items.Clear();
+            comboBoxFilterCity.Items.Clear();
+            comboBoxFilterDealer.Items.Clear();
+            comboBoxFilterDealer.Enabled = false;
+            comboBoxFilterColour.Items.Clear();
+            comboBoxFilterStatusProfile.Items.Clear();
+            comboBoxFilterStatusGoods.Items.Clear();
+
+            dataGridViewManagers.Rows.Clear();
+        }
+        #endregion
+
+        #region сортування gridviewManagers
+        private void DataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewColumn newColumn = dataGridViewManagers.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = dataGridViewManagers.SortedColumn;
+            ListSortDirection direction;
+            if (oldColumn != null)
+            {
+                if (oldColumn == newColumn && dataGridViewManagers.SortOrder == SortOrder.Ascending)
+                {
+                    direction = ListSortDirection.Descending;
+                }
+                else
+                {
+                    direction = ListSortDirection.Ascending;
+                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
+                }
+            }
+            else
+            {
+                direction = ListSortDirection.Ascending;
+            }
+            dataGridViewManagers.Sort(newColumn, direction);
+            newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+        }
+        private void DataGridViewManagers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewColumn column in dataGridViewManagers.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.Automatic;
+            }
+        }
+        //заповнення комбобокса дилерів за містом
+        private void ComboBoxFilterCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxFilterDealer.Items.Clear();
+            string filterCityName = comboBoxFilterCity.SelectedItem.ToString();
+            var listDealerByCity = dealerDTO.GetListDealerByCity(filterCityName).ToArray();
+            comboBoxFilterDealer.Enabled = true;
+            comboBoxFilterDealer.Items.AddRange(listDealerByCity);
+        }
+        #endregion
+
+        #region Фільтри  
+        //пошук за ID
+        private void TextBoxTehnologFindByID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+        private void ButtonTehnologFindByID_Click(object sender, EventArgs e)
+        {
+            int id;
+            if (int.TryParse(textBoxTehnologFindByID.Text, out id))
+            {
+                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                colourGoodsDTO = colourGoodsDTO.GetColourGoodsByID(id);
+                if (colourGoodsDTO == null)
+                {
+                    MessageBox.Show("Немає замовлення за " + id + " номером!");
+                    textBoxTehnologFindByID.Clear();
+                }
+                else
+                {
+                    dataGridViewManagers.Rows.Clear();
+                    FillGridViewManagers(new List<ColourGoodsDTO> { colourGoodsDTO });
+                    textBoxTehnologFindByID.Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Не вірний номер замовлення!");
+            }
+        }
+        //застосовуємо фільтри
+        private void ButtonSetFilter_Click(object sender, EventArgs e)
+        {
+            SetFilter();
+        }
+        private void SetFilter()
+        {
+            List<ColourGoodsDTO> filteredList = new List<ColourGoodsDTO>();
+            bool? filterStatusGoods = null;
+            bool? filterStatusProfile = null;
+            if (comboBoxFilterStatusGoods.SelectedItem == null)
+            {
+                filterStatusGoods = null;
+            }
+            else if (comboBoxFilterStatusGoods.SelectedItem.ToString() == "В РОБОТІ")
+            {
+                filterStatusGoods = true;
+            }
+            else if (comboBoxFilterStatusGoods.SelectedItem.ToString() == "НЕ В РОБОТІ")
+            {
+                filterStatusGoods = false;
+            }
+            if (comboBoxFilterStatusProfile.SelectedItem == null)
+            {
+                filterStatusProfile = null;
+            }
+            else if (comboBoxFilterStatusProfile.SelectedItem.ToString() == "ГОТОВИЙ")
+            {
+                filterStatusProfile = true;
+            }
+            else if (comboBoxFilterStatusProfile.SelectedItem.ToString() == "НЕ ГОТОВИЙ")
+            {
+                filterStatusProfile = false;
+            }
+            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+            filteredList = colourGoodsDTO.FilterList(
+                    checkBoxFilterDateComing.Checked, dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, // true
+                    comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
+            checkBoxFilterDateToWork.Checked, dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, // true
+            filterStatusProfile,
+            checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, // true
+            filterStatusGoods);
+            filteredList = filteredList.OrderByDescending(x => x.DateComing).ToList();
+            dataGridViewManagers.Rows.Clear();
+            this.FillGridViewManagers(filteredList);
+        }
+        //скидаємо(ресетаємо) всі фільтри
+        private void ButtonResetFilter_Click(object sender, EventArgs e)
+        {
+            var dateTimeNow = DateTime.Now;
+            dateTimePickerFilterDateComing1.Value = dateTimeNow;
+            dateTimePickerFilterDateComing2.Value = dateTimeNow;
+            comboBoxFilterProfile.Items.Clear();
+            comboBoxFilterCity.Items.Clear();
+            comboBoxFilterDealer.Items.Clear();
+            comboBoxFilterColour.Items.Clear();
+            dateTimePickerFilterDataToWork1.Value = dateTimeNow;
+            dateTimePickerFilterDataToWork2.Value = dateTimeNow;
+            comboBoxFilterStatusProfile.Items.Clear();
+            dateTimePickerFilterDateReady1.Value = dateTimeNow;
+            dateTimePickerFilterDateReady2.Value = dateTimeNow;
+            comboBoxFilterStatusGoods.Items.Clear();
+
+            checkBoxFilterDateComing.Checked = false;
+            checkBoxFilterDateToReady.Checked = false;
+            checkBoxFilterDateToWork.Checked = false;
+
+            comboBoxFilterProfile.Items.AddRange(listProfile.ToArray());
+            comboBoxFilterCity.Items.AddRange(listCity.ToArray());
+            comboBoxFilterColour.Items.AddRange(listColour.ToArray());
+            comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
+            comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
+            this.dataGridViewManagers.Rows.Clear();
+            this.FillGridViewManagers(null);
+        }
+
+        #region DateTimePickerFilterDate
+        // відсікає помилку коли вибраний не вірний діапазон дат, коли перша дата більша за другу. По два датапікера(від та до) висят на цих івентах
+        private void DateTimePickerFilterDateComing2_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dateTimeNow = new DateTime();
+            if (CompareDate(dateTimePickerFilterDateComing2.Value.Date, dateTimePickerFilterDateComing1.Value.Date, out dateTimeNow))
+            {
+                dateTimePickerFilterDateComing2.Value = dateTimeNow;
+                dateTimePickerFilterDateComing1.Value = dateTimeNow;
+            }
+        }
+        private void DateTimePickerFilterDataToWork2_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dateTimeNow = new DateTime();
+            if (CompareDate(dateTimePickerFilterDataToWork2.Value.Date, dateTimePickerFilterDataToWork1.Value.Date, out dateTimeNow))
+            {
+                dateTimePickerFilterDataToWork2.Value = dateTimeNow;
+                dateTimePickerFilterDataToWork1.Value = dateTimeNow;
+            }
+        }
+        private void DateTimePickerFilterDateReady2_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dateTimeNow = new DateTime();
+            if (CompareDate(dateTimePickerFilterDateReady2.Value.Date, dateTimePickerFilterDateReady1.Value.Date, out dateTimeNow))
+            {
+                dateTimePickerFilterDateReady2.Value = dateTimeNow;
+                dateTimePickerFilterDateReady1.Value = dateTimeNow;
+            }
+        }
+        private bool CompareDate(DateTime dateTime2, DateTime dateTime1, out DateTime dateTimeNow)
+        {
+            if (dateTime2.Date < dateTime1.Date)
+            {
+                MessageBox.Show("Не вірно вказано діапазон дат!");
+                dateTimeNow = DateTime.Now.Date;
+                return true;
+            }
+            else
+            {
+                dateTimeNow = DateTime.Now.Date;
+                return false;
+            }
+        }
+        //чек бокси дат
+        private void CheckBoxFilterDateToWork_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFilterDateToWork.Checked == true)
+            {
+                dateTimePickerFilterDataToWork1.Enabled = true;
+                dateTimePickerFilterDataToWork2.Enabled = true;
+            }
+            else
+            {
+                dateTimePickerFilterDataToWork1.Enabled = false;
+                dateTimePickerFilterDataToWork2.Enabled = false;
+            }
+        }
+        private void CheckBoxFilterDateComing_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFilterDateComing.Checked == true)
+            {
+                dateTimePickerFilterDateComing1.Enabled = true;
+                dateTimePickerFilterDateComing2.Enabled = true;
+            }
+            else
+            {
+                dateTimePickerFilterDateComing1.Enabled = false;
+                dateTimePickerFilterDateComing2.Enabled = false;
+            }
+        }
+        private void CheckBoxFilterDateToReady_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFilterDateToReady.Checked == true)
+            {
+                dateTimePickerFilterDateReady1.Enabled = true;
+                dateTimePickerFilterDateReady2.Enabled = true;
+            }
+            else
+            {
+                dateTimePickerFilterDateReady1.Enabled = false;
+                dateTimePickerFilterDateReady2.Enabled = false;
+            }
+        }
+        #endregion                      
+        #endregion        
+
+        #region Update для технологів
+        private void DataGridViewManagers_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            dataGridViewManagers.ReadOnly = false;
+            if (dataGridViewManagers.CurrentCell.ColumnIndex == 11)
+            {
+                ComboBox comboBox = e.Control as ComboBox;
+                comboBox.SelectedIndexChanged -= LastColumnComboSelectionChanged;
+                comboBox.SelectedIndexChanged += LastColumnComboSelectionChanged;
+            }
+        }
+        private void LastColumnComboSelectionChanged(object sender, EventArgs e)
+        {
+            var currentcell = dataGridViewManagers.CurrentCellAddress;
+            int id = (int)dataGridViewManagers.Rows[currentcell.Y].Cells[0].Value;
+            var sendingCB = sender as DataGridViewComboBoxEditingControl;
+            bool editStatusGoods = sendingCB.EditingControlFormattedValue.ToString() == "В РОБОТІ" ? true : false;
+            string messageToRemove = "Дійсно змінити інформацію про статус профіля?";
+            string caption = "Змінити інформацію в базі данних!";
+            DialogResult result = MessageBox.Show(messageToRemove, caption,
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+
+
+                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
+                {
+                    MessageBox.Show("Зміни збережені до бази даних!");
+                }
+                else
+                {
+                    MessageBox.Show("Зміни не збережено до бази даних!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ви відмінили редагування!");
+            }
+        }
+        private void DataGridViewManagers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewManagers.CurrentCell.ColumnIndex == 11)
+            {
+                dataGridViewManagers.ReadOnly = false;
+                dataGridViewManagers.EditingControlShowing -= DataGridViewManagers_EditingControlShowing;
+                dataGridViewManagers.EditingControlShowing += DataGridViewManagers_EditingControlShowing;
+            }
+            else
+            {
+                if (dataGridViewManagers.ReadOnly != true)
+                    dataGridViewManagers.ReadOnly = true;
+            }
+        }
+        #endregion    
+
+        #endregion
+
+
     }
 }
 
