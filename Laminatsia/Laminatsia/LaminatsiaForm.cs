@@ -12,7 +12,6 @@ namespace Laminatsia
 {
     public partial class LaminatsiaForm : Form
     {
-        int curentColumn;
         private DealerDTO dealerDTO = new DealerDTO();
         private ColourDTO colourDTO = new ColourDTO();
         private ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
@@ -57,8 +56,6 @@ namespace Laminatsia
                 FillAllComponentAddRemoveTab();
             }
         }
-
-
         private void FillGridView(List<ColourGoodsDTO> enterList, DataGridView dataGridView)
         {
             if (enterList == null)
@@ -513,128 +510,10 @@ namespace Laminatsia
             }
         }
 
-        #region Update Ламінації
-        private void DataGridViewLaminatsia_CellClick(object sender, DataGridViewCellEventArgs e)
+        #region Update Ламінації      
+        private void DataGridViewLaminatsia_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewLaminatsia.CurrentCell.ColumnIndex != 0)
-            {
-                dataGridViewLaminatsia.ReadOnly = false;
-                dataGridViewLaminatsia.EditingControlShowing -= DataGridViewLaminatsia_EditingControlShowing;
-                dataGridViewLaminatsia.EditingControlShowing += DataGridViewLaminatsia_EditingControlShowing;
-            }
-            else
-            {
-                dataGridViewLaminatsia.ReadOnly = true;
-            }
-        }
-        private void DataGridViewLaminatsia_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            dataGridViewLaminatsia.ReadOnly = false;
-            if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 1) // дата замовлення
-            {
-                curentColumn = 1;
-                DateTimePicker dateTimePickerComing = e.Control as DateTimePicker;
-                dateTimePickerComing.ValueChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                dateTimePickerComing.ValueChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 2) // профіль
-            {
-                curentColumn = 2;
-                ComboBox comboBoxProfile = e.Control as ComboBox;
-                comboBoxProfile.SelectedIndexChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                comboBoxProfile.SelectedIndexChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 3) // місто
-            {
-                curentColumn = 3;
-                ComboBox comboBoxCity = e.Control as ComboBox;
-                comboBoxCity.SelectedIndexChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                comboBoxCity.SelectedIndexChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 4) // дилер
-            {
-                curentColumn = 4;
-                ComboBox comboBoxDealer = e.Control as ComboBox;
-                comboBoxDealer.SelectedIndexChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                comboBoxDealer.SelectedIndexChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 5) // примітки
-            {
-                curentColumn = 5;
-                RichTextBox richTextBoxNotes = e.Control as RichTextBox;
-                richTextBoxNotes.TextChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                richTextBoxNotes.TextChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 6) // кількість
-            {
-                curentColumn = 6;
-                TextBox textBoxCount = e.Control as TextBox;
-                textBoxCount.TextChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                textBoxCount.TextChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 7) // колір
-            {
-                curentColumn = 7;
-                ComboBox comboBoxColour = e.Control as ComboBox;
-                comboBoxColour.SelectedIndexChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                comboBoxColour.SelectedIndexChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 8) // дата в роботу
-            {
-                curentColumn = 8;
-                DateTimePicker datetimeToWork = e.Control as DateTimePicker;
-                datetimeToWork.ValueChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                datetimeToWork.ValueChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 9) // статус профілю
-            {
-                curentColumn = 9;
-                ComboBox comboBoxStatusProfile = e.Control as ComboBox;
-                comboBoxStatusProfile.SelectedIndexChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                comboBoxStatusProfile.SelectedIndexChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 10) // дата готовності
-            {
-                curentColumn = 10;
-                DateTimePicker datetimePickerDateReady = e.Control as DateTimePicker;
-                datetimePickerDateReady.ValueChanged -= LastLaminatsiaColumnComboSelectionChanged;
-                datetimePickerDateReady.ValueChanged += LastLaminatsiaColumnComboSelectionChanged;
-            }
-            else if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 0) // поле ID яке змінювати на можливо
-            {
-                MessageBox.Show("Це поле змінити не можна!");
-            }
-        }
-        private void LastLaminatsiaColumnComboSelectionChanged(object sender, EventArgs e)
-        {
-            var currentcell = dataGridViewLaminatsia.CurrentCellAddress;
-            int id = (int)dataGridViewLaminatsia.Rows[currentcell.Y].Cells[0].Value;
-            if (curentColumn == 1)
-            {
-                // обробити інфу
-            }
-            var sendingCB = sender as DataGridViewComboBoxEditingControl;
-            string editStatusProfile = sendingCB.EditingControlFormattedValue.ToString();
-            string messageToRemove = "Дійсно змінити інформацію про статус профіля?";
-            string caption = "Змінити інформацію в базі данних!";
-            DialogResult result = MessageBox.Show(messageToRemove, caption,
-                                 MessageBoxButtons.YesNo,
-                                 MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                if (colourGoodsDTO.Update(id, editStatusProfile))
-                {
-                    MessageBox.Show("Зміни збережені до бази даних!");
-                }
-                else
-                {
-                    MessageBox.Show("Зміни не збережено до бази даних!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Ви відмінили редагування!");
-            }
+
         }
         #endregion
         #endregion
@@ -859,7 +738,7 @@ namespace Laminatsia
             var currentcell = dataGridViewManagers.CurrentCellAddress;
             int id = (int)dataGridViewManagers.Rows[currentcell.Y].Cells[0].Value;
             var sendingCB = sender as DataGridViewComboBoxEditingControl;
-            string editStatusGoods = sendingCB.EditingControlFormattedValue.ToString();
+            bool editStatusGoods = sendingCB.EditingControlFormattedValue.ToString() == "В РОБОТІ" ? true : false;
             string messageToRemove = "Дійсно змінити інформацію про статус профіля?";
             string caption = "Змінити інформацію в базі данних!";
             DialogResult result = MessageBox.Show(messageToRemove, caption,
@@ -867,7 +746,7 @@ namespace Laminatsia
                                  MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                if (colourGoodsDTO.Update(id, editStatusGoods))
+                if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
                 {
                     MessageBox.Show("Зміни збережені до бази даних!");
                 }
@@ -887,16 +766,16 @@ namespace Laminatsia
             if (dataGridViewManagers.CurrentCell.ColumnIndex == 11)
             {
                 dataGridViewManagers.ReadOnly = false;
-                dataGridViewManagers.CurrentCell.ReadOnly = false;
                 dataGridViewManagers.EditingControlShowing -= DataGridViewManagers_EditingControlShowing;
                 dataGridViewManagers.EditingControlShowing += DataGridViewManagers_EditingControlShowing;
             }
             else
             {
-                dataGridViewManagers.ReadOnly = true;
+                if (dataGridViewManagers.ReadOnly != true)
+                    dataGridViewManagers.ReadOnly = true;
             }
         }
-        #endregion
+        #endregion    
 
         #region Заповнення всіх елементів у вкладці Менеджери Технологи
         private void FillGridViewManagers(List<ColourGoodsDTO> enterList)
@@ -925,6 +804,7 @@ namespace Laminatsia
             comboBoxFilterProfile.Items.Clear();
             comboBoxFilterCity.Items.Clear();
             comboBoxFilterDealer.Items.Clear();
+            comboBoxFilterDealer.Enabled = false;
             comboBoxFilterColour.Items.Clear();
             comboBoxFilterStatusProfile.Items.Clear();
             comboBoxFilterStatusGoods.Items.Clear();
@@ -932,9 +812,7 @@ namespace Laminatsia
             dataGridViewManagers.Rows.Clear();
         }
         #endregion
-
         #endregion
-
         private void ButtonFindByID_Click(object sender, EventArgs e)
         {
             if (int.TryParse(textBoxID.Text, out int id))
@@ -1000,250 +878,10 @@ namespace Laminatsia
                 MessageBox.Show("Не вірний номер замовлення!");
             }
         }
-    }
 
-    #region datagridview datetemipickercolumn
-
-    public class CalendarColumn : DataGridViewColumn
-    {
-        public CalendarColumn() : base(new CalendarCell())
+        private void ButtonUpdateRowLaminatsia_Click(object sender, EventArgs e)
         {
-        }
 
-        public override DataGridViewCell CellTemplate
-        {
-            get
-            {
-                return base.CellTemplate;
-            }
-            set
-            {
-                // Ensure that the cell used for the template is a CalendarCell.
-                if (value != null &&
-                    !value.GetType().IsAssignableFrom(typeof(CalendarCell)))
-                {
-                    throw new InvalidCastException("Must be a CalendarCell");
-                }
-                base.CellTemplate = value;
-            }
         }
     }
-
-    public class CalendarCell : DataGridViewTextBoxCell
-    {
-
-        public CalendarCell()
-            : base()
-        {
-            // Use the short date format.
-            this.Style.Format = "d";
-        }
-
-        public override void InitializeEditingControl(int rowIndex, object
-            initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
-        {
-            // Set the value of the editing control to the current cell value.
-            base.InitializeEditingControl(rowIndex, initialFormattedValue,
-                dataGridViewCellStyle);
-            CalendarEditingControl ctl =
-                DataGridView.EditingControl as CalendarEditingControl;
-            // Use the default row value when Value property is null.
-            if (this.Value == null)
-            {
-                ctl.Value = (DateTime)this.DefaultNewRowValue;
-            }
-            else
-            {
-                ctl.Value = (DateTime)this.Value;
-            }
-        }
-
-        public override Type EditType
-        {
-            get
-            {
-                // Return the type of the editing control that CalendarCell uses.
-                return typeof(CalendarEditingControl);
-            }
-        }
-
-        public override Type ValueType
-        {
-            get
-            {
-                // Return the type of the value that CalendarCell contains.
-
-                return typeof(DateTime);
-            }
-        }
-
-        public override object DefaultNewRowValue
-        {
-            get
-            {
-                // Use the current date and time as the default value.
-                return DateTime.Now;
-            }
-        }
-    }
-
-    class CalendarEditingControl : DateTimePicker, IDataGridViewEditingControl
-    {
-        DataGridView dataGridView;
-        private bool valueChanged = false;
-        int rowIndex;
-
-        public CalendarEditingControl()
-        {
-            this.Format = DateTimePickerFormat.Short;
-        }
-
-        // Implements the IDataGridViewEditingControl.EditingControlFormattedValue 
-        // property.
-        public object EditingControlFormattedValue
-        {
-            get
-            {
-                return this.Value.ToShortDateString();
-            }
-            set
-            {
-                if (value is String)
-                {
-                    try
-                    {
-                        // This will throw an exception of the string is 
-                        // null, empty, or not in the format of a date.
-                        this.Value = DateTime.Parse((String)value);
-                    }
-                    catch
-                    {
-                        // In the case of an exception, just use the 
-                        // default value so we're not left with a null
-                        // value.
-                        this.Value = DateTime.Now.Date;
-                    }
-                }
-            }
-        }
-
-        // Implements the 
-        // IDataGridViewEditingControl.GetEditingControlFormattedValue method.
-        public object GetEditingControlFormattedValue(
-            DataGridViewDataErrorContexts context)
-        {
-            return EditingControlFormattedValue;
-        }
-
-        // Implements the 
-        // IDataGridViewEditingControl.ApplyCellStyleToEditingControl method.
-        public void ApplyCellStyleToEditingControl(
-            DataGridViewCellStyle dataGridViewCellStyle)
-        {
-            this.Font = dataGridViewCellStyle.Font;
-            this.CalendarForeColor = dataGridViewCellStyle.ForeColor;
-            this.CalendarMonthBackground = dataGridViewCellStyle.BackColor;
-        }
-
-        // Implements the IDataGridViewEditingControl.EditingControlRowIndex 
-        // property.
-        public int EditingControlRowIndex
-        {
-            get
-            {
-                return rowIndex;
-            }
-            set
-            {
-                rowIndex = value;
-            }
-        }
-
-        // Implements the IDataGridViewEditingControl.EditingControlWantsInputKey 
-        // method.
-        public bool EditingControlWantsInputKey(
-            Keys key, bool dataGridViewWantsInputKey)
-        {
-            // Let the DateTimePicker handle the keys listed.
-            switch (key & Keys.KeyCode)
-            {
-                case Keys.Left:
-                case Keys.Up:
-                case Keys.Down:
-                case Keys.Right:
-                case Keys.Home:
-                case Keys.End:
-                case Keys.PageDown:
-                case Keys.PageUp:
-                    return true;
-                default:
-                    return !dataGridViewWantsInputKey;
-            }
-        }
-
-        // Implements the IDataGridViewEditingControl.PrepareEditingControlForEdit 
-        // method.
-        public void PrepareEditingControlForEdit(bool selectAll)
-        {
-            // No preparation needs to be done.
-        }
-
-        // Implements the IDataGridViewEditingControl
-        // .RepositionEditingControlOnValueChange property.
-        public bool RepositionEditingControlOnValueChange
-        {
-            get
-            {
-                return false;
-            }
-        }
-
-        // Implements the IDataGridViewEditingControl
-        // .EditingControlDataGridView property.
-        public DataGridView EditingControlDataGridView
-        {
-            get
-            {
-                return dataGridView;
-            }
-            set
-            {
-                dataGridView = value;
-            }
-        }
-
-        // Implements the IDataGridViewEditingControl
-        // .EditingControlValueChanged property.
-        public bool EditingControlValueChanged
-        {
-            get
-            {
-                return valueChanged;
-            }
-            set
-            {
-                valueChanged = value;
-            }
-        }
-
-        // Implements the IDataGridViewEditingControl
-        // .EditingPanelCursor property.
-        public Cursor EditingPanelCursor
-        {
-            get
-            {
-                return base.Cursor;
-            }
-        }
-
-        protected override void OnValueChanged(EventArgs eventargs)
-        {
-            // Notify the DataGridView that the contents of the cell
-            // have changed.
-            valueChanged = true;
-            this.EditingControlDataGridView.NotifyCurrentCellDirty(true);
-            base.OnValueChanged(eventargs);
-        }
-    }
-    #endregion
 }
