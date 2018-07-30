@@ -8,8 +8,8 @@
     <Property Name="DateComming" Type="datetime" Nullable="false" />
     <Property Name="Profile_ID" Type="int" Nullable="false" />
     <Property Name="Dealer_ID" Type="int" Nullable="false" />
-    <Property Name="Notes" Type="nvarchar" MaxLength="100" />
-    <Property Name="Counts" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+    <Property Name="Counts" Type="tinyint" Nullable="false" />
     <Property Name="Colour_ID" Type="int" Nullable="false" />
     <Property Name="DateToWork" Type="datetime" Nullable="false" />
     <Property Name="StatusProfile" Type="bit" Nullable="false" />
@@ -28,8 +28,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DealerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -38,23 +38,13 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NameProfile" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="UserPassword" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="UserPassword" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="UserPC" Type="nchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <Association Name="FK_ColourGoods_ColourProfile">
@@ -98,7 +88,6 @@
     <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Dealer" EntityType="Self.Dealer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
       <End Role="ColourProfile" EntitySet="ColourProfile" />

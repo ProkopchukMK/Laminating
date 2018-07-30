@@ -19,7 +19,7 @@ namespace Laminatsia
         public int Profile_ID { get; set; }
         public int Dealer_ID { get; set; }
         public string Notes { get; set; }
-        public int Counts { get; set; }
+        public byte Counts { get; set; }
         public int Colour_ID { get; set; }
         public System.DateTime DateToWork { get; set; }
         public bool StatusProfile { get; set; }

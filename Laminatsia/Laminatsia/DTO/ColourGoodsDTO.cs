@@ -41,157 +41,20 @@ namespace Laminatsia.DTO
             _entity.SaveChanges();
             return "Замовлення збережено до бази даних!";
         }
-
-        public bool UpdateDataComing(int id, DateTime editDataGoming)
+        public List<ColourGoodsDTO> UdateColourGoods(int id,DateTime dateComing,string profile,string city,string dealer,string notes,byte counts,string colour,DateTime dateToWork,bool statusProfile,DateTime dateReady)
         {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (editDataGoming.Date == editColourGoods.DateComming.Date)
-            {
-                //Змін немає, дані на зберігаємо
-            }
-            else
-            {
-                editColourGoods.DateComming = editDataGoming.Date;  //змінюємо значення
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-            }
-            return true;
-        }
-        public bool UpdateProfile(int id, string editProfile)
-        {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (_entity.Profile.FirstOrDefault(x => x.ID == editColourGoods.Profile_ID).NameProfile == editProfile)
-            {
-                //Змін немає, дані на зберігаємо
-                return false;
-            }
-            else
-            {
-                editColourGoods.Profile_ID = _entity.Profile.FirstOrDefault(x => x.NameProfile == editProfile).ID;  //змінюємо значення
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-                return true;
-            }
-        }
-        public bool UpdateCity(int id, string editCity)
-        {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (_entity.Dealer.FirstOrDefault(x => x.City == editCity).City == editCity)
-            {
-                //Змін немає, дані на зберігаємо
-                return false;
-            }
-            else
-            {
-                editColourGoods.Dealer_ID = _entity.Dealer.FirstOrDefault(x => x.City == editCity).ID;  //змінюємо значення
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-                return true;
-            }
-        }
-        public bool UpdateDealer(int id, string editDealer)
-        {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (_entity.Dealer.FirstOrDefault(x => x.DealerName == editDealer).DealerName == editDealer)
-            {
-                //Змін немає, дані на зберігаємо
-                return false;
-            }
-            else
-            {
-                editColourGoods.Dealer_ID = _entity.Dealer.FirstOrDefault(x => x.DealerName == editDealer).ID;  //змінюємо значення
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-                return true;
-            }
-
-        }
-        public bool UpdateNotes(int id, string editNotes)
-        {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (editNotes == editColourGoods.Notes)
-            {
-                //Змін немає, дані на зберігаємо
-                return false;
-            }
-            else
-            {
-                editColourGoods.Notes = editNotes;  //змінюємо значення
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-                return true;
-            }
-        }
-        public bool UpdateCounts(int id, int editCounts)
-        {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (editCounts == editColourGoods.Counts)
-            {
-                //Змін немає, дані на зберігаємо
-                return false;
-            }
-            else
-            {
-                editColourGoods.Counts = editCounts;  //змінюємо значення
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-                return true;
-            }
-        }
-        public bool UpdateColour(int id, string editColour)
-        {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (_entity.ColourProfile.First(x => x.Colour == editColour).ID != editColourGoods.Colour_ID)
-            {
-                editColourGoods.Colour_ID = _entity.ColourProfile.FirstOrDefault(x => x.Colour == editColour).ID;  //змінюємо значення
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-                return true;
-            }
-            else
-            {
-                 //Змін немає, дані на зберігаємо
-                return false;
-            }
-
-        }
-        public bool UpdateDateToWork(int id, DateTime editDateToWork)
-        {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (editDateToWork.Date == editColourGoods.DateToWork.Date)
-            {
-                //Змін немає, дані на зберігаємо
-                return false;
-            }
-            else
-            {
-                editColourGoods.DateToWork = editDateToWork.Date;  //змінюємо значення
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-                return true;
-            }
-        }
-        public bool UpdateStatusProfile(int id, bool editStatusProfile)
-        {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (editStatusProfile == editColourGoods.StatusProfile)
-            {
-                //Змін немає, дані на зберігаємо
-                return false;
-            }
-            else
-            {
-                editColourGoods.StatusProfile = editStatusProfile;  //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - В РОБОТІ
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-                return true;
-            }
-        }
-        public bool UpdateDateReady(int id, DateTime editDateReady)
-        {
-            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
-            if (editDateReady.Date == editColourGoods.DateReady.Date)
-            {
-                //Змін немає, дані на зберігаємо
-                return false;
-            }
-            else
-            {
-                editColourGoods.DateReady = editDateReady.Date;  //змінюємо значення
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
-                return true;
-            }
+            ColourGoods editColourGoods = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
+            editColourGoods.DateComming = dateComing.Date;
+            editColourGoods.Profile_ID = _entity.Profile.FirstOrDefault(x => x.NameProfile == profile).ID;
+            editColourGoods.Dealer_ID = _entity.Dealer.FirstOrDefault(x => x.City == city && x.DealerName == dealer).ID;
+            editColourGoods.Notes = notes;
+            editColourGoods.Counts = counts;
+            editColourGoods.Colour_ID = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colour).ID;
+            editColourGoods.DateToWork = dateToWork.Date;
+            editColourGoods.StatusProfile = statusProfile;
+            editColourGoods.DateReady = dateReady.Date;            
+            _entity.SaveChanges();
+            return this.GetListColourGoods();
         }
         public bool UpdateStatusGood(int id, bool editStatusGoods)
         {
@@ -211,7 +74,7 @@ namespace Laminatsia.DTO
 
         public List<ColourGoodsDTO> GetListColourGoods()
         {
-            List<ColourGoods> listColourGoods = _entity.ColourGoods.ToList();
+            List<ColourGoods> listColourGoods = _entity.ColourGoods.Where(x => x.ID != 0).ToList();
             List<ColourGoodsDTO> listColourGoodsDTO = new List<ColourGoodsDTO>(listColourGoods.Count);
             for (int i = 0; i < listColourGoods.Count; i++)
             {

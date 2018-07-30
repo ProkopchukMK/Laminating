@@ -14,13 +14,13 @@ namespace Laminatsia
     {
         private DealerDTO dealerDTO = new DealerDTO();
         private ColourDTO colourDTO = new ColourDTO();
-        private ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
         private ProfileDTO profileDTO = new ProfileDTO();
         private UsersDTO users = new UsersDTO();
 
         private List<string> listProfile = new List<string>();
         private List<string> listCity = new List<string>();
         private List<string> listColour = new List<string>();
+        private int editIDEntity;
 
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
@@ -60,6 +60,9 @@ namespace Laminatsia
         {
             if (enterList == null)
             {
+
+
+                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
                 List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
                 for (int i = 0; i < listColourGoodsDTO.Count; i++)
                 {
@@ -595,13 +598,15 @@ namespace Laminatsia
                 filterStatusProfile = false;
             }
 
+
+            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
             filteredList = colourGoodsDTO.FilterList(
-                checkBoxFilterDateComing.Checked, dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, // true
-                comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-        checkBoxFilterDateToWork.Checked, dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, // true
-        filterStatusProfile,
-        checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, // true
-        filterStatusGoods);
+                    checkBoxFilterDateComing.Checked, dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, // true
+                    comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
+            checkBoxFilterDateToWork.Checked, dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, // true
+            filterStatusProfile,
+            checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, // true
+            filterStatusGoods);
             filteredList = filteredList.OrderByDescending(x => x.DateComing).ToList();
             dataGridViewManagers.Rows.Clear();
             this.FillGridViewManagers(filteredList);
@@ -746,6 +751,9 @@ namespace Laminatsia
                                  MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+
+
+                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
                 if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
                 {
                     MessageBox.Show("Зміни збережені до бази даних!");
@@ -815,7 +823,8 @@ namespace Laminatsia
         #endregion
         private void ButtonFindByID_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(textBoxID.Text, out int id))
+            int id;
+            if (int.TryParse(textBoxID.Text, out id))
             {
                 if (FindByID(dataGridViewLaminatsia, id) == null)
                 {
@@ -836,6 +845,9 @@ namespace Laminatsia
         }
         private ColourGoodsDTO FindByID(DataGridView dataGridView, int id)
         {
+
+
+            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
             return colourGoodsDTO.GetColourGoodsByID(id);
         }
 
@@ -859,7 +871,8 @@ namespace Laminatsia
 
         private void ButtonTehnologFindByID_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(textBoxTehnologFindByID.Text, out int id))
+            int id;
+            if (int.TryParse(textBoxTehnologFindByID.Text, out id))
             {
                 if (FindByID(dataGridViewManagers, id) == null)
                 {
@@ -881,7 +894,73 @@ namespace Laminatsia
 
         private void ButtonUpdateRowLaminatsia_Click(object sender, EventArgs e)
         {
+            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+            SaveColourGoods.Text = "Зберегти";
+            SaveColourGoods.Click -= SaveColourGoods_Click;
+            SaveColourGoods.Click += UtdateColourGoods_Click;
+            editIDEntity = int.Parse(dataGridViewLaminatsia.CurrentRow.Cells[0].Value.ToString());
+            ColourGoodsDTO editColourGoods = colourGoodsDTO.GetColourGoodsByID(editIDEntity);
+            dateTimePickerDateComing.Value = editColourGoods.DateComing.Date;
+            ComboBoxProfile.SelectedItem = editColourGoods.Profile;
+            ComboBoxCity.SelectedItem = editColourGoods.City;
+            ComboBoxDealer.SelectedItem = editColourGoods.Dealer;
+            richTextBoxNotes.Text = editColourGoods.Notes;
+            textBoxCounts.Text = editColourGoods.Counts.ToString();
+            comboBoxColour.SelectedItem = editColourGoods.Colour;
+            dateTimePickerDateToWork.Value = editColourGoods.DateToWork.Date;
+            comboBoxStatusProfile.SelectedIndex = editColourGoods.StatusProfile == true ? 0 : 1;
+            dateTimePickerDateReady.Value = editColourGoods.DateReady.Date;
+        }
+        private void UtdateColourGoods_Click(object sender, EventArgs e)
+        {
+            if (ComboBoxProfile.SelectedItem != null)
+            {
+                if (ComboBoxCity.SelectedItem != null)
+                {
+                    if (ComboBoxDealer.SelectedItem != null)
+                    {
+                        if (textBoxCounts.Text != "" && textBoxCounts.Text.Trim() != "0")
+                        {
+                            if (int.Parse(textBoxCounts.Text) < Byte.MaxValue)
+                            {
+                                if (comboBoxColour.SelectedItem != null)
+                                {
+                                    if (comboBoxStatusProfile.SelectedItem != null)
+                                    {
+                                        DateTime dateComing = dateTimePickerDateComing.Value;
+                                        string profile = ComboBoxProfile.SelectedItem.ToString();
+                                        string city = ComboBoxCity.SelectedItem.ToString();
+                                        string dealer = ComboBoxDealer.SelectedItem.ToString();
+                                        string notes = richTextBoxNotes.Text;
+                                        byte counts = Byte.Parse(textBoxCounts.Text.TrimStart(new Char[] { '0' }));
+                                        string colour = comboBoxColour.SelectedItem.ToString();
+                                        DateTime dateToWork = dateTimePickerDateToWork.Value;
+                                        bool statusProfile = comboBoxStatusProfile.SelectedIndex == 0 ? false : true;
+                                        DateTime dateReady = dateTimePickerDateReady.Value;
+                                        ColourGoodsDTO colourGoods = new ColourGoodsDTO();
+                                        var list = colourGoods.UdateColourGoods(editIDEntity, dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
+                                        MessageBox.Show("Дані оновлено!");
 
+                                        SaveColourGoods.Text = "Створити";
+                                        SaveColourGoods.Click -= UtdateColourGoods_Click;
+                                        SaveColourGoods.Click += SaveColourGoods_Click;
+                                        this.CleareAllComponentLaminatsiaTab();
+                                        this.FillAllComponentLaminatsiaTab();
+                                    }
+                                    else { MessageBox.Show("Ви не вказали Статус профілю!"); }
+                                }
+                                else { MessageBox.Show("Ви не вказали Колір профілю!"); }
+                            }
+                            else { MessageBox.Show("Кількість виробів в замовленні не може перевищувати 255!"); }
+                        }
+                        else { MessageBox.Show("Ви не вказали Кількість виробів!"); textBoxCounts.Text = ""; }
+                    }
+                    else { MessageBox.Show("Ви не вказали Дилера!"); }
+                }
+                else { MessageBox.Show("Ви не вказали Місто!"); }
+            }
+            else { MessageBox.Show("Ви не вказали профіль!"); }
         }
     }
 }
+
