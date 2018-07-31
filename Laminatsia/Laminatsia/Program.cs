@@ -14,9 +14,8 @@ namespace Laminatsia
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LaminatsiaForm());
-            //Application.Run(new Authorization());
+            Application.SetCompatibleTextRenderingDefault(false);            
+            Application.Run(new Authorization());
         }
     }
 }

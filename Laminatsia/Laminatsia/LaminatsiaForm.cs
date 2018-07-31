@@ -27,8 +27,6 @@ namespace Laminatsia
 
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
-            Authorization a = new Authorization();
-            a.Show();
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.WindowState = FormWindowState.Maximized;
             this.Size = Screen.PrimaryScreen.Bounds.Size;

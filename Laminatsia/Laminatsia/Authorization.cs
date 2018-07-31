@@ -36,8 +36,12 @@ namespace Laminatsia
                             {
                                 if (_entity.Users.FirstOrDefault(x => x.UserName == userName && x.UserPassword == userPassword && x.Role == role) != null)
                                 {
+                                    this.Hide();
                                     LaminatsiaForm laminatsiaForm = new LaminatsiaForm(userName, role);
+                                    laminatsiaForm.Closed += (s, args) => this.Close();
                                     laminatsiaForm.Show();
+                                    
+                                    //laminatsiaForm.Show();
                                     //this.Hide();                                    
                                     //Application.Run(new LaminatsiaForm (userName, role));
                                     //this.Close();                                    
