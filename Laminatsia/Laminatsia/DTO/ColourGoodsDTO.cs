@@ -71,6 +71,21 @@ namespace Laminatsia.DTO
                 return true;
             }
         }
+        public bool UpdateStatusProfile(int id, bool editStatusProfile)
+        {
+            ColourGoods editColourGoods = _entity.ColourGoods.Find(id);
+            if (editStatusProfile == editColourGoods.StatusProfile)
+            {
+                //Змін немає, дані на зберігаємо
+                return false;
+            }
+            else
+            {
+                editColourGoods.StatusProfile = editStatusProfile;  //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - В РОБОТІ
+                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
+                return true;
+            }
+        }
 
         public List<ColourGoodsDTO> GetListColourGoods()
         {

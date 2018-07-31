@@ -60,8 +60,6 @@ namespace Laminatsia
         {
             if (enterList == null)
             {
-
-
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
                 List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
                 for (int i = 0; i < listColourGoodsDTO.Count; i++)
@@ -89,7 +87,7 @@ namespace Laminatsia
                 }
             }
         }
-        
+
         #region   ВКЛАДКА   Додати\Видалити   
         //потрібно ввести спочатку місто а потім дилера
         private void ComboxAddCity_SelectedIndexChanged(object sender, EventArgs e)
@@ -385,7 +383,7 @@ namespace Laminatsia
                                         byte counts = Byte.Parse(textBoxCounts.Text.TrimStart(new Char[] { '0' }));
                                         string colour = comboBoxColour.SelectedItem.ToString();
                                         DateTime dateToWork = dateTimePickerDateToWork.Value;
-                                        bool statusProfile = comboBoxStatusProfile.SelectedIndex == 0 ? false : true;
+                                        bool statusProfile = comboBoxStatusProfile.SelectedIndex == 0 ? true : false;
                                         DateTime dateReady = dateTimePickerDateReady.Value;
                                         ColourGoodsDTO colourGoods = new ColourGoodsDTO();
                                         string message = colourGoods.AddColourGoods(dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
@@ -592,7 +590,7 @@ namespace Laminatsia
                                         byte counts = Byte.Parse(textBoxCounts.Text.TrimStart(new Char[] { '0' }));
                                         string colour = comboBoxColour.SelectedItem.ToString();
                                         DateTime dateToWork = dateTimePickerDateToWork.Value;
-                                        bool statusProfile = comboBoxStatusProfile.SelectedIndex == 0 ? false : true;
+                                        bool statusProfile = comboBoxStatusProfile.SelectedIndex == 0 ? true : false;
                                         DateTime dateReady = dateTimePickerDateReady.Value;
                                         ColourGoodsDTO colourGoods = new ColourGoodsDTO();
                                         var list = colourGoods.UdateColourGoods(editIDEntity, dateComing, profile, city, dealer, notes, counts, colour, dateToWork, statusProfile, dateReady);
@@ -916,15 +914,13 @@ namespace Laminatsia
             int id = (int)dataGridViewManagers.Rows[currentcell.Y].Cells[0].Value;
             var sendingCB = sender as DataGridViewComboBoxEditingControl;
             bool editStatusGoods = sendingCB.EditingControlFormattedValue.ToString() == "В РОБОТІ" ? true : false;
-            string messageToRemove = "Дійсно змінити інформацію про статус профіля?";
+            string messageToRemove = "Дійсно змінити інформацію про статус виробів?";
             string caption = "Змінити інформацію в базі данних!";
             DialogResult result = MessageBox.Show(messageToRemove, caption,
                                  MessageBoxButtons.YesNo,
                                  MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-
-
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
                 if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
                 {
@@ -954,11 +950,69 @@ namespace Laminatsia
                     dataGridViewManagers.ReadOnly = true;
             }
         }
-        #endregion    
 
         #endregion
 
+        #endregion
 
+        private void DataGridViewLaminatsia_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (((DataGridView)sender).CurrentCell.ColumnIndex == 9)
+            {
+                ComboBox comboBox = e.Control as ComboBox;
+                if (comboBox != null)
+                {
+                    comboBox.SelectedIndexChanged -= LastColumnLamComboSelectionChanged;
+                    comboBox.SelectedIndexChanged += LastColumnLamComboSelectionChanged;
+                }
+            }
+        }
+        private void DataGridViewLaminatsia_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewLaminatsia.CurrentCell.ColumnIndex == 9)
+            {
+                dataGridViewLaminatsia.EditingControlShowing -= DataGridViewLaminatsia_EditingControlShowing;
+                dataGridViewLaminatsia.EditingControlShowing += DataGridViewLaminatsia_EditingControlShowing;
+            }
+            else
+            {
+            }
+        }
+        private void LastColumnLamComboSelectionChanged(object sender, EventArgs e)
+        {
+            var currentcell = dataGridViewLaminatsia.CurrentCellAddress;
+            int id = (int)dataGridViewLaminatsia.Rows[currentcell.Y].Cells[0].Value;
+            var sendingCB = sender as DataGridViewComboBoxEditingControl;
+            bool editStatusProfile = false;
+            if (sendingCB.EditingControlFormattedValue.ToString() == "ГОТОВИЙ")
+            {
+                editStatusProfile = true;
+            }
+            string messageToRemove = "Дійсно змінити інформацію про статус профіля?";
+            string caption = "Змінити інформацію в базі данних!";
+            DialogResult result = MessageBox.Show(messageToRemove, caption,
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                if (colourGoodsDTO.UpdateStatusProfile(id, editStatusProfile))
+                {
+                    MessageBox.Show("Зміни збережені до бази даних!");
+                }
+                else
+                {
+                    MessageBox.Show("Зміни не збережено до бази даних!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ви відмінили редагування!");
+            }
+            dataGridViewLaminatsia.ReadOnly = true;
+            this.CleareAllComponentLaminatsiaTab();
+            this.FillGridViewLaminatsiaTab(null);
+        }
     }
 }
 

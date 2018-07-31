@@ -59,5 +59,15 @@ namespace Laminatsia.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ezgif_1_34d8aca47f {
+            get {
+                object obj = ResourceManager.GetObject("ezgif-1-34d8aca47f", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

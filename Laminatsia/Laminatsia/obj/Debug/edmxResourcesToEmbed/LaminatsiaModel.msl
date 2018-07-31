@@ -53,5 +53,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Archive">
+      <EntityTypeMapping TypeName="LaminatsiaModel.Archive">
+        <MappingFragment StoreEntitySet="Archive">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DateComming" ColumnName="DateComming" />
+          <ScalarProperty Name="Profile" ColumnName="Profile" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Dealer" ColumnName="Dealer" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Counts" ColumnName="Counts" />
+          <ScalarProperty Name="Colour" ColumnName="Colour" />
+          <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
+          <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
+          <ScalarProperty Name="DateReady" ColumnName="DateReady" />
+          <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="DataTimeChange" ColumnName="DataTimeChange" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
