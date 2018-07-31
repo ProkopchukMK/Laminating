@@ -30,3 +30,4 @@ D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csproj.CopyComp
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\EntityFramework.dll
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\EntityFramework.xml
 D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Authorization.resources
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Authorization.resources

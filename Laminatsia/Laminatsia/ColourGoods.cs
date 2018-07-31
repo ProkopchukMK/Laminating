@@ -15,7 +15,7 @@ namespace Laminatsia
     public partial class ColourGoods
     {
         public int ID { get; set; }
-        public System.DateTime DateComming { get; set; }
+        public System.DateTime DateComing { get; set; }
         public int Profile_ID { get; set; }
         public int Dealer_ID { get; set; }
         public string Notes { get; set; }

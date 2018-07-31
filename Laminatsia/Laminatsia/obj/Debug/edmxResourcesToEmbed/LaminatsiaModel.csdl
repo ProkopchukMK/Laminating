@@ -5,7 +5,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DateComming" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateComing" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Profile_ID" Type="Int32" Nullable="false" />
     <Property Name="Dealer_ID" Type="Int32" Nullable="false" />
     <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -32,8 +32,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DealerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_Dealer" FromRole="Dealer" ToRole="ColourGoods" />
   </EntityType>
   <EntityType Name="Profile">
@@ -49,9 +49,9 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="UserPC" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="Archive">
     <Key>

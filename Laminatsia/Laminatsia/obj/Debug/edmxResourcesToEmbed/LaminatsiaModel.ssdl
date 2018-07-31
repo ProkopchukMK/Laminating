@@ -40,7 +40,7 @@ warning 6002: The table/view 'Laminatsia.dbo.Archive' does not have a primary ke
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DateComming" Type="datetime" Nullable="false" />
+    <Property Name="DateComing" Type="datetime" Nullable="false" />
     <Property Name="Profile_ID" Type="int" Nullable="false" />
     <Property Name="Dealer_ID" Type="int" Nullable="false" />
     <Property Name="Notes" Type="nvarchar" MaxLength="200" />
@@ -63,8 +63,8 @@ warning 6002: The table/view 'Laminatsia.dbo.Archive' does not have a primary ke
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DealerName" Type="nvarchar" MaxLength="50" />
-    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DealerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -78,9 +78,9 @@ warning 6002: The table/view 'Laminatsia.dbo.Archive' does not have a primary ke
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="UserPassword" Type="nchar" MaxLength="100" Nullable="false" />
-    <Property Name="UserPC" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_ColourGoods_ColourProfile">
     <End Role="ColourProfile" Type="Self.ColourProfile" Multiplicity="1" />

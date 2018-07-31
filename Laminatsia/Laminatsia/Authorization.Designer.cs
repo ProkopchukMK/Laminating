@@ -32,10 +32,12 @@
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.labelLogin = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonLogIn = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
             this.groupBoxAuthorization = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxSaveUserInfo = new System.Windows.Forms.CheckBox();
+            this.comboBoxRole = new System.Windows.Forms.ComboBox();
+            this.labelRole = new System.Windows.Forms.Label();
             this.groupBoxAuthorization.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +50,7 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(158, 107);
+            this.textBoxPassword.Location = new System.Drawing.Point(158, 99);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(237, 23);
@@ -57,7 +59,7 @@
             // labelLogin
             // 
             this.labelLogin.AutoSize = true;
-            this.labelLogin.Location = new System.Drawing.Point(33, 56);
+            this.labelLogin.Location = new System.Drawing.Point(36, 56);
             this.labelLogin.Name = "labelLogin";
             this.labelLogin.Size = new System.Drawing.Size(101, 17);
             this.labelLogin.TabIndex = 2;
@@ -66,37 +68,41 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 107);
+            this.label2.Location = new System.Drawing.Point(36, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(112, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Введіть пароль:";
             // 
-            // button1
+            // buttonLogIn
             // 
-            this.button1.Location = new System.Drawing.Point(158, 213);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 33);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Вхід";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonLogIn.Location = new System.Drawing.Point(157, 207);
+            this.buttonLogIn.Name = "buttonLogIn";
+            this.buttonLogIn.Size = new System.Drawing.Size(109, 42);
+            this.buttonLogIn.TabIndex = 4;
+            this.buttonLogIn.Text = "Вхід";
+            this.buttonLogIn.UseVisualStyleBackColor = true;
+            this.buttonLogIn.Click += new System.EventHandler(this.buttonLogIn_Click);
             // 
-            // button3
+            // buttonExit
             // 
-            this.button3.Location = new System.Drawing.Point(260, 213);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(86, 33);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Створити";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonExit.Location = new System.Drawing.Point(272, 207);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(123, 42);
+            this.buttonExit.TabIndex = 6;
+            this.buttonExit.Text = "Вихід";
+            this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // groupBoxAuthorization
             // 
-            this.groupBoxAuthorization.Controls.Add(this.checkBox1);
-            this.groupBoxAuthorization.Controls.Add(this.button3);
+            this.groupBoxAuthorization.Controls.Add(this.labelRole);
+            this.groupBoxAuthorization.Controls.Add(this.comboBoxRole);
+            this.groupBoxAuthorization.Controls.Add(this.checkBoxSaveUserInfo);
+            this.groupBoxAuthorization.Controls.Add(this.buttonExit);
             this.groupBoxAuthorization.Controls.Add(this.textBoxLogin);
             this.groupBoxAuthorization.Controls.Add(this.textBoxPassword);
-            this.groupBoxAuthorization.Controls.Add(this.button1);
+            this.groupBoxAuthorization.Controls.Add(this.buttonLogIn);
             this.groupBoxAuthorization.Controls.Add(this.labelLogin);
             this.groupBoxAuthorization.Controls.Add(this.label2);
             this.groupBoxAuthorization.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -107,15 +113,32 @@
             this.groupBoxAuthorization.TabStop = false;
             this.groupBoxAuthorization.Text = "Введення даних користувача";
             // 
-            // checkBox1
+            // checkBoxSaveUserInfo
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(158, 148);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(237, 21);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Запам\'ятати цього користувача";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxSaveUserInfo.AutoSize = true;
+            this.checkBoxSaveUserInfo.Location = new System.Drawing.Point(158, 175);
+            this.checkBoxSaveUserInfo.Name = "checkBoxSaveUserInfo";
+            this.checkBoxSaveUserInfo.Size = new System.Drawing.Size(237, 21);
+            this.checkBoxSaveUserInfo.TabIndex = 7;
+            this.checkBoxSaveUserInfo.Text = "Запам\'ятати цього користувача";
+            this.checkBoxSaveUserInfo.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxRole
+            // 
+            this.comboBoxRole.FormattingEnabled = true;
+            this.comboBoxRole.Location = new System.Drawing.Point(158, 142);
+            this.comboBoxRole.Name = "comboBoxRole";
+            this.comboBoxRole.Size = new System.Drawing.Size(237, 24);
+            this.comboBoxRole.TabIndex = 8;
+            // 
+            // labelRole
+            // 
+            this.labelRole.AutoSize = true;
+            this.labelRole.Location = new System.Drawing.Point(36, 142);
+            this.labelRole.Name = "labelRole";
+            this.labelRole.Size = new System.Drawing.Size(105, 17);
+            this.labelRole.TabIndex = 9;
+            this.labelRole.Text = "Права доступу";
             // 
             // Authorization
             // 
@@ -137,9 +160,11 @@
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Label labelLogin;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonLogIn;
+        private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.GroupBox groupBoxAuthorization;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxSaveUserInfo;
+        private System.Windows.Forms.ComboBox comboBoxRole;
+        private System.Windows.Forms.Label labelRole;
     }
 }
