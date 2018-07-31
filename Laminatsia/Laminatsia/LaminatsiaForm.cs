@@ -954,11 +954,13 @@ namespace Laminatsia
                     dataGridViewManagers.ReadOnly = true;
             }
         }
-        #endregion    
+        #endregion
 
         #endregion
 
+        #region ЖУРНАЛ ОПЕРАЦІЙ
 
+        #endregion
     }
 }
 
