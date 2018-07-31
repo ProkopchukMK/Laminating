@@ -9,42 +9,60 @@ using System.Windows.Forms;
 using System.Security.Principal;
 using System.Configuration;
 using System.Threading;
+using System.IO;
+
 namespace Laminatsia
 {
     public partial class Authorization : Form
     {
+        private string[] userSaveData = null;
+        private string fileName = @"C:\Users\Prokopchuk\Desktop\UserDate.txt";
         public Authorization()
         {
             InitializeComponent();
             comboBoxRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
+
+            userSaveData = File.ReadAllLines(fileName);
+            if (userSaveData.Length > 0)
+            {
+                textBoxLogin.Text = userSaveData[0];
+                textBoxPassword.Text = userSaveData[1];
+                comboBoxRole.SelectedItem = userSaveData[2];
+                checkBoxSaveUserInfo.Checked = true;
+            }
         }
         private LaminatsiaEntities _entity = new LaminatsiaEntities();
-        private void buttonLogIn_Click(object sender, EventArgs e)
+        private void ButtonLogIn_Click(object sender, EventArgs e)
         {
+            string userName;
+            string userPassword;
+            string role;
+
             if (textBoxLogin.Text.Trim() != "")
             {
                 if (textBoxPassword.Text.Trim() != "")
                 {
                     if (comboBoxRole.SelectedItem != null)
                     {
-                        string userName = textBoxLogin.Text.Trim();
-                        string userPassword = textBoxPassword.Text.Trim();
-                        string role = comboBoxRole.SelectedItem.ToString();
+                        userName = textBoxLogin.Text.Trim();
+                        userPassword = textBoxPassword.Text.Trim();
+                        role = comboBoxRole.SelectedItem.ToString();
+
                         if (_entity.Users.FirstOrDefault(x => x.UserName == userName) != null)
                         {
                             if (_entity.Users.FirstOrDefault(x => x.UserName == userName && x.UserPassword == userPassword) != null)
                             {
                                 if (_entity.Users.FirstOrDefault(x => x.UserName == userName && x.UserPassword == userPassword && x.Role == role) != null)
                                 {
+                                    if (checkBoxSaveUserInfo.Checked)
+                                    {
+                                        //string destPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+                                        File.WriteAllLines(fileName, new string[] { userName, userPassword, role });
+                                    }
                                     this.Hide();
                                     LaminatsiaForm laminatsiaForm = new LaminatsiaForm(userName, role);
                                     laminatsiaForm.Closed += (s, args) => this.Close();
                                     laminatsiaForm.Show();
-                                    
-                                    //laminatsiaForm.Show();
-                                    //this.Hide();                                    
-                                    //Application.Run(new LaminatsiaForm (userName, role));
-                                    //this.Close();                                    
                                 }
                                 else { MessageBox.Show("Не вірні права!"); }
                             }
@@ -63,7 +81,7 @@ namespace Laminatsia
             }
             else { MessageBox.Show("Введіть логін!"); }
         }
-        private void buttonExit_Click(object sender, EventArgs e)
+        private void ButtonExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }

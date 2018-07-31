@@ -99,6 +99,7 @@ namespace Laminatsia
         }
         private void FillGridView(List<ColourGoodsDTO> enterList, DataGridView dataGridView)
         {
+            DateTime today = DateTime.Now.Date;
             if (enterList == null)
             {
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
@@ -111,6 +112,26 @@ namespace Laminatsia
                     dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
                         listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
                          listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
+                    //позначення кольором дат
+                    if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    }
+                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days > 10)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Green;
+                    }
+                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days > 7)
+                    {
+
+                    }else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days > 3)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Indigo;
+                    }
+                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days > 0)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                    }
                 }
             }
             else

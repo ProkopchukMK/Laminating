@@ -35,9 +35,9 @@
             this.buttonLogIn = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.groupBoxAuthorization = new System.Windows.Forms.GroupBox();
-            this.checkBoxSaveUserInfo = new System.Windows.Forms.CheckBox();
-            this.comboBoxRole = new System.Windows.Forms.ComboBox();
             this.labelRole = new System.Windows.Forms.Label();
+            this.comboBoxRole = new System.Windows.Forms.ComboBox();
+            this.checkBoxSaveUserInfo = new System.Windows.Forms.CheckBox();
             this.groupBoxAuthorization.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +62,7 @@
             this.labelLogin.Location = new System.Drawing.Point(36, 56);
             this.labelLogin.Name = "labelLogin";
             this.labelLogin.Size = new System.Drawing.Size(101, 17);
-            this.labelLogin.TabIndex = 2;
+            this.labelLogin.TabIndex = 0;
             this.labelLogin.Text = "Введіть логін :";
             // 
             // label2
@@ -71,7 +71,7 @@
             this.label2.Location = new System.Drawing.Point(36, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(112, 17);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Введіть пароль:";
             // 
             // buttonLogIn
@@ -79,10 +79,10 @@
             this.buttonLogIn.Location = new System.Drawing.Point(157, 207);
             this.buttonLogIn.Name = "buttonLogIn";
             this.buttonLogIn.Size = new System.Drawing.Size(109, 42);
-            this.buttonLogIn.TabIndex = 4;
+            this.buttonLogIn.TabIndex = 5;
             this.buttonLogIn.Text = "Вхід";
             this.buttonLogIn.UseVisualStyleBackColor = true;
-            this.buttonLogIn.Click += new System.EventHandler(this.buttonLogIn_Click);
+            this.buttonLogIn.Click += new System.EventHandler(this.ButtonLogIn_Click);
             // 
             // buttonExit
             // 
@@ -92,7 +92,7 @@
             this.buttonExit.TabIndex = 6;
             this.buttonExit.Text = "Вихід";
             this.buttonExit.UseVisualStyleBackColor = true;
-            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            this.buttonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
             // groupBoxAuthorization
             // 
@@ -109,27 +109,9 @@
             this.groupBoxAuthorization.Location = new System.Drawing.Point(12, 12);
             this.groupBoxAuthorization.Name = "groupBoxAuthorization";
             this.groupBoxAuthorization.Size = new System.Drawing.Size(419, 274);
-            this.groupBoxAuthorization.TabIndex = 7;
+            this.groupBoxAuthorization.TabIndex = 0;
             this.groupBoxAuthorization.TabStop = false;
             this.groupBoxAuthorization.Text = "Введення даних користувача";
-            // 
-            // checkBoxSaveUserInfo
-            // 
-            this.checkBoxSaveUserInfo.AutoSize = true;
-            this.checkBoxSaveUserInfo.Location = new System.Drawing.Point(158, 175);
-            this.checkBoxSaveUserInfo.Name = "checkBoxSaveUserInfo";
-            this.checkBoxSaveUserInfo.Size = new System.Drawing.Size(237, 21);
-            this.checkBoxSaveUserInfo.TabIndex = 7;
-            this.checkBoxSaveUserInfo.Text = "Запам\'ятати цього користувача";
-            this.checkBoxSaveUserInfo.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxRole
-            // 
-            this.comboBoxRole.FormattingEnabled = true;
-            this.comboBoxRole.Location = new System.Drawing.Point(158, 142);
-            this.comboBoxRole.Name = "comboBoxRole";
-            this.comboBoxRole.Size = new System.Drawing.Size(237, 24);
-            this.comboBoxRole.TabIndex = 8;
             // 
             // labelRole
             // 
@@ -137,8 +119,26 @@
             this.labelRole.Location = new System.Drawing.Point(36, 142);
             this.labelRole.Name = "labelRole";
             this.labelRole.Size = new System.Drawing.Size(105, 17);
-            this.labelRole.TabIndex = 9;
+            this.labelRole.TabIndex = 0;
             this.labelRole.Text = "Права доступу";
+            // 
+            // comboBoxRole
+            // 
+            this.comboBoxRole.FormattingEnabled = true;
+            this.comboBoxRole.Location = new System.Drawing.Point(158, 142);
+            this.comboBoxRole.Name = "comboBoxRole";
+            this.comboBoxRole.Size = new System.Drawing.Size(237, 24);
+            this.comboBoxRole.TabIndex = 3;
+            // 
+            // checkBoxSaveUserInfo
+            // 
+            this.checkBoxSaveUserInfo.AutoSize = true;
+            this.checkBoxSaveUserInfo.Location = new System.Drawing.Point(158, 175);
+            this.checkBoxSaveUserInfo.Name = "checkBoxSaveUserInfo";
+            this.checkBoxSaveUserInfo.Size = new System.Drawing.Size(237, 21);
+            this.checkBoxSaveUserInfo.TabIndex = 4;
+            this.checkBoxSaveUserInfo.Text = "Запам\'ятати цього користувача";
+            this.checkBoxSaveUserInfo.UseVisualStyleBackColor = true;
             // 
             // Authorization
             // 
