@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -147,6 +148,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ezgif-1-34d8aca47f.gif" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="LaminatsiaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
@@ -157,7 +161,6 @@
       <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
       <LastGenOutput>LaminatsiaModel.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\ezgif-1-34d8aca47f.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

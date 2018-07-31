@@ -27,7 +27,7 @@ namespace Laminatsia.DTO
         {
             ColourGoods newColourGoods = new ColourGoods
             {
-                DateComming = dateComing.Date,
+                DateComing = dateComing.Date,
                 Profile = _entity.Profile.FirstOrDefault(x => x.NameProfile == profile),
                 Dealer = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealer),
                 Notes = notes,
@@ -44,7 +44,7 @@ namespace Laminatsia.DTO
         public List<ColourGoodsDTO> UdateColourGoods(int id,DateTime dateComing,string profile,string city,string dealer,string notes,byte counts,string colour,DateTime dateToWork,bool statusProfile,DateTime dateReady)
         {
             ColourGoods editColourGoods = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
-            editColourGoods.DateComming = dateComing.Date;
+            editColourGoods.DateComing = dateComing.Date;
             editColourGoods.Profile_ID = _entity.Profile.FirstOrDefault(x => x.NameProfile == profile).ID;
             editColourGoods.Dealer_ID = _entity.Dealer.FirstOrDefault(x => x.City == city && x.DealerName == dealer).ID;
             editColourGoods.Notes = notes;
@@ -99,7 +99,7 @@ namespace Laminatsia.DTO
                 ColourGoodsDTO newcolourGoodsDTO = new ColourGoodsDTO
                 {
                     ID = listColourGoods[i].ID,
-                    DateComing = listColourGoods[i].DateComming.Date,
+                    DateComing = listColourGoods[i].DateComing.Date,
                     Profile = _entity.Profile.FirstOrDefault(x => x.ID == id_profile).NameProfile,
                     City = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).City,
                     Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).DealerName,
@@ -124,7 +124,7 @@ namespace Laminatsia.DTO
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO
                 {
                     ID = selectColourGoods.ID,
-                    DateComing = selectColourGoods.DateComming.Date,
+                    DateComing = selectColourGoods.DateComing.Date,
                     Profile = _entity.Profile.FirstOrDefault(x => x.ID == selectColourGoods.Profile_ID).NameProfile,
                     City = _entity.Dealer.FirstOrDefault(x => x.ID == selectColourGoods.Dealer_ID).City,
                     Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == selectColourGoods.Dealer_ID).DealerName,

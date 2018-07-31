@@ -12,22 +12,22 @@ namespace Laminatsia
     using System;
     using System.Collections.Generic;
     
-    public partial class ColourGoods
+    public partial class Archive
     {
         public int ID { get; set; }
-        public System.DateTime DateComing { get; set; }
-        public int Profile_ID { get; set; }
-        public int Dealer_ID { get; set; }
+        public System.DateTime DateComming { get; set; }
+        public string Profile { get; set; }
+        public string City { get; set; }
+        public string Dealer { get; set; }
         public string Notes { get; set; }
         public byte Counts { get; set; }
-        public int Colour_ID { get; set; }
+        public string Colour { get; set; }
         public System.DateTime DateToWork { get; set; }
         public bool StatusProfile { get; set; }
         public System.DateTime DateReady { get; set; }
-        public bool StatusGoods { get; set; }
-    
-        public virtual ColourProfile ColourProfile { get; set; }
-        public virtual Dealer Dealer { get; set; }
-        public virtual Profile Profile { get; set; }
+        public string StatusGoods { get; set; }
+        public string Action { get; set; }
+        public string UserName { get; set; }
+        public System.DateTime DataTimeChange { get; set; }
     }
 }

@@ -45,7 +45,7 @@ warning 6002: The table/view 'Laminatsia.dbo.Archive' does not have a primary ke
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DateComming" Type="datetime" Nullable="false" />
+          <Property Name="DateComing" Type="datetime" Nullable="false" />
           <Property Name="Profile_ID" Type="int" Nullable="false" />
           <Property Name="Dealer_ID" Type="int" Nullable="false" />
           <Property Name="Notes" Type="nvarchar" MaxLength="200" />
@@ -68,8 +68,8 @@ warning 6002: The table/view 'Laminatsia.dbo.Archive' does not have a primary ke
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DealerName" Type="nvarchar" MaxLength="50" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DealerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Profile">
           <Key>
@@ -83,9 +83,9 @@ warning 6002: The table/view 'Laminatsia.dbo.Archive' does not have a primary ke
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="UserPassword" Type="nchar" MaxLength="100" Nullable="false" />
-          <Property Name="UserPC" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_ColourGoods_ColourProfile">
           <End Role="ColourProfile" Type="Self.ColourProfile" Multiplicity="1" />
@@ -171,7 +171,7 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DateComming" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateComing" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Profile_ID" Type="Int32" Nullable="false" />
           <Property Name="Dealer_ID" Type="Int32" Nullable="false" />
           <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -198,8 +198,8 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DealerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_Dealer" FromRole="Dealer" ToRole="ColourGoods" />
         </EntityType>
         <EntityType Name="Profile">
@@ -215,9 +215,9 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="UserPC" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Archive">
           <Key>
@@ -318,7 +318,7 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
             <EntityTypeMapping TypeName="LaminatsiaModel.ColourGoods">
               <MappingFragment StoreEntitySet="ColourGoods">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DateComming" ColumnName="DateComming" />
+                <ScalarProperty Name="DateComing" ColumnName="DateComing" />
                 <ScalarProperty Name="Profile_ID" ColumnName="Profile_ID" />
                 <ScalarProperty Name="Dealer_ID" ColumnName="Dealer_ID" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
@@ -362,7 +362,7 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserPC" ColumnName="UserPC" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

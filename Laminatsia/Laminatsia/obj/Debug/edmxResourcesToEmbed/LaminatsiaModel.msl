@@ -5,7 +5,7 @@
       <EntityTypeMapping TypeName="LaminatsiaModel.ColourGoods">
         <MappingFragment StoreEntitySet="ColourGoods">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="DateComming" ColumnName="DateComming" />
+          <ScalarProperty Name="DateComing" ColumnName="DateComing" />
           <ScalarProperty Name="Profile_ID" ColumnName="Profile_ID" />
           <ScalarProperty Name="Dealer_ID" ColumnName="Dealer_ID" />
           <ScalarProperty Name="Notes" ColumnName="Notes" />
@@ -49,7 +49,7 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-          <ScalarProperty Name="UserPC" ColumnName="UserPC" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
