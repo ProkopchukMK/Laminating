@@ -15,7 +15,6 @@ namespace Laminatsia
             // Use the short date format.
             this.Style.Format = "d";
         }
-
         public override void InitializeEditingControl(int rowIndex, object
             initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
         {
