@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="536b36ce90b5495d874da060a96b0a63" Name="Diagram1">
+      <Diagram DiagramId="1273adf357d940868a6da0ac7158949d" Name="Diagram1">
         <EntityTypeShape EntityType="LaminatsiaModel.ColourGoods" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.ColourProfile" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.Dealer" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />

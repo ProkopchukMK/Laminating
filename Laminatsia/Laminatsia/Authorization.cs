@@ -10,18 +10,21 @@ using System.Security.Principal;
 using System.Configuration;
 using System.Threading;
 using System.IO;
+using Laminatsia.Properties;
 
 namespace Laminatsia
 {
     public partial class Authorization : Form
     {
         private string[] userSaveData = null;
-        private string fileName = @"C:\Users\Prokopchuk\Desktop\UserDate.txt";
+        //виставити розташування файлу де записуються дані останього збереженого користувача
+        private string fileName = @"C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\Resources\UserData.txt";        
         public Authorization()
         {
             InitializeComponent();
             comboBoxRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
-
+            //якщо такого файлу не було знайдено створюємо пустий текстовий файл
+            using (FileStream fs = File.Open(fileName, FileMode.OpenOrCreate )) { }
             userSaveData = File.ReadAllLines(fileName);
             if (userSaveData.Length > 0)
             {

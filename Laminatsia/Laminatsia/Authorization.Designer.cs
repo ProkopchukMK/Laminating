@@ -46,7 +46,7 @@
             this.textBoxLogin.Location = new System.Drawing.Point(157, 56);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(238, 23);
-            this.textBoxLogin.TabIndex = 0;
+            this.textBoxLogin.TabIndex = 1;
             // 
             // textBoxPassword
             // 
@@ -54,7 +54,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(237, 23);
-            this.textBoxPassword.TabIndex = 1;
+            this.textBoxPassword.TabIndex = 2;
             // 
             // labelLogin
             // 
@@ -79,7 +79,7 @@
             this.buttonLogIn.Location = new System.Drawing.Point(157, 207);
             this.buttonLogIn.Name = "buttonLogIn";
             this.buttonLogIn.Size = new System.Drawing.Size(109, 42);
-            this.buttonLogIn.TabIndex = 5;
+            this.buttonLogIn.TabIndex = 0;
             this.buttonLogIn.Text = "Вхід";
             this.buttonLogIn.UseVisualStyleBackColor = true;
             this.buttonLogIn.Click += new System.EventHandler(this.ButtonLogIn_Click);

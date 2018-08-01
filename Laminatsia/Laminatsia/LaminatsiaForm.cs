@@ -113,24 +113,25 @@ namespace Laminatsia
                         listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
                          listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
                     //позначення кольором дат
+                    //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ
                     if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
                     {
-                        dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
                     }
-                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days > 10)
+                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів
+                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3)
                     {
-                        dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Green;
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                     }
-                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days > 7)
+                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів
+                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7)
                     {
-
-                    }else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days > 3)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Indigo;
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                     }
-                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days > 0)
+                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів
+                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10)
                     {
-                        dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
                     }
                 }
             }
@@ -145,7 +146,27 @@ namespace Laminatsia
                     dataGridView.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
                         enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
                         enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods);
-
+                    //позначення кольором дат
+                    //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ підсвічувати білим
+                    if (enterList[i].StatusProfile && enterList[i].StatusGoods)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    }
+                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів то підсвічувати OrangeRed
+                    else if ((enterList[i].DateToWork.Date - today).Days < 3)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                    }
+                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів то підсвічувати Indigo
+                    else if ((enterList[i].DateToWork.Date - today).Days < 7)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                    }
+                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів то підсвічувати зеленим
+                    else if ((enterList[i].DateToWork.Date - today).Days < 10)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+                    }
                 }
             }
         }
