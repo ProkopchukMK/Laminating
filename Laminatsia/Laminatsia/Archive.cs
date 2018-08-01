@@ -15,7 +15,8 @@ namespace Laminatsia
     public partial class Archive
     {
         public int ID { get; set; }
-        public System.DateTime DateComming { get; set; }
+        public int ID_ColourGoods { get; set; }
+        public System.DateTime DateComing { get; set; }
         public string Profile { get; set; }
         public string City { get; set; }
         public string Dealer { get; set; }

@@ -4,28 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Laminatsia.dbo.Archive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="Archive">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="DateComming" />
-            <PropertyRef Name="Profile" />
-            <PropertyRef Name="City" />
-            <PropertyRef Name="Dealer" />
-            <PropertyRef Name="Counts" />
-            <PropertyRef Name="Colour" />
-            <PropertyRef Name="DateToWork" />
-            <PropertyRef Name="StatusProfile" />
-            <PropertyRef Name="DateReady" />
-            <PropertyRef Name="StatusGoods" />
-            <PropertyRef Name="Action" />
-            <PropertyRef Name="UserName" />
-            <PropertyRef Name="DataTimeChange" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="DateComming" Type="datetime" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ColourGoods" Type="int" Nullable="false" />
+          <Property Name="DateComing" Type="datetime" Nullable="false" />
           <Property Name="Profile" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Dealer" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -124,30 +110,12 @@ warning 6002: The table/view 'Laminatsia.dbo.Archive' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="LaminatsiaModelStoreContainer">
+          <EntitySet Name="Archive" EntityType="Self.Archive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ColourGoods" EntityType="Self.ColourGoods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dealer" EntityType="Self.Dealer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Archive" EntityType="Self.Archive" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[Archive].[ID] AS [ID], 
-[Archive].[DateComming] AS [DateComming], 
-[Archive].[Profile] AS [Profile], 
-[Archive].[City] AS [City], 
-[Archive].[Dealer] AS [Dealer], 
-[Archive].[Notes] AS [Notes], 
-[Archive].[Counts] AS [Counts], 
-[Archive].[Colour] AS [Colour], 
-[Archive].[DateToWork] AS [DateToWork], 
-[Archive].[StatusProfile] AS [StatusProfile], 
-[Archive].[DateReady] AS [DateReady], 
-[Archive].[StatusGoods] AS [StatusGoods], 
-[Archive].[Action] AS [Action], 
-[Archive].[UserName] AS [UserName], 
-[Archive].[DataTimeChange] AS [DataTimeChange]
-FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
             <End Role="ColourProfile" EntitySet="ColourProfile" />
             <End Role="ColourGoods" EntitySet="ColourGoods" />
@@ -161,8 +129,7 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
             <End Role="ColourGoods" EntitySet="ColourGoods" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LaminatsiaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -219,39 +186,6 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
           <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Archive">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="DateComming" />
-            <PropertyRef Name="Profile" />
-            <PropertyRef Name="City" />
-            <PropertyRef Name="Dealer" />
-            <PropertyRef Name="Counts" />
-            <PropertyRef Name="Colour" />
-            <PropertyRef Name="DateToWork" />
-            <PropertyRef Name="StatusProfile" />
-            <PropertyRef Name="DateReady" />
-            <PropertyRef Name="StatusGoods" />
-            <PropertyRef Name="Action" />
-            <PropertyRef Name="UserName" />
-            <PropertyRef Name="DataTimeChange" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="DateComming" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Profile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Dealer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Counts" Type="Byte" Nullable="false" />
-          <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="StatusProfile" Type="Boolean" Nullable="false" />
-          <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="StatusGoods" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DataTimeChange" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <Association Name="FK_ColourGoods_ColourProfile">
           <End Role="ColourProfile" Type="Self.ColourProfile" Multiplicity="1" />
           <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
@@ -294,7 +228,6 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
           <EntitySet Name="Dealer" EntityType="Self.Dealer" />
           <EntitySet Name="Profile" EntityType="Self.Profile" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="Archive" EntityType="Self.Archive" />
           <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
             <End Role="ColourProfile" EntitySet="ColourProfile" />
             <End Role="ColourGoods" EntitySet="ColourGoods" />
@@ -307,7 +240,29 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
             <End Role="Profile" EntitySet="Profile" />
             <End Role="ColourGoods" EntitySet="ColourGoods" />
           </AssociationSet>
+          <EntitySet Name="Archive" EntityType="LaminatsiaModel.Archive" />
         </EntityContainer>
+        <EntityType Name="Archive">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_ColourGoods" Type="Int32" Nullable="false" />
+          <Property Name="DateComing" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Profile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Dealer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Counts" Type="Byte" Nullable="false" />
+          <Property Name="Colour" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusProfile" Type="Boolean" Nullable="false" />
+          <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusGoods" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataTimeChange" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -369,21 +324,22 @@ FROM [dbo].[Archive] AS [Archive]</DefiningQuery>
           <EntitySetMapping Name="Archive">
             <EntityTypeMapping TypeName="LaminatsiaModel.Archive">
               <MappingFragment StoreEntitySet="Archive">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DateComming" ColumnName="DateComming" />
-                <ScalarProperty Name="Profile" ColumnName="Profile" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Dealer" ColumnName="Dealer" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="Counts" ColumnName="Counts" />
-                <ScalarProperty Name="Colour" ColumnName="Colour" />
-                <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
-                <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
-                <ScalarProperty Name="DateReady" ColumnName="DateReady" />
-                <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
-                <ScalarProperty Name="Action" ColumnName="Action" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="DataTimeChange" ColumnName="DataTimeChange" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
+                <ScalarProperty Name="DateReady" ColumnName="DateReady" />
+                <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
+                <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="Counts" ColumnName="Counts" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Dealer" ColumnName="Dealer" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="DateComing" ColumnName="DateComing" />
+                <ScalarProperty Name="ID_ColourGoods" ColumnName="ID_ColourGoods" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

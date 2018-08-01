@@ -56,21 +56,22 @@
     <EntitySetMapping Name="Archive">
       <EntityTypeMapping TypeName="LaminatsiaModel.Archive">
         <MappingFragment StoreEntitySet="Archive">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="DateComming" ColumnName="DateComming" />
-          <ScalarProperty Name="Profile" ColumnName="Profile" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Dealer" ColumnName="Dealer" />
-          <ScalarProperty Name="Notes" ColumnName="Notes" />
-          <ScalarProperty Name="Counts" ColumnName="Counts" />
-          <ScalarProperty Name="Colour" ColumnName="Colour" />
-          <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
-          <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
-          <ScalarProperty Name="DateReady" ColumnName="DateReady" />
-          <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
-          <ScalarProperty Name="Action" ColumnName="Action" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="DataTimeChange" ColumnName="DataTimeChange" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
+          <ScalarProperty Name="DateReady" ColumnName="DateReady" />
+          <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
+          <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
+          <ScalarProperty Name="Colour" ColumnName="Colour" />
+          <ScalarProperty Name="Counts" ColumnName="Counts" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Dealer" ColumnName="Dealer" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Profile" ColumnName="Profile" />
+          <ScalarProperty Name="DateComing" ColumnName="DateComing" />
+          <ScalarProperty Name="ID_ColourGoods" ColumnName="ID_ColourGoods" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

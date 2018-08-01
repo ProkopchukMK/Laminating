@@ -93,6 +93,7 @@
     <Compile Include="Dealer.cs">
       <DependentUpon>LaminatsiaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\ArchiveDTO.cs" />
     <Compile Include="DTO\ColourDTO.cs" />
     <Compile Include="DTO\ColourGoodsDTO.cs" />
     <Compile Include="DTO\DealerDTO.cs" />
