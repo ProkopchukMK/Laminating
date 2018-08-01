@@ -28,25 +28,26 @@ namespace Laminatsia.DTO
 
         public void AddToArchive(
             int id, DateTime dateComing, string profile, string city, string dealer, string notes, byte counts,
-            string colour, DateTime dateToWork, bool statusProfile, DateTime dateReady, string userName, string action)
+            string colour, DateTime dateToWork, bool statusProfile, DateTime dateReady, bool statusGoods, string userName, string action)
         {
-            Archive addToArchive = new Archive
-            {
-                ID_ColourGoods = id,
-                DateComing = dateComing.Date,
-                Profile = profile,
-                City = city,
-                Dealer = dealer,
-                Notes = notes,
-                Counts = counts,
-                Colour = colour,
-                DateToWork = dateToWork.Date,
-                StatusProfile = statusProfile,
-                DateReady = dateReady.Date,
-                UserName = userName,
-                Action = action,
-                DataTimeChange = DateTime.Now
-            };
+            Archive addToArchive = new Archive();
+
+            addToArchive.ID_ColourGoods = id;
+            addToArchive.DateComing = dateComing.Date;
+               addToArchive.Profile = profile;
+            addToArchive.City = city;
+            addToArchive.Dealer = dealer;
+            addToArchive.Notes = notes;
+            addToArchive.Counts = counts;
+            addToArchive.Colour = colour;
+            addToArchive.DateToWork = dateToWork.Date;
+            addToArchive.StatusProfile = statusProfile;
+            addToArchive.DateReady = dateReady.Date;
+            addToArchive.StatusGoods = statusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
+            addToArchive.UserName = userName;
+            addToArchive.Action = action;
+            addToArchive.DataTimeChange = DateTime.Now;
+
             _entity.Archive.Add(addToArchive);
             _entity.SaveChanges();
         }

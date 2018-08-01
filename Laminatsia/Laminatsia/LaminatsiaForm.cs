@@ -37,11 +37,12 @@ namespace Laminatsia
             FillAllComponentManagersTab();
             FillAllComponentAddRemoveTab();
             FillAllComponentLaminatsiaTab();
+            FillGridViewArchive(null, dataGridViewLogs);
         }
         public LaminatsiaForm(string userName, string role)
         {
             InitializeComponent();
-
+            FillGridViewArchive(null, dataGridViewLogs);
             UserName = userName;
             Role = role;
 
