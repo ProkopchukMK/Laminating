@@ -1242,7 +1242,7 @@ namespace Laminatsia
 
         private void buttonAddNewUser_Click(object sender, EventArgs e)
         {
-                        UsersDTO users = new UsersDTO();
+            UsersDTO users = new UsersDTO();
             if (textBoxAddNewUser.Text != "")
             {
                 if (users.GetUserByName(textBoxAddNewUser.Text) == null)
@@ -1252,12 +1252,16 @@ namespace Laminatsia
                         if (comboBoxAddUserRole.SelectedItem != null)
                         {
                             users.AddUser(textBoxAddNewUser.Text, textBoxAddUserPassword.Text, comboBoxAddUserRole.SelectedItem.ToString());
+                            MessageBox.Show("Користувача додано до бази даних!");
+                            textBoxAddNewUser.Text = "";
+                            textBoxAddUserPassword.Text = "";
+                            comboBoxAddUserRole.SelectedIndex = -1;
                         }
                         else { MessageBox.Show("Виберіть тип доступу користувача!"); }
                     }
                     else { MessageBox.Show("Введіть пароль користувача!"); textBoxAddUserPassword.Text = ""; }
                 }
-                else { MessageBox.Show("Користувач з таким іменем вже є!"); textBoxAddUserPassword.Text = ""; }
+                else { MessageBox.Show("Користувач з таким іменем вже є!"); textBoxAddNewUser.Text = ""; }
             }
             else { MessageBox.Show("Введіть ім'я користувача!"); textBoxAddNewUser.Text = ""; }
         }
