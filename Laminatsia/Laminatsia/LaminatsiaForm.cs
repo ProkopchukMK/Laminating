@@ -1103,7 +1103,7 @@ namespace Laminatsia
         {
             ArchiveDTO archiveDTO = new ArchiveDTO();
             List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchive();
-            comboBoxArchiveProfile.Items.AddRange(listArchiveDTO.Select(x=> x.Profile).Distinct().ToArray());
+            comboBoxArchiveProfile.Items.AddRange(listArchiveDTO.Select(x => x.Profile).Distinct().ToArray());
             var cityList = listArchiveDTO.Select(x => x.City).Distinct();
             comboBoxArchiveCity.Items.AddRange(cityList.ToArray());
             comboBoxArchiveDealer.Enabled = false;
@@ -1117,11 +1117,11 @@ namespace Laminatsia
             List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchive();
             comboBoxArchiveDealer.Items.Clear();
             string cityArchive = comboBoxArchiveCity.SelectedItem.ToString();
-            var dealerList = listArchiveDTO.Where(x => x.City == cityArchive).Select(x=> x.Dealer).Distinct().ToArray();
+            var dealerList = listArchiveDTO.Where(x => x.City == cityArchive).Select(x => x.Dealer).Distinct().ToArray();
             if (dealerList.Length > 0)
             {
-            comboBoxArchiveDealer.Enabled = true;
-            comboBoxArchiveDealer.Items.AddRange(dealerList);
+                comboBoxArchiveDealer.Enabled = true;
+                comboBoxArchiveDealer.Items.AddRange(dealerList);
             }
         }
         //очищення всіх компонентів у вкладці архів операцій
@@ -1179,18 +1179,85 @@ namespace Laminatsia
 
         private void buttonSetArchiveFilter_Click(object sender, EventArgs e)
         {
-            List<ArchiveDTO> filteredList = new List<ArchiveDTO>();
+            if (textBoxIDColourGoods.Text != "")
+            {
+                ArchiveDTO archiveDTO = new ArchiveDTO();
+                List<ArchiveDTO> filteredList = archiveDTO.GetListArchive();
+                filteredList = archiveDTO.FilterByIDColourGoods(filteredList, int.Parse(textBoxIDColourGoods.Text));
+                dataGridViewLogs.Rows.Clear();
+                this.FillGridViewArchive(filteredList, dataGridViewLogs);
+            }
+            else
+            {
+                List<ArchiveDTO> filteredList = new List<ArchiveDTO>();
+                ArchiveDTO archiveDTO = new ArchiveDTO();
+                filteredList = archiveDTO.FilterArchive(comboBoxArchiveProfile.SelectedItem, comboBoxArchiveCity.SelectedItem, comboBoxArchiveDealer.SelectedItem, comboBoxArchiveColour.SelectedItem, comboBoxArchiveUser.SelectedItem);
+                dataGridViewLogs.Rows.Clear();
+                this.FillGridViewArchive(filteredList, dataGridViewLogs);
+            }
+            textBoxIDColourGoods.Text = "";
 
-            ArchiveDTO archiveDTO = new ArchiveDTO();
-            filteredList = archiveDTO.FilterArchive(comboBoxArchiveProfile.SelectedItem, comboBoxArchiveCity.SelectedItem, comboBoxArchiveDealer.SelectedItem, comboBoxArchiveColour.SelectedItem, comboBoxArchiveUser.SelectedItem);
-            dataGridViewLogs.Rows.Clear();
-            this.FillGridViewArchive(filteredList, dataGridViewLogs);
         }
 
         private void buttonResetArchiveFilter_Click(object sender, EventArgs e)
         {
+            comboBoxArchiveProfile.Enabled = true;
+            comboBoxArchiveCity.Enabled = true;
+            comboBoxArchiveDealer.Enabled = false;
+            comboBoxArchiveColour.Enabled = true;
+            comboBoxArchiveUser.Enabled = true;
             this.CleareAllComponentArchiveTab();
             this.FillAllComponentArciveTab();
+        }
+
+        private void textBoxIDColourGoods_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+        private void textBoxIDColourGoods_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxIDColourGoods.Text != "")
+            {
+                comboBoxArchiveProfile.Enabled = false;
+                comboBoxArchiveCity.Enabled = false;
+                comboBoxArchiveDealer.Enabled = false;
+                comboBoxArchiveColour.Enabled = false;
+                comboBoxArchiveUser.Enabled = false;
+            }
+            else
+            {
+                comboBoxArchiveProfile.Enabled = true;
+                comboBoxArchiveCity.Enabled = true;
+                comboBoxArchiveDealer.Enabled = false;
+                comboBoxArchiveColour.Enabled = true;
+                comboBoxArchiveUser.Enabled = true;
+            }
+        }
+
+        private void buttonAddNewUser_Click(object sender, EventArgs e)
+        {
+                        UsersDTO users = new UsersDTO();
+            if (textBoxAddNewUser.Text != "")
+            {
+                if (users.GetUserByName(textBoxAddNewUser.Text) == null)
+                {
+                    if (textBoxAddUserPassword.Text != "")
+                    {
+                        if (comboBoxAddUserRole.SelectedItem != null)
+                        {
+                            users.AddUser(textBoxAddNewUser.Text, textBoxAddUserPassword.Text, comboBoxAddUserRole.SelectedItem.ToString());
+                        }
+                        else { MessageBox.Show("Виберіть тип доступу користувача!"); }
+                    }
+                    else { MessageBox.Show("Введіть пароль користувача!"); textBoxAddUserPassword.Text = ""; }
+                }
+                else { MessageBox.Show("Користувач з таким іменем вже є!"); textBoxAddUserPassword.Text = ""; }
+            }
+            else { MessageBox.Show("Введіть ім'я користувача!"); textBoxAddNewUser.Text = ""; }
         }
     }
 }

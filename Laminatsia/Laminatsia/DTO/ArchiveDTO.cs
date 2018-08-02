@@ -104,6 +104,10 @@ namespace Laminatsia.DTO
             }
             return filterList;
         }
+        public List<ArchiveDTO> FilterByIDColourGoods(List<ArchiveDTO> enterList, int id)
+        {
+            return enterList.Where(x => x.ID_ColourGoods == id).ToList();
+        }
         public List<ArchiveDTO> FilterByProfile(List<ArchiveDTO> enterList, string profile)
         {
             return enterList.Where(x => x.Profile == profile).ToList();
