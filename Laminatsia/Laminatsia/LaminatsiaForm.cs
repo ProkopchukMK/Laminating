@@ -1186,6 +1186,12 @@ namespace Laminatsia
             dataGridViewLogs.Rows.Clear();
             this.FillGridViewArchive(filteredList, dataGridViewLogs);
         }
+
+        private void buttonResetArchiveFilter_Click(object sender, EventArgs e)
+        {
+            this.CleareAllComponentArchiveTab();
+            this.FillAllComponentArciveTab();
+        }
     }
 }
 

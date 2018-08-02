@@ -208,6 +208,7 @@
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonResetArchiveFilter = new System.Windows.Forms.Button();
             this.MenuTabControl.SuspendLayout();
             this.Laminaters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLaminatsia)).BeginInit();
@@ -1426,6 +1427,7 @@
             // 
             // tabPageLogs
             // 
+            this.tabPageLogs.Controls.Add(this.buttonResetArchiveFilter);
             this.tabPageLogs.Controls.Add(this.labelArchiveUser);
             this.tabPageLogs.Controls.Add(this.labelColour);
             this.tabPageLogs.Controls.Add(this.labelArchiveDealer);
@@ -1612,10 +1614,10 @@
             // ColumnArchiveID
             // 
             this.ColumnArchiveID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnArchiveID.HeaderText = "ID";
+            this.ColumnArchiveID.HeaderText = "ID Замовлення";
             this.ColumnArchiveID.Name = "ColumnArchiveID";
             this.ColumnArchiveID.ReadOnly = true;
-            this.ColumnArchiveID.Width = 46;
+            this.ColumnArchiveID.Width = 120;
             // 
             // ColumnArchiveDateComing
             // 
@@ -1662,11 +1664,11 @@
             // 
             // ColumnArchiveCounts
             // 
-            this.ColumnArchiveCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.ColumnArchiveCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ColumnArchiveCounts.HeaderText = "Кількість";
             this.ColumnArchiveCounts.Name = "ColumnArchiveCounts";
             this.ColumnArchiveCounts.ReadOnly = true;
-            this.ColumnArchiveCounts.Width = 5;
+            this.ColumnArchiveCounts.Width = 91;
             // 
             // ColumnArchiveColour
             // 
@@ -1927,6 +1929,16 @@
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             this.dataGridViewTextBoxColumn19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
+            // buttonResetArchiveFilter
+            // 
+            this.buttonResetArchiveFilter.Location = new System.Drawing.Point(929, 10);
+            this.buttonResetArchiveFilter.Name = "buttonResetArchiveFilter";
+            this.buttonResetArchiveFilter.Size = new System.Drawing.Size(107, 31);
+            this.buttonResetArchiveFilter.TabIndex = 15;
+            this.buttonResetArchiveFilter.Text = "Скинути Фільтри";
+            this.buttonResetArchiveFilter.UseVisualStyleBackColor = true;
+            this.buttonResetArchiveFilter.Click += new System.EventHandler(this.buttonResetArchiveFilter_Click);
+            // 
             // LaminatsiaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2121,5 +2133,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateOperation;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveOperatsia;
+        private System.Windows.Forms.Button buttonResetArchiveFilter;
     }
 }
