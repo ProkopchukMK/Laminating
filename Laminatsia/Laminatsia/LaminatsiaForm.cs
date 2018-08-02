@@ -46,17 +46,17 @@ namespace Laminatsia
             UserName = userName;
             Role = role;
 
-            if(role == "Ламінація")
+            if (role == "Ламінація")
             {
                 MenuTabControl.TabIndex = 0;
                 //MenuTabControl.TabPages[0].Hide();
                 MenuTabControl.TabPages[1].Hide();
-               // MenuTabControl.TabPages[2].Hide();
-               // MenuTabControl.TabPages[3].Hide();
-            FillAllComponentAddRemoveTab();
-            FillAllComponentLaminatsiaTab();
+                // MenuTabControl.TabPages[2].Hide();
+                // MenuTabControl.TabPages[3].Hide();
+                FillAllComponentAddRemoveTab();
+                FillAllComponentLaminatsiaTab();
             }
-            else if(role == "Технологи")
+            else if (role == "Технологи")
             {
                 MenuTabControl.TabIndex = 1;
                 MenuTabControl.TabPages[0].Hide();
@@ -75,7 +75,7 @@ namespace Laminatsia
                 //MenuTabControl.TabPages[3].Hide();
                 FillAllComponentManagersTab();
             }
-            
+
         }
         private void MenuTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -707,7 +707,8 @@ namespace Laminatsia
         {
             if (((DataGridView)sender).CurrentCell.ColumnIndex == 9)
             {
-                if (e.Control is ComboBox comboBox)
+                ComboBox comboBox = e.Control as ComboBox;
+                if (e.Control is ComboBox)
                 {
                     comboBox.SelectedIndexChanged -= LastColumnLamComboSelectionChanged;
                     comboBox.SelectedIndexChanged += LastColumnLamComboSelectionChanged;
@@ -1100,7 +1101,8 @@ namespace Laminatsia
         #region Архів
         private void FillGridViewArchive(List<ArchiveDTO> enterList, DataGridView dataGridView)
         {
-            //DateTime today = DateTime.Now.Date;
+            DateTime today = DateTime.Now;
+            labelDateTimeUpdate.Text = today.ToString();
             if (enterList == null)
             {
                 ArchiveDTO colourGoodsDTO = new ArchiveDTO();
@@ -1113,27 +1115,6 @@ namespace Laminatsia
                     dataGridView.Rows.Add(listColourGoodsDTO[i].ID_ColourGoods, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
                         listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
                          listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods, listColourGoodsDTO[i].UserName, listColourGoodsDTO[i].DateOperatsia, listColourGoodsDTO[i].Action);
-                    ////позначення кольором дат
-                    ////якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ
-                    //if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
-                    //{
-                    //    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                    //}
-                    ////від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів
-                    //else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3)
-                    //{
-                    //    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                    //}
-                    ////від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів
-                    //else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7)
-                    //{
-                    //    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                    //}
-                    ////від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів
-                    //else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10)
-                    //{
-                    //    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
-                    //}
                 }
             }
             else
@@ -1147,32 +1128,18 @@ namespace Laminatsia
                     dataGridView.Rows.Add(enterList[i].ID_ColourGoods, enterList[i].DateComing.Date, enterList[i].Profile,
                         enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
                          enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods, enterList[i].UserName, enterList[i].DateOperatsia, enterList[i].Action);
-                    ////позначення кольором дат
-                    ////якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ підсвічувати білим
-                    //if (enterList[i].StatusProfile && enterList[i].StatusGoods)
-                    //{
-                    //    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                    //}
-                    ////від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів то підсвічувати OrangeRed
-                    //else if ((enterList[i].DateToWork.Date - today).Days < 3)
-                    //{
-                    //    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                    //}
-                    ////від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів то підсвічувати Indigo
-                    //else if ((enterList[i].DateToWork.Date - today).Days < 7)
-                    //{
-                    //    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                    //}
-                    ////від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів то підсвічувати зеленим
-                    //else if ((enterList[i].DateToWork.Date - today).Days < 10)
-                    //{
-                    //    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
-                    //}
                 }
             }
         }
         #endregion
 
+        private void buttonUpdateGridViewArchive_Click(object sender, EventArgs e)
+        {
+            ArchiveDTO colourGoodsDTO = new ArchiveDTO();
+            dataGridViewLogs.Rows.Clear();
+            List<ArchiveDTO> listColourGoodsDTO = colourGoodsDTO.GetListArchive().OrderByDescending(x => x.DateOperatsia).ToList();
+            FillGridViewArchive(listColourGoodsDTO, dataGridViewLogs);
+        }
     }
 }
 
