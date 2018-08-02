@@ -1127,17 +1127,13 @@ namespace Laminatsia
         //очищення всіх компонентів у вкладці архів операцій
         private void CleareAllComponentArchiveTab()
         {
-            //dateTimePickerDateComing.Value = DateTime.Now;
-            //ComboBoxProfile.Items.Clear();
-            //ComboBoxCity.Items.Clear();
-            //ComboBoxDealer.Items.Clear();
-            //richTextBoxNotes.Text = "";
-            //textBoxCounts.Text = "";
-            //comboBoxColour.Items.Clear();
-            //dateTimePickerDateToWork.Value = DateTime.Now;
-            //comboBoxStatusProfile.Items.Clear();
-            //dateTimePickerDateReady.Value = DateTime.Now;
-            //dataGridViewLaminatsia.Rows.Clear();
+            comboBoxArchiveProfile.Items.Clear();
+            comboBoxArchiveCity.Items.Clear();
+            comboBoxArchiveDealer.Items.Clear();
+            comboBoxArchiveDealer.Enabled = false;
+            comboBoxArchiveColour.Items.Clear();
+            comboBoxArchiveUser.Items.Clear();
+            dataGridViewLogs.Rows.Clear();
         }
         private void FillGridViewArchive(List<ArchiveDTO> enterList, DataGridView dataGridView)
         {
@@ -1181,6 +1177,15 @@ namespace Laminatsia
             FillGridViewArchive(listColourGoodsDTO, dataGridViewLogs);
         }
 
+        private void buttonSetArchiveFilter_Click(object sender, EventArgs e)
+        {
+            List<ArchiveDTO> filteredList = new List<ArchiveDTO>();
+
+            ArchiveDTO archiveDTO = new ArchiveDTO();
+            filteredList = archiveDTO.FilterArchive(comboBoxArchiveProfile.SelectedItem, comboBoxArchiveCity.SelectedItem, comboBoxArchiveDealer.SelectedItem, comboBoxArchiveColour.SelectedItem, comboBoxArchiveUser.SelectedItem);
+            dataGridViewLogs.Rows.Clear();
+            this.FillGridViewArchive(filteredList, dataGridViewLogs);
+        }
     }
 }
 

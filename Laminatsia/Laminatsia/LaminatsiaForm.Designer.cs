@@ -1529,6 +1529,7 @@
             this.buttonSetArchiveFilter.TabIndex = 6;
             this.buttonSetArchiveFilter.Text = "Застосувати";
             this.buttonSetArchiveFilter.UseVisualStyleBackColor = true;
+            this.buttonSetArchiveFilter.Click += new System.EventHandler(this.buttonSetArchiveFilter_Click);
             // 
             // comboBoxArchiveUser
             // 

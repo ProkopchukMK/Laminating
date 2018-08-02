@@ -79,5 +79,50 @@ namespace Laminatsia.DTO
             }
             return listColourGoodsDTO.OrderByDescending(x => x.DateOperatsia).ToList();
         }
+        public List<ArchiveDTO> FilterArchive(object profile, object city, object dealer, object colour, object userName)
+        {
+            var filterList = this.GetListArchive();
+            if(profile != null)
+            {
+                filterList = this.FilterByProfile(filterList, profile.ToString());
+            }
+            if (city != null)
+            {
+                filterList = this.FilterByCity(filterList, city.ToString());
+            }
+            if (dealer != null)
+            {
+                filterList = this.FilterByDealer(filterList, dealer.ToString());
+            }
+            if (colour != null)
+            {
+                filterList = this.FilterByColour(filterList, colour.ToString());
+            }
+            if (userName != null)
+            {
+                filterList = this.FilterByUser(filterList, userName.ToString());
+            }
+            return filterList;
+        }
+        public List<ArchiveDTO> FilterByProfile(List<ArchiveDTO> enterList, string profile)
+        {
+            return enterList.Where(x => x.Profile == profile).ToList();
+        }
+        public List<ArchiveDTO> FilterByCity(List<ArchiveDTO> enterList, string city)
+        {
+            return enterList.Where(x => x.City == city).ToList();
+        }
+        public List<ArchiveDTO> FilterByDealer(List<ArchiveDTO> enterList, string dealer)
+        {
+            return enterList.Where(x => x.Dealer == dealer).ToList();
+        }
+        public List<ArchiveDTO> FilterByColour(List<ArchiveDTO> enterList, string colour)
+        {
+            return enterList.Where(x => x.Colour == colour).ToList();
+        }
+        public List<ArchiveDTO> FilterByUser(List<ArchiveDTO> enterList, string userName)
+        {
+            return enterList.Where(x => x.UserName == userName).ToList();
+        }
     }
 }
