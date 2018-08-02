@@ -38,11 +38,13 @@ namespace Laminatsia
             FillAllComponentAddRemoveTab();
             FillAllComponentLaminatsiaTab();
             FillAllComponentArciveTab();
+            comboBoxAddUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
         }
         public LaminatsiaForm(string userName, string role)
         {
             InitializeComponent();
             FillAllComponentArciveTab();
+            comboBoxAddUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
             UserName = userName;
             Role = role;
 

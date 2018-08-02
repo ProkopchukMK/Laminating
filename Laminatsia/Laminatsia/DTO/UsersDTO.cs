@@ -16,8 +16,8 @@ namespace Laminatsia.DTO
         {
             Users user = new Users();
             user.UserName = name;
-            UserPassword = password;
-            UserRole = role;
+            user.UserPassword = password;
+            user.Role = role;
             _entity.Users.Add(user);
             _entity.SaveChanges();
         }
