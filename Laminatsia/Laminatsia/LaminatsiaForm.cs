@@ -37,12 +37,12 @@ namespace Laminatsia
             FillAllComponentManagersTab();
             FillAllComponentAddRemoveTab();
             FillAllComponentLaminatsiaTab();
-            FillGridViewArchive(null, dataGridViewLogs);
+            FillAllComponentArciveTab();
         }
         public LaminatsiaForm(string userName, string role)
         {
             InitializeComponent();
-            FillGridViewArchive(null, dataGridViewLogs);
+            FillAllComponentArciveTab();
             UserName = userName;
             Role = role;
 
@@ -1099,6 +1099,46 @@ namespace Laminatsia
         #endregion
 
         #region Архів
+        private void FillAllComponentArciveTab()
+        {
+            ArchiveDTO archiveDTO = new ArchiveDTO();
+            List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchive();
+            comboBoxArchiveProfile.Items.AddRange(listArchiveDTO.Select(x=> x.Profile).Distinct().ToArray());
+            var cityList = listArchiveDTO.Select(x => x.City).Distinct();
+            comboBoxArchiveCity.Items.AddRange(cityList.ToArray());
+            comboBoxArchiveDealer.Enabled = false;
+            comboBoxArchiveColour.Items.AddRange(listArchiveDTO.Select(x => x.Colour).Distinct().ToArray());
+            comboBoxArchiveUser.Items.AddRange(listArchiveDTO.Select(x => x.UserName).Distinct().ToArray());
+            FillGridViewArchive(null, dataGridViewLogs);
+        }
+        private void comboBoxArchiveCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ArchiveDTO archiveDTO = new ArchiveDTO();
+            List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchive();
+            comboBoxArchiveDealer.Items.Clear();
+            string cityArchive = comboBoxArchiveCity.SelectedItem.ToString();
+            var dealerList = listArchiveDTO.Where(x => x.City == cityArchive).Select(x=> x.Dealer).Distinct().ToArray();
+            if (dealerList.Length > 0)
+            {
+            comboBoxArchiveDealer.Enabled = true;
+            comboBoxArchiveDealer.Items.AddRange(dealerList);
+            }
+        }
+        //очищення всіх компонентів у вкладці архів операцій
+        private void CleareAllComponentArchiveTab()
+        {
+            //dateTimePickerDateComing.Value = DateTime.Now;
+            //ComboBoxProfile.Items.Clear();
+            //ComboBoxCity.Items.Clear();
+            //ComboBoxDealer.Items.Clear();
+            //richTextBoxNotes.Text = "";
+            //textBoxCounts.Text = "";
+            //comboBoxColour.Items.Clear();
+            //dateTimePickerDateToWork.Value = DateTime.Now;
+            //comboBoxStatusProfile.Items.Clear();
+            //dateTimePickerDateReady.Value = DateTime.Now;
+            //dataGridViewLaminatsia.Rows.Clear();
+        }
         private void FillGridViewArchive(List<ArchiveDTO> enterList, DataGridView dataGridView)
         {
             DateTime today = DateTime.Now;
@@ -1140,6 +1180,7 @@ namespace Laminatsia
             List<ArchiveDTO> listColourGoodsDTO = colourGoodsDTO.GetListArchive().OrderByDescending(x => x.DateOperatsia).ToList();
             FillGridViewArchive(listColourGoodsDTO, dataGridViewLogs);
         }
+
     }
 }
 
