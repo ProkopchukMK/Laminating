@@ -1132,7 +1132,7 @@ namespace Laminatsia
         private void FillAllComponentArciveTab()
         {
             ArchiveDTO archiveDTO = new ArchiveDTO();
-            List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchiveDisting();
+            List<ArchiveDTO> listArchiveDTO = archiveDTO.GetAllListArchive();
             comboBoxArchiveProfile.Items.AddRange(listArchiveDTO.Select(x => x.Profile).Distinct().ToArray());
             var cityList = listArchiveDTO.Select(x => x.City).Distinct();
             comboBoxArchiveCity.Items.AddRange(cityList.ToArray());
