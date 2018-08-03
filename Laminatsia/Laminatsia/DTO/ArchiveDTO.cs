@@ -55,7 +55,7 @@ namespace Laminatsia.DTO
         {
             List<Archive> listAllArchive = _entity.Archive.Where(x => x.ID != 0).ToList();
             List<ArchiveDTO> listArchiveDTO = new List<ArchiveDTO>(listAllArchive.Count);
-            for (int i = 0; i < listArchiveDTO.Count; i++)
+            for (int i = 0; i < listAllArchive.Count; i++)
             {
                 ArchiveDTO newArchiveDTO = new ArchiveDTO
                 {
@@ -111,9 +111,8 @@ namespace Laminatsia.DTO
             archiveDTO.Action = colourGoods.Action;
             return archiveDTO;
         }
-        public List<ArchiveDTO> FilterArchive(object profile, object city, object dealer, object colour, object userName)
+        public List<ArchiveDTO> FilterArchive(List<ArchiveDTO> filterList, object profile, object city, object dealer, object colour, object userName)
         {
-            var filterList = this.GetAllListArchive();
             if (profile != null)
             {
                 filterList = this.FilterByProfile(filterList, profile.ToString());

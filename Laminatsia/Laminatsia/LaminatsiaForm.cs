@@ -248,6 +248,33 @@ namespace Laminatsia
             this.CleareAllComponentAddRemoveTab();
             this.FillAllComponentAddRemoveTab();
         }
+        //додати ного користувача
+        private void buttonAddNewUser_Click(object sender, EventArgs e)
+        {
+            UsersDTO users = new UsersDTO();
+            if (textBoxAddNewUser.Text != "")
+            {
+                if (users.GetUserByName(textBoxAddNewUser.Text) == null)
+                {
+                    if (textBoxAddUserPassword.Text != "")
+                    {
+                        if (comboBoxAddUserRole.SelectedItem != null)
+                        {
+                            users.AddUser(textBoxAddNewUser.Text, textBoxAddUserPassword.Text, comboBoxAddUserRole.SelectedItem.ToString());
+                            MessageBox.Show("Користувача додано до бази даних!");
+                            textBoxAddNewUser.Text = "";
+                            textBoxAddUserPassword.Text = "";
+                            comboBoxAddUserRole.SelectedIndex = -1;
+                        }
+                        else { MessageBox.Show("Виберіть тип доступу користувача!"); }
+                    }
+                    else { MessageBox.Show("Введіть пароль користувача!"); textBoxAddUserPassword.Text = ""; }
+                }
+                else { MessageBox.Show("Користувач з таким іменем вже є!"); textBoxAddNewUser.Text = ""; }
+            }
+            else { MessageBox.Show("Введіть ім'я користувача!"); textBoxAddNewUser.Text = ""; }
+        }
+        //заповнити всі компоненти вкладки Додати \ Видалити
         private void FillAllComponentAddRemoveTab()
         {
             listProfile = profileDTO.GetListProfile();
@@ -265,6 +292,7 @@ namespace Laminatsia
             comboBoxRemoveProfile.Items.AddRange(arrayProfile);
             comboBoxRemoveColour.Items.AddRange(listColour.ToArray());
         }
+        //очистити всі компоненти вкладки Додати \ Видалити
         private void CleareAllComponentAddRemoveTab()
         {
             //очищення вкладки додати\видалити(додати нове знчення)
@@ -1143,16 +1171,16 @@ namespace Laminatsia
             labelDateTimeUpdate.Text = today.ToString();
             if (enterList == null)
             {
-                ArchiveDTO colourGoodsDTO = new ArchiveDTO();
-                List<ArchiveDTO> listColourGoodsDTO = colourGoodsDTO.GetListArchiveDisting().OrderByDescending(x => x.DateOperatsia).ToList();
-                for (int i = 0; i < listColourGoodsDTO.Count; i++)
+                ArchiveDTO archiveDTO = new ArchiveDTO();
+                List<ArchiveDTO> listarchiveDTO = archiveDTO.GetListArchiveDisting().OrderByDescending(x => x.DateOperatsia).ToList();
+                for (int i = 0; i < listarchiveDTO.Count; i++)
                 {
-                    string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                    string statusGoods = listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
+                    string statusProfile = listarchiveDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
+                    string statusGoods = listarchiveDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
 
-                    dataGridView.Rows.Add(listColourGoodsDTO[i].ID_ColourGoods, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
-                        listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
-                         listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods, listColourGoodsDTO[i].UserName, listColourGoodsDTO[i].DateOperatsia, listColourGoodsDTO[i].Action);
+                    dataGridView.Rows.Add(listarchiveDTO[i].ID_ColourGoods, listarchiveDTO[i].DateComing.Date, listarchiveDTO[i].Profile,
+                        listarchiveDTO[i].City, listarchiveDTO[i].Dealer, listarchiveDTO[i].Notes, listarchiveDTO[i].Counts,
+                         listarchiveDTO[i].Colour, listarchiveDTO[i].DateToWork.Date, statusProfile, listarchiveDTO[i].DateReady.Date, statusGoods, listarchiveDTO[i].UserName, listarchiveDTO[i].DateOperatsia, listarchiveDTO[i].Action);
                 }
             }
             else
@@ -1169,7 +1197,6 @@ namespace Laminatsia
                 }
             }
         }
-        #endregion
 
         private void buttonUpdateGridViewArchive_Click(object sender, EventArgs e)
         {
@@ -1181,24 +1208,41 @@ namespace Laminatsia
 
         private void buttonSetArchiveFilter_Click(object sender, EventArgs e)
         {
-            if (textBoxIDColourGoods.Text != "")
+            if (checkBoxWithOperation.Checked) // з операціями
+            {
+                ArchiveDTO archiveDTO = new ArchiveDTO();
+                List<ArchiveDTO> filteredList = archiveDTO.GetAllListArchive();
+                if (textBoxIDColourGoods.Text != "")
+                {
+                    filteredList = archiveDTO.FilterByIDColourGoods(filteredList, int.Parse(textBoxIDColourGoods.Text));
+                    dataGridViewLogs.Rows.Clear();
+                    this.FillGridViewArchive(filteredList, dataGridViewLogs);
+                }
+                else
+                {
+                    filteredList = archiveDTO.FilterArchive(filteredList, comboBoxArchiveProfile.SelectedItem, comboBoxArchiveCity.SelectedItem, comboBoxArchiveDealer.SelectedItem, comboBoxArchiveColour.SelectedItem, comboBoxArchiveUser.SelectedItem);
+                    dataGridViewLogs.Rows.Clear();
+                    this.FillGridViewArchive(filteredList, dataGridViewLogs);
+                }
+            }
+            else // без операцій
             {
                 ArchiveDTO archiveDTO = new ArchiveDTO();
                 List<ArchiveDTO> filteredList = archiveDTO.GetListArchiveDisting();
-                filteredList = archiveDTO.FilterByIDColourGoods(filteredList, int.Parse(textBoxIDColourGoods.Text));
-                dataGridViewLogs.Rows.Clear();
-                this.FillGridViewArchive(filteredList, dataGridViewLogs);
-            }
-            else
-            {
-                List<ArchiveDTO> filteredList = new List<ArchiveDTO>();
-                ArchiveDTO archiveDTO = new ArchiveDTO();
-                filteredList = archiveDTO.FilterArchive(comboBoxArchiveProfile.SelectedItem, comboBoxArchiveCity.SelectedItem, comboBoxArchiveDealer.SelectedItem, comboBoxArchiveColour.SelectedItem, comboBoxArchiveUser.SelectedItem);
-                dataGridViewLogs.Rows.Clear();
-                this.FillGridViewArchive(filteredList, dataGridViewLogs);
+                if (textBoxIDColourGoods.Text != "")
+                {
+                    filteredList = archiveDTO.FilterByIDColourGoods(filteredList, int.Parse(textBoxIDColourGoods.Text));
+                    dataGridViewLogs.Rows.Clear();
+                    this.FillGridViewArchive(filteredList, dataGridViewLogs);
+                }
+                else
+                {
+                    filteredList = archiveDTO.FilterArchive(filteredList, comboBoxArchiveProfile.SelectedItem, comboBoxArchiveCity.SelectedItem, comboBoxArchiveDealer.SelectedItem, comboBoxArchiveColour.SelectedItem, comboBoxArchiveUser.SelectedItem);
+                    dataGridViewLogs.Rows.Clear();
+                    this.FillGridViewArchive(filteredList, dataGridViewLogs);
+                }
             }
             textBoxIDColourGoods.Text = "";
-
         }
 
         private void buttonResetArchiveFilter_Click(object sender, EventArgs e)
@@ -1208,6 +1252,7 @@ namespace Laminatsia
             comboBoxArchiveDealer.Enabled = false;
             comboBoxArchiveColour.Enabled = true;
             comboBoxArchiveUser.Enabled = true;
+            checkBoxWithOperation.Checked = false;
             this.CleareAllComponentArchiveTab();
             this.FillAllComponentArciveTab();
         }
@@ -1239,32 +1284,7 @@ namespace Laminatsia
                 comboBoxArchiveUser.Enabled = true;
             }
         }
-
-        private void buttonAddNewUser_Click(object sender, EventArgs e)
-        {
-            UsersDTO users = new UsersDTO();
-            if (textBoxAddNewUser.Text != "")
-            {
-                if (users.GetUserByName(textBoxAddNewUser.Text) == null)
-                {
-                    if (textBoxAddUserPassword.Text != "")
-                    {
-                        if (comboBoxAddUserRole.SelectedItem != null)
-                        {
-                            users.AddUser(textBoxAddNewUser.Text, textBoxAddUserPassword.Text, comboBoxAddUserRole.SelectedItem.ToString());
-                            MessageBox.Show("Користувача додано до бази даних!");
-                            textBoxAddNewUser.Text = "";
-                            textBoxAddUserPassword.Text = "";
-                            comboBoxAddUserRole.SelectedIndex = -1;
-                        }
-                        else { MessageBox.Show("Виберіть тип доступу користувача!"); }
-                    }
-                    else { MessageBox.Show("Введіть пароль користувача!"); textBoxAddUserPassword.Text = ""; }
-                }
-                else { MessageBox.Show("Користувач з таким іменем вже є!"); textBoxAddNewUser.Text = ""; }
-            }
-            else { MessageBox.Show("Введіть ім'я користувача!"); textBoxAddNewUser.Text = ""; }
-        }
+        #endregion       
     }
 }
 
