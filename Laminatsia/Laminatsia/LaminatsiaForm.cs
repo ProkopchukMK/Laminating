@@ -1104,7 +1104,7 @@ namespace Laminatsia
         private void FillAllComponentArciveTab()
         {
             ArchiveDTO archiveDTO = new ArchiveDTO();
-            List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchive();
+            List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchiveDisting();
             comboBoxArchiveProfile.Items.AddRange(listArchiveDTO.Select(x => x.Profile).Distinct().ToArray());
             var cityList = listArchiveDTO.Select(x => x.City).Distinct();
             comboBoxArchiveCity.Items.AddRange(cityList.ToArray());
@@ -1116,7 +1116,7 @@ namespace Laminatsia
         private void comboBoxArchiveCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             ArchiveDTO archiveDTO = new ArchiveDTO();
-            List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchive();
+            List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchiveDisting();
             comboBoxArchiveDealer.Items.Clear();
             string cityArchive = comboBoxArchiveCity.SelectedItem.ToString();
             var dealerList = listArchiveDTO.Where(x => x.City == cityArchive).Select(x => x.Dealer).Distinct().ToArray();
@@ -1144,7 +1144,7 @@ namespace Laminatsia
             if (enterList == null)
             {
                 ArchiveDTO colourGoodsDTO = new ArchiveDTO();
-                List<ArchiveDTO> listColourGoodsDTO = colourGoodsDTO.GetListArchive().OrderByDescending(x => x.DateOperatsia).ToList();
+                List<ArchiveDTO> listColourGoodsDTO = colourGoodsDTO.GetListArchiveDisting().OrderByDescending(x => x.DateOperatsia).ToList();
                 for (int i = 0; i < listColourGoodsDTO.Count; i++)
                 {
                     string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
@@ -1175,7 +1175,7 @@ namespace Laminatsia
         {
             ArchiveDTO colourGoodsDTO = new ArchiveDTO();
             dataGridViewLogs.Rows.Clear();
-            List<ArchiveDTO> listColourGoodsDTO = colourGoodsDTO.GetListArchive().OrderByDescending(x => x.DateOperatsia).ToList();
+            List<ArchiveDTO> listColourGoodsDTO = colourGoodsDTO.GetListArchiveDisting().OrderByDescending(x => x.DateOperatsia).ToList();
             FillGridViewArchive(listColourGoodsDTO, dataGridViewLogs);
         }
 
@@ -1184,7 +1184,7 @@ namespace Laminatsia
             if (textBoxIDColourGoods.Text != "")
             {
                 ArchiveDTO archiveDTO = new ArchiveDTO();
-                List<ArchiveDTO> filteredList = archiveDTO.GetListArchive();
+                List<ArchiveDTO> filteredList = archiveDTO.GetListArchiveDisting();
                 filteredList = archiveDTO.FilterByIDColourGoods(filteredList, int.Parse(textBoxIDColourGoods.Text));
                 dataGridViewLogs.Rows.Clear();
                 this.FillGridViewArchive(filteredList, dataGridViewLogs);
