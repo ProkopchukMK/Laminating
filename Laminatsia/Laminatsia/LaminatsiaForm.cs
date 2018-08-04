@@ -31,15 +31,15 @@ namespace Laminatsia
             this.WindowState = FormWindowState.Maximized;
             this.Size = Screen.PrimaryScreen.Bounds.Size;
         }
-        public LaminatsiaForm()
-        {
-            InitializeComponent();
-            FillAllComponentManagersTab();
-            FillAllComponentAddRemoveTab();
-            FillAllComponentLaminatsiaTab();
-            FillAllComponentArciveTab();
-            comboBoxAddUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
-        }
+        //public LaminatsiaForm()
+        //{
+        //    InitializeComponent();
+        //    FillAllComponentManagersTab();
+        //    FillAllComponentAddRemoveTab();
+        //    FillAllComponentLaminatsiaTab();
+        //    FillAllComponentArciveTab();
+        //    comboBoxAddUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
+        //}
         public LaminatsiaForm(string userName, string role)
         {
             InitializeComponent();
@@ -51,33 +51,35 @@ namespace Laminatsia
             if (role == "Ламінація")
             {
                 MenuTabControl.TabIndex = 0;
-                //MenuTabControl.TabPages[0].Hide();
-                MenuTabControl.TabPages[1].Hide();
-                // MenuTabControl.TabPages[2].Hide();
-                // MenuTabControl.TabPages[3].Hide();
+                //MenuTabControl.TabPages.Remove(tabPageLaminaters);
+                MenuTabControl.TabPages.Remove(tabPageManagers);
+                //MenuTabControl.TabPages.Remove(tabPageAddRemove);
+                //MenuTabControl.TabPages.Remove(tabPageLogs);
                 FillAllComponentAddRemoveTab();
                 FillAllComponentLaminatsiaTab();
             }
             else if (role == "Технологи")
             {
                 MenuTabControl.TabIndex = 1;
-                MenuTabControl.TabPages[0].Hide();
-                //MenuTabControl.TabPages[1].Hide();
-                MenuTabControl.TabPages[2].Hide();
-                //MenuTabControl.TabPages[3].Hide();
+                MenuTabControl.TabPages.Remove(tabPageLaminaters);
+                //MenuTabControl.TabPages.Remove(tabPageManagers);
+                MenuTabControl.TabPages.Remove(tabPageAddRemove);
+                //MenuTabControl.TabPages.Remove(tabPageLogs);
                 FillAllComponentManagersTab();
             }
             else if (role == "Менеджери")
             {
-
                 MenuTabControl.TabIndex = 2;
-                MenuTabControl.TabPages[0].Hide();
-                //MenuTabControl.TabPages[1].Hide();
-                MenuTabControl.TabPages[2].Hide();
-                //MenuTabControl.TabPages[3].Hide();
+                MenuTabControl.TabPages.Remove(tabPageLaminaters);
+                //MenuTabControl.TabPages.Remove(tabPageManagers);
+                //MenuTabControl.TabPages.Remove(tabPageAddRemove);
+                MenuTabControl.TabPages.Remove(tabPageLogs);
                 FillAllComponentManagersTab();
             }
-
+            else if (role == "Адміністратори")
+            {
+                groupBoxAddUser.Visible = true;
+            }
         }
         private void MenuTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {

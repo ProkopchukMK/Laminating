@@ -18,8 +18,8 @@ namespace Laminatsia
     {
         private string[] userSaveData = null;
         //виставити розташування файлу де записуються дані останього збереженого користувача
-        private string fileName = @"C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\Resources\UserData.txt";     
-        //private string fileName = @"D:\Ламінація\Laminatsia\Laminatsia\Resources\UserData.txt";
+        //private string fileName = @"C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\Resources\UserData.txt";     
+        private string fileName = @"D:\Ламінація\Laminatsia\Laminatsia\Resources\UserData.txt";
         public Authorization()
         {
             InitializeComponent();
