@@ -155,7 +155,7 @@ namespace Laminatsia
                     string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
                     string statusGoods = enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
                     //видаляемо після трьох днів
-                    if (enterList[i].DateRemove != null && (today - enterList[i].DateRemove).Days > 4)
+                    if (enterList[i].DateRemove != DateTime.MinValue.Date && (today - enterList[i].DateRemove).Days > 4)
                     {
                         ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
                         colourGoodsDTO.RemoveGolourGoods(enterList[i].ID);
