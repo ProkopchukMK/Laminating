@@ -42,7 +42,7 @@ namespace Laminatsia.DTO
             _entity.SaveChanges();
             ArchiveDTO archiveDTO = new ArchiveDTO();
             archiveDTO.AddToArchive(newEntity.ID, dateComing, profile, city, dealer, notes,
-            counts, colour, dateToWork, statusProfile, dateReady, newEntity.StatusGoods, Laminatsia.UserName, "Створили");
+            counts, colour, dateToWork, statusProfile, dateReady, newEntity.StatusGoods, Laminatsia.UserName, "Створено");
             return "Замовлення збережено до бази даних!";
         }
         public List<ColourGoodsDTO> UdateColourGoods(int id, DateTime dateComing, string profile, string city, string dealer, string notes, byte counts, string colour, DateTime dateToWork, bool statusProfile, DateTime dateReady)

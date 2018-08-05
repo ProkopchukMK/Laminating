@@ -1756,13 +1756,13 @@
             this.ColumnArchiveUser,
             this.ColumnArchiveDateOperation,
             this.ColumnArchiveOperatsia});
-            this.dataGridViewLogs.Location = new System.Drawing.Point(20, 230);
+            this.dataGridViewLogs.Location = new System.Drawing.Point(20, 204);
             this.dataGridViewLogs.MultiSelect = false;
             this.dataGridViewLogs.Name = "dataGridViewLogs";
             this.dataGridViewLogs.ReadOnly = true;
             this.dataGridViewLogs.RowHeadersVisible = false;
-            this.dataGridViewLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewLogs.Size = new System.Drawing.Size(1779, 869);
+            this.dataGridViewLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewLogs.Size = new System.Drawing.Size(1779, 765);
             this.dataGridViewLogs.TabIndex = 0;
             // 
             // ColumnArchiveID
