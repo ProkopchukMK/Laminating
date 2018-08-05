@@ -79,11 +79,6 @@
     <Compile Include="Authorization.Designer.cs">
       <DependentUpon>Authorization.cs</DependentUpon>
     </Compile>
-    <Compile Include="CalendarCell.cs" />
-    <Compile Include="CalendarColumn.cs" />
-    <Compile Include="CalendarEditingControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ColourGoods.cs">
       <DependentUpon>LaminatsiaModel.tt</DependentUpon>
     </Compile>
