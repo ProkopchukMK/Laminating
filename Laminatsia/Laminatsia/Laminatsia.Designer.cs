@@ -296,7 +296,7 @@
             this.dataGridViewLaminatsia.ReadOnly = true;
             this.dataGridViewLaminatsia.RowHeadersVisible = false;
             this.dataGridViewLaminatsia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewLaminatsia.Size = new System.Drawing.Size(1786, 749);
+            this.dataGridViewLaminatsia.Size = new System.Drawing.Size(1786, 727);
             this.dataGridViewLaminatsia.TabIndex = 30;
             this.dataGridViewLaminatsia.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewLaminatsia_CellDoubleClick);
             this.dataGridViewLaminatsia.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewLaminatsia_ColumnHeaderMouseClick);
@@ -1017,7 +1017,7 @@
             this.ColumnDateReady,
             this.ColumnStatusGoods});
             this.dataGridViewTehnologes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridViewTehnologes.Location = new System.Drawing.Point(8, 259);
+            this.dataGridViewTehnologes.Location = new System.Drawing.Point(20, 228);
             this.dataGridViewTehnologes.Name = "dataGridViewTehnologes";
             this.dataGridViewTehnologes.ReadOnly = true;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1030,7 +1030,7 @@
             this.dataGridViewTehnologes.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTehnologes.RowHeadersVisible = false;
             this.dataGridViewTehnologes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTehnologes.Size = new System.Drawing.Size(1779, 765);
+            this.dataGridViewTehnologes.Size = new System.Drawing.Size(1779, 741);
             this.dataGridViewTehnologes.TabIndex = 0;
             this.dataGridViewTehnologes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewManagers_CellDoubleClick);
             this.dataGridViewTehnologes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewManagers_ColumnHeaderMouseClick);
