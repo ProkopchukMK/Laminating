@@ -88,6 +88,7 @@
             this.labelProfile = new System.Windows.Forms.Label();
             this.tabPageManagers = new System.Windows.Forms.TabPage();
             this.groupBoxFilterTabManagers = new System.Windows.Forms.GroupBox();
+            this.buttonRemoveColourGoods = new System.Windows.Forms.Button();
             this.labelFilterProfile = new System.Windows.Forms.Label();
             this.textBoxTehnologFindByID = new System.Windows.Forms.TextBox();
             this.dateTimePickerFilterDateComing1 = new System.Windows.Forms.DateTimePicker();
@@ -222,7 +223,6 @@
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonRemoveColourGoods = new System.Windows.Forms.Button();
             this.MenuTabControl.SuspendLayout();
             this.tabPageLaminaters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLaminatsia)).BeginInit();
@@ -453,7 +453,7 @@
             this.groupBoxCreateNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxCreateNewOrder.Location = new System.Drawing.Point(8, 24);
             this.groupBoxCreateNewOrder.Name = "groupBoxCreateNewOrder";
-            this.groupBoxCreateNewOrder.Size = new System.Drawing.Size(1239, 189);
+            this.groupBoxCreateNewOrder.Size = new System.Drawing.Size(1300, 200);
             this.groupBoxCreateNewOrder.TabIndex = 29;
             this.groupBoxCreateNewOrder.TabStop = false;
             this.groupBoxCreateNewOrder.Text = "Створити нове замовлення";
@@ -728,10 +728,21 @@
             this.groupBoxFilterTabManagers.Controls.Add(this.labelFilterEndDateComing);
             this.groupBoxFilterTabManagers.Location = new System.Drawing.Point(20, 15);
             this.groupBoxFilterTabManagers.Name = "groupBoxFilterTabManagers";
-            this.groupBoxFilterTabManagers.Size = new System.Drawing.Size(1256, 207);
+            this.groupBoxFilterTabManagers.Size = new System.Drawing.Size(1300, 200);
             this.groupBoxFilterTabManagers.TabIndex = 34;
             this.groupBoxFilterTabManagers.TabStop = false;
             this.groupBoxFilterTabManagers.Text = "Фільтри";
+            // 
+            // buttonRemoveColourGoods
+            // 
+            this.buttonRemoveColourGoods.Location = new System.Drawing.Point(609, 33);
+            this.buttonRemoveColourGoods.Name = "buttonRemoveColourGoods";
+            this.buttonRemoveColourGoods.Size = new System.Drawing.Size(194, 31);
+            this.buttonRemoveColourGoods.TabIndex = 34;
+            this.buttonRemoveColourGoods.Text = "Видалити замовлення";
+            this.buttonRemoveColourGoods.UseVisualStyleBackColor = true;
+            this.buttonRemoveColourGoods.Visible = false;
+            this.buttonRemoveColourGoods.Click += new System.EventHandler(this.ButtonRemoveColourGoods_Click);
             // 
             // labelFilterProfile
             // 
@@ -844,7 +855,7 @@
             // 
             // buttonResetFilter
             // 
-            this.buttonResetFilter.Location = new System.Drawing.Point(341, 31);
+            this.buttonResetFilter.Location = new System.Drawing.Point(213, 33);
             this.buttonResetFilter.Name = "buttonResetFilter";
             this.buttonResetFilter.Size = new System.Drawing.Size(159, 33);
             this.buttonResetFilter.TabIndex = 28;
@@ -864,7 +875,7 @@
             // 
             // buttonSetFilter
             // 
-            this.buttonSetFilter.Location = new System.Drawing.Point(53, 33);
+            this.buttonSetFilter.Location = new System.Drawing.Point(26, 33);
             this.buttonSetFilter.Name = "buttonSetFilter";
             this.buttonSetFilter.Size = new System.Drawing.Size(159, 31);
             this.buttonSetFilter.TabIndex = 27;
@@ -1560,7 +1571,7 @@
             this.groupBoxArchive.Controls.Add(this.labelArchiveProfile);
             this.groupBoxArchive.Location = new System.Drawing.Point(20, 17);
             this.groupBoxArchive.Name = "groupBoxArchive";
-            this.groupBoxArchive.Size = new System.Drawing.Size(1779, 181);
+            this.groupBoxArchive.Size = new System.Drawing.Size(1779, 200);
             this.groupBoxArchive.TabIndex = 19;
             this.groupBoxArchive.TabStop = false;
             this.groupBoxArchive.Text = "Пошук по архіву";
@@ -1758,13 +1769,13 @@
             this.ColumnArchiveUser,
             this.ColumnArchiveDateOperation,
             this.ColumnArchiveOperatsia});
-            this.dataGridViewLogs.Location = new System.Drawing.Point(20, 204);
+            this.dataGridViewLogs.Location = new System.Drawing.Point(20, 242);
             this.dataGridViewLogs.MultiSelect = false;
             this.dataGridViewLogs.Name = "dataGridViewLogs";
             this.dataGridViewLogs.ReadOnly = true;
             this.dataGridViewLogs.RowHeadersVisible = false;
             this.dataGridViewLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewLogs.Size = new System.Drawing.Size(1779, 765);
+            this.dataGridViewLogs.Size = new System.Drawing.Size(1779, 727);
             this.dataGridViewLogs.TabIndex = 0;
             // 
             // ColumnArchiveID
@@ -2080,17 +2091,6 @@
             this.dataGridViewTextBoxColumn19.HeaderText = "Дата готовності";
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             this.dataGridViewTextBoxColumn19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // buttonRemoveColourGoods
-            // 
-            this.buttonRemoveColourGoods.Location = new System.Drawing.Point(609, 33);
-            this.buttonRemoveColourGoods.Name = "buttonRemoveColourGoods";
-            this.buttonRemoveColourGoods.Size = new System.Drawing.Size(194, 31);
-            this.buttonRemoveColourGoods.TabIndex = 34;
-            this.buttonRemoveColourGoods.Text = "Видалити замовлення";
-            this.buttonRemoveColourGoods.UseVisualStyleBackColor = true;
-            this.buttonRemoveColourGoods.Visible = false;
-            this.buttonRemoveColourGoods.Click += new System.EventHandler(this.ButtonRemoveColourGoods_Click);
             // 
             // Laminatsia
             // 
