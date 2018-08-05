@@ -111,35 +111,40 @@ namespace Laminatsia
                     string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
                     string statusGoods = listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
 
+                    if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date && (listColourGoodsDTO[i].DateRemove - today).Days == 3)
+                    {
+                        colourGoodsDTO.RemoveGolourGoods(listColourGoodsDTO[i].ID);
+                    }
+
                     dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
                         listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
                          listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
                     //позначення кольором дат
-                    //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ
-                    if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
+                    //це замовлення видалено
+                    if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                    }//якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ
+                    else if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
                     {
                         dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
                     }
                     //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів
-                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3)
+                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
                     {
                         dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                     }
                     //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів
-                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7)
+                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
                     {
                         dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                     }
                     //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів
-                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10)
+                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
                     {
                         dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
                     }
-                    //це замовлення видалено
-                    else if ((listColourGoodsDTO[i].DateRemove != null)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Gray;
-                    }
+
                 }
             }
             else
@@ -150,27 +155,37 @@ namespace Laminatsia
                     string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
                     string statusGoods = enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
 
+                    if (enterList[i].DateRemove != null && (enterList[i].DateRemove - today).Days == 3)
+                    {
+                        ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                        colourGoodsDTO.RemoveGolourGoods(enterList[i].ID);
+                    }
+
                     dataGridView.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
                         enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
                         enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods);
-                    //позначення кольором дат
-                    //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ підсвічувати білим
-                    if (enterList[i].StatusProfile && enterList[i].StatusGoods)
+                    //позначення кольором дат                    
+                    //це замовлення видалено
+                    if (enterList[i].DateRemove.Date != DateTime.MinValue.Date)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                    }//якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ підсвічувати білим
+                    else if (enterList[i].StatusProfile && enterList[i].StatusGoods && enterList[i].DateRemove == DateTime.MinValue)
                     {
                         dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
                     }
                     //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів то підсвічувати OrangeRed
-                    else if ((enterList[i].DateToWork.Date - today).Days < 3)
+                    else if ((enterList[i].DateToWork.Date - today).Days < 3 && enterList[i].DateRemove == DateTime.MinValue)
                     {
                         dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                     }
                     //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів то підсвічувати Indigo
-                    else if ((enterList[i].DateToWork.Date - today).Days < 7)
+                    else if ((enterList[i].DateToWork.Date - today).Days < 7 && enterList[i].DateRemove == DateTime.MinValue)
                     {
                         dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                     }
                     //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів то підсвічувати зеленим
-                    else if ((enterList[i].DateToWork.Date - today).Days < 10)
+                    else if ((enterList[i].DateToWork.Date - today).Days < 10 && enterList[i].DateRemove == DateTime.MinValue)
                     {
                         dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
                     }
@@ -668,21 +683,30 @@ namespace Laminatsia
         private void ButtonUpdateRowLaminatsia_Click(object sender, EventArgs e)
         {
             ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-            SaveColourGoods.Text = "Зберегти";
-            SaveColourGoods.Click -= SaveColourGoods_Click;
-            SaveColourGoods.Click += UtdateColourGoods_Click;
             editIDEntity = int.Parse(dataGridViewLaminatsia.CurrentRow.Cells[0].Value.ToString());
-            ColourGoodsDTO editColourGoods = colourGoodsDTO.GetColourGoodsByID(editIDEntity);
-            dateTimePickerDateComing.Value = editColourGoods.DateComing.Date;
-            ComboBoxProfile.SelectedItem = editColourGoods.Profile;
-            ComboBoxCity.SelectedItem = editColourGoods.City;
-            ComboBoxDealer.SelectedItem = editColourGoods.Dealer;
-            richTextBoxNotes.Text = editColourGoods.Notes;
-            textBoxCounts.Text = editColourGoods.Counts.ToString();
-            comboBoxColour.SelectedItem = editColourGoods.Colour;
-            dateTimePickerDateToWork.Value = editColourGoods.DateToWork.Date;
-            comboBoxStatusProfile.SelectedIndex = editColourGoods.StatusProfile == true ? 0 : 1;
-            dateTimePickerDateReady.Value = editColourGoods.DateReady.Date;
+
+            var listRemoveColourGoods = colourGoodsDTO.GetListRemoveColourGoods().FirstOrDefault(x => x.ID == editIDEntity);
+            if (listRemoveColourGoods == null)
+            {
+                SaveColourGoods.Text = "Зберегти";
+                SaveColourGoods.Click -= SaveColourGoods_Click;
+                SaveColourGoods.Click += UtdateColourGoods_Click;
+                ColourGoodsDTO editColourGoods = colourGoodsDTO.GetColourGoodsByID(editIDEntity);
+                dateTimePickerDateComing.Value = editColourGoods.DateComing.Date;
+                ComboBoxProfile.SelectedItem = editColourGoods.Profile;
+                ComboBoxCity.SelectedItem = editColourGoods.City;
+                ComboBoxDealer.SelectedItem = editColourGoods.Dealer;
+                richTextBoxNotes.Text = editColourGoods.Notes;
+                textBoxCounts.Text = editColourGoods.Counts.ToString();
+                comboBoxColour.SelectedItem = editColourGoods.Colour;
+                dateTimePickerDateToWork.Value = editColourGoods.DateToWork.Date;
+                comboBoxStatusProfile.SelectedIndex = editColourGoods.StatusProfile == true ? 0 : 1;
+                dateTimePickerDateReady.Value = editColourGoods.DateReady.Date;
+            }
+            else
+            {
+                MessageBox.Show("Це замовлення вже було видалено!");
+            }
         }
         private void UtdateColourGoods_Click(object sender, EventArgs e)
         {
@@ -740,31 +764,40 @@ namespace Laminatsia
             var currentcell = dataGridViewLaminatsia.CurrentCellAddress;
             if (currentcell.X == 9 && Role == "Ламінація")
             {
-                int id = (int)dataGridViewLaminatsia.Rows[currentcell.Y].Cells[0].Value;
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-                colourGoodsDTO = colourGoodsDTO.GetColourGoodsByID(id);
-                bool editStatusProfile = !colourGoodsDTO.StatusProfile;
-                string messageToRemove = "Дійсно змінити інформацію про статус профілю?";
-                string caption = "Змінити інформацію в базі данних!";
-                DialogResult result = MessageBox.Show(messageToRemove, caption,
-                                     MessageBoxButtons.YesNo,
-                                     MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+                int id = (int)dataGridViewLaminatsia.Rows[currentcell.Y].Cells[0].Value;
+
+                var listRemoveColourGoods = colourGoodsDTO.GetListRemoveColourGoods().FirstOrDefault(x => x.ID == id);
+                if (listRemoveColourGoods == null)
                 {
-                    if (colourGoodsDTO.UpdateStatusProfile(id, editStatusProfile))
+                    colourGoodsDTO = colourGoodsDTO.GetColourGoodsByID(id);
+                    bool editStatusProfile = !colourGoodsDTO.StatusProfile;
+                    string messageToRemove = "Дійсно змінити інформацію про статус профілю?";
+                    string caption = "Змінити інформацію в базі данних!";
+                    DialogResult result = MessageBox.Show(messageToRemove, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
                     {
-                        MessageBox.Show("Зміни збережені до бази даних!");
-                        CleareAllComponentLaminatsiaTab();
-                        FillAllComponentLaminatsiaTab();
+                        if (colourGoodsDTO.UpdateStatusProfile(id, editStatusProfile))
+                        {
+                            MessageBox.Show("Зміни збережені до бази даних!");
+                            CleareAllComponentLaminatsiaTab();
+                            FillAllComponentLaminatsiaTab();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Зміни не збережено до бази даних!");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Зміни не збережено до бази даних!");
+                        MessageBox.Show("Ви відмінили редагування!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Ви відмінили редагування!");
+                    MessageBox.Show("Це замовлення вже було видалено!");
                 }
             }
         }
@@ -781,7 +814,7 @@ namespace Laminatsia
         }
         private void FillAllComponentManagersTab()
         {
-            if(Role == "Ламінація")
+            if (Role == "Ламінація")
             {
                 buttonRemoveColourGoods.Visible = true;
             }
@@ -1061,36 +1094,84 @@ namespace Laminatsia
             var currentcell = dataGridViewTehnologes.CurrentCellAddress;
             if (currentcell.X == 11 && Role == "Технологи")
             {
-                int id = (int)dataGridViewTehnologes.Rows[currentcell.Y].Cells[0].Value;
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-                colourGoodsDTO = colourGoodsDTO.GetColourGoodsByID(id);
-                bool editStatusGoods = !colourGoodsDTO.StatusGoods;
-                string messageToRemove = "Дійсно змінити інформацію про статус виробу(ів)?";
-                string caption = "Змінити інформацію в базі данних!";
-                DialogResult result = MessageBox.Show(messageToRemove, caption,
-                                     MessageBoxButtons.YesNo,
-                                     MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
+                int id = (int)dataGridViewTehnologes.Rows[currentcell.Y].Cells[0].Value;
+                var listRemoveColourGoods = colourGoodsDTO.GetListRemoveColourGoods().FirstOrDefault(x => x.ID == id);
+                if (listRemoveColourGoods == null)
                 {
-                    if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
+                    colourGoodsDTO = colourGoodsDTO.GetColourGoodsByID(id);
+                    bool editStatusGoods = !colourGoodsDTO.StatusGoods;
+                    string messageToRemove = "Дійсно змінити інформацію про статус виробу(ів)?";
+                    string caption = "Змінити інформацію в базі данних!";
+                    DialogResult result = MessageBox.Show(messageToRemove, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
                     {
-                        MessageBox.Show("Зміни збережені до бази даних!");
-                        CleareAllComponentManagersTab();
-                        FillAllComponentManagersTab();
+                        if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
+                        {
+                            MessageBox.Show("Зміни збережені до бази даних!");
+                            CleareAllComponentManagersTab();
+                            FillAllComponentManagersTab();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Зміни не збережено до бази даних!");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Зміни не збережено до бази даних!");
+                        MessageBox.Show("Ви відмінили редагування!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Ви відмінили редагування!");
+                    MessageBox.Show("Це замовлення вже було видалено!");
                 }
             }
         }
         #endregion
+        // видалення замовлення
+        private void ButtonRemoveColourGoods_Click(object sender, EventArgs e)
+        {
 
+            var currentcell = dataGridViewTehnologes.CurrentCellAddress;
+            if (Role == "Ламінація")
+            {
+                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                int id = (int)dataGridViewTehnologes.Rows[currentcell.Y].Cells[0].Value;
+                var listRemoveColourGoods = colourGoodsDTO.GetListRemoveColourGoods().FirstOrDefault(x=> x.ID == id);
+                if (listRemoveColourGoods == null)
+                {
+                    string messageToRemove = "Дійсно ВИДАТИТИ замовлення?";
+                    string caption = "Видалити інформацію з бази данних!";
+                    DialogResult result = MessageBox.Show(messageToRemove, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        if (colourGoodsDTO.UpdateDateRemove(id))
+                        {
+                            MessageBox.Show("Замовлення буде видалено через три дні!");
+                            CleareAllComponentManagersTab();
+                            FillAllComponentManagersTab();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Зміни не збережено до бази даних!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ви відмінили видалення!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Це замовлення вже було видалено!");
+                }
+            }
+        }
         #endregion
 
         #region Архів
@@ -1221,7 +1302,6 @@ namespace Laminatsia
             this.CleareAllComponentArchiveTab();
             this.FillAllComponentArciveTab();
         }
-
         private void TextBoxIDColourGoods_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -1251,37 +1331,6 @@ namespace Laminatsia
         }
         #endregion
 
-        private void ButtonRemoveColourGoods_Click(object sender, EventArgs e)
-        {
-            var currentcell = dataGridViewTehnologes.CurrentCellAddress;
-            if (Role == "Ламінація")
-            {
-                int id = (int)dataGridViewTehnologes.Rows[currentcell.Y].Cells[0].Value;
-                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-                string messageToRemove = "Дійсно ВИДАТИТИ замовлення?";
-                string caption = "Видалити інформацію з бази данних!";
-                DialogResult result = MessageBox.Show(messageToRemove, caption,
-                                     MessageBoxButtons.YesNo,
-                                     MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    if (colourGoodsDTO.RemoveGolourGoods(id))
-                    {
-                        MessageBox.Show("Зміни збережені до бази даних!");
-                        CleareAllComponentManagersTab();
-                        FillAllComponentManagersTab();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Зміни не збережено до бази даних!");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Ви відмінили видалення!");
-                }
-            }
-        }
     }
 }
 

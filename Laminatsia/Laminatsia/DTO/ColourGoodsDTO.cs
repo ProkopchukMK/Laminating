@@ -20,7 +20,7 @@ namespace Laminatsia.DTO
         public bool StatusProfile { get; set; }
         public DateTime DateReady { get; set; }
         public bool StatusGoods { get; set; }
-        public bool DateRemove { get; set; }
+        public DateTime DateRemove { get; set; }
 
         public string AddColourGoods(DateTime dateComing, string profile,
             string city, string dealer, string notes,
@@ -62,7 +62,7 @@ namespace Laminatsia.DTO
             ArchiveDTO archiveDTO = new ArchiveDTO();
             var editEntity = this.GetColourGoodsByID(id);
             archiveDTO.AddToArchive(id, dateComing, profile, city, dealer, notes,
-            counts, colour, dateToWork, statusProfile, dateReady,editEntity.StatusGoods, Laminatsia.UserName, "Змінили");
+            counts, colour, dateToWork, statusProfile, dateReady, editEntity.StatusGoods, Laminatsia.UserName, "Змінили");
             return this.GetListColourGoods();
         }
         public bool UpdateStatusGood(int id, bool editStatusGoods)
@@ -99,7 +99,7 @@ namespace Laminatsia.DTO
                 var editEntity = this.GetColourGoodsByID(id);
                 ArchiveDTO archiveDTO = new ArchiveDTO();
                 archiveDTO.AddToArchive(editEntity.ID, editEntity.DateComing, editEntity.Profile, editEntity.City, editEntity.Dealer, editEntity.Notes,
-                editEntity.Counts, editEntity.Colour, editEntity.DateToWork, editEntity.StatusProfile, editEntity.DateReady,editEntity.StatusGoods, Laminatsia.UserName, "Змінили статус профілю");
+                editEntity.Counts, editEntity.Colour, editEntity.DateToWork, editEntity.StatusProfile, editEntity.DateReady, editEntity.StatusGoods, Laminatsia.UserName, "Змінили статус профілю");
                 return true;
             }
         }
@@ -131,6 +131,38 @@ namespace Laminatsia.DTO
             }
             return listColourGoodsDTO.OrderByDescending(x => x.DateComing).ToList();
         }
+        public List<ColourGoodsDTO> GetListRemoveColourGoods()
+        {
+            List<ColourGoods> listColourGoods = _entity.ColourGoods.Where(x => x.DateRemove != DateTime.MinValue.Date).ToList();
+            List<ColourGoodsDTO> listColourGoodsDTO = new List<ColourGoodsDTO>(listColourGoods.Count);
+            if (listColourGoods.Count > 0)
+            {
+                for (int i = 0; i < listColourGoods.Count; i++)
+                {
+                    int id_profile = listColourGoods[i].Profile_ID;
+                    int id_dealer = listColourGoods[i].Dealer_ID;
+                    int id_colour = listColourGoods[i].Colour_ID;
+                    ColourGoodsDTO newcolourGoodsDTO = new ColourGoodsDTO
+                    {
+                        ID = listColourGoods[i].ID,
+                        DateComing = listColourGoods[i].DateComing.Date,
+                        Profile = _entity.Profile.FirstOrDefault(x => x.ID == id_profile).NameProfile,
+                        City = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).City,
+                        Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).DealerName,
+                        Notes = listColourGoods[i].Notes,
+                        Counts = (byte)listColourGoods[i].Counts,
+                        Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == id_colour).Colour,
+                        DateToWork = listColourGoods[i].DateToWork.Date,
+                        StatusProfile = listColourGoods[i].StatusProfile,
+                        DateReady = listColourGoods[i].DateReady.Date,
+                        StatusGoods = listColourGoods[i].StatusGoods
+                    };
+                    listColourGoodsDTO.Add(newcolourGoodsDTO);
+                }
+                return listColourGoodsDTO;
+            }
+            return listColourGoodsDTO;
+        }
         public ColourGoodsDTO GetColourGoodsByID(int id)
         {
             ColourGoods selectColourGoods = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
@@ -155,10 +187,17 @@ namespace Laminatsia.DTO
                 return colourGoodsDTO;
             }
         }
-        public bool RemoveGolourGoods(int id)
+        public void RemoveGolourGoods(int id)
         {
             var removeColourGoods = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
             _entity.ColourGoods.Remove(removeColourGoods);
+            _entity.SaveChanges();
+        }
+        public bool UpdateDateRemove(int id)
+        {
+            var removeEntity = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
+            removeEntity.Notes = "||| ВИДАЛЕНО: " + DateTime.Now.ToShortDateString() + "|||   " + removeEntity.Notes;
+            removeEntity.DateRemove = DateTime.Now.Date;
             _entity.SaveChanges();
             return true;
         }
