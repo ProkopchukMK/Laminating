@@ -222,6 +222,7 @@
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonRemoveColourGoods = new System.Windows.Forms.Button();
             this.MenuTabControl.SuspendLayout();
             this.tabPageLaminaters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLaminatsia)).BeginInit();
@@ -697,6 +698,7 @@
             // 
             // groupBoxFilterTabManagers
             // 
+            this.groupBoxFilterTabManagers.Controls.Add(this.buttonRemoveColourGoods);
             this.groupBoxFilterTabManagers.Controls.Add(this.labelFilterProfile);
             this.groupBoxFilterTabManagers.Controls.Add(this.textBoxTehnologFindByID);
             this.groupBoxFilterTabManagers.Controls.Add(this.dateTimePickerFilterDateComing1);
@@ -1198,7 +1200,7 @@
             // labelAddUserRole
             // 
             this.labelAddUserRole.AutoSize = true;
-            this.labelAddUserRole.Location = new System.Drawing.Point(76, 210);
+            this.labelAddUserRole.Location = new System.Drawing.Point(47, 210);
             this.labelAddUserRole.Name = "labelAddUserRole";
             this.labelAddUserRole.Size = new System.Drawing.Size(172, 20);
             this.labelAddUserRole.TabIndex = 5;
@@ -1207,7 +1209,7 @@
             // labelAddUserPassword
             // 
             this.labelAddUserPassword.AutoSize = true;
-            this.labelAddUserPassword.Location = new System.Drawing.Point(76, 141);
+            this.labelAddUserPassword.Location = new System.Drawing.Point(47, 141);
             this.labelAddUserPassword.Name = "labelAddUserPassword";
             this.labelAddUserPassword.Size = new System.Drawing.Size(166, 20);
             this.labelAddUserPassword.TabIndex = 4;
@@ -1216,7 +1218,7 @@
             // labelAddUserName
             // 
             this.labelAddUserName.AutoSize = true;
-            this.labelAddUserName.Location = new System.Drawing.Point(76, 76);
+            this.labelAddUserName.Location = new System.Drawing.Point(47, 76);
             this.labelAddUserName.Name = "labelAddUserName";
             this.labelAddUserName.Size = new System.Drawing.Size(148, 20);
             this.labelAddUserName.TabIndex = 3;
@@ -2079,6 +2081,17 @@
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             this.dataGridViewTextBoxColumn19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
+            // buttonRemoveColourGoods
+            // 
+            this.buttonRemoveColourGoods.Location = new System.Drawing.Point(609, 33);
+            this.buttonRemoveColourGoods.Name = "buttonRemoveColourGoods";
+            this.buttonRemoveColourGoods.Size = new System.Drawing.Size(194, 31);
+            this.buttonRemoveColourGoods.TabIndex = 34;
+            this.buttonRemoveColourGoods.Text = "Видалити замовлення";
+            this.buttonRemoveColourGoods.UseVisualStyleBackColor = true;
+            this.buttonRemoveColourGoods.Visible = false;
+            this.buttonRemoveColourGoods.Click += new System.EventHandler(this.ButtonRemoveColourGoods_Click);
+            // 
             // Laminatsia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2291,5 +2304,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateOperation;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveOperatsia;
+        private System.Windows.Forms.Button buttonRemoveColourGoods;
     }
 }

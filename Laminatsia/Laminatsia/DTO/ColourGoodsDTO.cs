@@ -20,6 +20,7 @@ namespace Laminatsia.DTO
         public bool StatusProfile { get; set; }
         public DateTime DateReady { get; set; }
         public bool StatusGoods { get; set; }
+        public bool DateRemove { get; set; }
 
         public string AddColourGoods(DateTime dateComing, string profile,
             string city, string dealer, string notes,
@@ -102,7 +103,6 @@ namespace Laminatsia.DTO
                 return true;
             }
         }
-
         public List<ColourGoodsDTO> GetListColourGoods()
         {
             List<ColourGoods> listColourGoods = _entity.ColourGoods.Where(x => x.ID != 0).ToList();
@@ -154,6 +154,13 @@ namespace Laminatsia.DTO
                 };
                 return colourGoodsDTO;
             }
+        }
+        public bool RemoveGolourGoods(int id)
+        {
+            var removeColourGoods = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
+            _entity.ColourGoods.Remove(removeColourGoods);
+            _entity.SaveChanges();
+            return true;
         }
         #region фільтр датагрідвью
 

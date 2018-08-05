@@ -19,7 +19,7 @@
     <Property Name="StatusGoods" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="DataTimeChange" Type="datetime" Nullable="false" />
+    <Property Name="DataTimeChange" Type="smalldatetime" Nullable="false" />
   </EntityType>
   <EntityType Name="ColourGoods">
     <Key>
@@ -36,6 +36,7 @@
     <Property Name="StatusProfile" Type="bit" Nullable="false" />
     <Property Name="DateReady" Type="datetime" Nullable="false" />
     <Property Name="StatusGoods" Type="bit" Nullable="false" />
+    <Property Name="DateRemove" Type="datetime" />
   </EntityType>
   <EntityType Name="ColourProfile">
     <Key>

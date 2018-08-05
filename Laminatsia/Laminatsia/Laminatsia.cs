@@ -135,6 +135,11 @@ namespace Laminatsia
                     {
                         dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
                     }
+                    //це замовлення видалено
+                    else if ((listColourGoodsDTO[i].DateRemove != null)
+                    {
+                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Gray;
+                    }
                 }
             }
             else
@@ -776,6 +781,11 @@ namespace Laminatsia
         }
         private void FillAllComponentManagersTab()
         {
+            if(Role == "Ламінація")
+            {
+                buttonRemoveColourGoods.Visible = true;
+            }
+
             listProfile = profileDTO.GetListProfile();
             listColour = colourDTO.GetListColour();
             listCity = dealerDTO.GetListCity();
@@ -1241,6 +1251,37 @@ namespace Laminatsia
         }
         #endregion
 
+        private void ButtonRemoveColourGoods_Click(object sender, EventArgs e)
+        {
+            var currentcell = dataGridViewTehnologes.CurrentCellAddress;
+            if (Role == "Ламінація")
+            {
+                int id = (int)dataGridViewTehnologes.Rows[currentcell.Y].Cells[0].Value;
+                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                string messageToRemove = "Дійсно ВИДАТИТИ замовлення?";
+                string caption = "Видалити інформацію з бази данних!";
+                DialogResult result = MessageBox.Show(messageToRemove, caption,
+                                     MessageBoxButtons.YesNo,
+                                     MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    if (colourGoodsDTO.RemoveGolourGoods(id))
+                    {
+                        MessageBox.Show("Зміни збережені до бази даних!");
+                        CleareAllComponentManagersTab();
+                        FillAllComponentManagersTab();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Зміни не збережено до бази даних!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ви відмінили видалення!");
+                }
+            }
+        }
     }
 }
 

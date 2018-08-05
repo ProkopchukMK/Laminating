@@ -25,6 +25,7 @@ namespace Laminatsia
         public bool StatusProfile { get; set; }
         public System.DateTime DateReady { get; set; }
         public bool StatusGoods { get; set; }
+        public Nullable<System.DateTime> DateRemove { get; set; }
     
         public virtual ColourProfile ColourProfile { get; set; }
         public virtual Dealer Dealer { get; set; }

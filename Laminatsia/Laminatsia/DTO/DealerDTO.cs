@@ -40,20 +40,27 @@ namespace Laminatsia.DTO
         }
         public string RemoveDealer(string cityDealer, string dealerName)
         {
-            if (dealerName == null)
+            try
             {
-                Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer);
-                _entity.Dealer.Remove(removeDealer);
-                _entity.SaveChanges();
-                return "Місто видаленно!";
+                if (dealerName == null)
+                {
+                    Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer);
+                    _entity.Dealer.Remove(removeDealer);
+                    _entity.SaveChanges();
+                    return "Місто видаленно!";
+                }
+                else
+                {
+                    Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer && x.DealerName == dealerName);
+                    _entity.Dealer.Remove(removeDealer);
+                    _entity.SaveChanges();
+                    return "Дилера видаленно!";
+                }
             }
-            else
+            catch
             {
-                Dealer removeDealer = _entity.Dealer.FirstOrDefault(x => x.City == cityDealer && x.DealerName == dealerName);
-                _entity.Dealer.Remove(removeDealer);
-                _entity.SaveChanges();
-                return "Дилера видаленно!";
-            }            
+                return "Спочатку потрібно видалити всі замовлення диллера!";
+            }   
            
         }
         public List<string> GetListDealer()

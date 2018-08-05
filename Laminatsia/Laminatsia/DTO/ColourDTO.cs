@@ -25,16 +25,23 @@ namespace Laminatsia.DTO
         }
         public string RemoveColour(string colourName)
         {
-            ColourProfile removeColour = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colourName);
-            if (removeColour != null)
+            try
             {
-                _entity.ColourProfile.Remove(removeColour);
-                _entity.SaveChanges();
-                return "Колір " + colourName + " видалено!";
+                ColourProfile removeColour = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colourName);
+                if (removeColour != null)
+                {
+                    _entity.ColourProfile.Remove(removeColour);
+                    _entity.SaveChanges();
+                    return "Колір " + colourName + " видалено!";
+                }
+                else
+                {
+                    return "Такого кольору в базі немає!";
+                }
             }
-            else
+            catch
             {
-                return "Такого кольору в базі немає!";
+                return "Спочатку потрібно видалити всі замовлення з таким кольором!";
             }
         }
         public List<string> GetListColour()

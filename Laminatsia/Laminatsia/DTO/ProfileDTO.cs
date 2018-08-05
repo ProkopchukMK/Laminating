@@ -25,16 +25,23 @@ namespace Laminatsia.DTO
         }
         public string RemoveProfile(string profileName)
         {
-            Profile removeProfile = _entity.Profile.FirstOrDefault(x => x.NameProfile == profileName);
-            if (removeProfile != null)
+            try
             {
-                _entity.Profile.Remove(removeProfile);
-                _entity.SaveChanges();
-                return "Профіль " + profileName + " видалено!";
+                Profile removeProfile = _entity.Profile.FirstOrDefault(x => x.NameProfile == profileName);
+                if (removeProfile != null)
+                {
+                    _entity.Profile.Remove(removeProfile);
+                    _entity.SaveChanges();
+                    return "Профіль " + profileName + " видалено!";
+                }
+                else
+                {
+                    return "Такого профілю в базі немає!";
+                }
             }
-            else
+            catch
             {
-                return "Такого профілю в базі немає!";
+                return "Спочатку потрібно видалити всі замовлення з цим профілем!";
             }
         }
         public List<string> GetListProfile()
