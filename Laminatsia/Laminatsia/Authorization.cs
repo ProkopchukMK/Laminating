@@ -64,7 +64,7 @@ namespace Laminatsia
                                         File.WriteAllLines(fileName, new string[] { userName, userPassword, role });
                                     }
                                     this.Hide();
-                                    LaminatsiaForm laminatsiaForm = new LaminatsiaForm(userName, role);
+                                    Laminatsia laminatsiaForm = new Laminatsia(userName, role);
                                     laminatsiaForm.Closed += (s, args) => this.Close();
                                     laminatsiaForm.Show();
                                 }

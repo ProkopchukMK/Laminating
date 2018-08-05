@@ -42,7 +42,7 @@ namespace Laminatsia.DTO
             _entity.SaveChanges();
             ArchiveDTO archiveDTO = new ArchiveDTO();
             archiveDTO.AddToArchive(newEntity.ID, dateComing, profile, city, dealer, notes,
-            counts, colour, dateToWork, statusProfile, dateReady, newEntity.StatusGoods, LaminatsiaForm.UserName, "Створили");
+            counts, colour, dateToWork, statusProfile, dateReady, newEntity.StatusGoods, Laminatsia.UserName, "Створили");
             return "Замовлення збережено до бази даних!";
         }
         public List<ColourGoodsDTO> UdateColourGoods(int id, DateTime dateComing, string profile, string city, string dealer, string notes, byte counts, string colour, DateTime dateToWork, bool statusProfile, DateTime dateReady)
@@ -61,7 +61,7 @@ namespace Laminatsia.DTO
             ArchiveDTO archiveDTO = new ArchiveDTO();
             var editEntity = this.GetColourGoodsByID(id);
             archiveDTO.AddToArchive(id, dateComing, profile, city, dealer, notes,
-            counts, colour, dateToWork, statusProfile, dateReady,editEntity.StatusGoods, LaminatsiaForm.UserName, "Змінили");
+            counts, colour, dateToWork, statusProfile, dateReady,editEntity.StatusGoods, Laminatsia.UserName, "Змінили");
             return this.GetListColourGoods();
         }
         public bool UpdateStatusGood(int id, bool editStatusGoods)
@@ -79,7 +79,7 @@ namespace Laminatsia.DTO
                 var editEntity = this.GetColourGoodsByID(id);
                 ArchiveDTO archiveDTO = new ArchiveDTO();
                 archiveDTO.AddToArchive(editEntity.ID, editEntity.DateComing, editEntity.Profile, editEntity.City, editEntity.Dealer, editEntity.Notes,
-                editEntity.Counts, editEntity.Colour, editEntity.DateToWork, editEntity.StatusProfile, editEntity.DateReady, editEntity.StatusGoods, LaminatsiaForm.UserName, "Змінили статус виробу(ів)");
+                editEntity.Counts, editEntity.Colour, editEntity.DateToWork, editEntity.StatusProfile, editEntity.DateReady, editEntity.StatusGoods, Laminatsia.UserName, "Змінили статус виробу(ів)");
                 return true;
             }
         }
@@ -98,7 +98,7 @@ namespace Laminatsia.DTO
                 var editEntity = this.GetColourGoodsByID(id);
                 ArchiveDTO archiveDTO = new ArchiveDTO();
                 archiveDTO.AddToArchive(editEntity.ID, editEntity.DateComing, editEntity.Profile, editEntity.City, editEntity.Dealer, editEntity.Notes,
-                editEntity.Counts, editEntity.Colour, editEntity.DateToWork, editEntity.StatusProfile, editEntity.DateReady,editEntity.StatusGoods, LaminatsiaForm.UserName, "Змінили статус профілю");
+                editEntity.Counts, editEntity.Colour, editEntity.DateToWork, editEntity.StatusProfile, editEntity.DateReady,editEntity.StatusGoods, Laminatsia.UserName, "Змінили статус профілю");
                 return true;
             }
         }

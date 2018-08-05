@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Laminatsia
 {
-    public partial class LaminatsiaForm : Form
+    public partial class Laminatsia : Form
     {
         private DealerDTO dealerDTO = new DealerDTO();
         private ColourDTO colourDTO = new ColourDTO();
@@ -31,7 +31,7 @@ namespace Laminatsia
             this.WindowState = FormWindowState.Maximized;
             this.Size = Screen.PrimaryScreen.Bounds.Size;
         }
-        public LaminatsiaForm(string userName, string role)
+        public Laminatsia(string userName, string role)
         {
             InitializeComponent();
             FillAllComponentArciveTab();
@@ -248,7 +248,7 @@ namespace Laminatsia
             this.FillAllComponentAddRemoveTab();
         }
         //додати ного користувача
-        private void buttonAddNewUser_Click(object sender, EventArgs e)
+        private void ButtonAddNewUser_Click(object sender, EventArgs e)
         {
             UsersDTO users = new UsersDTO();
             if (textBoxAddNewUser.Text != "")
@@ -306,7 +306,7 @@ namespace Laminatsia
             comboBoxRemoveDealer.Items.Clear();
             comboBoxRemoveProfile.Items.Clear();
             comboBoxRemoveColour.Items.Clear();
-            dataGridViewManagers.Rows.Clear();
+            dataGridViewTehnologes.Rows.Clear();
 
         }
         #region Видалення інформації з бази данних
@@ -772,7 +772,7 @@ namespace Laminatsia
         #region Заповнення всіх елементів у вкладці Менеджери Технологи
         private void FillGridViewManagers(List<ColourGoodsDTO> enterList)
         {
-            FillGridView(enterList, dataGridViewManagers);
+            FillGridView(enterList, dataGridViewTehnologes);
         }
         private void FillAllComponentManagersTab()
         {
@@ -801,19 +801,19 @@ namespace Laminatsia
             comboBoxFilterStatusProfile.Items.Clear();
             comboBoxFilterStatusGoods.Items.Clear();
 
-            dataGridViewManagers.Rows.Clear();
+            dataGridViewTehnologes.Rows.Clear();
         }
         #endregion
 
         #region сортування gridviewManagers
         private void DataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewColumn newColumn = dataGridViewManagers.Columns[e.ColumnIndex];
-            DataGridViewColumn oldColumn = dataGridViewManagers.SortedColumn;
+            DataGridViewColumn newColumn = dataGridViewTehnologes.Columns[e.ColumnIndex];
+            DataGridViewColumn oldColumn = dataGridViewTehnologes.SortedColumn;
             ListSortDirection direction;
             if (oldColumn != null)
             {
-                if (oldColumn == newColumn && dataGridViewManagers.SortOrder == SortOrder.Ascending)
+                if (oldColumn == newColumn && dataGridViewTehnologes.SortOrder == SortOrder.Ascending)
                 {
                     direction = ListSortDirection.Descending;
                 }
@@ -827,12 +827,12 @@ namespace Laminatsia
             {
                 direction = ListSortDirection.Ascending;
             }
-            dataGridViewManagers.Sort(newColumn, direction);
+            dataGridViewTehnologes.Sort(newColumn, direction);
             newColumn.HeaderCell.SortGlyphDirection = direction == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
         }
         private void DataGridViewManagers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            foreach (DataGridViewColumn column in dataGridViewManagers.Columns)
+            foreach (DataGridViewColumn column in dataGridViewTehnologes.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
             }
@@ -872,7 +872,7 @@ namespace Laminatsia
                 }
                 else
                 {
-                    dataGridViewManagers.Rows.Clear();
+                    dataGridViewTehnologes.Rows.Clear();
                     FillGridViewManagers(new List<ColourGoodsDTO> { colourGoodsDTO });
                     textBoxTehnologFindByID.Clear();
                 }
@@ -925,7 +925,7 @@ namespace Laminatsia
             checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, // true
             filterStatusGoods);
             filteredList = filteredList.OrderByDescending(x => x.DateComing).ToList();
-            dataGridViewManagers.Rows.Clear();
+            dataGridViewTehnologes.Rows.Clear();
             this.FillGridViewManagers(filteredList);
         }
         //скидаємо(ресетаємо) всі фільтри
@@ -954,7 +954,7 @@ namespace Laminatsia
             comboBoxFilterColour.Items.AddRange(listColour.ToArray());
             comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
             comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
-            this.dataGridViewManagers.Rows.Clear();
+            this.dataGridViewTehnologes.Rows.Clear();
             this.FillGridViewManagers(null);
         }
 
@@ -1046,32 +1046,37 @@ namespace Laminatsia
 
         #region Update для технологів
 
-        private void LastColumnComboSelectionChanged(object sender, EventArgs e)
+        private void DataGridViewManagers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var currentcell = dataGridViewManagers.CurrentCellAddress;
-            int id = (int)dataGridViewManagers.Rows[currentcell.Y].Cells[0].Value;
-            var sendingCB = sender as DataGridViewComboBoxEditingControl;
-            bool editStatusGoods = sendingCB.EditingControlFormattedValue.ToString() == "В РОБОТІ" ? true : false;
-            string messageToRemove = "Дійсно змінити інформацію про статус виробів?";
-            string caption = "Змінити інформацію в базі данних!";
-            DialogResult result = MessageBox.Show(messageToRemove, caption,
-                                 MessageBoxButtons.YesNo,
-                                 MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            var currentcell = dataGridViewTehnologes.CurrentCellAddress;
+            if (currentcell.X == 11 && Role == "Технологи")
             {
+                int id = (int)dataGridViewTehnologes.Rows[currentcell.Y].Cells[0].Value;
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-                if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
+                colourGoodsDTO = colourGoodsDTO.GetColourGoodsByID(id);
+                bool editStatusGoods = !colourGoodsDTO.StatusGoods;
+                string messageToRemove = "Дійсно змінити інформацію про статус виробу(ів)?";
+                string caption = "Змінити інформацію в базі данних!";
+                DialogResult result = MessageBox.Show(messageToRemove, caption,
+                                     MessageBoxButtons.YesNo,
+                                     MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    MessageBox.Show("Зміни збережені до бази даних!");
+                    if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
+                    {
+                        MessageBox.Show("Зміни збережені до бази даних!");
+                        CleareAllComponentManagersTab();
+                        FillAllComponentManagersTab();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Зміни не збережено до бази даних!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Зміни не збережено до бази даних!");
+                    MessageBox.Show("Ви відмінили редагування!");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Ви відмінили редагування!");
             }
         }
         #endregion
@@ -1091,7 +1096,7 @@ namespace Laminatsia
             comboBoxArchiveUser.Items.AddRange(listArchiveDTO.Select(x => x.UserName).Distinct().ToArray());
             FillGridViewArchive(null, dataGridViewLogs);
         }
-        private void comboBoxArchiveCity_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxArchiveCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             ArchiveDTO archiveDTO = new ArchiveDTO();
             List<ArchiveDTO> listArchiveDTO = archiveDTO.GetListArchiveDisting();
@@ -1148,7 +1153,7 @@ namespace Laminatsia
             }
         }
 
-        private void buttonUpdateGridViewArchive_Click(object sender, EventArgs e)
+        private void ButtonUpdateGridViewArchive_Click(object sender, EventArgs e)
         {
             ArchiveDTO colourGoodsDTO = new ArchiveDTO();
             dataGridViewLogs.Rows.Clear();
@@ -1156,7 +1161,7 @@ namespace Laminatsia
             FillGridViewArchive(listColourGoodsDTO, dataGridViewLogs);
         }
 
-        private void buttonSetArchiveFilter_Click(object sender, EventArgs e)
+        private void ButtonSetArchiveFilter_Click(object sender, EventArgs e)
         {
             if (checkBoxWithOperation.Checked) // з операціями
             {
@@ -1195,7 +1200,7 @@ namespace Laminatsia
             textBoxIDColourGoods.Text = "";
         }
 
-        private void buttonResetArchiveFilter_Click(object sender, EventArgs e)
+        private void ButtonResetArchiveFilter_Click(object sender, EventArgs e)
         {
             comboBoxArchiveProfile.Enabled = true;
             comboBoxArchiveCity.Enabled = true;
@@ -1207,7 +1212,7 @@ namespace Laminatsia
             this.FillAllComponentArciveTab();
         }
 
-        private void textBoxIDColourGoods_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBoxIDColourGoods_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
             if (!Char.IsDigit(number) && number != 8)
@@ -1215,7 +1220,7 @@ namespace Laminatsia
                 e.Handled = true;
             }
         }
-        private void textBoxIDColourGoods_TextChanged(object sender, EventArgs e)
+        private void TextBoxIDColourGoods_TextChanged(object sender, EventArgs e)
         {
             if (textBoxIDColourGoods.Text != "")
             {
@@ -1236,7 +1241,6 @@ namespace Laminatsia
         }
         #endregion
 
-        
     }
 }
 

@@ -99,11 +99,11 @@
     <Compile Include="DTO\DealerDTO.cs" />
     <Compile Include="DTO\ProfileDTO.cs" />
     <Compile Include="DTO\UsersDTO.cs" />
-    <Compile Include="LaminatsiaForm.cs">
+    <Compile Include="Laminatsia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LaminatsiaForm.Designer.cs">
-      <DependentUpon>LaminatsiaForm.cs</DependentUpon>
+    <Compile Include="Laminatsia.Designer.cs">
+      <DependentUpon>Laminatsia.cs</DependentUpon>
     </Compile>
     <Compile Include="LaminatsiaModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -131,8 +131,8 @@
     <EmbeddedResource Include="Authorization.resx">
       <DependentUpon>Authorization.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LaminatsiaForm.resx">
-      <DependentUpon>LaminatsiaForm.cs</DependentUpon>
+    <EmbeddedResource Include="Laminatsia.resx">
+      <DependentUpon>Laminatsia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
