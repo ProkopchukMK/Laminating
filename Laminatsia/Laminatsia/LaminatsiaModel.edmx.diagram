@@ -9,11 +9,11 @@
         <EntityTypeShape EntityType="LaminatsiaModel.Dealer" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.Profile" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LaminatsiaModel.Users" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaminatsiaModel.Archive" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="LaminatsiaModel.ColourGoods" Width="1.5" PointX="3" PointY="2.5" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_ColourProfile" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Dealer" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Profile" />
+        <EntityTypeShape EntityType="LaminatsiaModel.Archive" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

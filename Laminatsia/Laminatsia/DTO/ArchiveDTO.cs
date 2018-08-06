@@ -18,9 +18,9 @@ namespace Laminatsia.DTO
         public byte Counts { get; set; }
         public string Colour { get; set; }
         public DateTime DateToWork { get; set; }
-        public bool StatusProfile { get; set; }
+        public string StatusProfile { get; set; }
         public DateTime DateReady { get; set; }
-        public bool StatusGoods { get; set; }
+        public string StatusGoods { get; set; }
 
         public string UserName { get; set; }
         public string Action { get; set; }
@@ -41,7 +41,7 @@ namespace Laminatsia.DTO
             addToArchive.Counts = counts;
             addToArchive.Colour = colour;
             addToArchive.DateToWork = dateToWork.Date;
-            addToArchive.StatusProfile = statusProfile;
+            addToArchive.StatusProfile = statusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
             addToArchive.DateReady = dateReady.Date;
             addToArchive.StatusGoods = statusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
             addToArchive.UserName = userName;
@@ -70,7 +70,7 @@ namespace Laminatsia.DTO
                     DateToWork = listAllArchive[i].DateToWork.Date,
                     StatusProfile = listAllArchive[i].StatusProfile,
                     DateReady = listAllArchive[i].DateReady.Date,
-                    StatusGoods = listAllArchive[i].StatusGoods == "В РОБОТІ" ? true : false,
+                    StatusGoods = listAllArchive[i].StatusGoods,
                     UserName = listAllArchive[i].UserName,
                     DateOperatsia = listAllArchive[i].DataTimeChange,
                     Action = listAllArchive[i].Action
@@ -81,14 +81,31 @@ namespace Laminatsia.DTO
         }
         public List<ArchiveDTO> GetListArchiveDisting()
         {
-            List<int> listIDArchive = _entity.Archive.Select(x => x.ID_ColourGoods).Distinct().ToList();
-            List<ArchiveDTO> listArchive = new List<ArchiveDTO>();
-            List<ArchiveDTO> listArchiveDTO = new List<ArchiveDTO>(listIDArchive.Count);
-            for (int i = 0; i < listIDArchive.Count; i++)
+            List<Archive> listArchive = _entity.Archive.Where(x => x.Action == "Створено").ToList();
+            List<ArchiveDTO> listArchiveDTO = new List<ArchiveDTO>(listArchive.Count);
+            for (int i = 0; i < listArchive.Count; i++)
             {
-                listArchive.Add( this.GetByIDColourGoods(listIDArchive[i]));
+                ArchiveDTO newArchiveDTO = new ArchiveDTO
+                {
+                    ID_ColourGoods = listArchive[i].ID_ColourGoods,
+                    DateComing = listArchive[i].DateComing.Date,
+                    Profile = listArchive[i].Profile,
+                    City = listArchive[i].City,
+                    Dealer = listArchive[i].Dealer,
+                    Notes = listArchive[i].Notes,
+                    Counts = (byte)listArchive[i].Counts,
+                    Colour = listArchive[i].Colour,
+                    DateToWork = listArchive[i].DateToWork.Date,
+                    StatusProfile = listArchive[i].StatusProfile,
+                    DateReady = listArchive[i].DateReady.Date,
+                    StatusGoods = listArchive[i].StatusGoods,
+                    UserName = listArchive[i].UserName,
+                    DateOperatsia = listArchive[i].DataTimeChange,
+                    Action = listArchive[i].Action
+                };
+                listArchiveDTO.Add(newArchiveDTO);
             }
-            return listArchive.OrderByDescending(x => x.DateOperatsia).ToList();
+            return listArchiveDTO.OrderByDescending(x => x.DateOperatsia).ToList();
         }
         public ArchiveDTO GetByIDColourGoods(int id)
         {
@@ -105,7 +122,7 @@ namespace Laminatsia.DTO
             archiveDTO.DateToWork = colourGoods.DateToWork.Date;
             archiveDTO.StatusProfile = colourGoods.StatusProfile;
             archiveDTO.DateReady = colourGoods.DateReady.Date;
-            archiveDTO.StatusGoods = colourGoods.StatusGoods == "В РОБОТІ" ? true : false;
+            archiveDTO.StatusGoods = colourGoods.StatusGoods;
             archiveDTO.UserName = colourGoods.UserName;
             archiveDTO.DateOperatsia = colourGoods.DataTimeChange;
             archiveDTO.Action = colourGoods.Action;

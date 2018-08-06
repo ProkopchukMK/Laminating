@@ -29,7 +29,7 @@ namespace Laminatsia
         public DbSet<Dealer> Dealer { get; set; }
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Users> Users { get; set; }
-        public DbSet<Archive> Archive { get; set; }
         public DbSet<ColourGoods> ColourGoods { get; set; }
+        public DbSet<Archive> Archive { get; set; }
     }
 }

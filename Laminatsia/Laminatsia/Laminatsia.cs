@@ -1243,8 +1243,8 @@ namespace Laminatsia
                 List<ArchiveDTO> listarchiveDTO = archiveDTO.GetListArchiveDisting().OrderByDescending(x => x.DateOperatsia).ToList();
                 for (int i = 0; i < listarchiveDTO.Count; i++)
                 {
-                    string statusProfile = listarchiveDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                    string statusGoods = listarchiveDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
+                    string statusProfile = listarchiveDTO[i].StatusProfile;
+                    string statusGoods = listarchiveDTO[i].StatusGoods;
 
                     dataGridView.Rows.Add(listarchiveDTO[i].ID_ColourGoods, listarchiveDTO[i].DateComing.Date, listarchiveDTO[i].Profile,
                         listarchiveDTO[i].City, listarchiveDTO[i].Dealer, listarchiveDTO[i].Notes, listarchiveDTO[i].Counts,
@@ -1256,8 +1256,8 @@ namespace Laminatsia
                 enterList = enterList.OrderByDescending(x => x.DateOperatsia).ToList();
                 for (int i = 0; i < enterList.Count; i++)
                 {
-                    string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                    string statusGoods = enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
+                    string statusProfile = enterList[i].StatusProfile;
+                    string statusGoods = enterList[i].StatusGoods;
 
                     dataGridView.Rows.Add(enterList[i].ID_ColourGoods, enterList[i].DateComing.Date, enterList[i].Profile,
                         enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,

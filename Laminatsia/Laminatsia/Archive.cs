@@ -24,7 +24,7 @@ namespace Laminatsia
         public byte Counts { get; set; }
         public string Colour { get; set; }
         public System.DateTime DateToWork { get; set; }
-        public bool StatusProfile { get; set; }
+        public string StatusProfile { get; set; }
         public System.DateTime DateReady { get; set; }
         public string StatusGoods { get; set; }
         public string Action { get; set; }

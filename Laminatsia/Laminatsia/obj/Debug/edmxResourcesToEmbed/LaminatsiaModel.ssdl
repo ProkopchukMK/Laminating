@@ -14,7 +14,7 @@
     <Property Name="Counts" Type="tinyint" Nullable="false" />
     <Property Name="Colour" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DateToWork" Type="datetime" Nullable="false" />
-    <Property Name="StatusProfile" Type="bit" Nullable="false" />
+    <Property Name="StatusProfile" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DateReady" Type="datetime" Nullable="false" />
     <Property Name="StatusGoods" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />

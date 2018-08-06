@@ -49,21 +49,66 @@ namespace Laminatsia.DTO
         public List<ColourGoodsDTO> UdateColourGoods(int id, DateTime dateComing, string profile, string city, string dealer, string notes, byte counts, string colour, DateTime dateToWork, bool statusProfile, DateTime dateReady)
         {
             ColourGoods editColourGoods = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
-            editColourGoods.DateComing = dateComing.Date;
-            editColourGoods.Profile_ID = _entity.Profile.FirstOrDefault(x => x.NameProfile == profile).ID;
-            editColourGoods.Dealer_ID = _entity.Dealer.FirstOrDefault(x => x.City == city && x.DealerName == dealer).ID;
-            editColourGoods.Notes = notes;
-            editColourGoods.Counts = counts;
-            editColourGoods.Colour_ID = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colour).ID;
-            editColourGoods.DateToWork = dateToWork.Date;
-            editColourGoods.StatusProfile = statusProfile;
-            editColourGoods.DateReady = dateReady.Date;
-            _entity.SaveChanges();
-            ArchiveDTO archiveDTO = new ArchiveDTO();
-            var editEntity = this.GetColourGoodsByID(id);
-            archiveDTO.AddToArchive(id, dateComing, profile, city, dealer, notes,
-            counts, colour, dateToWork, statusProfile, dateReady, editEntity.StatusGoods, Laminatsia.UserName, "Редагували замовлення");
-            return this.GetListColourGoods();
+            string change = null;
+            if (editColourGoods.DateComing != dateComing.Date)
+            {
+                editColourGoods.DateComing = dateComing.Date;
+                change = change + " дата замовлення ";
+            }
+            if (editColourGoods.Profile_ID != _entity.Profile.FirstOrDefault(x => x.NameProfile == profile).ID)
+            {
+                editColourGoods.Profile_ID = _entity.Profile.FirstOrDefault(x => x.NameProfile == profile).ID;
+                change = change + " профіль ";
+            }
+            if (editColourGoods.Dealer_ID != _entity.Dealer.FirstOrDefault(x => x.City == city && x.DealerName == dealer).ID)
+            {
+                editColourGoods.Dealer_ID = _entity.Dealer.FirstOrDefault(x => x.City == city && x.DealerName == dealer).ID;
+                change = change + " місто або дилер ";
+            }
+            if (editColourGoods.Notes != notes)
+            {
+                editColourGoods.Notes = notes;
+                change = change + " примітки ";
+            }
+            if (editColourGoods.Counts != counts)
+            {
+                editColourGoods.Counts = counts;
+                change = change + " кількість ";
+            }
+            if (editColourGoods.Colour_ID != _entity.ColourProfile.FirstOrDefault(x => x.Colour == colour).ID)
+            {
+                editColourGoods.Colour_ID = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colour).ID;
+                change = change + " колір ";
+            }
+            if (editColourGoods.StatusProfile != statusProfile )
+            {
+                editColourGoods.StatusProfile = statusProfile;
+                change = change + " статус профілю ";
+            }
+            if (editColourGoods.DateToWork != dateToWork.Date)
+            {
+                editColourGoods.DateToWork = dateToWork.Date;
+                change = change + " дата в роботу ";
+            }
+            if (editColourGoods.DateReady != dateReady.Date)
+            {
+                editColourGoods.DateReady = dateReady.Date;
+                change = change + " дата готоності ";
+            }
+            if (change == null)
+            {
+                return this.GetListColourGoods();
+            }
+            else
+            {
+                _entity.SaveChanges();
+                ArchiveDTO archiveDTO = new ArchiveDTO();
+                var editEntity = this.GetColourGoodsByID(id);
+                archiveDTO.AddToArchive(id, dateComing, profile, city, dealer, notes,
+                counts, colour, dateToWork, statusProfile, dateReady, editEntity.StatusGoods, Laminatsia.UserName, "Редагували " + change);
+                return this.GetListColourGoods();
+            }
+
         }
         public bool UpdateStatusGood(int id, bool editStatusGoods)
         {
