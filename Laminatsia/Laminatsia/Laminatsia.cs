@@ -1009,10 +1009,11 @@ namespace Laminatsia
             dateTimePickerFilterDateReady1.Value = dateTimeNow;
             dateTimePickerFilterDateReady2.Value = dateTimeNow;
             comboBoxFilterStatusGoods.Items.Clear();
-
+            comboBoxFilterDealer.Enabled=false;
             checkBoxFilterDateComing.Checked = false;
             checkBoxFilterDateToReady.Checked = false;
             checkBoxFilterDateToWork.Checked = false;
+            
 
             comboBoxFilterProfile.Items.AddRange(listProfile.ToArray());
             comboBoxFilterCity.Items.AddRange(listCity.ToArray());
@@ -1353,6 +1354,29 @@ namespace Laminatsia
         }
         #endregion
 
+        private void ButtonEditUser_Click(object sender, EventArgs e)
+        {
+            textBoxAddNewUser.Visible = false;
+            comboBoxEditUser.Visible = true;
+            UsersDTO usersDTO = new UsersDTO();
+            comboBoxEditUser.Items.AddRange(usersDTO.GetListUsersDTO().ToArray());
+            buttonEditUser.Click -= ButtonEditUser_Click;
+            buttonEditUser.Click += CancelEditUser;
+            buttonEditUser.Text = "Відмінити";
+
+            buttonAddNewUser.Click -= ButtonAddNewUser_Click;
+            buttonAddNewUser.Click += EditUser;
+            buttonAddNewUser.Text = "Змінити пароль";
+
+        }
+        private void EditUser(object sender, EventArgs e)
+        {
+
+        }
+        private void CancelEditUser(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class CalendarCell : DataGridViewTextBoxCell

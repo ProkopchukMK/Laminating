@@ -93,7 +93,7 @@ namespace Laminatsia.DTO
             if (editColourGoods.DateReady != dateReady.Date)
             {
                 editColourGoods.DateReady = dateReady.Date;
-                change = change + " дата готоності ";
+                change = change + " дата готовності ";
             }
             if (change == null)
             {

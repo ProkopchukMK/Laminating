@@ -30,6 +30,9 @@ namespace Laminatsia
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,15 +45,21 @@ namespace Laminatsia
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MenuTabControl = new System.Windows.Forms.TabControl();
             this.tabPageLaminaters = new System.Windows.Forms.TabPage();
             this.dataGridViewLaminatsia = new System.Windows.Forms.DataGridView();
+            this.ColumnLamID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamDateComing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamDealer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamCounts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamColour = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamDateToWork = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamStatusProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamDateReady = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLamStatusGoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxCreateNewOrder = new System.Windows.Forms.GroupBox();
             this.buttonUpdateRowLaminatsia = new System.Windows.Forms.Button();
             this.buttonFindByID = new System.Windows.Forms.Button();
@@ -121,6 +130,8 @@ namespace Laminatsia
             this.ColumnStatusGoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageAddRemove = new System.Windows.Forms.TabPage();
             this.groupBoxAddUser = new System.Windows.Forms.GroupBox();
+            this.comboBoxEditUser = new System.Windows.Forms.ComboBox();
+            this.buttonEditUser = new System.Windows.Forms.Button();
             this.buttonAddNewUser = new System.Windows.Forms.Button();
             this.labelAddUserRole = new System.Windows.Forms.Label();
             this.labelAddUserPassword = new System.Windows.Forms.Label();
@@ -192,15 +203,12 @@ namespace Laminatsia
             this.ColumnArchiveDateOperation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnArchiveOperatsia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.calendarColumn1 = new CalendarColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.calendarColumn2 = new CalendarColumn();
-            this.calendarColumn3 = new CalendarColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -213,18 +221,6 @@ namespace Laminatsia
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLamID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLamDateComing = new CalendarColumn();
-            this.ColumnLamProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLamCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLamDealer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLamNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLamCounts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLamColour = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLamDateToWork = new CalendarColumn();
-            this.ColumnLamStatusProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLamDateReady = new CalendarColumn();
-            this.ColumnLamStatusGoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuTabControl.SuspendLayout();
             this.tabPageLaminaters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLaminatsia)).BeginInit();
@@ -303,6 +299,128 @@ namespace Laminatsia
             this.dataGridViewLaminatsia.TabIndex = 30;
             this.dataGridViewLaminatsia.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewLaminatsia_CellDoubleClick);
             this.dataGridViewLaminatsia.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewLaminatsia_ColumnHeaderMouseClick);
+            // 
+            // ColumnLamID
+            // 
+            this.ColumnLamID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamID.HeaderText = "ID";
+            this.ColumnLamID.MinimumWidth = 50;
+            this.ColumnLamID.Name = "ColumnLamID";
+            this.ColumnLamID.ReadOnly = true;
+            this.ColumnLamID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamID.Width = 50;
+            // 
+            // ColumnLamDateComing
+            // 
+            this.ColumnLamDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle1.Format = "d";
+            this.ColumnLamDateComing.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColumnLamDateComing.HeaderText = "Дата замовлення";
+            this.ColumnLamDateComing.Name = "ColumnLamDateComing";
+            this.ColumnLamDateComing.ReadOnly = true;
+            this.ColumnLamDateComing.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLamDateComing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamDateComing.Width = 99;
+            // 
+            // ColumnLamProfile
+            // 
+            this.ColumnLamProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamProfile.HeaderText = "Профіль";
+            this.ColumnLamProfile.Name = "ColumnLamProfile";
+            this.ColumnLamProfile.ReadOnly = true;
+            this.ColumnLamProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLamProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamProfile.Width = 88;
+            // 
+            // ColumnLamCity
+            // 
+            this.ColumnLamCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamCity.HeaderText = "Місто";
+            this.ColumnLamCity.Name = "ColumnLamCity";
+            this.ColumnLamCity.ReadOnly = true;
+            this.ColumnLamCity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLamCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamCity.Width = 69;
+            // 
+            // ColumnLamDealer
+            // 
+            this.ColumnLamDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnLamDealer.HeaderText = "Дилер";
+            this.ColumnLamDealer.Name = "ColumnLamDealer";
+            this.ColumnLamDealer.ReadOnly = true;
+            this.ColumnLamDealer.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLamDealer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // ColumnLamNotes
+            // 
+            this.ColumnLamNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnLamNotes.HeaderText = "Примітки";
+            this.ColumnLamNotes.Name = "ColumnLamNotes";
+            this.ColumnLamNotes.ReadOnly = true;
+            this.ColumnLamNotes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // ColumnLamCounts
+            // 
+            this.ColumnLamCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnLamCounts.HeaderText = "Кількість";
+            this.ColumnLamCounts.Name = "ColumnLamCounts";
+            this.ColumnLamCounts.ReadOnly = true;
+            this.ColumnLamCounts.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamCounts.Width = 91;
+            // 
+            // ColumnLamColour
+            // 
+            this.ColumnLamColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamColour.HeaderText = "Колір";
+            this.ColumnLamColour.Name = "ColumnLamColour";
+            this.ColumnLamColour.ReadOnly = true;
+            this.ColumnLamColour.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLamColour.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamColour.Width = 69;
+            // 
+            // ColumnLamDateToWork
+            // 
+            this.ColumnLamDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Format = "d";
+            this.ColumnLamDateToWork.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnLamDateToWork.HeaderText = "Дата в роботу";
+            this.ColumnLamDateToWork.Name = "ColumnLamDateToWork";
+            this.ColumnLamDateToWork.ReadOnly = true;
+            this.ColumnLamDateToWork.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLamDateToWork.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamDateToWork.Width = 99;
+            // 
+            // ColumnLamStatusProfile
+            // 
+            this.ColumnLamStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamStatusProfile.HeaderText = "Статус профілю";
+            this.ColumnLamStatusProfile.Name = "ColumnLamStatusProfile";
+            this.ColumnLamStatusProfile.ReadOnly = true;
+            this.ColumnLamStatusProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLamStatusProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamStatusProfile.Width = 126;
+            // 
+            // ColumnLamDateReady
+            // 
+            this.ColumnLamDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Format = "d";
+            this.ColumnLamDateReady.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ColumnLamDateReady.HeaderText = "Дата готовності";
+            this.ColumnLamDateReady.Name = "ColumnLamDateReady";
+            this.ColumnLamDateReady.ReadOnly = true;
+            this.ColumnLamDateReady.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLamDateReady.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamDateReady.Width = 99;
+            // 
+            // ColumnLamStatusGoods
+            // 
+            this.ColumnLamStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamStatusGoods.HeaderText = "Статус виробу(ів)";
+            this.ColumnLamStatusGoods.Name = "ColumnLamStatusGoods";
+            this.ColumnLamStatusGoods.ReadOnly = true;
+            this.ColumnLamStatusGoods.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLamStatusGoods.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamStatusGoods.Width = 135;
             // 
             // groupBoxCreateNewOrder
             // 
@@ -889,7 +1007,7 @@ namespace Laminatsia
             this.dataGridViewTehnologes.AllowUserToAddRows = false;
             this.dataGridViewTehnologes.AllowUserToDeleteRows = false;
             this.dataGridViewTehnologes.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridViewTehnologes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTehnologes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -1062,6 +1180,8 @@ namespace Laminatsia
             // 
             // groupBoxAddUser
             // 
+            this.groupBoxAddUser.Controls.Add(this.comboBoxEditUser);
+            this.groupBoxAddUser.Controls.Add(this.buttonEditUser);
             this.groupBoxAddUser.Controls.Add(this.buttonAddNewUser);
             this.groupBoxAddUser.Controls.Add(this.labelAddUserRole);
             this.groupBoxAddUser.Controls.Add(this.labelAddUserPassword);
@@ -1077,6 +1197,25 @@ namespace Laminatsia
             this.groupBoxAddUser.TabStop = false;
             this.groupBoxAddUser.Text = "Додати користувача";
             this.groupBoxAddUser.Visible = false;
+            // 
+            // comboBoxEditUser
+            // 
+            this.comboBoxEditUser.FormattingEnabled = true;
+            this.comboBoxEditUser.Location = new System.Drawing.Point(267, 74);
+            this.comboBoxEditUser.Name = "comboBoxEditUser";
+            this.comboBoxEditUser.Size = new System.Drawing.Size(184, 28);
+            this.comboBoxEditUser.TabIndex = 8;
+            this.comboBoxEditUser.Visible = false;
+            // 
+            // buttonEditUser
+            // 
+            this.buttonEditUser.Location = new System.Drawing.Point(51, 264);
+            this.buttonEditUser.Name = "buttonEditUser";
+            this.buttonEditUser.Size = new System.Drawing.Size(144, 35);
+            this.buttonEditUser.TabIndex = 7;
+            this.buttonEditUser.Text = "Змінити пароль";
+            this.buttonEditUser.UseVisualStyleBackColor = true;
+            this.buttonEditUser.Click += new System.EventHandler(this.ButtonEditUser_Click);
             // 
             // buttonAddNewUser
             // 
@@ -1794,17 +1933,6 @@ namespace Laminatsia
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
-            // calendarColumn1
-            // 
-            this.calendarColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle13.Format = "d";
-            this.calendarColumn1.DefaultCellStyle = dataGridViewCellStyle13;
-            this.calendarColumn1.HeaderText = "Дата замовлення";
-            this.calendarColumn1.Name = "calendarColumn1";
-            this.calendarColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.calendarColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.calendarColumn1.Width = 99;
-            // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -1851,28 +1979,6 @@ namespace Laminatsia
             this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
-            // calendarColumn2
-            // 
-            this.calendarColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle14.Format = "d";
-            this.calendarColumn2.DefaultCellStyle = dataGridViewCellStyle14;
-            this.calendarColumn2.HeaderText = "Дата в роботу";
-            this.calendarColumn2.Name = "calendarColumn2";
-            this.calendarColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.calendarColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.calendarColumn2.Width = 99;
-            // 
-            // calendarColumn3
-            // 
-            this.calendarColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle15.Format = "d";
-            this.calendarColumn3.DefaultCellStyle = dataGridViewCellStyle15;
-            this.calendarColumn3.HeaderText = "Дата готовності";
-            this.calendarColumn3.Name = "calendarColumn3";
-            this.calendarColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.calendarColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.calendarColumn3.Width = 99;
-            // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -1891,9 +1997,9 @@ namespace Laminatsia
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle16.Format = "d";
-            dataGridViewCellStyle16.NullValue = null;
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle13.Format = "d";
+            dataGridViewCellStyle13.NullValue = null;
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewTextBoxColumn10.HeaderText = "Дата замовлення";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
@@ -1947,9 +2053,9 @@ namespace Laminatsia
             // dataGridViewTextBoxColumn17
             // 
             this.dataGridViewTextBoxColumn17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle17.Format = "d";
-            dataGridViewCellStyle17.NullValue = null;
-            this.dataGridViewTextBoxColumn17.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle14.Format = "d";
+            dataGridViewCellStyle14.NullValue = null;
+            this.dataGridViewTextBoxColumn17.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewTextBoxColumn17.HeaderText = "Дата в роботу";
             this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
             this.dataGridViewTextBoxColumn17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
@@ -1965,134 +2071,12 @@ namespace Laminatsia
             // dataGridViewTextBoxColumn19
             // 
             this.dataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle18.Format = "d";
-            dataGridViewCellStyle18.NullValue = null;
-            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle15.Format = "d";
+            dataGridViewCellStyle15.NullValue = null;
+            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewTextBoxColumn19.HeaderText = "Дата готовності";
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             this.dataGridViewTextBoxColumn19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnLamID
-            // 
-            this.ColumnLamID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnLamID.HeaderText = "ID";
-            this.ColumnLamID.MinimumWidth = 50;
-            this.ColumnLamID.Name = "ColumnLamID";
-            this.ColumnLamID.ReadOnly = true;
-            this.ColumnLamID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamID.Width = 50;
-            // 
-            // ColumnLamDateComing
-            // 
-            this.ColumnLamDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.Format = "d";
-            this.ColumnLamDateComing.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ColumnLamDateComing.HeaderText = "Дата замовлення";
-            this.ColumnLamDateComing.Name = "ColumnLamDateComing";
-            this.ColumnLamDateComing.ReadOnly = true;
-            this.ColumnLamDateComing.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLamDateComing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamDateComing.Width = 99;
-            // 
-            // ColumnLamProfile
-            // 
-            this.ColumnLamProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnLamProfile.HeaderText = "Профіль";
-            this.ColumnLamProfile.Name = "ColumnLamProfile";
-            this.ColumnLamProfile.ReadOnly = true;
-            this.ColumnLamProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLamProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamProfile.Width = 88;
-            // 
-            // ColumnLamCity
-            // 
-            this.ColumnLamCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnLamCity.HeaderText = "Місто";
-            this.ColumnLamCity.Name = "ColumnLamCity";
-            this.ColumnLamCity.ReadOnly = true;
-            this.ColumnLamCity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLamCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamCity.Width = 69;
-            // 
-            // ColumnLamDealer
-            // 
-            this.ColumnLamDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnLamDealer.HeaderText = "Дилер";
-            this.ColumnLamDealer.Name = "ColumnLamDealer";
-            this.ColumnLamDealer.ReadOnly = true;
-            this.ColumnLamDealer.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLamDealer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnLamNotes
-            // 
-            this.ColumnLamNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnLamNotes.HeaderText = "Примітки";
-            this.ColumnLamNotes.Name = "ColumnLamNotes";
-            this.ColumnLamNotes.ReadOnly = true;
-            this.ColumnLamNotes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColumnLamCounts
-            // 
-            this.ColumnLamCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColumnLamCounts.HeaderText = "Кількість";
-            this.ColumnLamCounts.Name = "ColumnLamCounts";
-            this.ColumnLamCounts.ReadOnly = true;
-            this.ColumnLamCounts.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamCounts.Width = 91;
-            // 
-            // ColumnLamColour
-            // 
-            this.ColumnLamColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnLamColour.HeaderText = "Колір";
-            this.ColumnLamColour.Name = "ColumnLamColour";
-            this.ColumnLamColour.ReadOnly = true;
-            this.ColumnLamColour.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLamColour.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamColour.Width = 69;
-            // 
-            // ColumnLamDateToWork
-            // 
-            this.ColumnLamDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Format = "d";
-            this.ColumnLamDateToWork.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnLamDateToWork.HeaderText = "Дата в роботу";
-            this.ColumnLamDateToWork.Name = "ColumnLamDateToWork";
-            this.ColumnLamDateToWork.ReadOnly = true;
-            this.ColumnLamDateToWork.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLamDateToWork.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamDateToWork.Width = 99;
-            // 
-            // ColumnLamStatusProfile
-            // 
-            this.ColumnLamStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnLamStatusProfile.HeaderText = "Статус профілю";
-            this.ColumnLamStatusProfile.Name = "ColumnLamStatusProfile";
-            this.ColumnLamStatusProfile.ReadOnly = true;
-            this.ColumnLamStatusProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLamStatusProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamStatusProfile.Width = 126;
-            // 
-            // ColumnLamDateReady
-            // 
-            this.ColumnLamDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Format = "d";
-            this.ColumnLamDateReady.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ColumnLamDateReady.HeaderText = "Дата готовності";
-            this.ColumnLamDateReady.Name = "ColumnLamDateReady";
-            this.ColumnLamDateReady.ReadOnly = true;
-            this.ColumnLamDateReady.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLamDateReady.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamDateReady.Width = 99;
-            // 
-            // ColumnLamStatusGoods
-            // 
-            this.ColumnLamStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnLamStatusGoods.HeaderText = "Статус виробу(ів)";
-            this.ColumnLamStatusGoods.Name = "ColumnLamStatusGoods";
-            this.ColumnLamStatusGoods.ReadOnly = true;
-            this.ColumnLamStatusGoods.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLamStatusGoods.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamStatusGoods.Width = 135;
             // 
             // Laminatsia
             // 
@@ -2218,15 +2202,12 @@ namespace Laminatsia
         private System.Windows.Forms.TabPage tabPageLogs;
         private System.Windows.Forms.DataGridView dataGridViewLogs;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private CalendarColumn calendarColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private CalendarColumn calendarColumn2;
-        private CalendarColumn calendarColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
@@ -2295,17 +2276,19 @@ namespace Laminatsia
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateOperation;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveOperatsia;
         private System.Windows.Forms.Button buttonRemoveColourGoods;
+        private System.Windows.Forms.Button buttonEditUser;
+        private System.Windows.Forms.ComboBox comboBoxEditUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamID;
-        private CalendarColumn ColumnLamDateComing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDateComing;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamCity;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDealer;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamNotes;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamCounts;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamColour;
-        private CalendarColumn ColumnLamDateToWork;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDateToWork;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamStatusProfile;
-        private CalendarColumn ColumnLamDateReady;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDateReady;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamStatusGoods;
     }
 }
