@@ -36,9 +36,36 @@ namespace Laminatsia.DTO
             }
             return listUserDTO;
         }
-        public UsersDTO GetUserByName(string name)
+        public UsersDTO GetUserByNameRole(string name, string role)
         {
-            return this.GetListUsersDTO().SingleOrDefault(x => x.UserName == name);
+            Users user = _entity.Users.FirstOrDefault(x => x.UserName == name && x.Role == role);
+            if (user != null)
+            {
+                UsersDTO usersDTO = new UsersDTO();
+                usersDTO.ID = user.ID;
+                usersDTO.UserName = user.UserName;
+                usersDTO.UserPassword = user.UserPassword;
+                usersDTO.UserRole = user.Role;
+                return usersDTO;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public bool UpdateUser(int userId, string userPassword)
+        {
+            Users editUser = _entity.Users.FirstOrDefault(x => x.ID == userId);
+            editUser.UserPassword = userPassword;
+            _entity.SaveChanges();
+            return true;
+        }
+        public bool RemoveUser(string name, string role)
+        {
+            Users removeUser = _entity.Users.SingleOrDefault(x => x.UserName == name && x.Role == role);
+            _entity.Users.Remove(removeUser);
+            _entity.SaveChanges();
+            return true;
         }
     }
 }

@@ -10,6 +10,11 @@ using System.Windows.Forms;
 
 namespace Laminatsia
 {
+    /// <summary>
+    /// TODO
+    /// 3. Видалення користувачів.
+    /// 4. Перевірити всі модулі програми.
+    /// </summary>
     public partial class Laminatsia : Form
     {
         private DealerDTO dealerDTO = new DealerDTO();
@@ -23,7 +28,7 @@ namespace Laminatsia
 
         private int editIDEntity;
         public static string UserName { get; private set; }
-        private static string Role;
+        public static string Role { get; private set; }
 
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
@@ -34,8 +39,6 @@ namespace Laminatsia
         public Laminatsia(string userName, string role)
         {
             InitializeComponent();
-            FillAllComponentArciveTab();
-            comboBoxAddUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
             UserName = userName;
             Role = role;
 
@@ -70,6 +73,8 @@ namespace Laminatsia
             else if (role == "Адміністратори")
             {
                 groupBoxAddUser.Visible = true;
+                groupBoxRemoveUser.Visible = true;
+                FillAllComponentLaminatsiaTab();
             }
         }
         private void MenuTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -267,32 +272,143 @@ namespace Laminatsia
             this.CleareAllComponentAddRemoveTab();
             this.FillAllComponentAddRemoveTab();
         }
+        #region   ДЛЯ АДМІНІСТРАТОРА
         //додати ного користувача
         private void ButtonAddNewUser_Click(object sender, EventArgs e)
         {
             UsersDTO users = new UsersDTO();
             if (textBoxAddNewUser.Text != "")
             {
-                if (users.GetUserByName(textBoxAddNewUser.Text) == null)
+                if (comboBoxAddUserRole.SelectedItem != null)
                 {
-                    if (textBoxAddUserPassword.Text != "")
+                    if (users.GetUserByNameRole(textBoxAddNewUser.Text, comboBoxAddUserRole.SelectedItem.ToString()) == null)
                     {
-                        if (comboBoxAddUserRole.SelectedItem != null)
+                        if (textBoxAddUserPassword.Text != "")
                         {
                             users.AddUser(textBoxAddNewUser.Text, textBoxAddUserPassword.Text, comboBoxAddUserRole.SelectedItem.ToString());
                             MessageBox.Show("Користувача додано до бази даних!");
-                            textBoxAddNewUser.Text = "";
-                            textBoxAddUserPassword.Text = "";
-                            comboBoxAddUserRole.SelectedIndex = -1;
+                            CleareAllComponentAddRemoveTab();
+                            FillAllComponentAddRemoveTab();
                         }
-                        else { MessageBox.Show("Виберіть тип доступу користувача!"); }
+                        else { MessageBox.Show("Введіть пароль користувача!"); textBoxAddUserPassword.Text = ""; }
                     }
-                    else { MessageBox.Show("Введіть пароль користувача!"); textBoxAddUserPassword.Text = ""; }
+                    else { MessageBox.Show("Користувач з таким логіном та типом доступу вже є!"); textBoxAddNewUser.Text = ""; }
                 }
-                else { MessageBox.Show("Користувач з таким іменем вже є!"); textBoxAddNewUser.Text = ""; }
+                else { MessageBox.Show("Виберіть тип доступу користувача!");}
             }
-            else { MessageBox.Show("Введіть ім'я користувача!"); textBoxAddNewUser.Text = ""; }
+            else { MessageBox.Show("Введіть логін користувача!"); textBoxAddNewUser.Text = ""; }
         }
+        //змінити пароль користувача
+        private void ButtonEditUser_Click(object sender, EventArgs e)
+        {
+            CleareAllComponentAddRemoveTab();
+            FillAllComponentAddRemoveTab(); 
+
+            textBoxAddNewUser.Visible = false;
+            comboBoxAddUserRole.Visible = false;
+            
+            comboBoxEditUserRole.Visible = true;
+            comboBoxEditUser.Visible = true; 
+
+            buttonEditUser.Click -= ButtonEditUser_Click;
+            buttonEditUser.Click += CancelEditUser;
+            buttonEditUser.Text = "Відмінити";
+
+            buttonAddNewUser.Click -= ButtonAddNewUser_Click;
+            buttonAddNewUser.Click += EditUser;
+            buttonAddNewUser.Text = "Змінити пароль";
+
+            labelAddUserPassword.Text = "Введіть новий пароль";
+        }
+        //змінити
+        private void EditUser(object sender, EventArgs e)
+        {
+            if (comboBoxEditUser.SelectedItem != null)
+            {
+                if (textBoxAddUserPassword.Text != "")
+                {
+                    if (comboBoxEditUserRole.SelectedItem != null)
+                    {
+                        UsersDTO usersDTO = new UsersDTO();
+                        var editUsersDTO = usersDTO.GetUserByNameRole(comboBoxEditUser.SelectedItem.ToString(), comboBoxEditUserRole.SelectedItem.ToString());                        
+                        if (usersDTO.UpdateUser(editUsersDTO.ID, textBoxAddUserPassword.Text))
+                        {
+                            MessageBox.Show("Пароль успішно змінено!");
+                            CleareAllComponentAddRemoveTab();
+                            FillAllComponentAddRemoveTab();
+                            CancelEditUser(sender, e);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пароль НЕ   змінено!");
+                            CleareAllComponentAddRemoveTab();
+                            FillAllComponentAddRemoveTab();
+                        }
+                    }
+                    else { MessageBox.Show("Виберіть тип доступу!"); }
+                }
+                else { MessageBox.Show("Введіть новий пароль!"); }
+            }
+            else { MessageBox.Show("Виберіть користувача!"); textBoxAddUserPassword.Text = ""; }
+        }
+        //відміна
+        private void CancelEditUser(object sender, EventArgs e)
+        {
+            textBoxAddNewUser.Visible = true;
+            comboBoxAddUserRole.Visible = true;
+
+            comboBoxEditUserRole.Visible = false;
+            comboBoxEditUser.Visible = false;
+
+            comboBoxEditUser.Items.Clear();
+            buttonEditUser.Click -= CancelEditUser;
+            buttonEditUser.Click += ButtonEditUser_Click;
+            buttonEditUser.Text = "Змінити пароль";
+
+
+            buttonAddNewUser.Click -= EditUser;
+            buttonAddNewUser.Click += ButtonAddNewUser_Click;
+            buttonAddNewUser.Text = "Додати користувача";
+
+            labelAddUserPassword.Text = "Пароль користувача";
+            textBoxAddUserPassword.Text = "";
+            CleareAllComponentAddRemoveTab();
+            FillAllComponentAddRemoveTab();
+        }
+        private void comboBoxEditUserRole_SelectedIndexChanged(object sender, EventArgs e)
+        {            
+            comboBoxEditUser.Enabled = true;
+            comboBoxEditUser.Items.Clear();
+            UsersDTO usersDTO = new UsersDTO();
+            string str = comboBoxEditUserRole.SelectedItem.ToString();
+            var list = usersDTO.GetListUsersDTO().Where(x => x.UserRole == str).Select(x => x.UserName).ToArray();
+            comboBoxEditUser.Items.AddRange(list);
+        }
+        private void ButtonRemoveUser_Click(object sender, EventArgs e)
+        {
+            if (comboBoxRemoveUserName.SelectedItem != null)
+            {
+                if (comboBoxRemoveUserRole.SelectedItem != null)
+                {
+                    UsersDTO usersDTO = new UsersDTO();
+                    if (usersDTO.RemoveUser(comboBoxRemoveUserName.SelectedItem.ToString(), comboBoxRemoveUserRole.SelectedItem.ToString())) { MessageBox.Show("Користувача ВИДАЛЕНО!"); }
+                    else { MessageBox.Show("Користувача НЕ ВИДАЛЕНО!"); }
+                    CleareAllComponentAddRemoveTab();
+                    FillAllComponentAddRemoveTab();
+                }
+                else { MessageBox.Show("Виберіть тип доступу!"); }
+            }
+            else { MessageBox.Show("Виберіть користувача!"); comboBoxRemoveUserRole.SelectedItem = -1; }
+        }
+
+        private void ComboBoxRemoveUserRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxRemoveUserName.Items.Clear();
+            UsersDTO usersDTO = new UsersDTO();
+            comboBoxRemoveUserName.Enabled = true;
+            comboBoxRemoveUserName.Items.AddRange(usersDTO.GetListUsersDTO().Where(x => x.UserRole == comboBoxRemoveUserRole.SelectedItem.ToString()).Select(x => x.UserName).ToArray());
+        }
+        #endregion
         //заповнити всі компоненти вкладки Додати \ Видалити
         private void FillAllComponentAddRemoveTab()
         {
@@ -310,6 +426,13 @@ namespace Laminatsia
             comboBoxRemoveDealer.Enabled = false;
             comboBoxRemoveProfile.Items.AddRange(arrayProfile);
             comboBoxRemoveColour.Items.AddRange(listColour.ToArray());
+            if (Role == "Адміністратори")
+            {
+                comboBoxRemoveUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
+                
+                comboBoxEditUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
+                comboBoxAddUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
+            }
         }
         //очистити всі компоненти вкладки Додати \ Видалити
         private void CleareAllComponentAddRemoveTab()
@@ -327,6 +450,17 @@ namespace Laminatsia
             comboBoxRemoveProfile.Items.Clear();
             comboBoxRemoveColour.Items.Clear();
             dataGridViewTehnologes.Rows.Clear();
+            if (Role == "Адміністратори")
+            {
+                textBoxAddNewUser.Text = "";
+                textBoxAddUserPassword.Text = "";
+                comboBoxRemoveUserRole.Items.Clear();
+                comboBoxEditUserRole.Items.Clear();
+                comboBoxEditUser.Items.Clear();
+                comboBoxAddUserRole.Items.Clear();
+                comboBoxRemoveUserName.Items.Clear();
+                comboBoxRemoveUserName.Enabled = false;
+            }
 
         }
         #region Видалення інформації з бази данних
@@ -1009,11 +1143,11 @@ namespace Laminatsia
             dateTimePickerFilterDateReady1.Value = dateTimeNow;
             dateTimePickerFilterDateReady2.Value = dateTimeNow;
             comboBoxFilterStatusGoods.Items.Clear();
-            comboBoxFilterDealer.Enabled=false;
+            comboBoxFilterDealer.Enabled = false;
             checkBoxFilterDateComing.Checked = false;
             checkBoxFilterDateToReady.Checked = false;
             checkBoxFilterDateToWork.Checked = false;
-            
+
 
             comboBoxFilterProfile.Items.AddRange(listProfile.ToArray());
             comboBoxFilterCity.Items.AddRange(listCity.ToArray());
@@ -1246,10 +1380,10 @@ namespace Laminatsia
                 {
                     string statusProfile = listarchiveDTO[i].StatusProfile;
                     string statusGoods = listarchiveDTO[i].StatusGoods;
-
+                    string role = listarchiveDTO[i].Role;
                     dataGridView.Rows.Add(listarchiveDTO[i].ID_ColourGoods, listarchiveDTO[i].DateComing.Date, listarchiveDTO[i].Profile,
                         listarchiveDTO[i].City, listarchiveDTO[i].Dealer, listarchiveDTO[i].Notes, listarchiveDTO[i].Counts,
-                         listarchiveDTO[i].Colour, listarchiveDTO[i].DateToWork.Date, statusProfile, listarchiveDTO[i].DateReady.Date, statusGoods, listarchiveDTO[i].UserName, listarchiveDTO[i].DateOperatsia, listarchiveDTO[i].Action);
+                         listarchiveDTO[i].Colour, listarchiveDTO[i].DateToWork.Date, statusProfile, listarchiveDTO[i].DateReady.Date, statusGoods, role[0] + " " + listarchiveDTO[i].UserName, listarchiveDTO[i].DateOperatsia, listarchiveDTO[i].Action);
                 }
             }
             else
@@ -1259,10 +1393,10 @@ namespace Laminatsia
                 {
                     string statusProfile = enterList[i].StatusProfile;
                     string statusGoods = enterList[i].StatusGoods;
-
+                    string role = enterList[i].Role;
                     dataGridView.Rows.Add(enterList[i].ID_ColourGoods, enterList[i].DateComing.Date, enterList[i].Profile,
                         enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
-                         enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods, enterList[i].UserName, enterList[i].DateOperatsia, enterList[i].Action);
+                         enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods, role[0] + " " + enterList[i].UserName, enterList[i].DateOperatsia, enterList[i].Action);
                 }
             }
         }
@@ -1352,272 +1486,9 @@ namespace Laminatsia
                 comboBoxArchiveUser.Enabled = true;
             }
         }
+
         #endregion
-
-        private void ButtonEditUser_Click(object sender, EventArgs e)
-        {
-            textBoxAddNewUser.Visible = false;
-            comboBoxEditUser.Visible = true;
-            UsersDTO usersDTO = new UsersDTO();
-            comboBoxEditUser.Items.AddRange(usersDTO.GetListUsersDTO().ToArray());
-            buttonEditUser.Click -= ButtonEditUser_Click;
-            buttonEditUser.Click += CancelEditUser;
-            buttonEditUser.Text = "Відмінити";
-
-            buttonAddNewUser.Click -= ButtonAddNewUser_Click;
-            buttonAddNewUser.Click += EditUser;
-            buttonAddNewUser.Text = "Змінити пароль";
-
-        }
-        private void EditUser(object sender, EventArgs e)
-        {
-
-        }
-        private void CancelEditUser(object sender, EventArgs e)
-        {
-
-        }
-    }
-
-    public class CalendarCell : DataGridViewTextBoxCell
-    {
-
-        public CalendarCell()
-            : base()
-        {
-            // Use the short date format.
-            this.Style.Format = "d";
-        }
-        public override void InitializeEditingControl(int rowIndex, object
-            initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
-        {
-            // Set the value of the editing control to the current cell value.
-            base.InitializeEditingControl(rowIndex, initialFormattedValue,
-                dataGridViewCellStyle);
-            CalendarEditingControl ctl =
-                DataGridView.EditingControl as CalendarEditingControl;
-            // Use the default row value when Value property is null.
-            if (this.Value == null)
-            {
-                ctl.Value = (DateTime)this.DefaultNewRowValue;
-            }
-            else
-            {
-                ctl.Value = (DateTime)this.Value;
-            }
-        }
-
-        public override Type EditType
-        {
-            get
-            {
-                // Return the type of the editing control that CalendarCell uses.
-                return typeof(CalendarEditingControl);
-            }
-        }
-
-        public override Type ValueType
-        {
-            get
-            {
-                // Return the type of the value that CalendarCell contains.
-
-                return typeof(DateTime);
-            }
-        }
-
-        public override object DefaultNewRowValue
-        {
-            get
-            {
-                // Use the current date and time as the default value.
-                return DateTime.Now;
-            }
-        }
-
-        public class CalendarColumn : DataGridViewColumn
-        {
-            public CalendarColumn() : base(new CalendarCell())
-            {
-            }
-
-            public override DataGridViewCell CellTemplate
-            {
-                get
-                {
-                    return base.CellTemplate;
-                }
-                set
-                {
-                    // Ensure that the cell used for the template is a CalendarCell.
-                    if (value != null &&
-                        !value.GetType().IsAssignableFrom(typeof(CalendarCell)))
-                    {
-                        throw new InvalidCastException("Must be a CalendarCell");
-                    }
-                    base.CellTemplate = value;
-                }
-            }
-        }
-
-        class CalendarEditingControl : DateTimePicker, IDataGridViewEditingControl
-        {
-            DataGridView dataGridView;
-            private bool valueChanged = false;
-            int rowIndex;
-
-            public CalendarEditingControl()
-            {
-                this.Format = DateTimePickerFormat.Short;
-            }
-
-            // Implements the IDataGridViewEditingControl.EditingControlFormattedValue 
-            // property.
-            public object EditingControlFormattedValue
-            {
-                get
-                {
-                    return this.Value.ToShortDateString();
-                }
-                set
-                {
-                    if (value is String)
-                    {
-                        try
-                        {
-                            // This will throw an exception of the string is 
-                            // null, empty, or not in the format of a date.
-                            this.Value = DateTime.Parse((String)value);
-                        }
-                        catch
-                        {
-                            // In the case of an exception, just use the 
-                            // default value so we're not left with a null
-                            // value.
-                            this.Value = DateTime.Now.Date;
-                        }
-                    }
-                }
-            }
-
-            // Implements the 
-            // IDataGridViewEditingControl.GetEditingControlFormattedValue method.
-            public object GetEditingControlFormattedValue(
-                DataGridViewDataErrorContexts context)
-            {
-                return EditingControlFormattedValue;
-            }
-
-            // Implements the 
-            // IDataGridViewEditingControl.ApplyCellStyleToEditingControl method.
-            public void ApplyCellStyleToEditingControl(
-                DataGridViewCellStyle dataGridViewCellStyle)
-            {
-                this.Font = dataGridViewCellStyle.Font;
-                this.CalendarForeColor = dataGridViewCellStyle.ForeColor;
-                this.CalendarMonthBackground = dataGridViewCellStyle.BackColor;
-            }
-
-            // Implements the IDataGridViewEditingControl.EditingControlRowIndex 
-            // property.
-            public int EditingControlRowIndex
-            {
-                get
-                {
-                    return rowIndex;
-                }
-                set
-                {
-                    rowIndex = value;
-                }
-            }
-
-            // Implements the IDataGridViewEditingControl.EditingControlWantsInputKey 
-            // method.
-            public bool EditingControlWantsInputKey(
-                Keys key, bool dataGridViewWantsInputKey)
-            {
-                // Let the DateTimePicker handle the keys listed.
-                switch (key & Keys.KeyCode)
-                {
-                    case Keys.Left:
-                    case Keys.Up:
-                    case Keys.Down:
-                    case Keys.Right:
-                    case Keys.Home:
-                    case Keys.End:
-                    case Keys.PageDown:
-                    case Keys.PageUp:
-                        return true;
-                    default:
-                        return !dataGridViewWantsInputKey;
-                }
-            }
-
-            // Implements the IDataGridViewEditingControl.PrepareEditingControlForEdit 
-            // method.
-            public void PrepareEditingControlForEdit(bool selectAll)
-            {
-                // No preparation needs to be done.
-            }
-
-            // Implements the IDataGridViewEditingControl
-            // .RepositionEditingControlOnValueChange property.
-            public bool RepositionEditingControlOnValueChange
-            {
-                get
-                {
-                    return false;
-                }
-            }
-
-            // Implements the IDataGridViewEditingControl
-            // .EditingControlDataGridView property.
-            public DataGridView EditingControlDataGridView
-            {
-                get
-                {
-                    return dataGridView;
-                }
-                set
-                {
-                    dataGridView = value;
-                }
-            }
-
-            // Implements the IDataGridViewEditingControl
-            // .EditingControlValueChanged property.
-            public bool EditingControlValueChanged
-            {
-                get
-                {
-                    return valueChanged;
-                }
-                set
-                {
-                    valueChanged = value;
-                }
-            }
-
-            // Implements the IDataGridViewEditingControl
-            // .EditingPanelCursor property.
-            public Cursor EditingPanelCursor
-            {
-                get
-                {
-                    return base.Cursor;
-                }
-            }
-
-            protected override void OnValueChanged(EventArgs eventargs)
-            {
-                // Notify the DataGridView that the contents of the cell
-                // have changed.
-                valueChanged = true;
-                this.EditingControlDataGridView.NotifyCurrentCellDirty(true);
-                base.OnValueChanged(eventargs);
-            }
-        }
+                
     }
 }
 

@@ -58,6 +58,7 @@
       <EntityTypeMapping TypeName="LaminatsiaModel.Archive">
         <MappingFragment StoreEntitySet="Archive">
           <ScalarProperty Name="DataTimeChange" ColumnName="DataTimeChange" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Action" ColumnName="Action" />
           <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
