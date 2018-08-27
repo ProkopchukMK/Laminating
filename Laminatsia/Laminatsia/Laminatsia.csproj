@@ -170,6 +170,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="LaminatsiaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
@@ -180,9 +183,6 @@
       <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
       <LastGenOutput>LaminatsiaModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

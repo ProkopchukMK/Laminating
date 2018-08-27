@@ -10,8 +10,6 @@ C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Laminatsia.exe.config
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Laminatsia.exe
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Laminatsia.pdb
-C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csprojResolveAssemblyReference.cache
-C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.LaminatsiaForm.resources
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Properties.Resources.resources
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csproj.GenerateResource.Cache
 D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csprojAssemblyReference.cache
@@ -31,3 +29,5 @@ C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug
 D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Authorization.resources
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Authorization.resources
 D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Laminatsia.resources
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Laminatsia.resources
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csprojResolveAssemblyReference.cache

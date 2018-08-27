@@ -1,59 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LaminatsiaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-  <EntityType Name="ColourProfile">
+  <EntityType Name="Archive">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="ColourGoods" Relationship="LaminatsiaModel.FK_ColourGoods_ColourProfile" FromRole="ColourProfile" ToRole="ColourGoods" />
-  </EntityType>
-  <EntityType Name="Dealer">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ID_ColourGoods" Type="Int32" Nullable="false" />
+    <Property Name="DateComing" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Profile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="ColourGoods" Relationship="LaminatsiaModel.FK_ColourGoods_Dealer" FromRole="Dealer" ToRole="ColourGoods" />
-  </EntityType>
-  <EntityType Name="Profile">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NameProfile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="ColourGoods" Relationship="LaminatsiaModel.FK_ColourGoods_Profile" FromRole="Profile" ToRole="ColourGoods" />
-  </EntityType>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dealer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Counts" Type="Byte" Nullable="false" />
+    <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StatusProfile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StatusGoods" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DataTimeChange" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="LaminatsiaEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" />
-    <EntitySet Name="Dealer" EntityType="Self.Dealer" />
-    <EntitySet Name="Profile" EntityType="Self.Profile" />
-    <EntitySet Name="Users" EntityType="Self.Users" />
-    <EntitySet Name="ColourGoods" EntityType="LaminatsiaModel.ColourGoods" />
-    <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="LaminatsiaModel.FK_ColourGoods_ColourProfile">
-      <End Role="ColourProfile" EntitySet="ColourProfile" />
-      <End Role="ColourGoods" EntitySet="ColourGoods" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ColourGoods_Dealer" Association="LaminatsiaModel.FK_ColourGoods_Dealer">
-      <End Role="Dealer" EntitySet="Dealer" />
-      <End Role="ColourGoods" EntitySet="ColourGoods" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ColourGoods_Profile" Association="LaminatsiaModel.FK_ColourGoods_Profile">
-      <End Role="Profile" EntitySet="Profile" />
-      <End Role="ColourGoods" EntitySet="ColourGoods" />
-    </AssociationSet>
-    <EntitySet Name="Archive" EntityType="LaminatsiaModel.Archive" />
-  </EntityContainer>
   <EntityType Name="ColourGoods">
     <Key>
       <PropertyRef Name="ID" />
@@ -70,13 +38,47 @@
     <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="StatusGoods" Type="Boolean" Nullable="false" />
     <Property Name="DateRemove" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="ColourProfile" Relationship="LaminatsiaModel.FK_ColourGoods_ColourProfile" FromRole="ColourGoods" ToRole="ColourProfile" />
-    <NavigationProperty Name="Dealer" Relationship="LaminatsiaModel.FK_ColourGoods_Dealer" FromRole="ColourGoods" ToRole="Dealer" />
-    <NavigationProperty Name="Profile" Relationship="LaminatsiaModel.FK_ColourGoods_Profile" FromRole="ColourGoods" ToRole="Profile" />
+    <NavigationProperty Name="ColourProfile" Relationship="Self.FK_ColourGoods_ColourProfile" FromRole="ColourGoods" ToRole="ColourProfile" />
+    <NavigationProperty Name="Dealer" Relationship="Self.FK_ColourGoods_Dealer" FromRole="ColourGoods" ToRole="Dealer" />
+    <NavigationProperty Name="Profile" Relationship="Self.FK_ColourGoods_Profile" FromRole="ColourGoods" ToRole="Profile" />
+  </EntityType>
+  <EntityType Name="ColourProfile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_ColourProfile" FromRole="ColourProfile" ToRole="ColourGoods" />
+  </EntityType>
+  <EntityType Name="Dealer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_Dealer" FromRole="Dealer" ToRole="ColourGoods" />
+  </EntityType>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameProfile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ColourGoods" Relationship="Self.FK_ColourGoods_Profile" FromRole="Profile" ToRole="ColourGoods" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <Association Name="FK_ColourGoods_ColourProfile">
-    <End Type="LaminatsiaModel.ColourProfile" Role="ColourProfile" Multiplicity="1" />
-    <End Type="LaminatsiaModel.ColourGoods" Role="ColourGoods" Multiplicity="*" />
+    <End Role="ColourProfile" Type="Self.ColourProfile" Multiplicity="1" />
+    <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ColourProfile">
         <PropertyRef Name="ID" />
@@ -87,8 +89,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ColourGoods_Dealer">
-    <End Type="LaminatsiaModel.Dealer" Role="Dealer" Multiplicity="1" />
-    <End Type="LaminatsiaModel.ColourGoods" Role="ColourGoods" Multiplicity="*" />
+    <End Role="Dealer" Type="Self.Dealer" Multiplicity="1" />
+    <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Dealer">
         <PropertyRef Name="ID" />
@@ -99,8 +101,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ColourGoods_Profile">
-    <End Type="LaminatsiaModel.Profile" Role="Profile" Multiplicity="1" />
-    <End Type="LaminatsiaModel.ColourGoods" Role="ColourGoods" Multiplicity="*" />
+    <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+    <End Role="ColourGoods" Type="Self.ColourGoods" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Profile">
         <PropertyRef Name="ID" />
@@ -110,26 +112,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Archive">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ID_ColourGoods" Type="Int32" Nullable="false" />
-    <Property Name="DateComing" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Profile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Dealer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Counts" Type="Byte" Nullable="false" />
-    <Property Name="Colour" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="StatusProfile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="StatusGoods" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="DataTimeChange" Type="DateTime" Nullable="false" Precision="0" />
-  </EntityType>
+  <EntityContainer Name="LaminatsiaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Archive" EntityType="Self.Archive" />
+    <EntitySet Name="ColourGoods" EntityType="Self.ColourGoods" />
+    <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" />
+    <EntitySet Name="Dealer" EntityType="Self.Dealer" />
+    <EntitySet Name="Profile" EntityType="Self.Profile" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
+      <End Role="ColourProfile" EntitySet="ColourProfile" />
+      <End Role="ColourGoods" EntitySet="ColourGoods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ColourGoods_Dealer" Association="Self.FK_ColourGoods_Dealer">
+      <End Role="Dealer" EntitySet="Dealer" />
+      <End Role="ColourGoods" EntitySet="ColourGoods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ColourGoods_Profile" Association="Self.FK_ColourGoods_Profile">
+      <End Role="Profile" EntitySet="Profile" />
+      <End Role="ColourGoods" EntitySet="ColourGoods" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

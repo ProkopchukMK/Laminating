@@ -12,8 +12,9 @@ namespace Laminatsia
 {
     /// <summary>
     /// TODO
+    /// 1. Написати трай кетч.
+    /// 2. Перевірити всі модулі програми.
     /// 3. Видалення користувачів.
-    /// 4. Перевірити всі модулі програми.
     /// </summary>
     public partial class Laminatsia : Form
     {

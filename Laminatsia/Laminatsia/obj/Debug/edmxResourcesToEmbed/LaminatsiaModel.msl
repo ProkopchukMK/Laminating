@@ -1,6 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="LaminatsiaModelStoreContainer" CdmEntityContainer="LaminatsiaEntities">
+    <EntitySetMapping Name="Archive">
+      <EntityTypeMapping TypeName="LaminatsiaModel.Archive">
+        <MappingFragment StoreEntitySet="Archive">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_ColourGoods" ColumnName="ID_ColourGoods" />
+          <ScalarProperty Name="DateComing" ColumnName="DateComing" />
+          <ScalarProperty Name="Profile" ColumnName="Profile" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Dealer" ColumnName="Dealer" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Counts" ColumnName="Counts" />
+          <ScalarProperty Name="Colour" ColumnName="Colour" />
+          <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
+          <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
+          <ScalarProperty Name="DateReady" ColumnName="DateReady" />
+          <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="DataTimeChange" ColumnName="DataTimeChange" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ColourGoods">
+      <EntityTypeMapping TypeName="LaminatsiaModel.ColourGoods">
+        <MappingFragment StoreEntitySet="ColourGoods">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DateComing" ColumnName="DateComing" />
+          <ScalarProperty Name="Profile_ID" ColumnName="Profile_ID" />
+          <ScalarProperty Name="Dealer_ID" ColumnName="Dealer_ID" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Counts" ColumnName="Counts" />
+          <ScalarProperty Name="Colour_ID" ColumnName="Colour_ID" />
+          <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
+          <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
+          <ScalarProperty Name="DateReady" ColumnName="DateReady" />
+          <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
+          <ScalarProperty Name="DateRemove" ColumnName="DateRemove" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ColourProfile">
       <EntityTypeMapping TypeName="LaminatsiaModel.ColourProfile">
         <MappingFragment StoreEntitySet="ColourProfile">
@@ -33,47 +74,6 @@
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
           <ScalarProperty Name="Role" ColumnName="Role" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ColourGoods">
-      <EntityTypeMapping TypeName="LaminatsiaModel.ColourGoods">
-        <MappingFragment StoreEntitySet="ColourGoods">
-          <ScalarProperty Name="DateRemove" ColumnName="DateRemove" />
-          <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
-          <ScalarProperty Name="DateReady" ColumnName="DateReady" />
-          <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
-          <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
-          <ScalarProperty Name="Colour_ID" ColumnName="Colour_ID" />
-          <ScalarProperty Name="Counts" ColumnName="Counts" />
-          <ScalarProperty Name="Notes" ColumnName="Notes" />
-          <ScalarProperty Name="Dealer_ID" ColumnName="Dealer_ID" />
-          <ScalarProperty Name="Profile_ID" ColumnName="Profile_ID" />
-          <ScalarProperty Name="DateComing" ColumnName="DateComing" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Archive">
-      <EntityTypeMapping TypeName="LaminatsiaModel.Archive">
-        <MappingFragment StoreEntitySet="Archive">
-          <ScalarProperty Name="DataTimeChange" ColumnName="DataTimeChange" />
-          <ScalarProperty Name="Role" ColumnName="Role" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Action" ColumnName="Action" />
-          <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
-          <ScalarProperty Name="DateReady" ColumnName="DateReady" />
-          <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
-          <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
-          <ScalarProperty Name="Colour" ColumnName="Colour" />
-          <ScalarProperty Name="Counts" ColumnName="Counts" />
-          <ScalarProperty Name="Notes" ColumnName="Notes" />
-          <ScalarProperty Name="Dealer" ColumnName="Dealer" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Profile" ColumnName="Profile" />
-          <ScalarProperty Name="DateComing" ColumnName="DateComing" />
-          <ScalarProperty Name="ID_ColourGoods" ColumnName="ID_ColourGoods" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

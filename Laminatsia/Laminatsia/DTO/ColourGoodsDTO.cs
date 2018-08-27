@@ -80,7 +80,7 @@ namespace Laminatsia.DTO
                 editColourGoods.Colour_ID = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colour).ID;
                 change = change + " колір ";
             }
-            if (editColourGoods.StatusProfile != statusProfile )
+            if (editColourGoods.StatusProfile != statusProfile)
             {
                 editColourGoods.StatusProfile = statusProfile;
                 change = change + " статус профілю ";
@@ -138,9 +138,9 @@ namespace Laminatsia.DTO
                 return false;
             }
             else
-            {
-                editColourGoods.StatusProfile = editStatusProfile;  //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - В РОБОТІ
-                _entity.SaveChanges();  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
+            {   
+                editColourGoods.StatusProfile = editStatusProfile;      //ПЕРЕВОДИМО В ЗНАЧЕННЯ  - В РОБОТІ
+                _entity.SaveChanges();                                  // ЗБЕРІГАЄМО РЕЗУЛЬТАТ
                 var editEntity = this.GetColourGoodsByID(id);
                 ArchiveDTO archiveDTO = new ArchiveDTO();
                 archiveDTO.AddToArchive(editEntity.ID, editEntity.DateComing, editEntity.Profile, editEntity.City, editEntity.Dealer, editEntity.Notes,
@@ -150,7 +150,7 @@ namespace Laminatsia.DTO
         }
         public List<ColourGoodsDTO> GetListColourGoods()
         {
-            List<ColourGoods> listColourGoods = _entity.ColourGoods.Where(x => x.ID != 0).ToList();
+            List<ColourGoods> listColourGoods = _entity.ColourGoods.Where(x => x.ID != 0).ToList();            
             List<ColourGoodsDTO> listColourGoodsDTO = new List<ColourGoodsDTO>(listColourGoods.Count);
             for (int i = 0; i < listColourGoods.Count; i++)
             {
