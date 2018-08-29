@@ -10,14 +10,10 @@ using System.Windows.Forms;
 
 namespace Laminatsia
 {
-    /// <summary>
-    /// TODO
-    /// 1. Написати трай кетч.
-    /// 2. Перевірити всі модулі програми.
-    /// 3. Видалення користувачів.
-    /// </summary>
     public partial class Laminatsia : Form
     {
+        private enum UserRole { Ламінація, Менеджери, Технологи, Адміністратори };
+        private string[] roles = new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" };
         private DealerDTO dealerDTO = new DealerDTO();
         private ColourDTO colourDTO = new ColourDTO();
         private ProfileDTO profileDTO = new ProfileDTO();
@@ -39,380 +35,511 @@ namespace Laminatsia
         }
         public Laminatsia(string userName, string role)
         {
-            InitializeComponent();
-            UserName = userName;
-            Role = role;
+            try
+            {
+                InitializeComponent();
+                UserName = userName;
+                Role = role;
 
-            if (role == "Ламінація")
-            {
-                MenuTabControl.TabIndex = 0;
-                //MenuTabControl.TabPages.Remove(tabPageLaminaters);
-                //MenuTabControl.TabPages.Remove(tabPageManagers);
-                //MenuTabControl.TabPages.Remove(tabPageAddRemove);
-                //MenuTabControl.TabPages.Remove(tabPageLogs);
-                FillAllComponentAddRemoveTab();
-                FillAllComponentLaminatsiaTab();
+                if (role == UserRole.Ламінація.ToString())
+                {
+                    MenuTabControl.TabIndex = 0;
+                    //MenuTabControl.TabPages.Remove(tabPageLaminaters);
+                    //MenuTabControl.TabPages.Remove(tabPageManagers);
+                    //MenuTabControl.TabPages.Remove(tabPageAddRemove);
+                    //MenuTabControl.TabPages.Remove(tabPageLogs);
+                    FillAllComponentAddRemoveTab();
+                    FillAllComponentLaminatsiaTab();
+                }
+                else if (role == UserRole.Технологи.ToString())
+                {
+                    MenuTabControl.TabIndex = 1;
+                    MenuTabControl.TabPages.Remove(tabPageLaminaters);
+                    //MenuTabControl.TabPages.Remove(tabPageManagers);
+                    MenuTabControl.TabPages.Remove(tabPageAddRemove);
+                    //MenuTabControl.TabPages.Remove(tabPageLogs);
+                    FillAllComponentManagersTab();
+                }
+                else if (role == UserRole.Менеджери.ToString())
+                {
+                    MenuTabControl.TabIndex = 2;
+                    MenuTabControl.TabPages.Remove(tabPageLaminaters);
+                    //MenuTabControl.TabPages.Remove(tabPageManagers);
+                    MenuTabControl.TabPages.Remove(tabPageAddRemove);
+                    //MenuTabControl.TabPages.Remove(tabPageLogs);
+                    FillAllComponentManagersTab();
+                }
+                else if (role == UserRole.Адміністратори.ToString())
+                {
+                    groupBoxAddUser.Visible = true;
+                    groupBoxRemoveUser.Visible = true;
+                    FillAllComponentLaminatsiaTab();
+                }
             }
-            else if (role == "Технологи")
+            catch (Exception ex)
             {
-                MenuTabControl.TabIndex = 1;
-                MenuTabControl.TabPages.Remove(tabPageLaminaters);
-                //MenuTabControl.TabPages.Remove(tabPageManagers);
-                MenuTabControl.TabPages.Remove(tabPageAddRemove);
-                //MenuTabControl.TabPages.Remove(tabPageLogs);
-                FillAllComponentManagersTab();
-            }
-            else if (role == "Менеджери")
-            {
-                MenuTabControl.TabIndex = 2;
-                MenuTabControl.TabPages.Remove(tabPageLaminaters);
-                //MenuTabControl.TabPages.Remove(tabPageManagers);
-                MenuTabControl.TabPages.Remove(tabPageAddRemove);
-                //MenuTabControl.TabPages.Remove(tabPageLogs);
-                FillAllComponentManagersTab();
-            }
-            else if (role == "Адміністратори")
-            {
-                groupBoxAddUser.Visible = true;
-                groupBoxRemoveUser.Visible = true;
-                FillAllComponentLaminatsiaTab();
+                MessageBox.Show("Сталася помилка ініціалізації Laminatsia! Детальніше: " + ex.Message);
             }
         }
         private void MenuTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MenuTabControl.SelectedTab == tabPageLaminaters)
+            try
             {
-                //  MessageBox.Show("Ламінація");
-                CleareAllComponentLaminatsiaTab();
-                FillAllComponentLaminatsiaTab();
+                if (MenuTabControl.SelectedTab == tabPageLaminaters)
+                {
+                    //  MessageBox.Show("Ламінація");
+                    CleareAllComponentLaminatsiaTab();
+                    FillAllComponentLaminatsiaTab();
+                }
+                else if (MenuTabControl.SelectedTab == tabPageManagers)
+                {
+                    // MessageBox.Show("Менеджери Технологи");
+                    CleareAllComponentManagersTab();
+                    FillAllComponentManagersTab();
+                }
+                else if (MenuTabControl.SelectedTab == tabPageAddRemove)
+                {
+                    //  MessageBox.Show("Додавання");
+                    CleareAllComponentAddRemoveTab();
+                    FillAllComponentAddRemoveTab();
+                }
+                else if (MenuTabControl.SelectedTab == tabPageLogs)
+                {
+                    //  MessageBox.Show("Додавання");
+                    CleareAllComponentArchiveTab();
+                    FillAllComponentArciveTab();
+                }
             }
-            else if (MenuTabControl.SelectedTab == tabPageManagers)
+            catch (Exception ex)
             {
-                // MessageBox.Show("Менеджери Технологи");
-                CleareAllComponentManagersTab();
-                FillAllComponentManagersTab();
-            }
-            else if (MenuTabControl.SelectedTab == tabPageAddRemove)
-            {
-                //  MessageBox.Show("Додавання");
-                CleareAllComponentAddRemoveTab();
-                FillAllComponentAddRemoveTab();
-            }
-            else if (MenuTabControl.SelectedTab == tabPageLogs)
-            {
-                //  MessageBox.Show("Додавання");
-                CleareAllComponentArchiveTab();
-                FillAllComponentArciveTab();
+                MessageBox.Show("Сталася помилка MenuTabControl_SelectedIndexChanged! Детальніше: " + ex.Message);
             }
         }
         private void FillGridView(List<ColourGoodsDTO> enterList, DataGridView dataGridView)
         {
-            DateTime today = DateTime.Now.Date;
-            if (enterList == null)
+            try
             {
-                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-                List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
-                for (int i = 0; i < listColourGoodsDTO.Count; i++)
-                {
-                    string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                    string statusGoods = listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
-                    //видаляемо після трьох днів
-                    if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date && (today - listColourGoodsDTO[i].DateRemove).Days > 4)
-                    {
-                        colourGoodsDTO.RemoveGolourGoods(listColourGoodsDTO[i].ID);
-                    }
-                    dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
-                        listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
-                         listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
-                    //позначення кольором дат
-                    //це замовлення видалено
-                    if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
-                    }
-                    //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ
-                    else if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                    }
-                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів
-                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                    }
-                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів
-                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                    }
-                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів
-                    else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
-                    }
 
-                }
-            }
-            else
-            {
-                enterList = enterList.OrderByDescending(x => x.DateComing).ToList();
-                for (int i = 0; i < enterList.Count; i++)
+                DateTime today = DateTime.Now.Date;
+                if (enterList == null)
                 {
-                    string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                    string statusGoods = enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
-                    //видаляемо після трьох днів
-                    if (enterList[i].DateRemove != DateTime.MinValue.Date && (today - enterList[i].DateRemove).Days > 4)
+                    ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                    List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
+                    for (int i = 0; i < listColourGoodsDTO.Count; i++)
                     {
-                        ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-                        colourGoodsDTO.RemoveGolourGoods(enterList[i].ID);
+                        string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
+                        string statusGoods = listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
+                        //видаляемо після трьох днів
+                        if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date && (today - listColourGoodsDTO[i].DateRemove).Days > 4)
+                        {
+                            colourGoodsDTO.RemoveGolourGoods(listColourGoodsDTO[i].ID);
+                        }
+                        dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
+                            listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
+                             listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
+                        //позначення кольором дат
+                        //це замовлення видалено
+                        if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                        }
+                        //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ
+                        else if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                        }
+                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів
+                        else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                        }
+                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів
+                        else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                        }
+                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів
+                        else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+                        }
                     }
-                    dataGridView.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
-                        enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
-                        enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods);
-                    //позначення кольором дат                    
-                    //це замовлення видалено
-                    if (enterList[i].DateRemove.Date != DateTime.MinValue.Date)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
-                    }
-                    //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ підсвічувати білим
-                    else if (enterList[i].StatusProfile && enterList[i].StatusGoods && enterList[i].DateRemove == DateTime.MinValue)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                    }
-                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів то підсвічувати OrangeRed
-                    else if ((enterList[i].DateToWork.Date - today).Days < 3 && enterList[i].DateRemove == DateTime.MinValue)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                    }
-                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів то підсвічувати Indigo
-                    else if ((enterList[i].DateToWork.Date - today).Days < 7 && enterList[i].DateRemove == DateTime.MinValue)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                    }
-                    //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів то підсвічувати зеленим
-                    else if ((enterList[i].DateToWork.Date - today).Days < 10 && enterList[i].DateRemove == DateTime.MinValue)
-                    {
-                        dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
-                    }
-                }
-            }
-        }
-
-        #region   ВКЛАДКА   Додати\Видалити   
-        //потрібно ввести спочатку місто а потім дилера
-        private void ComboxAddCity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textBoxAddDealer.Enabled = true;
-        }
-        //додати нового диллера до бази даних
-        private void Add_NewDealer_Click(object sender, EventArgs e)
-        {
-            string addDealer = textBoxAddDealer.Text.Trim();
-            if (сomboBoxAddCityDealer.SelectedItem != null)
-            {
-                if (addDealer != "")
-                {
-                    string message = dealerDTO.AddDealer(сomboBoxAddCityDealer.Text, addDealer);
-                    MessageBox.Show(message);
                 }
                 else
                 {
-                    MessageBox.Show("Потрібно написати назву Дилера!");
+                    enterList = enterList.OrderByDescending(x => x.DateComing).ToList();
+                    for (int i = 0; i < enterList.Count; i++)
+                    {
+                        string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
+                        string statusGoods = enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
+                        //видаляемо після трьох днів
+                        if (enterList[i].DateRemove != DateTime.MinValue.Date && (today - enterList[i].DateRemove).Days > 4)
+                        {
+                            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                            colourGoodsDTO.RemoveGolourGoods(enterList[i].ID);
+                        }
+                        dataGridView.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
+                            enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
+                            enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods);
+                        //позначення кольором дат                    
+                        //це замовлення видалено
+                        if (enterList[i].DateRemove.Date != DateTime.MinValue.Date)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                        }
+                        //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ підсвічувати білим
+                        else if (enterList[i].StatusProfile && enterList[i].StatusGoods && enterList[i].DateRemove == DateTime.MinValue)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                        }
+                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів то підсвічувати OrangeRed
+                        else if ((enterList[i].DateToWork.Date - today).Days < 3 && enterList[i].DateRemove == DateTime.MinValue)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                        }
+                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів то підсвічувати Indigo
+                        else if ((enterList[i].DateToWork.Date - today).Days < 7 && enterList[i].DateRemove == DateTime.MinValue)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                        }
+                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів то підсвічувати зеленим
+                        else if ((enterList[i].DateToWork.Date - today).Days < 10 && enterList[i].DateRemove == DateTime.MinValue)
+                        {
+                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+                        }
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Потрібно вибрати Місто!");
+                MessageBox.Show("Сталася помилка заповнення FillGridView! Детальніше: " + ex.Message);
             }
-            this.CleareAllComponentAddRemoveTab();
-            this.FillAllComponentAddRemoveTab();
+        }
+
+        #region   ВКЛАДКА   Додати\Видалити           
+        //додати нового диллера до бази даних
+        private void Add_NewDealer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string addDealer = textBoxAddDealer.Text.Trim();
+                if (сomboBoxAddCityDealer.SelectedItem != null)
+                {
+                    if (addDealer != "")
+                    {
+                        string message = dealerDTO.AddDealer(сomboBoxAddCityDealer.Text, addDealer);
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Потрібно написати назву Дилера!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Потрібно вибрати Місто!");
+                }
+                this.CleareAllComponentAddRemoveTab();
+                this.FillAllComponentAddRemoveTab();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка Add_NewDealer_Click! Детальніше: " + ex.Message);
+            }
         }
         //додати новий профіль до бази даних
         private void ButtonAddCity_Click(object sender, EventArgs e)
         {
-            if (textBoxAddCity.Text.Trim() != "")
+            try
             {
-                string message = dealerDTO.AddCity(textBoxAddCity.Text.Trim());
-                MessageBox.Show(message);
+                if (textBoxAddCity.Text.Trim() != "")
+                {
+                    string message = dealerDTO.AddCity(textBoxAddCity.Text.Trim());
+                    MessageBox.Show(message);
+                }
+                else
+                {
+                    MessageBox.Show("Потрібно написати назву Міста!");
+                }
+                this.CleareAllComponentAddRemoveTab();
+                this.FillAllComponentAddRemoveTab();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Потрібно написати назву Міста!");
+                MessageBox.Show("Сталася помилка ButtonAddCity_Click! Детальніше: " + ex.Message);
             }
-            this.CleareAllComponentAddRemoveTab();
-            this.FillAllComponentAddRemoveTab();
         }
         private void Add_NewProfile_Click(object sender, EventArgs e)
         {
-            if (textBoxAddProfile.Text.Trim() != "")
+            try
             {
-                string message = profileDTO.AddProfile(textBoxAddProfile.Text.Trim());
-                MessageBox.Show(message);
+                if (textBoxAddProfile.Text.Trim() != "")
+                {
+                    string message = profileDTO.AddProfile(textBoxAddProfile.Text.Trim());
+                    MessageBox.Show(message);
+                }
+                else
+                {
+                    MessageBox.Show("Потрібно написати назву Профіля!");
+                }
+                this.CleareAllComponentAddRemoveTab();
+                this.FillAllComponentAddRemoveTab();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Потрібно написати назву Профіля!");
+                MessageBox.Show("Сталася помилка Add_NewProfile_Click! Детальніше: " + ex.Message);
             }
-            this.CleareAllComponentAddRemoveTab();
-            this.FillAllComponentAddRemoveTab();
         }
         //додати новий колір до бази даних
         private void Add_NewColour_Click(object sender, EventArgs e)
         {
-            if (textBoxAddColour.Text.Trim() != "")
+            try
             {
-                ColourDTO newColour = new ColourDTO();
-                string message = newColour.AddColour(textBoxAddColour.Text.Trim());
-                MessageBox.Show(message);
+                if (textBoxAddColour.Text.Trim() != "")
+                {
+                    ColourDTO newColour = new ColourDTO();
+                    string message = newColour.AddColour(textBoxAddColour.Text.Trim());
+                    MessageBox.Show(message);
+                }
+                else
+                {
+                    MessageBox.Show("Потрібно написати назву Кольору!");
+                }
+                this.CleareAllComponentAddRemoveTab();
+                this.FillAllComponentAddRemoveTab();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Потрібно написати назву Кольору!");
+                MessageBox.Show("Сталася помилка Add_NewColour_Click! Детальніше: " + ex.Message);
             }
-            this.CleareAllComponentAddRemoveTab();
-            this.FillAllComponentAddRemoveTab();
         }
+
         #region   ДЛЯ АДМІНІСТРАТОРА
         //додати ного користувача
         private void ButtonAddNewUser_Click(object sender, EventArgs e)
         {
-            UsersDTO users = new UsersDTO();
-            if (textBoxAddNewUser.Text != "")
+            try
             {
-                if (comboBoxAddUserRole.SelectedItem != null)
+                UsersDTO users = new UsersDTO();
+                if (textBoxAddNewUser.Text != "")
                 {
-                    if (users.GetUserByNameRole(textBoxAddNewUser.Text, comboBoxAddUserRole.SelectedItem.ToString()) == null)
+                    if (comboBoxAddUserRole.SelectedItem != null)
                     {
-                        if (textBoxAddUserPassword.Text != "")
+                        if (users.GetUserByNameRole(textBoxAddNewUser.Text, comboBoxAddUserRole.SelectedItem.ToString()) == null)
                         {
-                            users.AddUser(textBoxAddNewUser.Text, textBoxAddUserPassword.Text, comboBoxAddUserRole.SelectedItem.ToString());
-                            MessageBox.Show("Користувача додано до бази даних!");
-                            CleareAllComponentAddRemoveTab();
-                            FillAllComponentAddRemoveTab();
+                            if (textBoxAddUserPassword.Text != "")
+                            {
+                                if (this.CheckPassword(textBoxAddUserPassword.Text))
+                                {
+                                    users.AddUser(textBoxAddNewUser.Text, textBoxAddUserPassword.Text, comboBoxAddUserRole.SelectedItem.ToString());
+                                    MessageBox.Show("Користувача додано до бази даних!");
+                                    CleareAllComponentAddRemoveTab();
+                                    FillAllComponentAddRemoveTab();
+                                }
+                                else
+                                {
+                                    textBoxAddUserPassword.Text = "";
+                                    labelErrorPassword.Text = "Пароль повинен містити цифри та латинські літери!";
+                                    labelErrorPassword.Visible = true;
+                                    MessageBox.Show("Пароль повинен містити цифри та латинські літери!");
+                                }
+                            }
+                            else { MessageBox.Show("Введіть пароль користувача!"); textBoxAddUserPassword.Text = ""; }
                         }
-                        else { MessageBox.Show("Введіть пароль користувача!"); textBoxAddUserPassword.Text = ""; }
+                        else { MessageBox.Show("Користувач з таким логіном та типом доступу вже є!"); textBoxAddNewUser.Text = ""; }
                     }
-                    else { MessageBox.Show("Користувач з таким логіном та типом доступу вже є!"); textBoxAddNewUser.Text = ""; }
+                    else { MessageBox.Show("Виберіть тип доступу користувача!"); }
                 }
-                else { MessageBox.Show("Виберіть тип доступу користувача!");}
+                else { MessageBox.Show("Введіть логін користувача!"); textBoxAddNewUser.Text = ""; }
             }
-            else { MessageBox.Show("Введіть логін користувача!"); textBoxAddNewUser.Text = ""; }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка ButtonAddNewUser_Click! Детальніше: " + ex.Message);
+            }
         }
         //змінити пароль користувача
         private void ButtonEditUser_Click(object sender, EventArgs e)
         {
-            CleareAllComponentAddRemoveTab();
-            FillAllComponentAddRemoveTab(); 
+            try
+            {
+                CleareAllComponentAddRemoveTab();
+                FillAllComponentAddRemoveTab();
 
-            textBoxAddNewUser.Visible = false;
-            comboBoxAddUserRole.Visible = false;
-            
-            comboBoxEditUserRole.Visible = true;
-            comboBoxEditUser.Visible = true; 
+                textBoxAddNewUser.Visible = false;
+                comboBoxAddUserRole.Visible = false;
 
-            buttonEditUser.Click -= ButtonEditUser_Click;
-            buttonEditUser.Click += CancelEditUser;
-            buttonEditUser.Text = "Відмінити";
+                comboBoxEditUserRole.Visible = true;
+                comboBoxEditUser.Visible = true;
 
-            buttonAddNewUser.Click -= ButtonAddNewUser_Click;
-            buttonAddNewUser.Click += EditUser;
-            buttonAddNewUser.Text = "Змінити пароль";
+                buttonEditUser.Click -= ButtonEditUser_Click;
+                buttonEditUser.Click += CancelEditUser;
+                buttonEditUser.Text = "Відмінити";
 
-            labelAddUserPassword.Text = "Введіть новий пароль";
+                buttonAddNewUser.Click -= ButtonAddNewUser_Click;
+                buttonAddNewUser.Click += EditUser;
+                buttonAddNewUser.Text = "Змінити пароль";
+
+                labelAddUserPassword.Text = "Введіть новий пароль";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка ButtonEditUser_Click! Детальніше: " + ex.Message);
+            }
         }
         //змінити
         private void EditUser(object sender, EventArgs e)
         {
-            if (comboBoxEditUser.SelectedItem != null)
+            try
             {
-                if (textBoxAddUserPassword.Text != "")
+                if (comboBoxEditUser.SelectedItem != null)
                 {
-                    if (comboBoxEditUserRole.SelectedItem != null)
+                    if (textBoxAddUserPassword.Text != "")
                     {
-                        UsersDTO usersDTO = new UsersDTO();
-                        var editUsersDTO = usersDTO.GetUserByNameRole(comboBoxEditUser.SelectedItem.ToString(), comboBoxEditUserRole.SelectedItem.ToString());                        
-                        if (usersDTO.UpdateUser(editUsersDTO.ID, textBoxAddUserPassword.Text))
+                        if (this.CheckPassword(textBoxAddUserPassword.Text))
                         {
-                            MessageBox.Show("Пароль успішно змінено!");
-                            CleareAllComponentAddRemoveTab();
-                            FillAllComponentAddRemoveTab();
-                            CancelEditUser(sender, e);
+                            if (comboBoxEditUserRole.SelectedItem != null)
+                            {
+                                UsersDTO usersDTO = new UsersDTO();
+                                var editUsersDTO = usersDTO.GetUserByNameRole(comboBoxEditUser.SelectedItem.ToString(), comboBoxEditUserRole.SelectedItem.ToString());
+                                if (usersDTO.UpdateUser(editUsersDTO.ID, textBoxAddUserPassword.Text))
+                                {
+                                    MessageBox.Show("Пароль успішно змінено!");
+                                    CleareAllComponentAddRemoveTab();
+                                    FillAllComponentAddRemoveTab();
+                                    CancelEditUser(sender, e);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Пароль НЕ   змінено!");
+                                    CleareAllComponentAddRemoveTab();
+                                    FillAllComponentAddRemoveTab();
+                                }
+                            }
+                            else { MessageBox.Show("Виберіть тип доступу!"); }
                         }
                         else
                         {
-                            MessageBox.Show("Пароль НЕ   змінено!");
-                            CleareAllComponentAddRemoveTab();
-                            FillAllComponentAddRemoveTab();
+                            textBoxAddUserPassword.Text = "";
+                            labelErrorPassword.Text = "Пароль повинен містити цифри та латинські літери!";
+                            labelErrorPassword.Visible = true;
+                            MessageBox.Show("Пароль повинен містити цифри та латинські літери!");
                         }
                     }
-                    else { MessageBox.Show("Виберіть тип доступу!"); }
+                    else { MessageBox.Show("Введіть новий пароль!"); }
                 }
-                else { MessageBox.Show("Введіть новий пароль!"); }
+                else { MessageBox.Show("Виберіть користувача!"); textBoxAddUserPassword.Text = ""; }
             }
-            else { MessageBox.Show("Виберіть користувача!"); textBoxAddUserPassword.Text = ""; }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка EditUser! Детальніше: " + ex.Message);
+            }
+        }
+        private bool CheckPassword(string password)
+        {
+            try
+            {
+                if (password != null)
+                {
+                    return password.All(c => Char.IsNumber(c) || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка CheckPassword! Детальніше: " + ex.Message);
+                return false;
+            }
         }
         //відміна
         private void CancelEditUser(object sender, EventArgs e)
         {
-            textBoxAddNewUser.Visible = true;
-            comboBoxAddUserRole.Visible = true;
+            try
+            {
+                textBoxAddNewUser.Visible = true;
+                comboBoxAddUserRole.Visible = true;
 
-            comboBoxEditUserRole.Visible = false;
-            comboBoxEditUser.Visible = false;
+                labelErrorPassword.Visible = false;
+                comboBoxEditUserRole.Visible = false;
+                comboBoxEditUser.Visible = false;
 
-            comboBoxEditUser.Items.Clear();
-            buttonEditUser.Click -= CancelEditUser;
-            buttonEditUser.Click += ButtonEditUser_Click;
-            buttonEditUser.Text = "Змінити пароль";
+                comboBoxEditUser.Items.Clear();
+                buttonEditUser.Click -= CancelEditUser;
+                buttonEditUser.Click += ButtonEditUser_Click;
+                buttonEditUser.Text = "Змінити пароль";
 
 
-            buttonAddNewUser.Click -= EditUser;
-            buttonAddNewUser.Click += ButtonAddNewUser_Click;
-            buttonAddNewUser.Text = "Додати користувача";
+                buttonAddNewUser.Click -= EditUser;
+                buttonAddNewUser.Click += ButtonAddNewUser_Click;
+                buttonAddNewUser.Text = "Додати користувача";
 
-            labelAddUserPassword.Text = "Пароль користувача";
-            textBoxAddUserPassword.Text = "";
-            CleareAllComponentAddRemoveTab();
-            FillAllComponentAddRemoveTab();
+                labelAddUserPassword.Text = "Пароль користувача";
+                textBoxAddUserPassword.Text = "";
+                CleareAllComponentAddRemoveTab();
+                FillAllComponentAddRemoveTab();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка CancelEditUser! Детальніше: " + ex.Message);
+            }
         }
         private void comboBoxEditUserRole_SelectedIndexChanged(object sender, EventArgs e)
-        {            
-            comboBoxEditUser.Enabled = true;
-            comboBoxEditUser.Items.Clear();
-            UsersDTO usersDTO = new UsersDTO();
-            string str = comboBoxEditUserRole.SelectedItem.ToString();
-            var list = usersDTO.GetListUsersDTO().Where(x => x.UserRole == str).Select(x => x.UserName).ToArray();
-            comboBoxEditUser.Items.AddRange(list);
+        {
+            try
+            {
+                comboBoxEditUser.Enabled = true;
+                comboBoxEditUser.Items.Clear();
+                UsersDTO usersDTO = new UsersDTO();
+                string str = comboBoxEditUserRole.SelectedItem.ToString();
+                var list = usersDTO.GetListUsersDTO().Where(x => x.UserRole == str).Select(x => x.UserName).ToArray();
+                comboBoxEditUser.Items.AddRange(list);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка comboBoxEditUserRole_SelectedIndexChanged! Детальніше: " + ex.Message);
+            }
         }
         private void ButtonRemoveUser_Click(object sender, EventArgs e)
         {
-            if (comboBoxRemoveUserName.SelectedItem != null)
+            try
             {
-                if (comboBoxRemoveUserRole.SelectedItem != null)
+                if (comboBoxRemoveUserName.SelectedItem != null)
                 {
-                    UsersDTO usersDTO = new UsersDTO();
-                    if (usersDTO.RemoveUser(comboBoxRemoveUserName.SelectedItem.ToString(), comboBoxRemoveUserRole.SelectedItem.ToString())) { MessageBox.Show("Користувача ВИДАЛЕНО!"); }
-                    else { MessageBox.Show("Користувача НЕ ВИДАЛЕНО!"); }
-                    CleareAllComponentAddRemoveTab();
-                    FillAllComponentAddRemoveTab();
+                    if (comboBoxRemoveUserRole.SelectedItem != null)
+                    {
+                        UsersDTO usersDTO = new UsersDTO();
+                        if (usersDTO.RemoveUser(comboBoxRemoveUserName.SelectedItem.ToString(), comboBoxRemoveUserRole.SelectedItem.ToString())) { MessageBox.Show("Користувача ВИДАЛЕНО!"); }
+                        else { MessageBox.Show("Користувача НЕ ВИДАЛЕНО!"); }
+                        CleareAllComponentAddRemoveTab();
+                        FillAllComponentAddRemoveTab();
+                    }
+                    else { MessageBox.Show("Виберіть тип доступу!"); }
                 }
-                else { MessageBox.Show("Виберіть тип доступу!"); }
+                else { MessageBox.Show("Виберіть користувача!"); comboBoxRemoveUserRole.SelectedItem = -1; }
             }
-            else { MessageBox.Show("Виберіть користувача!"); comboBoxRemoveUserRole.SelectedItem = -1; }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка ButtonRemoveUser_Click! Детальніше: " + ex.Message);
+            }
         }
-
         private void ComboBoxRemoveUserRole_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxRemoveUserName.Items.Clear();
-            UsersDTO usersDTO = new UsersDTO();
-            comboBoxRemoveUserName.Enabled = true;
-            comboBoxRemoveUserName.Items.AddRange(usersDTO.GetListUsersDTO().Where(x => x.UserRole == comboBoxRemoveUserRole.SelectedItem.ToString()).Select(x => x.UserName).ToArray());
+            try
+            {
+                comboBoxRemoveUserName.Items.Clear();
+                UsersDTO usersDTO = new UsersDTO();
+                comboBoxRemoveUserName.Enabled = true;
+                comboBoxRemoveUserName.Items.AddRange(usersDTO.GetListUsersDTO().Where(x => x.UserRole == comboBoxRemoveUserRole.SelectedItem.ToString()).Select(x => x.UserName).ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка ComboBoxRemoveUserRole_SelectedIndexChanged! Детальніше: " + ex.Message);
+            }
         }
         #endregion
         //заповнити всі компоненти вкладки Додати \ Видалити
         private void FillAllComponentAddRemoveTab()
         {
+            try { 
             listProfile = profileDTO.GetListProfile();
             listColour = colourDTO.GetListColour();
             listCity = dealerDTO.GetListCity();
@@ -429,44 +556,57 @@ namespace Laminatsia
             comboBoxRemoveColour.Items.AddRange(listColour.ToArray());
             if (Role == "Адміністратори")
             {
-                comboBoxRemoveUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
-                
-                comboBoxEditUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
-                comboBoxAddUserRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
+                comboBoxRemoveUserRole.Items.AddRange(roles);
+                comboBoxEditUserRole.Items.AddRange(roles);
+                comboBoxAddUserRole.Items.AddRange(roles);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка FillAllComponentAddRemoveTab! Детальніше: " + ex.Message);
             }
         }
         //очистити всі компоненти вкладки Додати \ Видалити
         private void CleareAllComponentAddRemoveTab()
         {
-            //очищення вкладки додати\видалити(додати нове знчення)
-            сomboBoxAddCityDealer.Items.Clear();
-            textBoxAddDealer.Text = "";
-            textBoxAddDealer.Enabled = false;
-            textBoxAddProfile.Text = "";
-            textBoxAddColour.Text = "";
-            textBoxAddCity.Text = "";
-
-            comboBoxRemoveCity.Items.Clear();
-            comboBoxRemoveDealer.Items.Clear();
-            comboBoxRemoveProfile.Items.Clear();
-            comboBoxRemoveColour.Items.Clear();
-            dataGridViewTehnologes.Rows.Clear();
-            if (Role == "Адміністратори")
+            try
             {
-                textBoxAddNewUser.Text = "";
-                textBoxAddUserPassword.Text = "";
-                comboBoxRemoveUserRole.Items.Clear();
-                comboBoxEditUserRole.Items.Clear();
-                comboBoxEditUser.Items.Clear();
-                comboBoxAddUserRole.Items.Clear();
-                comboBoxRemoveUserName.Items.Clear();
-                comboBoxRemoveUserName.Enabled = false;
+                //очищення вкладки додати\видалити(додати нове знчення)
+                сomboBoxAddCityDealer.Items.Clear();
+                textBoxAddDealer.Text = "";
+                textBoxAddDealer.Enabled = false;
+                textBoxAddProfile.Text = "";
+                textBoxAddColour.Text = "";
+                textBoxAddCity.Text = "";
+
+                comboBoxRemoveCity.Items.Clear();
+                comboBoxRemoveDealer.Items.Clear();
+                comboBoxRemoveProfile.Items.Clear();
+                comboBoxRemoveColour.Items.Clear();
+                dataGridViewTehnologes.Rows.Clear();
+                if (Role == "Адміністратори")
+                {
+                    textBoxAddNewUser.Text = "";
+                    textBoxAddUserPassword.Text = "";
+                    comboBoxRemoveUserRole.Items.Clear();
+                    comboBoxEditUserRole.Items.Clear();
+                    comboBoxEditUser.Items.Clear();
+                    comboBoxAddUserRole.Items.Clear();
+                    comboBoxRemoveUserName.Items.Clear();
+                    comboBoxRemoveUserName.Enabled = false;
+                    labelErrorPassword.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка CleareAllComponentAddRemoveTab! Детальніше: " + ex.Message);
             }
 
-        }
+}
         #region Видалення інформації з бази данних
         private void ComboBoxRemoveCity_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try { 
             comboBoxRemoveDealer.Items.Clear();
             string removeCityName = comboBoxRemoveCity.SelectedItem.ToString();
             var listDealerByCity = dealerDTO.GetListDealerByCity(removeCityName).ToArray();
@@ -480,9 +620,15 @@ namespace Laminatsia
                 comboBoxRemoveDealer.Enabled = true;
                 comboBoxRemoveDealer.Items.AddRange(listDealerByCity);
             }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка ComboBoxRemoveCity_SelectedIndexChanged! Детальніше: " + ex.Message);
+            }
         }
         private void ButtonRemoveDealer_Click(object sender, EventArgs e)
         {
+            try { 
             if (comboBoxRemoveCity.SelectedItem != null)
             {
                 var listDealer = dealerDTO.GetListDealerByCity(comboBoxRemoveCity.SelectedItem.ToString());
@@ -539,8 +685,12 @@ namespace Laminatsia
             this.CleareAllComponentAddRemoveTab();
             this.FillAllComponentAddRemoveTab();
         }
-        private void ButtonRemoveProfile_Click(object sender, EventArgs e)
-        {
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка ButtonRemoveDealer_Click! Детальніше: " + ex.Message);
+            }}
+    private void ButtonRemoveProfile_Click(object sender, EventArgs e)
+        {try { 
             if (comboBoxRemoveProfile.SelectedItem != null)
             {
                 string messageToRemove = "Дійсно видалити профіль " + comboBoxRemoveProfile.SelectedItem.ToString() + " ?";
@@ -565,9 +715,14 @@ namespace Laminatsia
             }
             this.CleareAllComponentAddRemoveTab();
             this.FillAllComponentAddRemoveTab();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка ButtonRemoveProfile_Click! Детальніше: " + ex.Message);
+            }
         }
         private void ButtonRemoveColour_Click(object sender, EventArgs e)
-        {
+        {try { 
             if (comboBoxRemoveColour.SelectedItem != null)
             {
                 string messageToRemove = "Дійсно видалити колір " + comboBoxRemoveColour.SelectedItem.ToString() + " ?";
@@ -592,6 +747,11 @@ namespace Laminatsia
             }
             this.CleareAllComponentAddRemoveTab();
             this.FillAllComponentAddRemoveTab();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка ButtonRemoveColour_Click! Детальніше: " + ex.Message);
+            }
         }
         private void СomboxAddCity_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1489,7 +1649,6 @@ namespace Laminatsia
         }
 
         #endregion
-                
     }
 }
 

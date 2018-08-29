@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Threading;
 using System.IO;
 using Laminatsia.Properties;
+using System.Collections;
 
 namespace Laminatsia
 {
@@ -18,19 +19,19 @@ namespace Laminatsia
     {
         private string[] userSaveData = null;
         //виставити розташування файлу де записуються дані останього збереженого користувача
-        private string fileName = Directory.GetCurrentDirectory() + @"\UserData.txt";     
+        private string fileName = Directory.GetCurrentDirectory() + @"\UserData.txt";
         //private string fileName = @"D:\Ламінація\Laminatsia\Laminatsia\Resources\UserData.txt";
         public Authorization()
         {
             InitializeComponent();
             comboBoxRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
             //якщо такого файлу не було знайдено створюємо пустий текстовий файл
-            using (FileStream fs = File.Open(fileName, FileMode.OpenOrCreate )) { }
+            using (FileStream fs = File.Open(fileName, FileMode.OpenOrCreate)) { }
             userSaveData = File.ReadAllLines(fileName);
             if (userSaveData.Length > 0)
             {
                 textBoxLogin.Text = userSaveData[0];
-                textBoxPassword.Text = userSaveData[1];
+                textBoxPassword.Text = OperationOXR(userSaveData[1], false);
                 comboBoxRole.SelectedItem = userSaveData[2];
                 checkBoxSaveUserInfo.Checked = true;
             }
@@ -61,7 +62,8 @@ namespace Laminatsia
                                     if (checkBoxSaveUserInfo.Checked)
                                     {
                                         //string destPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
-                                        File.WriteAllLines(fileName, new string[] { userName, userPassword, role });
+                                        string codingUserPasword = OperationOXR(userPassword, true);
+                                        File.WriteAllLines(fileName, new string[] { userName, codingUserPasword, role });
                                     }
                                     this.Hide();
                                     Laminatsia laminatsiaForm = new Laminatsia(userName, role);
@@ -84,6 +86,36 @@ namespace Laminatsia
                 else { MessageBox.Show("Введіть пароль!"); }
             }
             else { MessageBox.Show("Введіть логін!"); }
+        }
+        private string OperationOXR(string input, bool coding)
+        {
+            const string key = "2018";
+            string output = "";
+            if (coding)
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+                byte[] res = new byte[inputBytes.Length];
+
+                for (int i = 0; i < inputBytes.Length; i++)
+                {
+                    res[i] = (byte)(inputBytes[i] ^ key[i % key.Length]);
+                }
+                output = System.Text.Encoding.UTF8.GetString(res);
+            }
+            else
+            {
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+                byte[] res = new byte[inputBytes.Length];
+
+                for (int i = 0; i < inputBytes.Length; i++)
+                {
+                    res[i] = (byte)(inputBytes[i] ^ key[i % key.Length]);
+                }
+                output = System.Text.Encoding.UTF8.GetString(res);
+            }
+            return output;
         }
         private void ButtonExit_Click(object sender, EventArgs e)
         {

@@ -8,7 +8,6 @@ namespace Laminatsia.DTO
     public class ArchiveDTO
     {
         private LaminatsiaEntities _entity = new LaminatsiaEntities();
-
         public int ID_ColourGoods { get; set; }
         public DateTime DateComing { get; set; }
         public string Profile { get; set; }
