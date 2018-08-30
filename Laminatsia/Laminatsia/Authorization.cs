@@ -12,21 +12,29 @@ using System.Threading;
 using System.IO;
 using Laminatsia.Properties;
 using System.Collections;
+using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace Laminatsia
 {
     public partial class Authorization : Form
     {
         private string[] userSaveData = null;
-        //виставити розташування файлу де записуються дані останього збереженого користувача
+        //виставити розташування файлу в папці з програмою, де записуються дані останього збереженого користувача
         private string fileName = Directory.GetCurrentDirectory() + @"\UserData.txt";
-        //private string fileName = @"D:\Ламінація\Laminatsia\Laminatsia\Resources\UserData.txt";
         public Authorization()
         {
             InitializeComponent();
+            FillAllAuthorization();
+        }
+        private void FillAllAuthorization()
+        {
             comboBoxRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
             //якщо такого файлу не було знайдено створюємо пустий текстовий файл
-            using (FileStream fs = File.Open(fileName, FileMode.OpenOrCreate)) { }
+            if (!File.Exists(fileName))
+            {
+                using (FileStream fs = File.Open(fileName, FileMode.OpenOrCreate)) { }
+            }
             userSaveData = File.ReadAllLines(fileName);
             if (userSaveData.Length > 0)
             {
@@ -36,12 +44,12 @@ namespace Laminatsia
                 checkBoxSaveUserInfo.Checked = true;
             }
         }
-        private LaminatsiaEntities _entity = new LaminatsiaEntities();
         private void ButtonLogIn_Click(object sender, EventArgs e)
         {
             string userName;
             string userPassword;
             string role;
+            LaminatsiaEntities _entity = new LaminatsiaEntities();
 
             if (textBoxLogin.Text.Trim() != "")
             {
@@ -49,6 +57,8 @@ namespace Laminatsia
                 {
                     if (comboBoxRole.SelectedItem != null)
                     {
+                        //перевіряємо конект до бази даних
+                        IsServerConnected();
                         userName = textBoxLogin.Text.Trim();
                         userPassword = textBoxPassword.Text.Trim();
                         role = comboBoxRole.SelectedItem.ToString();
@@ -61,7 +71,7 @@ namespace Laminatsia
                                 {
                                     if (checkBoxSaveUserInfo.Checked)
                                     {
-                                        //string destPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+                                        //відправляємо пароль на шифруваня для запису в файл OperationOXR
                                         string codingUserPasword = OperationOXR(userPassword, true);
                                         File.WriteAllLines(fileName, new string[] { userName, codingUserPasword, role });
                                     }
@@ -87,6 +97,8 @@ namespace Laminatsia
             }
             else { MessageBox.Show("Введіть логін!"); }
         }
+        //шифратор і дешифратор пароля, для запису і зчитування у тимчасовий файл. 
+        //Перше значення для значення, а друге при true - шифрує, а при false - розшифровує.
         private string OperationOXR(string input, bool coding)
         {
             const string key = "2018";
@@ -116,6 +128,44 @@ namespace Laminatsia
                 output = System.Text.Encoding.UTF8.GetString(res);
             }
             return output;
+        }
+        private void IsServerConnected()
+        {
+            string connectionString = "";
+            try
+            {
+                connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionStringToLaminatsiaEntities"].ConnectionString;
+            }
+            catch
+            {
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    //this.Hide();
+                    Connect connectForm = new Connect();
+                    //connectForm.Closed += (s, args) => 
+                    connectForm.Show();
+                    this.Close();
+                }
+                else
+                {
+                    using (var connecting = new SqlConnection(connectionString))
+                    {
+                        try
+                        {
+                            connecting.Open();
+                        }
+                        catch (SqlException sqlEx)
+                        {
+                            MessageBox.Show(sqlEx.Message);
+                            this.Hide();
+                            Connect connectForm = new Connect();
+                            connectForm.Closed += (s, args) => this.Close();
+                            connectForm.Show();
+                        }
+                    }
+                }
+            }
+
         }
         private void ButtonExit_Click(object sender, EventArgs e)
         {

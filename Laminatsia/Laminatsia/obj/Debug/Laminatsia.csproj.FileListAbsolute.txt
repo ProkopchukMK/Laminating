@@ -30,4 +30,13 @@ D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Authorization.r
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Authorization.resources
 D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Laminatsia.resources
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Laminatsia.resources
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Smo.dll
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.SqlEnum.dll
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Dmf.Common.dll
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Diagnostics.STrace.dll
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.ServiceBrokerEnum.dll
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.SqlClrProvider.dll
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csprojResolveAssemblyReference.cache
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Connect.resources

@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MenuTabControl = new System.Windows.Forms.TabControl();
             this.tabPageLaminaters = new System.Windows.Forms.TabPage();
             this.dataGridViewLaminatsia = new System.Windows.Forms.DataGridView();
@@ -138,12 +138,14 @@
             this.ColumnStatusGoods = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageAddRemove = new System.Windows.Forms.TabPage();
             this.groupBoxRemoveUser = new System.Windows.Forms.GroupBox();
+            this.buttonCancelRemove = new System.Windows.Forms.Button();
             this.buttonRemoveUser = new System.Windows.Forms.Button();
             this.comboBoxRemoveUserRole = new System.Windows.Forms.ComboBox();
             this.comboBoxRemoveUserName = new System.Windows.Forms.ComboBox();
             this.labelRemoveUserRole = new System.Windows.Forms.Label();
             this.labelRemoveUserName = new System.Windows.Forms.Label();
             this.groupBoxAddUser = new System.Windows.Forms.GroupBox();
+            this.labelErrorPassword = new System.Windows.Forms.Label();
             this.comboBoxEditUserRole = new System.Windows.Forms.ComboBox();
             this.comboBoxEditUser = new System.Windows.Forms.ComboBox();
             this.buttonEditUser = new System.Windows.Forms.Button();
@@ -256,8 +258,6 @@
             this.dataGridViewTextBoxColumn37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn39 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelErrorPassword = new System.Windows.Forms.Label();
-            this.buttonCancelRemove = new System.Windows.Forms.Button();
             this.MenuTabControl.SuspendLayout();
             this.tabPageLaminaters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLaminatsia)).BeginInit();
@@ -351,8 +351,8 @@
             // ColumnLamDateComing
             // 
             this.ColumnLamDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.Format = "d";
-            this.ColumnLamDateComing.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle26.Format = "d";
+            this.ColumnLamDateComing.DefaultCellStyle = dataGridViewCellStyle26;
             this.ColumnLamDateComing.HeaderText = "Дата замовлення";
             this.ColumnLamDateComing.Name = "ColumnLamDateComing";
             this.ColumnLamDateComing.ReadOnly = true;
@@ -419,8 +419,8 @@
             // ColumnLamDateToWork
             // 
             this.ColumnLamDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Format = "d";
-            this.ColumnLamDateToWork.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle27.Format = "d";
+            this.ColumnLamDateToWork.DefaultCellStyle = dataGridViewCellStyle27;
             this.ColumnLamDateToWork.HeaderText = "Дата в роботу";
             this.ColumnLamDateToWork.Name = "ColumnLamDateToWork";
             this.ColumnLamDateToWork.ReadOnly = true;
@@ -441,8 +441,8 @@
             // ColumnLamDateReady
             // 
             this.ColumnLamDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Format = "d";
-            this.ColumnLamDateReady.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle28.Format = "d";
+            this.ColumnLamDateReady.DefaultCellStyle = dataGridViewCellStyle28;
             this.ColumnLamDateReady.HeaderText = "Дата готовності";
             this.ColumnLamDateReady.Name = "ColumnLamDateReady";
             this.ColumnLamDateReady.ReadOnly = true;
@@ -791,10 +791,10 @@
             // 
             // textBoxTehnologFindByID
             // 
-            this.textBoxTehnologFindByID.Location = new System.Drawing.Point(869, 45);
+            this.textBoxTehnologFindByID.Location = new System.Drawing.Point(847, 45);
             this.textBoxTehnologFindByID.MaxLength = 9;
             this.textBoxTehnologFindByID.Name = "textBoxTehnologFindByID";
-            this.textBoxTehnologFindByID.Size = new System.Drawing.Size(109, 23);
+            this.textBoxTehnologFindByID.Size = new System.Drawing.Size(158, 23);
             this.textBoxTehnologFindByID.TabIndex = 33;
             this.textBoxTehnologFindByID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxTehnologFindByID_KeyPress);
             // 
@@ -1045,8 +1045,8 @@
             this.dataGridViewTehnologes.AllowUserToAddRows = false;
             this.dataGridViewTehnologes.AllowUserToDeleteRows = false;
             this.dataGridViewTehnologes.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridViewTehnologes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridViewTehnologes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridViewTehnologes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1069,14 +1069,14 @@
             this.dataGridViewTehnologes.Location = new System.Drawing.Point(20, 228);
             this.dataGridViewTehnologes.Name = "dataGridViewTehnologes";
             this.dataGridViewTehnologes.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTehnologes.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTehnologes.RowHeadersDefaultCellStyle = dataGridViewCellStyle33;
             this.dataGridViewTehnologes.RowHeadersVisible = false;
             this.dataGridViewTehnologes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTehnologes.Size = new System.Drawing.Size(1779, 741);
@@ -1097,9 +1097,9 @@
             // ColumnDateComing
             // 
             this.ColumnDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            this.ColumnDateComing.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle30.Format = "d";
+            dataGridViewCellStyle30.NullValue = null;
+            this.ColumnDateComing.DefaultCellStyle = dataGridViewCellStyle30;
             this.ColumnDateComing.HeaderText = "Дата замовлення";
             this.ColumnDateComing.Name = "ColumnDateComing";
             this.ColumnDateComing.ReadOnly = true;
@@ -1163,9 +1163,9 @@
             // ColumnDateToWork
             // 
             this.ColumnDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Format = "d";
-            dataGridViewCellStyle6.NullValue = null;
-            this.ColumnDateToWork.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle31.Format = "d";
+            dataGridViewCellStyle31.NullValue = null;
+            this.ColumnDateToWork.DefaultCellStyle = dataGridViewCellStyle31;
             this.ColumnDateToWork.HeaderText = "Дата в роботу";
             this.ColumnDateToWork.Name = "ColumnDateToWork";
             this.ColumnDateToWork.ReadOnly = true;
@@ -1184,9 +1184,9 @@
             // ColumnDateReady
             // 
             this.ColumnDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle7.Format = "d";
-            dataGridViewCellStyle7.NullValue = null;
-            this.ColumnDateReady.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle32.Format = "d";
+            dataGridViewCellStyle32.NullValue = null;
+            this.ColumnDateReady.DefaultCellStyle = dataGridViewCellStyle32;
             this.ColumnDateReady.HeaderText = "Дата готовності";
             this.ColumnDateReady.Name = "ColumnDateReady";
             this.ColumnDateReady.ReadOnly = true;
@@ -1233,6 +1233,16 @@
             this.groupBoxRemoveUser.TabStop = false;
             this.groupBoxRemoveUser.Text = "Видалити користувача";
             this.groupBoxRemoveUser.Visible = false;
+            // 
+            // buttonCancelRemove
+            // 
+            this.buttonCancelRemove.Location = new System.Drawing.Point(75, 254);
+            this.buttonCancelRemove.Name = "buttonCancelRemove";
+            this.buttonCancelRemove.Size = new System.Drawing.Size(144, 30);
+            this.buttonCancelRemove.TabIndex = 5;
+            this.buttonCancelRemove.Text = "Відмінити";
+            this.buttonCancelRemove.UseVisualStyleBackColor = true;
+            this.buttonCancelRemove.Click += new System.EventHandler(this.CancelEditUser);
             // 
             // buttonRemoveUser
             // 
@@ -1303,6 +1313,18 @@
             this.groupBoxAddUser.TabStop = false;
             this.groupBoxAddUser.Text = "Додати користувача";
             this.groupBoxAddUser.Visible = false;
+            // 
+            // labelErrorPassword
+            // 
+            this.labelErrorPassword.AutoSize = true;
+            this.labelErrorPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelErrorPassword.ForeColor = System.Drawing.Color.Red;
+            this.labelErrorPassword.Location = new System.Drawing.Point(48, 228);
+            this.labelErrorPassword.Name = "labelErrorPassword";
+            this.labelErrorPassword.Size = new System.Drawing.Size(396, 17);
+            this.labelErrorPassword.TabIndex = 10;
+            this.labelErrorPassword.Text = "Пароль повинен містити тільки цифри та литинські літери.";
+            this.labelErrorPassword.Visible = false;
             // 
             // comboBoxEditUserRole
             // 
@@ -1928,9 +1950,9 @@
             // ColumnArchiveDateComing
             // 
             this.ColumnArchiveDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle9.Format = "d";
-            dataGridViewCellStyle9.NullValue = null;
-            this.ColumnArchiveDateComing.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle34.Format = "d";
+            dataGridViewCellStyle34.NullValue = null;
+            this.ColumnArchiveDateComing.DefaultCellStyle = dataGridViewCellStyle34;
             this.ColumnArchiveDateComing.HeaderText = "Дата замовлення";
             this.ColumnArchiveDateComing.Name = "ColumnArchiveDateComing";
             this.ColumnArchiveDateComing.ReadOnly = true;
@@ -1987,9 +2009,9 @@
             // ColumnArchiveDateToWork
             // 
             this.ColumnArchiveDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle10.Format = "d";
-            dataGridViewCellStyle10.NullValue = null;
-            this.ColumnArchiveDateToWork.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle35.Format = "d";
+            dataGridViewCellStyle35.NullValue = null;
+            this.ColumnArchiveDateToWork.DefaultCellStyle = dataGridViewCellStyle35;
             this.ColumnArchiveDateToWork.HeaderText = "Дата в роботу";
             this.ColumnArchiveDateToWork.Name = "ColumnArchiveDateToWork";
             this.ColumnArchiveDateToWork.ReadOnly = true;
@@ -2006,9 +2028,9 @@
             // ColumnArchiveDateReady
             // 
             this.ColumnArchiveDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle11.Format = "d";
-            dataGridViewCellStyle11.NullValue = null;
-            this.ColumnArchiveDateReady.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle36.Format = "d";
+            dataGridViewCellStyle36.NullValue = null;
+            this.ColumnArchiveDateReady.DefaultCellStyle = dataGridViewCellStyle36;
             this.ColumnArchiveDateReady.HeaderText = "Дата готовності";
             this.ColumnArchiveDateReady.Name = "ColumnArchiveDateReady";
             this.ColumnArchiveDateReady.ReadOnly = true;
@@ -2030,9 +2052,9 @@
             // ColumnArchiveDateOperation
             // 
             this.ColumnArchiveDateOperation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle12.Format = "g";
-            dataGridViewCellStyle12.NullValue = null;
-            this.ColumnArchiveDateOperation.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle37.Format = "g";
+            dataGridViewCellStyle37.NullValue = null;
+            this.ColumnArchiveDateOperation.DefaultCellStyle = dataGridViewCellStyle37;
             this.ColumnArchiveDateOperation.HeaderText = "Дата операції";
             this.ColumnArchiveDateOperation.Name = "ColumnArchiveDateOperation";
             this.ColumnArchiveDateOperation.ReadOnly = true;
@@ -2055,8 +2077,8 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle13.Format = "d";
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle38.Format = "d";
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle38;
             this.dataGridViewTextBoxColumn2.HeaderText = "Профіль";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -2112,8 +2134,8 @@
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle14.Format = "d";
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle39.Format = "d";
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle39;
             this.dataGridViewTextBoxColumn9.HeaderText = "ID";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -2122,9 +2144,9 @@
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle15.Format = "d";
-            dataGridViewCellStyle15.NullValue = null;
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle40.Format = "d";
+            dataGridViewCellStyle40.NullValue = null;
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle40;
             this.dataGridViewTextBoxColumn10.HeaderText = "Дата замовлення";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -2133,8 +2155,8 @@
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle16.Format = "d";
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle41.Format = "d";
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle41;
             this.dataGridViewTextBoxColumn11.HeaderText = "Профіль";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -2159,9 +2181,9 @@
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle17.Format = "d";
-            dataGridViewCellStyle17.NullValue = null;
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle42.Format = "d";
+            dataGridViewCellStyle42.NullValue = null;
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle42;
             this.dataGridViewTextBoxColumn14.HeaderText = "Примітки";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
@@ -2185,9 +2207,9 @@
             // dataGridViewTextBoxColumn17
             // 
             this.dataGridViewTextBoxColumn17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle18.Format = "d";
-            dataGridViewCellStyle18.NullValue = null;
-            this.dataGridViewTextBoxColumn17.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle43.Format = "d";
+            dataGridViewCellStyle43.NullValue = null;
+            this.dataGridViewTextBoxColumn17.DefaultCellStyle = dataGridViewCellStyle43;
             this.dataGridViewTextBoxColumn17.HeaderText = "Дата в роботу";
             this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
             this.dataGridViewTextBoxColumn17.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -2205,9 +2227,9 @@
             // dataGridViewTextBoxColumn19
             // 
             this.dataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle19.Format = "d";
-            dataGridViewCellStyle19.NullValue = null;
-            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle44.Format = "d";
+            dataGridViewCellStyle44.NullValue = null;
+            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle44;
             this.dataGridViewTextBoxColumn19.HeaderText = "Дата готовності";
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             this.dataGridViewTextBoxColumn19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
@@ -2223,9 +2245,9 @@
             // dataGridViewTextBoxColumn21
             // 
             this.dataGridViewTextBoxColumn21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle20.Format = "d";
-            dataGridViewCellStyle20.NullValue = null;
-            this.dataGridViewTextBoxColumn21.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle45.Format = "d";
+            dataGridViewCellStyle45.NullValue = null;
+            this.dataGridViewTextBoxColumn21.DefaultCellStyle = dataGridViewCellStyle45;
             this.dataGridViewTextBoxColumn21.HeaderText = "Дата в роботу";
             this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
             this.dataGridViewTextBoxColumn21.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
@@ -2241,9 +2263,9 @@
             // dataGridViewTextBoxColumn23
             // 
             this.dataGridViewTextBoxColumn23.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle21.Format = "d";
-            dataGridViewCellStyle21.NullValue = null;
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle46.Format = "d";
+            dataGridViewCellStyle46.NullValue = null;
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle46;
             this.dataGridViewTextBoxColumn23.HeaderText = "Дата готовності";
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
             this.dataGridViewTextBoxColumn23.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
@@ -2266,9 +2288,9 @@
             // dataGridViewTextBoxColumn26
             // 
             this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle22.Format = "d";
-            dataGridViewCellStyle22.NullValue = null;
-            this.dataGridViewTextBoxColumn26.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle47.Format = "d";
+            dataGridViewCellStyle47.NullValue = null;
+            this.dataGridViewTextBoxColumn26.DefaultCellStyle = dataGridViewCellStyle47;
             this.dataGridViewTextBoxColumn26.HeaderText = "Дата замовлення";
             this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
             // 
@@ -2314,9 +2336,9 @@
             // dataGridViewTextBoxColumn33
             // 
             this.dataGridViewTextBoxColumn33.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle23.Format = "d";
-            dataGridViewCellStyle23.NullValue = null;
-            this.dataGridViewTextBoxColumn33.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle48.Format = "d";
+            dataGridViewCellStyle48.NullValue = null;
+            this.dataGridViewTextBoxColumn33.DefaultCellStyle = dataGridViewCellStyle48;
             this.dataGridViewTextBoxColumn33.HeaderText = "Дата в роботу";
             this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
             // 
@@ -2329,9 +2351,9 @@
             // dataGridViewTextBoxColumn35
             // 
             this.dataGridViewTextBoxColumn35.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle24.Format = "d";
-            dataGridViewCellStyle24.NullValue = null;
-            this.dataGridViewTextBoxColumn35.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle49.Format = "d";
+            dataGridViewCellStyle49.NullValue = null;
+            this.dataGridViewTextBoxColumn35.DefaultCellStyle = dataGridViewCellStyle49;
             this.dataGridViewTextBoxColumn35.HeaderText = "Дата готовності";
             this.dataGridViewTextBoxColumn35.Name = "dataGridViewTextBoxColumn35";
             // 
@@ -2350,9 +2372,9 @@
             // dataGridViewTextBoxColumn38
             // 
             this.dataGridViewTextBoxColumn38.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle25.Format = "g";
-            dataGridViewCellStyle25.NullValue = null;
-            this.dataGridViewTextBoxColumn38.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle50.Format = "g";
+            dataGridViewCellStyle50.NullValue = null;
+            this.dataGridViewTextBoxColumn38.DefaultCellStyle = dataGridViewCellStyle50;
             this.dataGridViewTextBoxColumn38.HeaderText = "Дата операції";
             this.dataGridViewTextBoxColumn38.Name = "dataGridViewTextBoxColumn38";
             // 
@@ -2361,28 +2383,6 @@
             this.dataGridViewTextBoxColumn39.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn39.HeaderText = "Операція";
             this.dataGridViewTextBoxColumn39.Name = "dataGridViewTextBoxColumn39";
-            // 
-            // labelErrorPassword
-            // 
-            this.labelErrorPassword.AutoSize = true;
-            this.labelErrorPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelErrorPassword.ForeColor = System.Drawing.Color.Red;
-            this.labelErrorPassword.Location = new System.Drawing.Point(48, 228);
-            this.labelErrorPassword.Name = "labelErrorPassword";
-            this.labelErrorPassword.Size = new System.Drawing.Size(396, 17);
-            this.labelErrorPassword.TabIndex = 10;
-            this.labelErrorPassword.Text = "Пароль повинен містити тільки цифри та литинські літери.";
-            this.labelErrorPassword.Visible = false;
-            // 
-            // buttonCancelRemove
-            // 
-            this.buttonCancelRemove.Location = new System.Drawing.Point(75, 254);
-            this.buttonCancelRemove.Name = "buttonCancelRemove";
-            this.buttonCancelRemove.Size = new System.Drawing.Size(144, 30);
-            this.buttonCancelRemove.TabIndex = 5;
-            this.buttonCancelRemove.Text = "Відмінити";
-            this.buttonCancelRemove.UseVisualStyleBackColor = true;
-            this.buttonCancelRemove.Click += new System.EventHandler(this.CancelEditUser);
             // 
             // Laminatsia
             // 
