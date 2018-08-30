@@ -12,6 +12,11 @@ namespace Laminatsia
 {
     public partial class Connect : Form
     {
+        /// <summary>
+        /// 1. Створити обмежженя для введення адреси
+        /// 2. Виключити пусті значення
+        /// 3. Витягти скріпт з бази та додати на обробочик кнопки Створити
+        /// </summary>
         public Connect()
         {
             InitializeComponent();
