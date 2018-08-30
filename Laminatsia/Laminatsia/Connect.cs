@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Management.Smo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,28 +17,49 @@ namespace Laminatsia
             InitializeComponent();
         }
 
-        private void buttonTestConnectingToServer_Click(object sender, EventArgs e)
+        private void ButtonTestConnectingToServer_Click(object sender, EventArgs e)
         {
-            //private void GetAllServersSQL()
-            //{
-            //    DataTable dataTable = SmoApplication.EnumAvailableSqlServers(false);
-            //    comboBoxListServer.ValueMember = "Name"; 
-            //    comboBoxListServer.DataSource = dataTable;
 
-            //}
-            //private void comboBoxListServer_SelectedIndexChanged(object sender, EventArgs e)
-            //{
-            //    comboBoxListDataBase.Items.Clear();
-            //    if (comboBoxListServer.SelectedIndex != -1)
-            //    {
-            //        string serverName = comboBoxListServer.SelectedValue.ToString();
-            //        Server server = new Server("192.168.0.4");
-            //        foreach (Database db in server.Databases)
-            //        {
-            //            comboBoxListDataBase.Items.Add(db.Name);
-            //        }
-            //    }
-            //}
+        }
+
+        private void TabControlConnect_TabIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tabControlConnect.SelectedTab == tabPageIP)
+                {
+
+                }
+                else if (tabControlConnect.SelectedTab == tabPageFromList)
+                {
+                    //потрібно закешувати данні
+                    DataTable dataTable = SmoApplication.EnumAvailableSqlServers(false);
+                    comboBoxListServerName.ValueMember = "Name";
+                    comboBoxListServerName.DataSource = dataTable;
+                }
+                else if (tabControlConnect.SelectedTab == tabPageCreateDataBase)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка TabControlConnect_TabIndexChanged! Детальніше: " + ex.Message);
+            }
+        }
+
+        private void ComboBoxListDataBase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxListDataBase.Items.Clear();
+            if (comboBoxListDataBase.SelectedIndex != -1)
+            {
+                string serverName = comboBoxListDataBase.SelectedValue.ToString();
+                Server server = new Server("192.168.0.4");
+                foreach (Database db in server.Databases)
+                {
+                    comboBoxListDataBase.Items.Add(db.Name);
+                }
+            }
         }
     }
 }
