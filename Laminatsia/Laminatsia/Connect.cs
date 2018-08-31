@@ -38,9 +38,9 @@ namespace Laminatsia
                 else if (tabControlConnect.SelectedTab == tabPageFromList)
                 {
                     //потрібно закешувати данні
-                    DataTable dataTable = SmoApplication.EnumAvailableSqlServers(false);
-                    comboBoxListServerName.ValueMember = "Name";
-                    comboBoxListServerName.DataSource = dataTable;
+                    //DataTable dataTable = SmoApplication.EnumAvailableSqlServers(false);
+                    //comboBoxListServerName.ValueMember = "Name";
+                    //comboBoxListServerName.DataSource = dataTable;
                 }
                 else if (tabControlConnect.SelectedTab == tabPageCreateDataBase)
                 {
@@ -55,16 +55,16 @@ namespace Laminatsia
 
         private void ComboBoxListDataBase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxListDataBase.Items.Clear();
-            if (comboBoxListDataBase.SelectedIndex != -1)
-            {
-                string serverName = comboBoxListDataBase.SelectedValue.ToString();
-                Server server = new Server("192.168.0.4");
-                foreach (Database db in server.Databases)
-                {
-                    comboBoxListDataBase.Items.Add(db.Name);
-                }
-            }
+            //comboBoxListDataBase.Items.Clear();
+            //if (comboBoxListDataBase.SelectedIndex != -1)
+            //{
+            //    string serverName = comboBoxListDataBase.SelectedValue.ToString();
+            //    Server server = new Server("192.168.0.4");
+            //    foreach (Database db in server.Databases)
+            //    {
+            //        comboBoxListDataBase.Items.Add(db.Name);
+            //    }
+            //}
         }
     }
 }
