@@ -38,5 +38,4 @@ C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Diagnostics.STrace.dll
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.ServiceBrokerEnum.dll
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.SqlClrProvider.dll
-C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csprojResolveAssemblyReference.cache
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Connect.resources

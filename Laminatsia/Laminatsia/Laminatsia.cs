@@ -134,7 +134,7 @@ namespace Laminatsia
                         {
                             colourGoodsDTO.RemoveGolourGoods(listColourGoodsDTO[i].ID);
                         }
-                        else if ((today - listColourGoodsDTO[i].DateReady).Days > 61 && listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
+                        else if (Role == UserRole.Ламінація.ToString() && (today - listColourGoodsDTO[i].DateReady).Days > 61 && listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
                         {
                             colourGoodsDTO.MoveToArchiveGolourGoods(listColourGoodsDTO[i].ID);
                         }
