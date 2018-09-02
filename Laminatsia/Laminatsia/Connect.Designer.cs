@@ -40,6 +40,7 @@
             this.tabPageIP = new System.Windows.Forms.TabPage();
             this.tabPageFromList = new System.Windows.Forms.TabPage();
             this.groupBoxSelectServerName = new System.Windows.Forms.GroupBox();
+            this.progressBarConnectToDB = new System.Windows.Forms.ProgressBar();
             this.buttonSaveConfogServerName = new System.Windows.Forms.Button();
             this.buttonConnectToServerName = new System.Windows.Forms.Button();
             this.comboBoxListServerName = new System.Windows.Forms.ComboBox();
@@ -81,7 +82,7 @@
             // labelListDB
             // 
             this.labelListDB.AutoSize = true;
-            this.labelListDB.Location = new System.Drawing.Point(51, 106);
+            this.labelListDB.Location = new System.Drawing.Point(51, 123);
             this.labelListDB.Name = "labelListDB";
             this.labelListDB.Size = new System.Drawing.Size(142, 20);
             this.labelListDB.TabIndex = 12;
@@ -100,10 +101,12 @@
             // 
             this.comboBoxLilstDbIPServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLilstDbIPServer.FormattingEnabled = true;
-            this.comboBoxLilstDbIPServer.Location = new System.Drawing.Point(46, 141);
+            this.comboBoxLilstDbIPServer.ItemHeight = 20;
+            this.comboBoxLilstDbIPServer.Location = new System.Drawing.Point(34, 158);
             this.comboBoxLilstDbIPServer.Name = "comboBoxLilstDbIPServer";
-            this.comboBoxLilstDbIPServer.Size = new System.Drawing.Size(159, 28);
+            this.comboBoxLilstDbIPServer.Size = new System.Drawing.Size(187, 28);
             this.comboBoxLilstDbIPServer.TabIndex = 10;
+            this.comboBoxLilstDbIPServer.Click += new System.EventHandler(this.comboBoxLilstDbIPServer_Click);
             // 
             // buttonConnectToIPServer
             // 
@@ -116,17 +119,17 @@
             // 
             // maskedTextBoxIPServer
             // 
-            this.maskedTextBoxIPServer.Location = new System.Drawing.Point(46, 59);
+            this.maskedTextBoxIPServer.Location = new System.Drawing.Point(34, 76);
             this.maskedTextBoxIPServer.Mask = "000.000.000.000";
             this.maskedTextBoxIPServer.Name = "maskedTextBoxIPServer";
-            this.maskedTextBoxIPServer.Size = new System.Drawing.Size(159, 26);
+            this.maskedTextBoxIPServer.Size = new System.Drawing.Size(187, 26);
             this.maskedTextBoxIPServer.TabIndex = 8;
             this.maskedTextBoxIPServer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // labelWriteIPServer
             // 
             this.labelWriteIPServer.AutoSize = true;
-            this.labelWriteIPServer.Location = new System.Drawing.Point(69, 31);
+            this.labelWriteIPServer.Location = new System.Drawing.Point(81, 39);
             this.labelWriteIPServer.Name = "labelWriteIPServer";
             this.labelWriteIPServer.Size = new System.Drawing.Size(90, 20);
             this.labelWriteIPServer.TabIndex = 4;
@@ -134,7 +137,7 @@
             // 
             // buttonTestConnectingToServer
             // 
-            this.buttonTestConnectingToServer.Location = new System.Drawing.Point(262, 59);
+            this.buttonTestConnectingToServer.Location = new System.Drawing.Point(262, 76);
             this.buttonTestConnectingToServer.Name = "buttonTestConnectingToServer";
             this.buttonTestConnectingToServer.Size = new System.Drawing.Size(98, 26);
             this.buttonTestConnectingToServer.TabIndex = 3;
@@ -153,7 +156,7 @@
             this.tabControlConnect.SelectedIndex = 0;
             this.tabControlConnect.Size = new System.Drawing.Size(513, 342);
             this.tabControlConnect.TabIndex = 10;
-            this.tabControlConnect.TabIndexChanged += new System.EventHandler(this.TabControlConnect_TabIndexChanged);
+            this.tabControlConnect.SelectedIndexChanged += new System.EventHandler(this.tabControlConnect_SelectedIndexChanged);
             // 
             // tabPageIP
             // 
@@ -179,6 +182,7 @@
             // 
             // groupBoxSelectServerName
             // 
+            this.groupBoxSelectServerName.Controls.Add(this.progressBarConnectToDB);
             this.groupBoxSelectServerName.Controls.Add(this.buttonSaveConfogServerName);
             this.groupBoxSelectServerName.Controls.Add(this.buttonConnectToServerName);
             this.groupBoxSelectServerName.Controls.Add(this.comboBoxListServerName);
@@ -193,6 +197,16 @@
             this.groupBoxSelectServerName.TabStop = false;
             this.groupBoxSelectServerName.Text = "Вибрати з відкритих мережевих серверів";
             // 
+            // progressBarConnectToDB
+            // 
+            this.progressBarConnectToDB.Location = new System.Drawing.Point(13, 45);
+            this.progressBarConnectToDB.Name = "progressBarConnectToDB";
+            this.progressBarConnectToDB.Size = new System.Drawing.Size(448, 23);
+            this.progressBarConnectToDB.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBarConnectToDB.TabIndex = 14;
+            this.progressBarConnectToDB.Value = 10;
+            this.progressBarConnectToDB.Visible = false;
+            // 
             // buttonSaveConfogServerName
             // 
             this.buttonSaveConfogServerName.Location = new System.Drawing.Point(262, 212);
@@ -201,6 +215,7 @@
             this.buttonSaveConfogServerName.TabIndex = 13;
             this.buttonSaveConfogServerName.Text = "Зберегти";
             this.buttonSaveConfogServerName.UseVisualStyleBackColor = true;
+            this.buttonSaveConfogServerName.Click += new System.EventHandler(this.buttonSaveConfogServerName_Click);
             // 
             // buttonConnectToServerName
             // 
@@ -210,20 +225,23 @@
             this.buttonConnectToServerName.TabIndex = 12;
             this.buttonConnectToServerName.Text = "Підключитися";
             this.buttonConnectToServerName.UseVisualStyleBackColor = true;
+            this.buttonConnectToServerName.Click += new System.EventHandler(this.buttonConnectToServerName_Click);
             // 
             // comboBoxListServerName
             // 
             this.comboBoxListServerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxListServerName.FormattingEnabled = true;
-            this.comboBoxListServerName.Location = new System.Drawing.Point(13, 76);
+            this.comboBoxListServerName.Location = new System.Drawing.Point(13, 108);
             this.comboBoxListServerName.Name = "comboBoxListServerName";
             this.comboBoxListServerName.Size = new System.Drawing.Size(212, 28);
             this.comboBoxListServerName.TabIndex = 8;
+            this.comboBoxListServerName.SelectedIndexChanged += new System.EventHandler(this.comboBoxListServerName_SelectedIndexChanged);
+            this.comboBoxListServerName.Click += new System.EventHandler(this.comboBoxListServerName_Click);
             // 
             // labelDBName
             // 
             this.labelDBName.AutoSize = true;
-            this.labelDBName.Location = new System.Drawing.Point(294, 53);
+            this.labelDBName.Location = new System.Drawing.Point(294, 85);
             this.labelDBName.Name = "labelDBName";
             this.labelDBName.Size = new System.Drawing.Size(95, 20);
             this.labelDBName.TabIndex = 11;
@@ -232,17 +250,17 @@
             // comboBoxListDataBase
             // 
             this.comboBoxListDataBase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxListDataBase.Enabled = false;
             this.comboBoxListDataBase.FormattingEnabled = true;
-            this.comboBoxListDataBase.Location = new System.Drawing.Point(249, 76);
+            this.comboBoxListDataBase.Location = new System.Drawing.Point(249, 108);
             this.comboBoxListDataBase.Name = "comboBoxListDataBase";
             this.comboBoxListDataBase.Size = new System.Drawing.Size(212, 28);
             this.comboBoxListDataBase.TabIndex = 9;
-            this.comboBoxListDataBase.SelectedIndexChanged += new System.EventHandler(this.ComboBoxListDataBase_SelectedIndexChanged);
             // 
             // labelServerName
             // 
             this.labelServerName.AutoSize = true;
-            this.labelServerName.Location = new System.Drawing.Point(66, 53);
+            this.labelServerName.Location = new System.Drawing.Point(66, 85);
             this.labelServerName.Name = "labelServerName";
             this.labelServerName.Size = new System.Drawing.Size(101, 20);
             this.labelServerName.TabIndex = 10;
@@ -356,5 +374,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonCreateDB;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.ProgressBar progressBarConnectToDB;
     }
 }

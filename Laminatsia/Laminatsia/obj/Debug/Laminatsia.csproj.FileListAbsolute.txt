@@ -40,3 +40,12 @@ C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.SqlClrProvider.dll
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csprojResolveAssemblyReference.cache
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Connect.resources
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Smo.dll
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.SqlClrProvider.dll
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.SqlEnum.dll
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Dmf.Common.dll
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Diagnostics.STrace.dll
+D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.ServiceBrokerEnum.dll
+D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Connect.resources

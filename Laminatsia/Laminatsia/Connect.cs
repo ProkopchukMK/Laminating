@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Laminatsia
@@ -21,31 +22,30 @@ namespace Laminatsia
         {
             InitializeComponent();
         }
-
         private void ButtonTestConnectingToServer_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void TabControlConnect_TabIndexChanged(object sender, EventArgs e)
+        private void tabControlConnect_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (tabControlConnect.SelectedTab == tabPageIP)
-                {
+                //    if (tabControlConnect.SelectedTab == tabPageIP)
+                //    {
 
-                }
-                else if (tabControlConnect.SelectedTab == tabPageFromList)
+                //    }
+                //    else 
+                if (tabControlConnect.SelectedTab == tabPageFromList)
                 {
                     //потрібно закешувати данні
-                    DataTable dataTable = SmoApplication.EnumAvailableSqlServers(false);
-                    comboBoxListServerName.ValueMember = "Name";
-                    comboBoxListServerName.DataSource = dataTable;
+                    //DataTable dataTable = SmoApplication.EnumAvailableSqlServers(true); // поставати false для мережевих серверів
+                    //comboBoxListServerName.ValueMember = "Name";
+                    //comboBoxListServerName.DataSource = dataTable;
                 }
-                else if (tabControlConnect.SelectedTab == tabPageCreateDataBase)
-                {
+                //else if (tabControlConnect.SelectedTab == tabPageCreateDataBase)
+                //{
 
-                }
+                //}
             }
             catch (Exception ex)
             {
@@ -53,18 +53,62 @@ namespace Laminatsia
             }
         }
 
-        private void ComboBoxListDataBase_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        #region По ІР адресу
+
+        private void comboBoxLilstDbIPServer_Click(object sender, EventArgs e)
+        {
+            comboBoxLilstDbIPServer.Items.Clear();
+            if (true)
+            {
+                string serverName = maskedTextBoxIPServer.Text;
+                //Server server = new Server(serverName);
+                Server server = new Server(@"DESKTOP-0GHRJOV\SQLEXPRESS");
+                foreach (Database db in server.Databases)
+                {
+                    comboBoxLilstDbIPServer.Items.Add(db.Name);
+                }
+                maskedTextBoxIPServer.Enabled = false;
+            }
+        }
+        #endregion
+
+        #region Вибрати із списку
+        private void comboBoxListServerName_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxListDataBase.Items.Clear();
-            if (comboBoxListDataBase.SelectedIndex != -1)
+            if (comboBoxListServerName.SelectedIndex != -1)
             {
-                string serverName = comboBoxListDataBase.SelectedValue.ToString();
-                Server server = new Server("192.168.0.4");
+                comboBoxListDataBase.Enabled = true;
+                string serverName = comboBoxListServerName.SelectedValue.ToString();
+                Server server = new Server(serverName);
                 foreach (Database db in server.Databases)
                 {
                     comboBoxListDataBase.Items.Add(db.Name);
                 }
             }
         }
+        private void comboBoxListServerName_Click(object sender, EventArgs e)
+        {
+            progressBarConnectToDB.Visible = true;
+            DataTable dataTable = SmoApplication.EnumAvailableSqlServers(true); // поставати false для мережевих серверів
+            comboBoxListServerName.ValueMember = "Name";
+            comboBoxListServerName.DataSource = dataTable;
+        }
+        private void buttonConnectToServerName_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void buttonSaveConfogServerName_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Створити базу даних
+
+        #endregion
+
     }
 }
