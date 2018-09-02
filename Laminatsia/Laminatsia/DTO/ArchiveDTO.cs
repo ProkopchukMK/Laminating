@@ -134,23 +134,23 @@ namespace Laminatsia.DTO
         }
         public List<ArchiveDTO> FilterArchive(List<ArchiveDTO> filterList, object profile, object city, object dealer, object colour, object userName)
         {
-            if (profile != null)
+            if (profile != null && profile.ToString() != "")
             {
                 filterList = this.FilterByProfile(filterList, profile.ToString());
             }
-            if (city != null)
+            if (city != null && city.ToString() != "")
             {
                 filterList = this.FilterByCity(filterList, city.ToString());
             }
-            if (dealer != null)
+            if (dealer != null && dealer.ToString() != "")
             {
                 filterList = this.FilterByDealer(filterList, dealer.ToString());
             }
-            if (colour != null)
+            if (colour != null && colour.ToString() != "")
             {
                 filterList = this.FilterByColour(filterList, colour.ToString());
             }
-            if (userName != null)
+            if (userName != null && userName.ToString() != "")
             {
                 filterList = this.FilterByUser(filterList, userName.ToString());
             }

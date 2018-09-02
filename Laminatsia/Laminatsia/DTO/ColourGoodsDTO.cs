@@ -239,6 +239,20 @@ namespace Laminatsia.DTO
             _entity.ColourGoods.Remove(removeColourGoods);
             _entity.SaveChanges();
         }
+        public void MoveToArchiveGolourGoods(int id)
+        {
+            var moveEntityToArchive = GetColourGoodsByID(id);            
+            ArchiveDTO archiveDTO = new ArchiveDTO();
+            archiveDTO.AddToArchive(moveEntityToArchive.ID, moveEntityToArchive.DateComing, moveEntityToArchive.Profile,
+                moveEntityToArchive.City, moveEntityToArchive.Dealer, moveEntityToArchive.Notes,moveEntityToArchive.Counts, 
+                moveEntityToArchive.Colour, moveEntityToArchive.DateToWork, moveEntityToArchive.StatusProfile, moveEntityToArchive.DateReady,
+                moveEntityToArchive.StatusGoods, Laminatsia.UserName, Laminatsia.Role, "Архів");
+            _entity.SaveChanges();
+
+            var removeColourGoods = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
+            _entity.ColourGoods.Remove(removeColourGoods);
+            _entity.SaveChanges();
+        }
         public bool UpdateDateRemove(int id)
         {
             var removeEntity = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
