@@ -52,7 +52,7 @@
             this.buttonTestConnToCreateDB = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCreateDB = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxIpServerCreateDB = new System.Windows.Forms.MaskedTextBox();
             this.groupBoxConnecting.SuspendLayout();
             this.tabControlConnect.SuspendLayout();
             this.tabPageIP.SuspendLayout();
@@ -99,14 +99,16 @@
             // 
             // comboBoxLilstDbIPServer
             // 
+            this.comboBoxLilstDbIPServer.DropDownHeight = 200;
             this.comboBoxLilstDbIPServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLilstDbIPServer.Enabled = false;
             this.comboBoxLilstDbIPServer.FormattingEnabled = true;
+            this.comboBoxLilstDbIPServer.IntegralHeight = false;
             this.comboBoxLilstDbIPServer.ItemHeight = 20;
             this.comboBoxLilstDbIPServer.Location = new System.Drawing.Point(34, 158);
             this.comboBoxLilstDbIPServer.Name = "comboBoxLilstDbIPServer";
             this.comboBoxLilstDbIPServer.Size = new System.Drawing.Size(187, 28);
             this.comboBoxLilstDbIPServer.TabIndex = 10;
-            this.comboBoxLilstDbIPServer.Click += new System.EventHandler(this.comboBoxLilstDbIPServer_Click);
             // 
             // buttonConnectToIPServer
             // 
@@ -116,11 +118,11 @@
             this.buttonConnectToIPServer.TabIndex = 9;
             this.buttonConnectToIPServer.Text = "Підключитися";
             this.buttonConnectToIPServer.UseVisualStyleBackColor = true;
+            this.buttonConnectToIPServer.Click += new System.EventHandler(this.buttonConnectToIPServer_Click);
             // 
             // maskedTextBoxIPServer
             // 
             this.maskedTextBoxIPServer.Location = new System.Drawing.Point(34, 76);
-            this.maskedTextBoxIPServer.Mask = "000.000.000.000";
             this.maskedTextBoxIPServer.Name = "maskedTextBoxIPServer";
             this.maskedTextBoxIPServer.Size = new System.Drawing.Size(187, 26);
             this.maskedTextBoxIPServer.TabIndex = 8;
@@ -281,7 +283,7 @@
             this.groupBoxCreateDataBase.Controls.Add(this.buttonTestConnToCreateDB);
             this.groupBoxCreateDataBase.Controls.Add(this.label1);
             this.groupBoxCreateDataBase.Controls.Add(this.buttonCreateDB);
-            this.groupBoxCreateDataBase.Controls.Add(this.maskedTextBox1);
+            this.groupBoxCreateDataBase.Controls.Add(this.maskedTextBoxIpServerCreateDB);
             this.groupBoxCreateDataBase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxCreateDataBase.Location = new System.Drawing.Point(15, 12);
             this.groupBoxCreateDataBase.Name = "groupBoxCreateDataBase";
@@ -298,7 +300,7 @@
             this.buttonTestConnToCreateDB.TabIndex = 1;
             this.buttonTestConnToCreateDB.Text = "Тест";
             this.buttonTestConnToCreateDB.UseVisualStyleBackColor = true;
-            this.buttonTestConnToCreateDB.Click += new System.EventHandler(this.ButtonTestConnectingToServer_Click);
+            this.buttonTestConnToCreateDB.Click += new System.EventHandler(this.buttonTestConnToCreateDB_Click);
             // 
             // label1
             // 
@@ -317,15 +319,15 @@
             this.buttonCreateDB.TabIndex = 0;
             this.buttonCreateDB.Text = "Створити";
             this.buttonCreateDB.UseVisualStyleBackColor = true;
+            this.buttonCreateDB.Click += new System.EventHandler(this.buttonCreateDB_Click);
             // 
-            // maskedTextBox1
+            // maskedTextBoxIpServerCreateDB
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(46, 71);
-            this.maskedTextBox1.Mask = "000.000.000.000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(159, 26);
-            this.maskedTextBox1.TabIndex = 2;
-            this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.maskedTextBoxIpServerCreateDB.Location = new System.Drawing.Point(46, 71);
+            this.maskedTextBoxIpServerCreateDB.Name = "maskedTextBoxIpServerCreateDB";
+            this.maskedTextBoxIpServerCreateDB.Size = new System.Drawing.Size(159, 26);
+            this.maskedTextBoxIpServerCreateDB.TabIndex = 2;
+            this.maskedTextBoxIpServerCreateDB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Connect
             // 
@@ -373,7 +375,7 @@
         private System.Windows.Forms.Button buttonTestConnToCreateDB;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonCreateDB;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxIpServerCreateDB;
         private System.Windows.Forms.ProgressBar progressBarConnectToDB;
     }
 }
