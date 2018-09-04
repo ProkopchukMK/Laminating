@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Net;
 
 namespace Laminatsia
 {
@@ -110,5 +111,17 @@ namespace Laminatsia
 
         #endregion
 
+        private void maskedTextBoxIPServer_Leave(object sender, EventArgs e)
+        {
+            IPAddress ipAddress;
+            if (IPAddress.TryParse(maskedTextBoxIPServer.Text, out ipAddress))
+            {
+                MessageBox.Show(maskedTextBoxIPServer.Text.Trim());
+            }
+            else
+            {
+                MessageBox.Show("Сталася помилка TabControlConnect_TabIndexChanged! Детальніше: ");
+            }
+        }
     }
 }

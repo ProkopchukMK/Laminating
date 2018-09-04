@@ -120,11 +120,11 @@
             // maskedTextBoxIPServer
             // 
             this.maskedTextBoxIPServer.Location = new System.Drawing.Point(34, 76);
-            this.maskedTextBoxIPServer.Mask = "000.000.000.000";
             this.maskedTextBoxIPServer.Name = "maskedTextBoxIPServer";
             this.maskedTextBoxIPServer.Size = new System.Drawing.Size(187, 26);
             this.maskedTextBoxIPServer.TabIndex = 8;
             this.maskedTextBoxIPServer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.maskedTextBoxIPServer.Leave += new System.EventHandler(this.maskedTextBoxIPServer_Leave);
             // 
             // labelWriteIPServer
             // 
@@ -321,7 +321,6 @@
             // maskedTextBox1
             // 
             this.maskedTextBox1.Location = new System.Drawing.Point(46, 71);
-            this.maskedTextBox1.Mask = "000.000.000.000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(159, 26);
             this.maskedTextBox1.TabIndex = 2;
