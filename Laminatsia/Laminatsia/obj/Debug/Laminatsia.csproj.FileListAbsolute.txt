@@ -48,3 +48,4 @@ D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Dmf.Co
 D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Diagnostics.STrace.dll
 D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.ServiceBrokerEnum.dll
 D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Connect.resources
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csprojResolveAssemblyReference.cache
