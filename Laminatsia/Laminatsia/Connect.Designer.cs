@@ -96,6 +96,7 @@
             this.buttonSaveConfig.TabIndex = 9;
             this.buttonSaveConfig.Text = "Зберегти";
             this.buttonSaveConfig.UseVisualStyleBackColor = true;
+            this.buttonSaveConfig.Click += new System.EventHandler(this.ButtonSaveConfig_Click);
             // 
             // comboBoxLilstDbIPServer
             // 
@@ -118,7 +119,7 @@
             this.buttonConnectToIPServer.TabIndex = 9;
             this.buttonConnectToIPServer.Text = "Підключитися";
             this.buttonConnectToIPServer.UseVisualStyleBackColor = true;
-            this.buttonConnectToIPServer.Click += new System.EventHandler(this.buttonConnectToIPServer_Click);
+            this.buttonConnectToIPServer.Click += new System.EventHandler(this.ButtonConnectToIPServer_Click);
             // 
             // maskedTextBoxIPServer
             // 
@@ -158,7 +159,7 @@
             this.tabControlConnect.SelectedIndex = 0;
             this.tabControlConnect.Size = new System.Drawing.Size(513, 342);
             this.tabControlConnect.TabIndex = 10;
-            this.tabControlConnect.SelectedIndexChanged += new System.EventHandler(this.tabControlConnect_SelectedIndexChanged);
+            this.tabControlConnect.SelectedIndexChanged += new System.EventHandler(this.TabControlConnect_SelectedIndexChanged);
             // 
             // tabPageIP
             // 
@@ -217,7 +218,7 @@
             this.buttonSaveConfogServerName.TabIndex = 13;
             this.buttonSaveConfogServerName.Text = "Зберегти";
             this.buttonSaveConfogServerName.UseVisualStyleBackColor = true;
-            this.buttonSaveConfogServerName.Click += new System.EventHandler(this.buttonSaveConfogServerName_Click);
+            this.buttonSaveConfogServerName.Click += new System.EventHandler(this.ButtonSaveConfogServerName_Click);
             // 
             // buttonConnectToServerName
             // 
@@ -227,7 +228,7 @@
             this.buttonConnectToServerName.TabIndex = 12;
             this.buttonConnectToServerName.Text = "Підключитися";
             this.buttonConnectToServerName.UseVisualStyleBackColor = true;
-            this.buttonConnectToServerName.Click += new System.EventHandler(this.buttonConnectToServerName_Click);
+            this.buttonConnectToServerName.Click += new System.EventHandler(this.ButtonConnectToServerName_Click);
             // 
             // comboBoxListServerName
             // 
@@ -237,8 +238,8 @@
             this.comboBoxListServerName.Name = "comboBoxListServerName";
             this.comboBoxListServerName.Size = new System.Drawing.Size(212, 28);
             this.comboBoxListServerName.TabIndex = 8;
-            this.comboBoxListServerName.SelectedIndexChanged += new System.EventHandler(this.comboBoxListServerName_SelectedIndexChanged);
-            this.comboBoxListServerName.Click += new System.EventHandler(this.comboBoxListServerName_Click);
+            this.comboBoxListServerName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxListServerName_SelectedIndexChanged);
+            this.comboBoxListServerName.Click += new System.EventHandler(this.ComboBoxListServerName_Click);
             // 
             // labelDBName
             // 
@@ -300,7 +301,7 @@
             this.buttonTestConnToCreateDB.TabIndex = 1;
             this.buttonTestConnToCreateDB.Text = "Тест";
             this.buttonTestConnToCreateDB.UseVisualStyleBackColor = true;
-            this.buttonTestConnToCreateDB.Click += new System.EventHandler(this.buttonTestConnToCreateDB_Click);
+            this.buttonTestConnToCreateDB.Click += new System.EventHandler(this.ButtonTestConnToCreateDB_Click);
             // 
             // label1
             // 
@@ -319,7 +320,7 @@
             this.buttonCreateDB.TabIndex = 0;
             this.buttonCreateDB.Text = "Створити";
             this.buttonCreateDB.UseVisualStyleBackColor = true;
-            this.buttonCreateDB.Click += new System.EventHandler(this.buttonCreateDB_Click);
+            this.buttonCreateDB.Click += new System.EventHandler(this.ButtonCreateDB_Click);
             // 
             // maskedTextBoxIpServerCreateDB
             // 

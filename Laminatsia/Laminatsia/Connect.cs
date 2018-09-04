@@ -26,49 +26,8 @@ namespace Laminatsia
         {
             InitializeComponent();
         }
-        private void ButtonTestConnectingToServer_Click(object sender, EventArgs e)
-        {
-            IPAddress ipAddress;
-            if (IPAddress.TryParse(maskedTextBoxIPServer.Text.Trim(), out ipAddress))
-            {
-                if (IsConnectedToInternet(maskedTextBoxIPServer.Text.Trim()))
-                {
-                    Server server = new Server(maskedTextBoxIPServer.Text.Trim());
-                    foreach (Database db in server.Databases)
-                    {
-                        comboBoxLilstDbIPServer.Items.Add(db.Name);
-                    }
-                    maskedTextBoxIPServer.Enabled = false;
-                    comboBoxLilstDbIPServer.Enabled = true;
-                }
-                else
-                {
-                    MessageBox.Show("Не подключается к серверу!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Помилкова адреса!");
-            }
-        }
-        public static bool IsConnectedToInternet(string ServerAddress)
-        {
-            Ping p = new Ping();
-            try
-            {
-                PingReply reply = p.Send(ServerAddress, 5000);
-                if (reply.Status == IPStatus.Success)
-                    return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return false;
-            }
-            //
-            return false;
-        }
-        private void tabControlConnect_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void TabControlConnect_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -95,16 +54,71 @@ namespace Laminatsia
             }
         }
 
-        #region По ІР адресу
+        public static bool IsConnectedToInternet(string ServerAddress)
+        {
+            Ping p = new Ping();
+            try
+            {
+                PingReply reply = p.Send(ServerAddress, 5000);
+                if (reply.Status == IPStatus.Success)
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            //
+            return false;
+        }
 
-        private void buttonConnectToIPServer_Click(object sender, EventArgs e)
+        #region По ІР адресу
+        private void ButtonTestConnectingToServer_Click(object sender, EventArgs e)
+        {
+            IPAddress ipAddress;
+            if (IPAddress.TryParse(maskedTextBoxIPServer.Text.Trim(), out ipAddress))
+            {
+                if (IsConnectedToInternet(maskedTextBoxIPServer.Text.Trim()))
+                {
+                    Server server = new Server(maskedTextBoxIPServer.Text.Trim());
+                    foreach (Database db in server.Databases)
+                    {
+                        comboBoxLilstDbIPServer.Items.Add(db.Name);
+                    }
+                    maskedTextBoxIPServer.Enabled = false;
+                    comboBoxLilstDbIPServer.Enabled = true;
+                    MessageBox.Show("Тест пройшов успішно!");
+                }
+                else
+                {
+                    MessageBox.Show("Не підключається до сервера!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Помилкова адреса!");
+            }
+        }
+        private void ButtonConnectToIPServer_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ButtonSaveConfig_Click(object sender, EventArgs e)
         {
 
         }
         #endregion
 
         #region Вибрати із списку
-        private void comboBoxListServerName_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void ComboBoxListServerName_Click(object sender, EventArgs e)
+        {
+            progressBarConnectToDB.Visible = true;
+            DataTable dataTable = SmoApplication.EnumAvailableSqlServers(true); // поставати false для мережевих серверів
+            comboBoxListServerName.ValueMember = "Name";
+            comboBoxListServerName.DataSource = dataTable;
+        }
+        private void ComboBoxListServerName_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxListDataBase.Items.Clear();
             if (comboBoxListServerName.SelectedIndex != -1)
@@ -118,26 +132,19 @@ namespace Laminatsia
                 }
             }
         }
-        private void comboBoxListServerName_Click(object sender, EventArgs e)
-        {
-            progressBarConnectToDB.Visible = true;
-            DataTable dataTable = SmoApplication.EnumAvailableSqlServers(true); // поставати false для мережевих серверів
-            comboBoxListServerName.ValueMember = "Name";
-            comboBoxListServerName.DataSource = dataTable;
-        }
-        private void buttonConnectToServerName_Click(object sender, EventArgs e)
+
+        private void ButtonConnectToServerName_Click(object sender, EventArgs e)
         {
 
         }
-        private void buttonSaveConfogServerName_Click(object sender, EventArgs e)
+        private void ButtonSaveConfogServerName_Click(object sender, EventArgs e)
         {
 
         }
         #endregion
 
         #region Створити базу даних
-
-        private void buttonTestConnToCreateDB_Click(object sender, EventArgs e)
+        private void ButtonTestConnToCreateDB_Click(object sender, EventArgs e)
         {
             IPAddress ipAddress;
             if (IPAddress.TryParse(maskedTextBoxIpServerCreateDB.Text.Trim(), out ipAddress))
@@ -150,18 +157,19 @@ namespace Laminatsia
                         comboBoxLilstDbIPServer.Items.Add(db.Name);
                     }
                     maskedTextBoxIpServerCreateDB.Enabled = false;
+                    MessageBox.Show("Тест пройшов успішно!");
                 }
                 else
                 {
-                    MessageBox.Show("Не подключается к серверу!");
+                    MessageBox.Show("Не підключається до сервера!");
                 }
             }
             else
             {
-                MessageBox.Show("Помилкова адреса!");
+                MessageBox.Show("Помилкова введенна адреса!");
             }
         }
-        private void buttonCreateDB_Click(object sender, EventArgs e)
+        private void ButtonCreateDB_Click(object sender, EventArgs e)
         {
             //
 
@@ -357,18 +365,18 @@ ALTER DATABASE [Laminatsia] SET  READ_WRITE ;
 
             try
             {
-                //Server server = new Server(maskedTextBoxIpServerCreateDB.Text.Trim());
-                Server server = new Server(@"LOGIST\SQLEXPRESS2012");
+                Server server = new Server(maskedTextBoxIpServerCreateDB.Text.Trim());
+                //Server server = new Server(@"LOGIST\SQLEXPRESS2012");
                 using (SqlConnection sql = new SqlConnection(server.ConnectionContext.ConnectionString))
                 {
                     sql.Open();
                     //SqlCommand sqlCreateDBCreated = new SqlCommand("DROP DATABASE [Laminatsia];", sql);
                     SqlCommand sqlCreateDBCreated = new SqlCommand(scriptCreated, sql);
                     sqlCreateDBCreated.ExecuteNonQuery();
-                    SqlCommand sqlCreateDB = new SqlCommand(script, sql);                    
+                    SqlCommand sqlCreateDB = new SqlCommand(script, sql);
                     sqlCreateDB.ExecuteNonQuery();
                     sql.Close();
-                    MessageBox.Show("Створено!!!");
+                    MessageBox.Show("Базу даних на сервері "+ server.Name + "створено з назвою Laminatsia !");
                 }
             }
             catch (Exception ex)
