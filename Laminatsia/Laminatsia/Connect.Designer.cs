@@ -40,7 +40,6 @@
             this.tabPageIP = new System.Windows.Forms.TabPage();
             this.tabPageFromList = new System.Windows.Forms.TabPage();
             this.groupBoxSelectServerName = new System.Windows.Forms.GroupBox();
-            this.progressBarConnectToDB = new System.Windows.Forms.ProgressBar();
             this.buttonSaveConfogServerName = new System.Windows.Forms.Button();
             this.buttonConnectToServerName = new System.Windows.Forms.Button();
             this.comboBoxListServerName = new System.Windows.Forms.ComboBox();
@@ -53,6 +52,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCreateDB = new System.Windows.Forms.Button();
             this.maskedTextBoxIpServerCreateDB = new System.Windows.Forms.MaskedTextBox();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.progressBarConnectToDB = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBoxConnecting.SuspendLayout();
             this.tabControlConnect.SuspendLayout();
             this.tabPageIP.SuspendLayout();
@@ -90,6 +92,7 @@
             // 
             // buttonSaveConfig
             // 
+            this.buttonSaveConfig.Enabled = false;
             this.buttonSaveConfig.Location = new System.Drawing.Point(262, 212);
             this.buttonSaveConfig.Name = "buttonSaveConfig";
             this.buttonSaveConfig.Size = new System.Drawing.Size(140, 39);
@@ -110,9 +113,11 @@
             this.comboBoxLilstDbIPServer.Name = "comboBoxLilstDbIPServer";
             this.comboBoxLilstDbIPServer.Size = new System.Drawing.Size(187, 28);
             this.comboBoxLilstDbIPServer.TabIndex = 10;
+            this.comboBoxLilstDbIPServer.SelectedIndexChanged += new System.EventHandler(this.comboBoxLilstDbIPServer_SelectedIndexChanged);
             // 
             // buttonConnectToIPServer
             // 
+            this.buttonConnectToIPServer.Enabled = false;
             this.buttonConnectToIPServer.Location = new System.Drawing.Point(55, 212);
             this.buttonConnectToIPServer.Name = "buttonConnectToIPServer";
             this.buttonConnectToIPServer.Size = new System.Drawing.Size(140, 39);
@@ -200,18 +205,9 @@
             this.groupBoxSelectServerName.TabStop = false;
             this.groupBoxSelectServerName.Text = "Вибрати з відкритих мережевих серверів";
             // 
-            // progressBarConnectToDB
-            // 
-            this.progressBarConnectToDB.Location = new System.Drawing.Point(13, 45);
-            this.progressBarConnectToDB.Name = "progressBarConnectToDB";
-            this.progressBarConnectToDB.Size = new System.Drawing.Size(448, 23);
-            this.progressBarConnectToDB.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBarConnectToDB.TabIndex = 14;
-            this.progressBarConnectToDB.Value = 10;
-            this.progressBarConnectToDB.Visible = false;
-            // 
             // buttonSaveConfogServerName
             // 
+            this.buttonSaveConfogServerName.Enabled = false;
             this.buttonSaveConfogServerName.Location = new System.Drawing.Point(262, 212);
             this.buttonSaveConfogServerName.Name = "buttonSaveConfogServerName";
             this.buttonSaveConfogServerName.Size = new System.Drawing.Size(140, 40);
@@ -222,6 +218,7 @@
             // 
             // buttonConnectToServerName
             // 
+            this.buttonConnectToServerName.Enabled = false;
             this.buttonConnectToServerName.Location = new System.Drawing.Point(55, 212);
             this.buttonConnectToServerName.Name = "buttonConnectToServerName";
             this.buttonConnectToServerName.Size = new System.Drawing.Size(140, 40);
@@ -238,7 +235,7 @@
             this.comboBoxListServerName.Name = "comboBoxListServerName";
             this.comboBoxListServerName.Size = new System.Drawing.Size(212, 28);
             this.comboBoxListServerName.TabIndex = 8;
-            this.comboBoxListServerName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxListServerName_SelectedIndexChanged);
+            this.comboBoxListServerName.SelectedValueChanged += new System.EventHandler(this.comboBoxListServerName_SelectedValueChanged);
             this.comboBoxListServerName.Click += new System.EventHandler(this.ComboBoxListServerName_Click);
             // 
             // labelDBName
@@ -259,6 +256,7 @@
             this.comboBoxListDataBase.Name = "comboBoxListDataBase";
             this.comboBoxListDataBase.Size = new System.Drawing.Size(212, 28);
             this.comboBoxListDataBase.TabIndex = 9;
+            this.comboBoxListDataBase.SelectedIndexChanged += new System.EventHandler(this.comboBoxListDataBase_SelectedIndexChanged);
             // 
             // labelServerName
             // 
@@ -314,6 +312,7 @@
             // 
             // buttonCreateDB
             // 
+            this.buttonCreateDB.Enabled = false;
             this.buttonCreateDB.Location = new System.Drawing.Point(63, 132);
             this.buttonCreateDB.Name = "buttonCreateDB";
             this.buttonCreateDB.Size = new System.Drawing.Size(116, 38);
@@ -329,6 +328,26 @@
             this.maskedTextBoxIpServerCreateDB.Size = new System.Drawing.Size(159, 26);
             this.maskedTextBoxIpServerCreateDB.TabIndex = 2;
             this.maskedTextBoxIpServerCreateDB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
+            // progressBarConnectToDB
+            // 
+            this.progressBarConnectToDB.Location = new System.Drawing.Point(13, 45);
+            this.progressBarConnectToDB.Name = "progressBarConnectToDB";
+            this.progressBarConnectToDB.Size = new System.Drawing.Size(448, 23);
+            this.progressBarConnectToDB.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBarConnectToDB.TabIndex = 14;
+            this.progressBarConnectToDB.Value = 10;
+            this.progressBarConnectToDB.Visible = false;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // Connect
             // 
@@ -378,5 +397,7 @@
         private System.Windows.Forms.Button buttonCreateDB;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxIpServerCreateDB;
         private System.Windows.Forms.ProgressBar progressBarConnectToDB;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

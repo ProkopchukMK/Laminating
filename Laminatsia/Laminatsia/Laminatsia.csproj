@@ -129,7 +129,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\ScriptDBClass.cs" />
     <Compile Include="Users.cs">
       <DependentUpon>LaminatsiaModel.tt</DependentUpon>
     </Compile>
@@ -182,7 +181,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="LaminatsiaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
