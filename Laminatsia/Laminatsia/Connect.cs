@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Data.SqlClient;
+using System.Configuration;
+using System.Data.EntityClient;
 
 namespace Laminatsia
 {
@@ -51,7 +53,7 @@ namespace Laminatsia
                 }
                 else if (tabControlConnect.SelectedTab == tabPageFromList)
                 {
-                    comboBoxListServerName.Items.Clear();
+                    //comboBoxListServerName.Items.Clear();
                     comboBoxListDataBase.Items.Clear();
                     buttonConnectToServerName.Enabled = false;
                     buttonSaveConfogServerName.Enabled = false;
@@ -159,7 +161,7 @@ namespace Laminatsia
 
         #region Вибрати із списку
         //прогрес бар 
-        private List<string> listServer;
+        private DataTable listServer;
         private List<string> listDatabases = new List<string>();
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -171,7 +173,7 @@ namespace Laminatsia
         }
         private void GetAllServers()
         {
-           var listServer = SmoApplication.EnumAvailableSqlServers(false).Columns[0]; // поставати false для мережевих серверів
+           listServer = SmoApplication.EnumAvailableSqlServers(false); // поставати false для мережевих серверів
         }
         private void GetAllDatabases()
         {
@@ -192,7 +194,8 @@ namespace Laminatsia
             progressBarConnectToDB.Visible = false;
             comboBoxListServerName.Enabled = true;
             comboBoxListServerName.ValueMember = "Name";
-            //comboBoxListServerName.DataSource = dataTable;
+            comboBoxListServerName.DataSource = listServer;
+            tabControlConnect.Enabled = true;
         }
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -207,9 +210,11 @@ namespace Laminatsia
             buttonSaveConfogServerName.Enabled = false;
             buttonConnectToServerName.Enabled = false;
             comboBoxListDataBase.Items.Clear();
+            
 
             if (comboBoxListServerName.Items.Count == 0)
             {
+                tabControlConnect.Enabled = false;
                 backgroundWorker.RunWorkerAsync();
                 comboBoxListServerName.Enabled = false;
             }
@@ -224,7 +229,7 @@ namespace Laminatsia
                 listDatabases.Clear();
                 if (comboBoxListServerName.SelectedIndex != -1)
                 {
-                    comboBoxListDataBase.Enabled = false;
+                    comboBoxListDataBase.Enabled = true;
                     comboBoxListServerName.Enabled = false;
                     string serverName = comboBoxListServerName.SelectedValue.ToString();
                     server = new Server(serverName);
@@ -274,7 +279,21 @@ namespace Laminatsia
         }
         private void ButtonSaveConfogServerName_Click(object sender, EventArgs e)
         {
+            string connectiongString = System.Configuration.ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString;
 
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+            //connectionStringsSection.ConnectionStrings["LaminatsiaEntities"].ConnectionString = "Data Source="+ comboBoxListServerName.SelectedValue.ToString()+ ";Initial Catalog="+ comboBoxListDataBase.SelectedItem.ToString() + ";integrated security=True;MultipleActiveResultSets=True;App=EntityFramework; providerName=System.Data.EntityClient;
+            //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder( connectionStringsSection.ConnectionStrings["LaminatsiaEntities"].ConnectionString);
+            EntityConnectionStringBuilder builder = new EntityConnectionStringBuilder(connectionStringsSection);
+            connectionStringsSection = builder.ProviderConnectionString;
+
+            builder["Data Source"] = comboBoxListServerName.SelectedValue.ToString();
+            builder["Initial Catalog"] = comboBoxListDataBase.SelectedItem.ToString();            
+            connectionStringsSection.ConnectionStrings["LaminatsiaEntities"].ConnectionString = builder.ConnectionString;
+            ConfigurationManager.RefreshSection("connectionStrings");
+            config.Save(ConfigurationSaveMode.Modified, true);            
+            MessageBox.Show("Конфігурацію збережено! Детальніше: " + ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString);
         }
         private void comboBoxListDataBase_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -25,8 +25,7 @@ namespace Laminatsia
                 }
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                //Application.Run(new Authorization());
-                Application.Run(new Connect());
+                Application.Run(new Authorization());
             }
         }
     }

@@ -14,6 +14,7 @@ using Laminatsia.Properties;
 using System.Collections;
 using System.Data.SqlClient;
 using System.Data.Common;
+using System.Data.EntityClient;
 
 namespace Laminatsia
 {
@@ -26,6 +27,7 @@ namespace Laminatsia
         {
             InitializeComponent();
             FillAllAuthorization();
+            IsServerConnected();
         }
         private void FillAllAuthorization()
         {
@@ -60,7 +62,7 @@ namespace Laminatsia
                         if (comboBoxRole.SelectedItem != null)
                         {
                             //перевіряємо конект до бази даних
-                            //IsServerConnected();
+
                             userName = textBoxLogin.Text.Trim();
                             userPassword = textBoxPassword.Text.Trim();
                             role = comboBoxRole.SelectedItem.ToString();
@@ -99,9 +101,9 @@ namespace Laminatsia
                 }
                 else { MessageBox.Show("Введіть логін!"); }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("ButtonLogIn_Click " + ex.ToString() );
+                MessageBox.Show("ButtonLogIn_Click " + ex.ToString());
             }
         }
         //шифратор і дешифратор пароля, для запису і зчитування у тимчасовий файл. 
@@ -136,44 +138,36 @@ namespace Laminatsia
             }
             return output;
         }
-        //private void IsServerConnected()
-        //{
-        //    string connectionString = "";
-        //    try
-        //    {
-        //        connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionStringToLaminatsiaEntities"].ConnectionString;
-        //    }
-        //    catch
-        //    {
-        //        if (string.IsNullOrEmpty(connectionString))
-        //        {
-        //            //this.Hide();
-        //            Connect connectForm = new Connect();
-        //            //connectForm.Closed += (s, args) => 
-        //            connectForm.Show();
-        //            this.Close();
-        //        }
-        //        else
-        //        {
-        //            using (var connecting = new SqlConnection(connectionString))
-        //            {
-        //                try
-        //                {
-        //                    connecting.Open();
-        //                }
-        //                catch (SqlException sqlEx)
-        //                {
-        //                    MessageBox.Show(sqlEx.Message);
-        //                    this.Hide();
-        //                    Connect connectForm = new Connect();
-        //                    connectForm.Closed += (s, args) => this.Close();
-        //                    connectForm.Show();
-        //                }
-        //            }
-        //        }
-        //    }
-        //
-        //}
+        private void IsServerConnected()
+        {
+            string connectionString = "";
+
+            connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString;
+            EntityConnectionStringBuilder builder = new EntityConnectionStringBuilder(connectionString);
+            connectionString = builder.ProviderConnectionString;   
+            try
+            {
+                using (var sql = new SqlConnection(connectionString))
+                {
+                    string writeToDB = @"INSERT INTO Users (UserName, UserPassword, Role) values('Test', 'Test','Адміністратори')";
+                    string updateDB = @"DELETE FROM Users WHERE UserName='Test'";
+                    sql.Open();
+                    SqlCommand sqlCreateUser = new SqlCommand(writeToDB, sql);
+                    sqlCreateUser.ExecuteNonQuery();
+                    SqlCommand sqlDeleteUser = new SqlCommand(updateDB, sql);
+                    sqlDeleteUser.ExecuteNonQuery();
+                    sql.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);                
+                this.Hide();
+                Connect connectForm = new Connect();
+                connectForm.Closed += (s, args) => this.Close();
+                connectForm.Show();                
+            }
+        }
         private void ButtonExit_Click(object sender, EventArgs e)
         {
             this.Close();
