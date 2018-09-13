@@ -150,32 +150,36 @@ namespace Laminatsia.DTO
         }
         public List<ColourGoodsDTO> GetListColourGoods()
         {
-            List<ColourGoods> listColourGoods = _entity.ColourGoods.Where(x => x.ID != 0).ToList();            
-            List<ColourGoodsDTO> listColourGoodsDTO = new List<ColourGoodsDTO>(listColourGoods.Count);
-            for (int i = 0; i < listColourGoods.Count; i++)
+            try
             {
-                int id_profile = listColourGoods[i].Profile_ID;
-                int id_dealer = listColourGoods[i].Dealer_ID;
-                int id_colour = listColourGoods[i].Colour_ID;
-                ColourGoodsDTO newcolourGoodsDTO = new ColourGoodsDTO
+                List<ColourGoods> listColourGoods = _entity.ColourGoods.Where(x => x.ID != 0).ToList();
+                List<ColourGoodsDTO> listColourGoodsDTO = new List<ColourGoodsDTO>(listColourGoods.Count);
+                for (int i = 0; i < listColourGoods.Count; i++)
                 {
-                    ID = listColourGoods[i].ID,
-                    DateComing = listColourGoods[i].DateComing.Date,
-                    Profile = _entity.Profile.FirstOrDefault(x => x.ID == id_profile).NameProfile,
-                    City = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).City,
-                    Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).DealerName,
-                    Notes = listColourGoods[i].Notes,
-                    Counts = (byte)listColourGoods[i].Counts,
-                    Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == id_colour).Colour,
-                    DateToWork = listColourGoods[i].DateToWork.Date,
-                    StatusProfile = listColourGoods[i].StatusProfile,
-                    DateReady = listColourGoods[i].DateReady.Date,
-                    StatusGoods = listColourGoods[i].StatusGoods,
-                    DateRemove = listColourGoods[i].DateRemove == null ? DateTime.MinValue : DateTime.Parse(listColourGoods[i].DateRemove.ToString())
-                };
-                listColourGoodsDTO.Add(newcolourGoodsDTO);
+                    int id_profile = listColourGoods[i].Profile_ID;
+                    int id_dealer = listColourGoods[i].Dealer_ID;
+                    int id_colour = listColourGoods[i].Colour_ID;
+                    ColourGoodsDTO newcolourGoodsDTO = new ColourGoodsDTO
+                    {
+                        ID = listColourGoods[i].ID,
+                        DateComing = listColourGoods[i].DateComing.Date,
+                        Profile = _entity.Profile.FirstOrDefault(x => x.ID == id_profile).NameProfile,
+                        City = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).City,
+                        Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).DealerName,
+                        Notes = listColourGoods[i].Notes,
+                        Counts = (byte)listColourGoods[i].Counts,
+                        Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == id_colour).Colour,
+                        DateToWork = listColourGoods[i].DateToWork.Date,
+                        StatusProfile = listColourGoods[i].StatusProfile,
+                        DateReady = listColourGoods[i].DateReady.Date,
+                        StatusGoods = listColourGoods[i].StatusGoods,
+                        DateRemove = listColourGoods[i].DateRemove == null ? DateTime.MinValue : DateTime.Parse(listColourGoods[i].DateRemove.ToString())
+                    };
+                    listColourGoodsDTO.Add(newcolourGoodsDTO);
+                }
+                return listColourGoodsDTO.OrderByDescending(x => x.DateComing).ToList();
             }
-            return listColourGoodsDTO.OrderByDescending(x => x.DateComing).ToList();
+            catch { return null; }
         }
         public List<ColourGoodsDTO> GetListRemoveColourGoods()
         {

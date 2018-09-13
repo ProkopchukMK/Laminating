@@ -1,5 +1,4 @@
 ﻿using Laminatsia.DTO;
-using Microsoft.SqlServer.Management.Smo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,95 +26,84 @@ namespace Laminatsia
         private int editIDEntity;
         public static string UserName { get; private set; }
         public static string Role { get; private set; }
-
+        //метод працює при запуску форми
         private void LaminatsiaForm_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.WindowState = FormWindowState.Maximized;
             this.Size = Screen.PrimaryScreen.Bounds.Size;
         }
+        //конструктор з інфой від форми авторизації
         public Laminatsia(string userName, string role)
         {
-            try
+            InitializeComponent();
+            //відповідно до ролі ініціалізується Ламінація
+            UserName = userName;
+            Role = role;
+            if (role == "Ламінація")
             {
-                InitializeComponent();
-                UserName = userName;
-                Role = role;
-
-                if (role == UserRole.Ламінація.ToString())
-                {
-                    MenuTabControl.TabIndex = 0;
-                    //MenuTabControl.TabPages.Remove(tabPageLaminaters);
-                    //MenuTabControl.TabPages.Remove(tabPageManagers);
-                    //MenuTabControl.TabPages.Remove(tabPageAddRemove);
-                    //MenuTabControl.TabPages.Remove(tabPageLogs);
-                    FillAllComponentAddRemoveTab();
-                    FillAllComponentLaminatsiaTab();
-                }
-                else if (role == UserRole.Технологи.ToString())
-                {
-                    MenuTabControl.TabIndex = 1;
-                    MenuTabControl.TabPages.Remove(tabPageLaminaters);
-                    //MenuTabControl.TabPages.Remove(tabPageManagers);
-                    MenuTabControl.TabPages.Remove(tabPageAddRemove);
-                    //MenuTabControl.TabPages.Remove(tabPageLogs);
-                    FillAllComponentManagersTab();
-                }
-                else if (role == UserRole.Менеджери.ToString())
-                {
-                    MenuTabControl.TabIndex = 2;
-                    MenuTabControl.TabPages.Remove(tabPageLaminaters);
-                    //MenuTabControl.TabPages.Remove(tabPageManagers);
-                    MenuTabControl.TabPages.Remove(tabPageAddRemove);
-                    //MenuTabControl.TabPages.Remove(tabPageLogs);
-                    FillAllComponentManagersTab();
-                }
-                else if (role == UserRole.Адміністратори.ToString())
-                {
-                    groupBoxAddUser.Visible = true;
-                    groupBoxRemoveUser.Visible = true;
-                    FillAllComponentLaminatsiaTab();
-                }
+                MenuTabControl.TabIndex = 0;
+                //MenuTabControl.TabPages.Remove(tabPageLaminaters);
+                //MenuTabControl.TabPages.Remove(tabPageManagers);
+                //MenuTabControl.TabPages.Remove(tabPageAddRemove);
+                //MenuTabControl.TabPages.Remove(tabPageLogs);
+                FillAllComponentAddRemoveTab();
+                FillAllComponentLaminatsiaTab();
             }
-            catch (Exception ex)
+            else if (role == "Технологи")
             {
-                MessageBox.Show("Сталася помилка ініціалізації Laminatsia! Детальніше: " + ex.Message);
+                MenuTabControl.TabIndex = 1;
+                MenuTabControl.TabPages.Remove(tabPageLaminaters);
+                //MenuTabControl.TabPages.Remove(tabPageManagers);
+                MenuTabControl.TabPages.Remove(tabPageAddRemove);
+                //MenuTabControl.TabPages.Remove(tabPageLogs);
+                FillAllComponentManagersTab();
+            }
+            else if (role == "Менеджери")
+            {
+                MenuTabControl.TabIndex = 2;
+                MenuTabControl.TabPages.Remove(tabPageLaminaters);
+                //MenuTabControl.TabPages.Remove(tabPageManagers);
+                MenuTabControl.TabPages.Remove(tabPageAddRemove);
+                //MenuTabControl.TabPages.Remove(tabPageLogs);
+                FillAllComponentManagersTab();
+            }
+            else if (role == "Адміністратори")
+            {
+                groupBoxAddUser.Visible = true;
+                groupBoxRemoveUser.Visible = true;
+                FillAllComponentLaminatsiaTab();
             }
         }
+        //при переключенні між вкладкими оволюємо дані
         private void MenuTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if (MenuTabControl.SelectedTab == tabPageLaminaters)
             {
-                if (MenuTabControl.SelectedTab == tabPageLaminaters)
-                {
-                    //  MessageBox.Show("Ламінація");
-                    CleareAllComponentLaminatsiaTab();
-                    FillAllComponentLaminatsiaTab();
-                }
-                else if (MenuTabControl.SelectedTab == tabPageManagers)
-                {
-                    // MessageBox.Show("Менеджери Технологи");
-                    CleareAllComponentManagersTab();
-                    FillAllComponentManagersTab();
-                }
-                else if (MenuTabControl.SelectedTab == tabPageAddRemove)
-                {
-                    //  MessageBox.Show("Додавання");
-                    CleareAllComponentAddRemoveTab();
-                    FillAllComponentAddRemoveTab();
-                }
-                else if (MenuTabControl.SelectedTab == tabPageLogs)
-                {
-                    //  MessageBox.Show("Додавання");
-                    CleareAllComponentArchiveTab();
-                    FillAllComponentArciveTab();
-                }
+                //вкладки ламінація
+                CleareAllComponentLaminatsiaTab();
+                FillAllComponentLaminatsiaTab();
             }
-            catch (Exception ex)
+            else if (MenuTabControl.SelectedTab == tabPageManagers)
             {
-                MessageBox.Show("Сталася помилка MenuTabControl_SelectedIndexChanged! Детальніше: " + ex.Message);
+                //вкладки для менеджерів
+                CleareAllComponentManagersTab();
+                FillAllComponentManagersTab();
+            }
+            else if (MenuTabControl.SelectedTab == tabPageAddRemove)
+            {
+                //вкладка додавання інфи
+                CleareAllComponentAddRemoveTab();
+                FillAllComponentAddRemoveTab();
+            }
+            else if (MenuTabControl.SelectedTab == tabPageLogs)
+            {
+                //вкладка архів
+                CleareAllComponentArchiveTab();
+                FillAllComponentArciveTab();
             }
         }
+        //заповнення грідвью, якщо перший параметр нулл то заповнюється з бази даних, якщо не нулл заповнюється з enterList. Другий параметр вказує який саме заповнювати грідвью
         private void FillGridView(List<ColourGoodsDTO> enterList, DataGridView dataGridView)
         {
             try
@@ -125,52 +113,56 @@ namespace Laminatsia
                 {
                     ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
                     List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
-                    for (int i = 0; i < listColourGoodsDTO.Count; i++)
-                    {
-                        string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                        string statusGoods = listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
-                        //видаляемо після трьох днів
-                        if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date && (today - listColourGoodsDTO[i].DateRemove).Days > 4)
+                    if (listColourGoodsDTO != null)
+                        for (int i = 0; i < listColourGoodsDTO.Count; i++)
                         {
-                            colourGoodsDTO.RemoveGolourGoods(listColourGoodsDTO[i].ID);
+                            string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
+                            string statusGoods = listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
+                            //видаляемо після трьох днів
+                            if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date && (today - listColourGoodsDTO[i].DateRemove).Days > 4)
+                            {
+                                colourGoodsDTO.RemoveGolourGoods(listColourGoodsDTO[i].ID);
+                            }
+                            //переносимо в архів замовлення в яких дата дільше 61 день та статус профіля і статус виробу true. Переноситься тільки з ролі ламінація
+                            else if (Role == UserRole.Ламінація.ToString() && (today - listColourGoodsDTO[i].DateReady).Days > 61 && listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
+                            {
+                                colourGoodsDTO.MoveToArchiveGolourGoods(listColourGoodsDTO[i].ID);
+                            }
+                            //заповнюємо даними грід вью
+                            dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
+                                listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
+                                 listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
+                            //позначення кольором дат
+                            //це замовлення видалено. СІРИЙ.
+                            if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date)
+                            {
+                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                            }
+                            //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ. БІЛИЙ
+                            else if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                            {
+                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                            }
+                            //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів. ЧЕРВОНИЙ
+                            else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                            {
+                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                            }
+                            //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів. ЖОВТИЙ
+                            else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                            {
+                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                            }
+                            //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів. ЗЕЛЕНИЙ
+                            else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                            {
+                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+                            }
                         }
-                        else if (Role == UserRole.Ламінація.ToString() && (today - listColourGoodsDTO[i].DateReady).Days > 61 && listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
-                        {
-                            colourGoodsDTO.MoveToArchiveGolourGoods(listColourGoodsDTO[i].ID);
-                        }
-                        dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
-                            listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
-                             listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
-                        //позначення кольором дат
-                        //це замовлення видалено
-                        if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
-                        }
-                        //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ
-                        else if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                        }
-                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів
-                        else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                        }
-                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів
-                        else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                        }
-                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів
-                        else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
-                        }
-                    }
                 }
                 else
                 {
+                    //сортуємо по даті з найближчої і до найдавнішої
                     enterList = enterList.OrderByDescending(x => x.DateComing).ToList();
                     for (int i = 0; i < enterList.Count; i++)
                     {
@@ -186,27 +178,27 @@ namespace Laminatsia
                             enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
                             enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods);
                         //позначення кольором дат                    
-                        //це замовлення видалено
+                        //це замовлення видалено. СІРИЙ
                         if (enterList[i].DateRemove.Date != DateTime.MinValue.Date)
                         {
                             dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
                         }
-                        //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ підсвічувати білим
+                        //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ підсвічувати БІЛИМ
                         else if (enterList[i].StatusProfile && enterList[i].StatusGoods && enterList[i].DateRemove == DateTime.MinValue)
                         {
                             dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
                         }
-                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів то підсвічувати OrangeRed
+                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів то підсвічувати ЧЕРВОНИМ
                         else if ((enterList[i].DateToWork.Date - today).Days < 3 && enterList[i].DateRemove == DateTime.MinValue)
                         {
                             dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                         }
-                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів то підсвічувати Indigo
+                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів то підсвічувати ЖОВТИМ
                         else if ((enterList[i].DateToWork.Date - today).Days < 7 && enterList[i].DateRemove == DateTime.MinValue)
                         {
                             dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                         }
-                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів то підсвічувати зеленим
+                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів то підсвічувати ЗЕЛЕНИМ
                         else if ((enterList[i].DateToWork.Date - today).Days < 10 && enterList[i].DateRemove == DateTime.MinValue)
                         {
                             dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
@@ -331,9 +323,9 @@ namespace Laminatsia
                 listCity = dealerDTO.GetListCity();
 
                 var arrayCity = listCity.ToArray();
-                var arrayProfile = listProfile.ToArray();                
+                var arrayProfile = listProfile.ToArray();
                 var arrayColour = listColour.ToArray();
-                ComboBoxProfile.Items.AddRange(listProfile.ToArray());                
+                ComboBoxProfile.Items.AddRange(listProfile.ToArray());
                 ComboBoxCity.Items.AddRange(arrayCity);
                 //comboBoxDealer.Items.AddRange(dealerDTO.GetListDealer().ToArray());                   заповнюється відповідно до вибраного міста
                 ComboBoxDealer.Enabled = false;
@@ -622,10 +614,12 @@ namespace Laminatsia
         #region ВКЛАДКА МЕНЕДЖЕРИ ТЕХНОЛОГИ
 
         #region Заповнення всіх елементів у вкладці Менеджери Технологи
+        //заповнення грід вью
         private void FillGridViewManagers(List<ColourGoodsDTO> enterList)
         {
             FillGridView(enterList, dataGridViewTehnologes);
         }
+        //заповнення всіх компонентів  у вкладці менеджери
         private void FillAllComponentManagersTab()
         {
             if (Role == "Ламінація")
@@ -656,6 +650,7 @@ namespace Laminatsia
 
             FillGridViewManagers(null);
         }
+        //очищення всіх компонентів у вкладці менеджери
         private void CleareAllComponentManagersTab()
         {
             comboBoxFilterProfile.Items.Clear();
@@ -671,6 +666,7 @@ namespace Laminatsia
         #endregion
 
         #region сортування gridviewManagers
+        //сортування по кліку на заголовок колонки
         private void DataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
@@ -734,7 +730,7 @@ namespace Laminatsia
         #endregion
 
         #region Фільтри  
-        //пошук за ID
+        //введення тільки цифр
         private void TextBoxTehnologFindByID_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -743,6 +739,7 @@ namespace Laminatsia
                 e.Handled = true;
             }
         }
+        //пошук за ID
         private void ButtonTehnologFindByID_Click(object sender, EventArgs e)
         {
             int id;
@@ -858,12 +855,7 @@ namespace Laminatsia
             }
         }
 
-        #region DateTimePickerFilterDate
-        /// <summary>
-        /// TODO 1. все в один метод переробити
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        #region DateTimePickerFilterDate        
         // відсікає помилку коли вибраний не вірний діапазон дат, коли перша дата більша за другу. По два датапікера(від та до) висят на цих івентах
         private void DateTimePickerFilterDateComing2_ValueChanged(object sender, EventArgs e)
         {
@@ -906,7 +898,7 @@ namespace Laminatsia
                 return false;
             }
         }
-        //чек бокси дат
+        //чек бокси дат для активації або деактивації
         private void CheckBoxFilterDateToWork_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxFilterDateToWork.Checked == true)
@@ -1219,7 +1211,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка ButtonEditUser_Click! Детальніше: " + ex.Message);
             }
         }
-        //змінити
+        //зберегти змінений пароль
         private void EditUser(object sender, EventArgs e)
         {
             try
@@ -1267,6 +1259,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка EditUser! Детальніше: " + ex.Message);
             }
         }
+        //перевірки пароля на валідність
         private bool CheckPassword(string password)
         {
             try
@@ -1283,7 +1276,7 @@ namespace Laminatsia
                 return false;
             }
         }
-        //відміна
+        //відміна зміни пароля
         private void CancelEditUser(object sender, EventArgs e)
         {
             try
@@ -1315,6 +1308,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка CancelEditUser! Детальніше: " + ex.Message);
             }
         }
+        //заповнення користувачів відповідно до вибраної ролі
         private void comboBoxEditUserRole_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1331,6 +1325,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка comboBoxEditUserRole_SelectedIndexChanged! Детальніше: " + ex.Message);
             }
         }
+        //видалення користувача
         private void ButtonRemoveUser_Click(object sender, EventArgs e)
         {
             try
@@ -1354,6 +1349,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка ButtonRemoveUser_Click! Детальніше: " + ex.Message);
             }
         }
+        //заповнення користувачів відповідно до вибраної ролі
         private void ComboBoxRemoveUserRole_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1438,6 +1434,7 @@ namespace Laminatsia
 
         }
         #region Видалення інформації з бази данних
+        //видалення міста, якщо в ньому не має дилерів та не має замовлень
         private void ComboBoxRemoveCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1461,6 +1458,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка ComboBoxRemoveCity_SelectedIndexChanged! Детальніше: " + ex.Message);
             }
         }
+        //видалення дилера, якщо на ньому немає замовлень
         private void ButtonRemoveDealer_Click(object sender, EventArgs e)
         {
             try
@@ -1526,6 +1524,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка ButtonRemoveDealer_Click! Детальніше: " + ex.Message);
             }
         }
+        //видалення профіля якщо його немає в замовленях
         private void ButtonRemoveProfile_Click(object sender, EventArgs e)
         {
             try
@@ -1560,6 +1559,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка ButtonRemoveProfile_Click! Детальніше: " + ex.Message);
             }
         }
+        //видалення профіля якщо його немає в замовленях
         private void ButtonRemoveColour_Click(object sender, EventArgs e)
         {
             try
@@ -1594,6 +1594,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка ButtonRemoveColour_Click! Детальніше: " + ex.Message);
             }
         }
+        //при введенні 
         private void СomboxAddCity_KeyDown(object sender, KeyEventArgs e)
         {
             textBoxAddDealer.Enabled = true;
@@ -1602,7 +1603,7 @@ namespace Laminatsia
         {
             textBoxAddDealer.Enabled = true;
         }
-        //ведення значення
+        //переключення мови на українську
         private void TextBoxAddCity_Enter(object sender, EventArgs e)
         {
             SetKeyboardLayout(GetInputLanguageByName("uk"));
@@ -1627,10 +1628,12 @@ namespace Laminatsia
         #endregion
 
         #region Архів
+        //заповнення всіх компонентів у вкладці архів операцій
         private void FillAllComponentArciveTab()
         {
             ArchiveDTO archiveDTO = new ArchiveDTO();
             List<ArchiveDTO> listArchiveDTO = archiveDTO.GetAllListArchive();
+            if (listArchiveDTO == null) return;
             comboBoxArchiveProfile.Items.Add("");
             comboBoxArchiveProfile.Items.AddRange(listArchiveDTO.OrderBy(x => x.Profile).Select(x => x.Profile).Distinct().ToArray());
             var cityList = listArchiveDTO.Select(x => x.City).Distinct();
@@ -1644,6 +1647,7 @@ namespace Laminatsia
             comboBoxArchiveUser.Items.AddRange(listArchiveDTO.Select(x => x.UserName).Distinct().ToArray());
             FillGridViewArchive(null, dataGridViewLogs);
         }
+        //виборка дилерів по місту
         private void ComboBoxArchiveCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1666,9 +1670,7 @@ namespace Laminatsia
                         comboBoxArchiveDealer.Items.Add("");
                         comboBoxArchiveDealer.Items.AddRange(dealerList);
                     }
-
                 }
-
             }
             catch (Exception ex)
             {
@@ -1686,6 +1688,7 @@ namespace Laminatsia
             comboBoxArchiveUser.Items.Clear();
             dataGridViewLogs.Rows.Clear();
         }
+        //заповнення грід вью архів операцій
         private void FillGridViewArchive(List<ArchiveDTO> enterList, DataGridView dataGridView)
         {
             try
@@ -1696,15 +1699,16 @@ namespace Laminatsia
                 {
                     ArchiveDTO archiveDTO = new ArchiveDTO();
                     List<ArchiveDTO> listarchiveDTO = archiveDTO.GetListArchiveDisting().OrderByDescending(x => x.DateOperatsia).ToList();
-                    for (int i = 0; i < listarchiveDTO.Count; i++)
-                    {
-                        string statusProfile = listarchiveDTO[i].StatusProfile;
-                        string statusGoods = listarchiveDTO[i].StatusGoods;
-                        string role = listarchiveDTO[i].Role;
-                        dataGridView.Rows.Add(listarchiveDTO[i].ID_ColourGoods, listarchiveDTO[i].DateComing.Date, listarchiveDTO[i].Profile,
-                            listarchiveDTO[i].City, listarchiveDTO[i].Dealer, listarchiveDTO[i].Notes, listarchiveDTO[i].Counts,
-                             listarchiveDTO[i].Colour, listarchiveDTO[i].DateToWork.Date, statusProfile, listarchiveDTO[i].DateReady.Date, statusGoods, role[0] + " " + listarchiveDTO[i].UserName, listarchiveDTO[i].DateOperatsia, listarchiveDTO[i].Action);
-                    }
+                    if (listarchiveDTO != null)
+                        for (int i = 0; i < listarchiveDTO.Count; i++)
+                        {
+                            string statusProfile = listarchiveDTO[i].StatusProfile;
+                            string statusGoods = listarchiveDTO[i].StatusGoods;
+                            string role = listarchiveDTO[i].Role;
+                            dataGridView.Rows.Add(listarchiveDTO[i].ID_ColourGoods, listarchiveDTO[i].DateComing.Date, listarchiveDTO[i].Profile,
+                                listarchiveDTO[i].City, listarchiveDTO[i].Dealer, listarchiveDTO[i].Notes, listarchiveDTO[i].Counts,
+                                 listarchiveDTO[i].Colour, listarchiveDTO[i].DateToWork.Date, statusProfile, listarchiveDTO[i].DateReady.Date, statusGoods, role[0] + " " + listarchiveDTO[i].UserName, listarchiveDTO[i].DateOperatsia, listarchiveDTO[i].Action);
+                        }
                 }
                 else
                 {
@@ -1725,7 +1729,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка FillGridViewArchive! Детальніше: " + ex.Message);
             }
         }
-
+        //оновлення інформації у грід вью
         private void ButtonUpdateGridViewArchive_Click(object sender, EventArgs e)
         {
             try
@@ -1740,7 +1744,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка ButtonUpdateGridViewArchive_Click! Детальніше: " + ex.Message);
             }
         }
-
+        //фільтрувати по встановлених фільтрах
         private void ButtonSetArchiveFilter_Click(object sender, EventArgs e)
         {
             if (checkBoxWithOperation.Checked) // з операціями
@@ -1779,7 +1783,7 @@ namespace Laminatsia
             }
             textBoxIDColourGoods.Text = "";
         }
-
+        //ресетнуть фільтри
         private void ButtonResetArchiveFilter_Click(object sender, EventArgs e)
         {
             comboBoxArchiveProfile.Enabled = true;
@@ -1791,6 +1795,7 @@ namespace Laminatsia
             this.CleareAllComponentArchiveTab();
             this.FillAllComponentArciveTab();
         }
+        //введення в поле ід тільки цифри
         private void TextBoxIDColourGoods_KeyPress(object sender, KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -1799,6 +1804,7 @@ namespace Laminatsia
                 e.Handled = true;
             }
         }
+        //загреїти всі фільтри при введені ід замовлення
         private void TextBoxIDColourGoods_TextChanged(object sender, EventArgs e)
         {
             if (textBoxIDColourGoods.Text != "")

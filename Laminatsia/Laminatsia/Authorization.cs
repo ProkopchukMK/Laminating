@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Security.Principal;
-using System.Configuration;
-using System.Threading;
 using System.IO;
-using Laminatsia.Properties;
-using System.Collections;
 using System.Data.SqlClient;
-using System.Data.Common;
 using System.Data.EntityClient;
 
 namespace Laminatsia
@@ -27,7 +17,6 @@ namespace Laminatsia
         {
             InitializeComponent();
             FillAllAuthorization();
-            IsServerConnected();
         }
         private void FillAllAuthorization()
         {
@@ -40,6 +29,7 @@ namespace Laminatsia
             userSaveData = File.ReadAllLines(fileName);
             if (userSaveData.Length > 0)
             {
+                //якщо файл є, то ми витягуємо з нього інфу та заповнюємо текст боксами
                 textBoxLogin.Text = userSaveData[0];
                 textBoxPassword.Text = OperationOXR(userSaveData[1], false);
                 comboBoxRole.SelectedItem = userSaveData[2];
@@ -50,37 +40,56 @@ namespace Laminatsia
         {
             try
             {
+                //перевіряємо конект до бази даних, якщо немає конеткту і логін і пароль та роль адмін запускаємо налаштування конекту
+                if (!this.IsServerConnected())
+                {
+                    if (comboBoxRole.SelectedItem.ToString() == "Адміністратори" && textBoxLogin.Text.Trim() == "Адміністратор" && textBoxPassword.Text.Trim() == "qgu9w5461")
+                    {
+                        Connect connectForm = new Connect();
+                        connectForm.Closed += (s, args) => this.Close();
+                        connectForm.Show();
+                        this.Hide();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Для налаштування зєднання, зайдіть як адміністратор!");
+                        this.Close();
+                    }
+                }
+
                 string userName;
                 string userPassword;
                 string role;
                 LaminatsiaEntities _entity = new LaminatsiaEntities();
-
+                //не допускаємо пустий логін
                 if (textBoxLogin.Text.Trim() != "")
-                {
+                {   //не допускаємо пустий пароль
                     if (textBoxPassword.Text.Trim() != "")
-                    {
+                    {   //не допускаємо не вибрану роль 
                         if (comboBoxRole.SelectedItem != null)
                         {
-                            //перевіряємо конект до бази даних
-
+                            //перевіряємо наявність такаго юзера з такими правами доступа
                             userName = textBoxLogin.Text.Trim();
                             userPassword = textBoxPassword.Text.Trim();
                             role = comboBoxRole.SelectedItem.ToString();
-
+                            //чи існує такий логін
                             if (_entity.Users.FirstOrDefault(x => x.UserName == userName) != null)
-                            {
+                            {   //чи вірний пароль до логіна
                                 if (_entity.Users.FirstOrDefault(x => x.UserName == userName && x.UserPassword == userPassword) != null)
-                                {
+                                {   //чи вірні права доступу до даного користувача
                                     if (_entity.Users.FirstOrDefault(x => x.UserName == userName && x.UserPassword == userPassword && x.Role == role) != null)
-                                    {
+                                    {   //зберегти дані для нкаступного входу
                                         if (checkBoxSaveUserInfo.Checked)
                                         {
                                             //відправляємо пароль на шифруваня для запису в файл OperationOXR
                                             string codingUserPasword = OperationOXR(userPassword, true);
                                             File.WriteAllLines(fileName, new string[] { userName, codingUserPasword, role });
                                         }
+                                        //запускаємо Ламінацію відповідно до прав користувача
                                         this.Hide();
                                         Laminatsia laminatsiaForm = new Laminatsia(userName, role);
+                                        //підвязуємо закриття форми входу до форми Ламінація, тобто коли закриємо ламінацію то закриється форма входу 
                                         laminatsiaForm.Closed += (s, args) => this.Close();
                                         laminatsiaForm.Show();
                                     }
@@ -115,7 +124,6 @@ namespace Laminatsia
             if (coding)
             {
                 byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-                byte[] keyBytes = Encoding.UTF8.GetBytes(key);
                 byte[] res = new byte[inputBytes.Length];
 
                 for (int i = 0; i < inputBytes.Length; i++)
@@ -127,7 +135,6 @@ namespace Laminatsia
             else
             {
                 byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-                byte[] keyBytes = Encoding.UTF8.GetBytes(key);
                 byte[] res = new byte[inputBytes.Length];
 
                 for (int i = 0; i < inputBytes.Length; i++)
@@ -138,36 +145,28 @@ namespace Laminatsia
             }
             return output;
         }
-        private void IsServerConnected()
-        {
-            string connectionString = "";
 
-            connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString;
-            EntityConnectionStringBuilder builder = new EntityConnectionStringBuilder(connectionString);
-            connectionString = builder.ProviderConnectionString;   
+        private bool IsServerConnected()
+        {//цей метод перевіряє на наявність конекта до бази даних
+            string connectionString = "";
             try
             {
-                using (var sql = new SqlConnection(connectionString))
-                {
-                    string writeToDB = @"INSERT INTO Users (UserName, UserPassword, Role) values('Test', 'Test','Адміністратори')";
-                    string updateDB = @"DELETE FROM Users WHERE UserName='Test'";
-                    sql.Open();
-                    SqlCommand sqlCreateUser = new SqlCommand(writeToDB, sql);
-                    sqlCreateUser.ExecuteNonQuery();
-                    SqlCommand sqlDeleteUser = new SqlCommand(updateDB, sql);
-                    sqlDeleteUser.ExecuteNonQuery();
-                    sql.Close();
-                }
+                connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString;
+                EntityConnectionStringBuilder builder = new EntityConnectionStringBuilder(connectionString);
+                //витягуємо з файла конфіга строку для sql конекта
+                connectionString = builder.ProviderConnectionString;
+
+                using (var sql = new SqlConnection(connectionString)) { sql.Open(); return true; }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);                
-                this.Hide();
-                Connect connectForm = new Connect();
-                connectForm.Closed += (s, args) => this.Close();
-                connectForm.Show();                
+                MessageBox.Show(@"Не можливо зєднатися з базою даних! Перевірте підключення до мережі або налаштуйте підключення!
+    Детальніше про помилку: "
++ ex.Message);
+                return false;
             }
         }
+        //кнопка для закриття програми
         private void ButtonExit_Click(object sender, EventArgs e)
         {
             this.Close();

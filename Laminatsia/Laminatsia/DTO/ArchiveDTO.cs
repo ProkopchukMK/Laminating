@@ -54,84 +54,92 @@ namespace Laminatsia.DTO
         }
         public List<ArchiveDTO> GetAllListArchive()
         {
-            List<Archive> listAllArchive = _entity.Archive.Where(x => x.ID != 0).ToList();
-            List<ArchiveDTO> listArchiveDTO = new List<ArchiveDTO>(listAllArchive.Count);
-            for (int i = 0; i < listAllArchive.Count; i++)
+            try
             {
-                ArchiveDTO newArchiveDTO = new ArchiveDTO
+                List<Archive> listAllArchive = _entity.Archive.Where(x => x.ID != 0).ToList();
+                List<ArchiveDTO> listArchiveDTO = new List<ArchiveDTO>(listAllArchive.Count);
+                for (int i = 0; i < listAllArchive.Count; i++)
                 {
-                    ID_ColourGoods = listAllArchive[i].ID_ColourGoods,
-                    DateComing = listAllArchive[i].DateComing.Date,
-                    Profile = listAllArchive[i].Profile,
-                    City = listAllArchive[i].City,
-                    Dealer = listAllArchive[i].Dealer,
-                    Notes = listAllArchive[i].Notes,
-                    Counts = (byte)listAllArchive[i].Counts,
-                    Colour = listAllArchive[i].Colour,
-                    DateToWork = listAllArchive[i].DateToWork.Date,
-                    StatusProfile = listAllArchive[i].StatusProfile,
-                    DateReady = listAllArchive[i].DateReady.Date,
-                    StatusGoods = listAllArchive[i].StatusGoods,
-                    UserName = listAllArchive[i].UserName,
-                    Role = listAllArchive[i].Role,
-                    DateOperatsia = listAllArchive[i].DataTimeChange,
-                    Action = listAllArchive[i].Action
-                };
-                listArchiveDTO.Add(newArchiveDTO);
+                    ArchiveDTO newArchiveDTO = new ArchiveDTO
+                    {
+                        ID_ColourGoods = listAllArchive[i].ID_ColourGoods,
+                        DateComing = listAllArchive[i].DateComing.Date,
+                        Profile = listAllArchive[i].Profile,
+                        City = listAllArchive[i].City,
+                        Dealer = listAllArchive[i].Dealer,
+                        Notes = listAllArchive[i].Notes,
+                        Counts = (byte)listAllArchive[i].Counts,
+                        Colour = listAllArchive[i].Colour,
+                        DateToWork = listAllArchive[i].DateToWork.Date,
+                        StatusProfile = listAllArchive[i].StatusProfile,
+                        DateReady = listAllArchive[i].DateReady.Date,
+                        StatusGoods = listAllArchive[i].StatusGoods,
+                        UserName = listAllArchive[i].UserName,
+                        Role = listAllArchive[i].Role,
+                        DateOperatsia = listAllArchive[i].DataTimeChange,
+                        Action = listAllArchive[i].Action
+                    };
+                    listArchiveDTO.Add(newArchiveDTO);
+                }
+                return listArchiveDTO.OrderByDescending(x => x.DateOperatsia).ToList();
             }
-            return listArchiveDTO.OrderByDescending(x => x.DateOperatsia).ToList();
+            catch { return new List<ArchiveDTO>(); }
         }
         public List<ArchiveDTO> GetListArchiveDisting()
         {
-            List<Archive> listArchive = _entity.Archive.Where(x => x.Action == "Створено").ToList();
-            List<ArchiveDTO> listArchiveDTO = new List<ArchiveDTO>(listArchive.Count);
-            for (int i = 0; i < listArchive.Count; i++)
+            try
             {
-                ArchiveDTO newArchiveDTO = new ArchiveDTO
+                List<Archive> listArchive = _entity.Archive.Where(x => x.Action == "Створено").ToList();
+                List<ArchiveDTO> listArchiveDTO = new List<ArchiveDTO>(listArchive.Count);
+                for (int i = 0; i < listArchive.Count; i++)
                 {
-                    ID_ColourGoods = listArchive[i].ID_ColourGoods,
-                    DateComing = listArchive[i].DateComing.Date,
-                    Profile = listArchive[i].Profile,
-                    City = listArchive[i].City,
-                    Dealer = listArchive[i].Dealer,
-                    Notes = listArchive[i].Notes,
-                    Counts = (byte)listArchive[i].Counts,
-                    Colour = listArchive[i].Colour,
-                    DateToWork = listArchive[i].DateToWork.Date,
-                    StatusProfile = listArchive[i].StatusProfile,
-                    DateReady = listArchive[i].DateReady.Date,
-                    StatusGoods = listArchive[i].StatusGoods,
-                    UserName = listArchive[i].UserName,
-                    Role = listArchive[i].Role,
-                    DateOperatsia = listArchive[i].DataTimeChange,
-                    Action = listArchive[i].Action
-                };
-                listArchiveDTO.Add(newArchiveDTO);
+                    ArchiveDTO newArchiveDTO = new ArchiveDTO
+                    {
+                        ID_ColourGoods = listArchive[i].ID_ColourGoods,
+                        DateComing = listArchive[i].DateComing.Date,
+                        Profile = listArchive[i].Profile,
+                        City = listArchive[i].City,
+                        Dealer = listArchive[i].Dealer,
+                        Notes = listArchive[i].Notes,
+                        Counts = (byte)listArchive[i].Counts,
+                        Colour = listArchive[i].Colour,
+                        DateToWork = listArchive[i].DateToWork.Date,
+                        StatusProfile = listArchive[i].StatusProfile,
+                        DateReady = listArchive[i].DateReady.Date,
+                        StatusGoods = listArchive[i].StatusGoods,
+                        UserName = listArchive[i].UserName,
+                        Role = listArchive[i].Role,
+                        DateOperatsia = listArchive[i].DataTimeChange,
+                        Action = listArchive[i].Action
+                    };
+                    listArchiveDTO.Add(newArchiveDTO);
+                }
+                return listArchiveDTO.OrderByDescending(x => x.DateOperatsia).ToList();
             }
-            return listArchiveDTO.OrderByDescending(x => x.DateOperatsia).ToList();
+            catch { return new List<ArchiveDTO>(); }
         }
-        public ArchiveDTO GetByIDColourGoods(int id)
-        {
-            var archive = _entity.Archive.FirstOrDefault(x => x.ID_ColourGoods == id);
-            ArchiveDTO archiveDTO = new ArchiveDTO();
-            archiveDTO.ID_ColourGoods = archive.ID_ColourGoods;
-            archiveDTO.DateComing = archive.DateComing.Date;
-            archiveDTO.Profile = archive.Profile;
-            archiveDTO.City = archive.City;
-            archiveDTO.Dealer = archive.Dealer;
-            archiveDTO.Notes = archive.Notes;
-            archiveDTO.Counts = (byte)archive.Counts;
-            archiveDTO.Colour = archive.Colour;
-            archiveDTO.DateToWork = archive.DateToWork.Date;
-            archiveDTO.StatusProfile = archive.StatusProfile;
-            archiveDTO.DateReady = archive.DateReady.Date;
-            archiveDTO.StatusGoods = archive.StatusGoods;
-            archiveDTO.UserName = archive.UserName;
-            archiveDTO.Role = archive.Role;
-            archiveDTO.DateOperatsia = archive.DataTimeChange;
-            archiveDTO.Action = archive.Action;
-            return archiveDTO;
-        }
+        //public ArchiveDTO GetByIDColourGoods(int id)
+        //{
+        //    var archive = _entity.Archive.FirstOrDefault(x => x.ID_ColourGoods == id);
+        //    ArchiveDTO archiveDTO = new ArchiveDTO();
+        //    archiveDTO.ID_ColourGoods = archive.ID_ColourGoods;
+        //    archiveDTO.DateComing = archive.DateComing.Date;
+        //    archiveDTO.Profile = archive.Profile;
+        //    archiveDTO.City = archive.City;
+        //    archiveDTO.Dealer = archive.Dealer;
+        //    archiveDTO.Notes = archive.Notes;
+        //    archiveDTO.Counts = (byte)archive.Counts;
+        //    archiveDTO.Colour = archive.Colour;
+        //    archiveDTO.DateToWork = archive.DateToWork.Date;
+        //    archiveDTO.StatusProfile = archive.StatusProfile;
+        //    archiveDTO.DateReady = archive.DateReady.Date;
+        //    archiveDTO.StatusGoods = archive.StatusGoods;
+        //    archiveDTO.UserName = archive.UserName;
+        //    archiveDTO.Role = archive.Role;
+        //    archiveDTO.DateOperatsia = archive.DataTimeChange;
+        //    archiveDTO.Action = archive.Action;
+        //    return archiveDTO;
+        //}
         public List<ArchiveDTO> FilterArchive(List<ArchiveDTO> filterList, object profile, object city, object dealer, object colour, object userName)
         {
             if (profile != null && profile.ToString() != "")
