@@ -102,6 +102,7 @@
     <Compile Include="DTO\ColourGoodsDTO.cs" />
     <Compile Include="DTO\DealerDTO.cs" />
     <Compile Include="DTO\ProfileDTO.cs" />
+    <Compile Include="DTO\ServerDateTime.cs" />
     <Compile Include="DTO\UsersDTO.cs" />
     <Compile Include="Laminatsia.cs">
       <SubType>Form</SubType>
@@ -181,9 +182,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="LaminatsiaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -195,6 +194,8 @@
       <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
       <LastGenOutput>LaminatsiaModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\icons8-цветовая-палитра-50.ico" />
+    <Content Include="Resources\UserData.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

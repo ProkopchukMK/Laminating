@@ -256,15 +256,16 @@ namespace Laminatsia
                 {
                     try
                     {
-                        string writeToDB = @"INSERT INTO Users (UserName, UserPassword, Role) values('Test', 'Test','Адміністратори')";
-                        string updateDB = @"DELETE FROM Users WHERE UserName='Test'";
+                        //string writeToDB = @"INSERT INTO Users (UserName, UserPassword, Role) values('Test', 'Test','Адміністратори')";
+                        //string updateDB = @"DELETE FROM Users WHERE UserName='Test'";
                         sql.Open();
-                        SqlCommand sqlCreateUser = new SqlCommand(writeToDB, sql);
-                        sqlCreateUser.ExecuteNonQuery();
-                        SqlCommand sqlDeleteUser = new SqlCommand(updateDB, sql);
-                        sqlDeleteUser.ExecuteNonQuery();
-                        sql.Close();
-                        MessageBox.Show("Запис та видалення даних пройшли успішно!");
+                        //SqlCommand sqlCreateUser = new SqlCommand(writeToDB, sql);
+                        //sqlCreateUser.ExecuteNonQuery();
+                        //SqlCommand sqlDeleteUser = new SqlCommand(updateDB, sql);
+                        //sqlDeleteUser.ExecuteNonQuery();
+                        //sql.Close();
+                        //MessageBox.Show("Запис та видалення даних пройшли успішно!");
+                        MessageBox.Show("Дана база даних доступна!");
                         buttonSaveConfogServerName.Enabled = true;
                     }
                     catch (Exception ex)

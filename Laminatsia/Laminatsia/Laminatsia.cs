@@ -18,6 +18,7 @@ namespace Laminatsia
         private ColourDTO colourDTO = new ColourDTO();
         private ProfileDTO profileDTO = new ProfileDTO();
         private UsersDTO users = new UsersDTO();
+        private ServerDateTime serverDataTime = new ServerDateTime();
 
         private List<string> listProfile = new List<string>();
         private List<string> listCity = new List<string>();
@@ -108,7 +109,7 @@ namespace Laminatsia
         {
             try
             {
-                DateTime today = DateTime.Now.Date;
+                DateTime today = serverDataTime.GetDateTimeServer();
                 if (enterList == null)
                 {
                     ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
@@ -343,16 +344,16 @@ namespace Laminatsia
         {
             try
             {
-                dateTimePickerDateComing.Value = DateTime.Now;
+                dateTimePickerDateComing.Value = serverDataTime.GetDateTimeServer(); ;
                 ComboBoxProfile.Items.Clear();
                 ComboBoxCity.Items.Clear();
                 ComboBoxDealer.Items.Clear();
                 richTextBoxNotes.Text = "";
                 textBoxCounts.Text = "";
                 comboBoxColour.Items.Clear();
-                dateTimePickerDateToWork.Value = DateTime.Now;
+                dateTimePickerDateToWork.Value = serverDataTime.GetDateTimeServer(); ;
                 comboBoxStatusProfile.Items.Clear();
-                dateTimePickerDateReady.Value = DateTime.Now;
+                dateTimePickerDateReady.Value = serverDataTime.GetDateTimeServer(); ;
                 dataGridViewLaminatsia.Rows.Clear();
             }
             catch (Exception ex)
@@ -822,7 +823,7 @@ namespace Laminatsia
         {
             try
             {
-                var dateTimeNow = DateTime.Now;
+                var dateTimeNow = serverDataTime.GetDateTimeServer();
                 dateTimePickerFilterDateComing1.Value = dateTimeNow;
                 dateTimePickerFilterDateComing2.Value = dateTimeNow;
                 comboBoxFilterProfile.Items.Clear();
@@ -889,12 +890,12 @@ namespace Laminatsia
             if (dateTime2.Date < dateTime1.Date)
             {
                 MessageBox.Show("Не вірно вказано діапазон дат!");
-                dateTimeNow = DateTime.Now.Date;
+                dateTimeNow = serverDataTime.GetDateTimeServer().Date;
                 return true;
             }
             else
             {
-                dateTimeNow = DateTime.Now.Date;
+                dateTimeNow = serverDataTime.GetDateTimeServer().Date;
                 return false;
             }
         }
@@ -1693,7 +1694,7 @@ namespace Laminatsia
         {
             try
             {
-                DateTime today = DateTime.Now;
+                DateTime today = serverDataTime.GetDateTimeServer();
                 labelDateTimeUpdate.Text = today.ToString();
                 if (enterList == null)
                 {

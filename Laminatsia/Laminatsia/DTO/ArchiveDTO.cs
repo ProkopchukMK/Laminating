@@ -25,7 +25,7 @@ namespace Laminatsia.DTO
         public string Role { get; set; }
         public string Action { get; set; }
         public DateTime DateOperatsia { get; set; }
-
+        ServerDateTime serverDataTime = new ServerDateTime();
         public void AddToArchive(
             int id, DateTime dateComing, string profile, string city, string dealer, string notes, byte counts,
             string colour, DateTime dateToWork, bool statusProfile, DateTime dateReady, bool statusGoods, string userName, string role, string action)
@@ -47,7 +47,7 @@ namespace Laminatsia.DTO
             addToArchive.UserName = userName;
             addToArchive.Role = role;
             addToArchive.Action = action;
-            addToArchive.DataTimeChange = DateTime.Now;
+            addToArchive.DataTimeChange = serverDataTime.GetDateTimeServer();
 
             _entity.Archive.Add(addToArchive);
             _entity.SaveChanges();
@@ -118,28 +118,6 @@ namespace Laminatsia.DTO
             }
             catch { return new List<ArchiveDTO>(); }
         }
-        //public ArchiveDTO GetByIDColourGoods(int id)
-        //{
-        //    var archive = _entity.Archive.FirstOrDefault(x => x.ID_ColourGoods == id);
-        //    ArchiveDTO archiveDTO = new ArchiveDTO();
-        //    archiveDTO.ID_ColourGoods = archive.ID_ColourGoods;
-        //    archiveDTO.DateComing = archive.DateComing.Date;
-        //    archiveDTO.Profile = archive.Profile;
-        //    archiveDTO.City = archive.City;
-        //    archiveDTO.Dealer = archive.Dealer;
-        //    archiveDTO.Notes = archive.Notes;
-        //    archiveDTO.Counts = (byte)archive.Counts;
-        //    archiveDTO.Colour = archive.Colour;
-        //    archiveDTO.DateToWork = archive.DateToWork.Date;
-        //    archiveDTO.StatusProfile = archive.StatusProfile;
-        //    archiveDTO.DateReady = archive.DateReady.Date;
-        //    archiveDTO.StatusGoods = archive.StatusGoods;
-        //    archiveDTO.UserName = archive.UserName;
-        //    archiveDTO.Role = archive.Role;
-        //    archiveDTO.DateOperatsia = archive.DataTimeChange;
-        //    archiveDTO.Action = archive.Action;
-        //    return archiveDTO;
-        //}
         public List<ArchiveDTO> FilterArchive(List<ArchiveDTO> filterList, object profile, object city, object dealer, object colour, object userName)
         {
             if (profile != null && profile.ToString() != "")

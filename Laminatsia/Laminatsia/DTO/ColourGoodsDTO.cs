@@ -21,7 +21,7 @@ namespace Laminatsia.DTO
         public DateTime DateReady { get; set; }
         public bool StatusGoods { get; set; }
         public DateTime DateRemove { get; set; }
-
+        ServerDateTime serverDataTime = new ServerDateTime();
         public string AddColourGoods(DateTime dateComing, string profile,
             string city, string dealer, string notes,
             byte counts, string colour, DateTime dateToWork, bool statusProfile, DateTime dateReady)
@@ -260,8 +260,8 @@ namespace Laminatsia.DTO
         public bool UpdateDateRemove(int id)
         {
             var removeEntity = _entity.ColourGoods.FirstOrDefault(x => x.ID == id);
-            removeEntity.Notes = "||| ВИДАЛЕНО: " + DateTime.Now.ToShortDateString() + "|||   " + removeEntity.Notes;
-            removeEntity.DateRemove = DateTime.Now.Date;
+            removeEntity.Notes = "||| ВИДАЛЕНО: " + serverDataTime.GetDateTimeServer().ToShortDateString() + "|||   " + removeEntity.Notes;
+            removeEntity.DateRemove = serverDataTime.GetDateTimeServer().Date;
             _entity.SaveChanges();
             return true;
         }
