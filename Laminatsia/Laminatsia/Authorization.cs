@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Data.SqlClient;
 using System.Data.EntityClient;
+using Laminatsia.DTO;
 
 namespace Laminatsia
 {
@@ -28,8 +29,7 @@ namespace Laminatsia
             }
             userSaveData = File.ReadAllLines(fileName);
             if (userSaveData.Length > 0)
-            {
-                //якщо файл є, то ми витягуємо з нього інфу та заповнюємо текст боксами
+            {//якщо файл є, то ми витягуємо з нього інфу та заповнюємо текст боксами
                 textBoxLogin.Text = userSaveData[0];
                 textBoxPassword.Text = OperationOXR(userSaveData[1], false);
                 comboBoxRole.SelectedItem = userSaveData[2];
@@ -39,8 +39,7 @@ namespace Laminatsia
         private void ButtonLogIn_Click(object sender, EventArgs e)
         {
             try
-            {
-                //перевіряємо конект до бази даних, якщо немає конеткту і логін і пароль та роль адмін запускаємо налаштування конекту
+            {//перевіряємо конект до бази даних, якщо немає конеткту і логін і пароль та роль адмін запускаємо налаштування конекту
                 if (!this.IsServerConnected())
                 {
                     if (comboBoxRole.SelectedItem.ToString() == "Адміністратори" && textBoxLogin.Text.Trim() == "Адміністратор" && textBoxPassword.Text.Trim() == "qgu9w5461")
@@ -57,7 +56,6 @@ namespace Laminatsia
                         this.Close();
                     }
                 }
-
                 string userName;
                 string userPassword;
                 string role;
@@ -68,8 +66,7 @@ namespace Laminatsia
                     if (textBoxPassword.Text.Trim() != "")
                     {   //не допускаємо не вибрану роль 
                         if (comboBoxRole.SelectedItem != null)
-                        {
-                            //перевіряємо наявність такаго юзера з такими правами доступа
+                        { //перевіряємо наявність такаго юзера з такими правами доступа
                             userName = textBoxLogin.Text.Trim();
                             userPassword = textBoxPassword.Text.Trim();
                             role = comboBoxRole.SelectedItem.ToString();
@@ -147,11 +144,10 @@ namespace Laminatsia
         }
 
         private bool IsServerConnected()
-        {//цей метод перевіряє на наявність конекта до бази даних
-            string connectionString = "";
+        {//цей метод перевіряє на наявність конекта до бази даних            
             try
             {
-                connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString;
+                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString;
                 EntityConnectionStringBuilder builder = new EntityConnectionStringBuilder(connectionString);
                 //витягуємо з файла конфіга строку для sql конекта
                 connectionString = builder.ProviderConnectionString;
