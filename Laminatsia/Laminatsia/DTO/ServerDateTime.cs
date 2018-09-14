@@ -25,7 +25,6 @@ namespace Laminatsia.DTO
                     string scriptGetDate = "SELECT GETDATE();";
                     SqlCommand sqlCreateDBCreated = new SqlCommand(scriptGetDate, sql);
                     DateTime dateSqlServer = DateTime.Parse(sqlCreateDBCreated.ExecuteScalar().ToString());
-                    MessageBox.Show(dateSqlServer.ToString());
                     return dateSqlServer;
                 }
             }
