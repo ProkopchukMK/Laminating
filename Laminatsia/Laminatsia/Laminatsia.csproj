@@ -194,7 +194,6 @@
       <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
       <LastGenOutput>LaminatsiaModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Resources\icons8-цветовая-палитра-50.ico" />
     <Content Include="Resources\UserData.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
