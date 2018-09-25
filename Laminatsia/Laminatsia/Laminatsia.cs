@@ -5,25 +5,21 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Laminatsia
 {
     public partial class Laminatsia : Form
     {
-        private enum UserRole { Ламінація, Менеджери, Технологи, Адміністратори };
         private string[] roles = new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" };
+
         private DealerDTO dealerDTO = new DealerDTO();
         private ColourDTO colourDTO = new ColourDTO();
         private ProfileDTO profileDTO = new ProfileDTO();
-        private UsersDTO users = new UsersDTO();
+
         private ServerDateTime serverDataTime = new ServerDateTime();
 
-        private List<string> listProfile = new List<string>();
-        private List<string> listCity = new List<string>();
-        private List<string> listColour = new List<string>();
-
+        //памятати ід замовлення якого змінює ламінація
         private int editIDEntity;
         public static string UserName { get; private set; }
         public static string Role { get; private set; }
@@ -33,6 +29,10 @@ namespace Laminatsia
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.WindowState = FormWindowState.Maximized;
             this.Size = Screen.PrimaryScreen.Bounds.Size;
+            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            //this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            //this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
         }
         //конструктор з інфой від форми авторизації
         public Laminatsia(string userName, string role)
@@ -44,6 +44,7 @@ namespace Laminatsia
             if (role == "Ламінація")
             {
                 MenuTabControl.TabIndex = 0;
+                dataGridViewLaminatsia.Focus();
                 //MenuTabControl.TabPages.Remove(tabPageLaminaters);
                 //MenuTabControl.TabPages.Remove(tabPageManagers);
                 //MenuTabControl.TabPages.Remove(tabPageAddRemove);
@@ -109,102 +110,39 @@ namespace Laminatsia
         {
             try
             {
-                DateTime today = serverDataTime.GetDateTimeServer();
                 if (enterList == null)
                 {
-                    ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-                    List<ColourGoodsDTO> listColourGoodsDTO = colourGoodsDTO.GetListColourGoods();
+                    ColourGoodsDTO colourGoodDTO = new ColourGoodsDTO();
+                    List<ColourGoodsDTO> listColourGoodsDTO = colourGoodDTO.GetListColourGoods();
                     if (listColourGoodsDTO != null)
-                        for (int i = 0; i < listColourGoodsDTO.Count; i++)
+                    {
+                        if (dataGridView == dataGridViewLaminatsia)
                         {
-                            string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                            string statusGoods = listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
-                            //видаляемо після трьох днів
-                            if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date && (today - listColourGoodsDTO[i].DateRemove).Days > 4)
-                            {
-                                colourGoodsDTO.RemoveGolourGoods(listColourGoodsDTO[i].ID);
-                            }
-                            //переносимо в архів замовлення в яких дата дільше 61 день та статус профіля і статус виробу true. Переноситься тільки з ролі ламінація
-                            else if (Role == UserRole.Ламінація.ToString() && (today - listColourGoodsDTO[i].DateReady).Days > 61 && listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
-                            {
-                                colourGoodsDTO.MoveToArchiveGolourGoods(listColourGoodsDTO[i].ID);
-                            }
-                            //заповнюємо даними грід вью
-                            dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
-                                listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
-                                 listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
-                            //позначення кольором дат
-                            //це замовлення видалено. СІРИЙ.
-                            if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date)
-                            {
-                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
-                            }
-                            //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ. БІЛИЙ
-                            else if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                            {
-                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                            }
-                            //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів. ЧЕРВОНИЙ
-                            else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                            {
-                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                            }
-                            //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів. ЖОВТИЙ
-                            else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                            {
-                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                            }
-                            //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів. ЗЕЛЕНИЙ
-                            else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
-                            {
-                                dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
-                            }
+                            listColourGoodsDTO = listColourGoodsDTO.OrderByDescending(x => x.ID).ToList();
                         }
+                        else if (dataGridView == dataGridViewTehnologes)
+                        {
+                            listColourGoodsDTO = listColourGoodsDTO.OrderByDescending(x => x.DateToWork).ToList();
+                        }
+                        FillGrid(listColourGoodsDTO, dataGridView);
+                    }
                 }
                 else
                 {
                     //сортуємо по даті з найближчої і до найдавнішої
-                    enterList = enterList.OrderByDescending(x => x.DateComing).ToList();
-                    for (int i = 0; i < enterList.Count; i++)
+                    if (dataGridView == dataGridViewLaminatsia)
                     {
-                        string statusProfile = enterList[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
-                        string statusGoods = enterList[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
-                        //видаляемо після трьох днів
-                        if (enterList[i].DateRemove != DateTime.MinValue.Date && (today - enterList[i].DateRemove).Days > 4)
-                        {
-                            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
-                            colourGoodsDTO.RemoveGolourGoods(enterList[i].ID);
-                        }
-                        dataGridView.Rows.Add(enterList[i].ID, enterList[i].DateComing.Date, enterList[i].Profile,
-                            enterList[i].City, enterList[i].Dealer, enterList[i].Notes, enterList[i].Counts,
-                            enterList[i].Colour, enterList[i].DateToWork.Date, statusProfile, enterList[i].DateReady.Date, statusGoods);
-                        //позначення кольором дат                    
-                        //це замовлення видалено. СІРИЙ
-                        if (enterList[i].DateRemove.Date != DateTime.MinValue.Date)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
-                        }
-                        //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ підсвічувати БІЛИМ
-                        else if (enterList[i].StatusProfile && enterList[i].StatusGoods && enterList[i].DateRemove == DateTime.MinValue)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
-                        }
-                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів то підсвічувати ЧЕРВОНИМ
-                        else if ((enterList[i].DateToWork.Date - today).Days < 3 && enterList[i].DateRemove == DateTime.MinValue)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                        }
-                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів то підсвічувати ЖОВТИМ
-                        else if ((enterList[i].DateToWork.Date - today).Days < 7 && enterList[i].DateRemove == DateTime.MinValue)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                        }
-                        //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів то підсвічувати ЗЕЛЕНИМ
-                        else if ((enterList[i].DateToWork.Date - today).Days < 10 && enterList[i].DateRemove == DateTime.MinValue)
-                        {
-                            dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
-                        }
+                        enterList = enterList.OrderByDescending(x => x.ID).ToList();
                     }
+                    else if (dataGridView == dataGridViewTehnologes)
+                    {
+                        enterList = enterList.OrderByDescending(x => x.DateToWork).ToList();
+                    }
+                    else
+                    {
+                        enterList = enterList.OrderByDescending(x => x.DateComing).ToList();
+                    }
+                    FillGrid(enterList, dataGridView);
                 }
             }
             catch (Exception ex)
@@ -212,7 +150,85 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка заповнення FillGridView! Детальніше: " + ex.Message);
             }
         }
-
+        private void FillGrid(List<ColourGoodsDTO> listColourGoodsDTO, DataGridView dataGridView)
+        {
+            DateTime today = serverDataTime.GetDateTimeServer();
+            ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+            for (int i = 0; i < listColourGoodsDTO.Count; i++)
+            {
+                string statusProfile = listColourGoodsDTO[i].StatusProfile == true ? "ГОТОВИЙ" : "НЕ ГОТОВИЙ";
+                string statusGoods = listColourGoodsDTO[i].StatusGoods == true ? "В РОБОТІ" : "НЕ В РОБОТІ";
+                //видаляемо після трьох днів
+                if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date && (today - listColourGoodsDTO[i].DateRemove).Days > 4)
+                {
+                    colourGoodsDTO.RemoveGolourGoods(listColourGoodsDTO[i].ID);
+                }
+                //переносимо в архів замовлення в яких дата дільше 61 день та статус профіля і статус виробу true. Переноситься тільки з ролі ламінація
+                else if (Role == "Ламінація" && (today - listColourGoodsDTO[i].DateReady).Days > 61 && listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods)
+                {
+                    colourGoodsDTO.MoveToArchiveGolourGoods(listColourGoodsDTO[i].ID);
+                }
+                //заповнюємо даними грід вью
+                dataGridView.Rows.Add(listColourGoodsDTO[i].ID, listColourGoodsDTO[i].DateComing.Date, listColourGoodsDTO[i].Profile,
+                    listColourGoodsDTO[i].City, listColourGoodsDTO[i].Dealer, listColourGoodsDTO[i].Notes, listColourGoodsDTO[i].Counts,
+                     listColourGoodsDTO[i].Colour, listColourGoodsDTO[i].DateToWork.Date, statusProfile, listColourGoodsDTO[i].DateReady.Date, statusGoods);
+                //позначення кольором дат
+                //це замовлення видалено. СІРИЙ.
+                if (listColourGoodsDTO[i].DateRemove.Date != DateTime.MinValue.Date)
+                {
+                    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightGray;
+                }
+                //якщо статус профіля ГОТОВИЙ та статус виробу В РОБОТІ. БІЛИЙ
+                else if (listColourGoodsDTO[i].StatusProfile && listColourGoodsDTO[i].StatusGoods && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                {
+                    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.MintCream;
+                }
+                //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 3 днів. ЧЕРВОНИЙ
+                else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 3 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                {
+                    if (listColourGoodsDTO[i].StatusProfile == true)
+                    {
+                        dataGridView.Rows[i].Cells[9].Style.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        dataGridView.Rows[i].Cells[9].Style.BackColor = Color.Red;
+                    }
+                    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Coral;
+                }
+                //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 7 днів. ЖОВТИЙ
+                else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 7 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                {
+                    if (listColourGoodsDTO[i].StatusProfile == true)
+                    {
+                        dataGridView.Rows[i].Cells[9].Style.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        dataGridView.Rows[i].Cells[9].Style.BackColor = Color.Red;
+                    }
+                    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+                //від ДАТИ В РОБОТУ  до СЬОГОДНІШНЬОЇ ДАТИ залишається менше 10 днів. ЗЕЛЕНИЙ
+                else if ((listColourGoodsDTO[i].DateToWork.Date - today).Days < 10 && listColourGoodsDTO[i].DateRemove == DateTime.MinValue)
+                {
+                    if (listColourGoodsDTO[i].StatusProfile == true)
+                    {
+                        dataGridView.Rows[i].Cells[9].Style.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        dataGridView.Rows[i].Cells[9].Style.BackColor = Color.Red;
+                    }
+                    dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.MediumSpringGreen;
+                }
+                //коли статус профіля не готовий а був відданий в роботу
+                if (listColourGoodsDTO[i].StatusProfile == false && listColourGoodsDTO[i].StatusGoods == true)
+                {
+                    dataGridView.Rows[i].Cells[11].Style.BackColor = Color.Plum;
+                }
+            }
+        }
         #region   ВКЛАДКА   Ламінація
         //додати нове замовлення до бази даних
         private void SaveColourGoods_Click(object sender, EventArgs e)
@@ -319,9 +335,9 @@ namespace Laminatsia
         {
             try
             {
-                listProfile = profileDTO.GetListProfile();
-                listColour = colourDTO.GetListColour();
-                listCity = dealerDTO.GetListCity();
+                List<string> listProfile = profileDTO.GetListProfile();
+                List<string> listColour = colourDTO.GetListColour();
+                List<string> listCity = dealerDTO.GetListCity();
 
                 var arrayCity = listCity.ToArray();
                 var arrayProfile = listProfile.ToArray();
@@ -628,9 +644,9 @@ namespace Laminatsia
                 buttonRemoveColourGoods.Visible = true;
             }
 
-            listProfile = profileDTO.GetListProfile();
-            listColour = colourDTO.GetListColour();
-            listCity = dealerDTO.GetListCity();
+            List<string> listProfile = profileDTO.GetListProfile();
+            List<string> listColour = colourDTO.GetListColour();
+            List<string> listCity = dealerDTO.GetListCity();
 
             var arrayCity = listCity.ToArray();
             var arrayProfile = listProfile.ToArray();
@@ -803,14 +819,16 @@ namespace Laminatsia
                 }
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
                 filteredList = colourGoodsDTO.FilterList(
-                        checkBoxFilterDateComing.Checked, dateTimePickerFilterDateComing1.Value, dateTimePickerFilterDateComing2.Value, // true
+                        checkBoxFilterDateComing.Checked, dateTimePickerFilterDateComing1.Value, // true
                         comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-                checkBoxFilterDateToWork.Checked, dateTimePickerFilterDataToWork1.Value, dateTimePickerFilterDataToWork2.Value, // true
+                checkBoxFilterDateToWork.Checked, dateTimePickerFilterDataToWork1.Value, // true
                 filterStatusProfile,
-                checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value, dateTimePickerFilterDateReady2.Value, // true
+                checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value,// true
                 filterStatusGoods);
-                filteredList = filteredList.OrderByDescending(x => x.DateComing).ToList();
+
+                filteredList = filteredList.OrderByDescending(x => x.ID).ToList();
                 dataGridViewTehnologes.Rows.Clear();
+
                 this.FillGridViewManagers(filteredList);
             }
             catch (Exception ex)
@@ -825,16 +843,13 @@ namespace Laminatsia
             {
                 var dateTimeNow = serverDataTime.GetDateTimeServer();
                 dateTimePickerFilterDateComing1.Value = dateTimeNow;
-                dateTimePickerFilterDateComing2.Value = dateTimeNow;
                 comboBoxFilterProfile.Items.Clear();
                 comboBoxFilterCity.Items.Clear();
                 comboBoxFilterDealer.Items.Clear();
                 comboBoxFilterColour.Items.Clear();
                 dateTimePickerFilterDataToWork1.Value = dateTimeNow;
-                dateTimePickerFilterDataToWork2.Value = dateTimeNow;
                 comboBoxFilterStatusProfile.Items.Clear();
                 dateTimePickerFilterDateReady1.Value = dateTimeNow;
-                dateTimePickerFilterDateReady2.Value = dateTimeNow;
                 comboBoxFilterStatusGoods.Items.Clear();
                 comboBoxFilterDealer.Enabled = false;
                 checkBoxFilterDateComing.Checked = false;
@@ -856,61 +871,17 @@ namespace Laminatsia
             }
         }
 
-        #region DateTimePickerFilterDate        
-        // відсікає помилку коли вибраний не вірний діапазон дат, коли перша дата більша за другу. По два датапікера(від та до) висят на цих івентах
-        private void DateTimePickerFilterDateComing2_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime dateTimeNow = new DateTime();
-            if (CompareDate(dateTimePickerFilterDateComing2.Value.Date, dateTimePickerFilterDateComing1.Value.Date, out dateTimeNow))
-            {
-                dateTimePickerFilterDateComing2.Value = dateTimeNow;
-                dateTimePickerFilterDateComing1.Value = dateTimeNow;
-            }
-        }
-        private void DateTimePickerFilterDataToWork2_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime dateTimeNow = new DateTime();
-            if (CompareDate(dateTimePickerFilterDataToWork2.Value.Date, dateTimePickerFilterDataToWork1.Value.Date, out dateTimeNow))
-            {
-                dateTimePickerFilterDataToWork2.Value = dateTimeNow;
-                dateTimePickerFilterDataToWork1.Value = dateTimeNow;
-            }
-        }
-        private void DateTimePickerFilterDateReady2_ValueChanged(object sender, EventArgs e)
-        {
-            DateTime dateTimeNow = new DateTime();
-            if (CompareDate(dateTimePickerFilterDateReady2.Value.Date, dateTimePickerFilterDateReady1.Value.Date, out dateTimeNow))
-            {
-                dateTimePickerFilterDateReady2.Value = dateTimeNow;
-                dateTimePickerFilterDateReady1.Value = dateTimeNow;
-            }
-        }
-        private bool CompareDate(DateTime dateTime2, DateTime dateTime1, out DateTime dateTimeNow)
-        {
-            if (dateTime2.Date < dateTime1.Date)
-            {
-                MessageBox.Show("Не вірно вказано діапазон дат!");
-                dateTimeNow = serverDataTime.GetDateTimeServer().Date;
-                return true;
-            }
-            else
-            {
-                dateTimeNow = serverDataTime.GetDateTimeServer().Date;
-                return false;
-            }
-        }
+        #region DateTimePickerFilterDate
         //чек бокси дат для активації або деактивації
         private void CheckBoxFilterDateToWork_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxFilterDateToWork.Checked == true)
             {
                 dateTimePickerFilterDataToWork1.Enabled = true;
-                dateTimePickerFilterDataToWork2.Enabled = true;
             }
             else
             {
                 dateTimePickerFilterDataToWork1.Enabled = false;
-                dateTimePickerFilterDataToWork2.Enabled = false;
             }
         }
         private void CheckBoxFilterDateComing_CheckedChanged(object sender, EventArgs e)
@@ -918,12 +889,10 @@ namespace Laminatsia
             if (checkBoxFilterDateComing.Checked == true)
             {
                 dateTimePickerFilterDateComing1.Enabled = true;
-                dateTimePickerFilterDateComing2.Enabled = true;
             }
             else
             {
                 dateTimePickerFilterDateComing1.Enabled = false;
-                dateTimePickerFilterDateComing2.Enabled = false;
             }
         }
         private void CheckBoxFilterDateToReady_CheckedChanged(object sender, EventArgs e)
@@ -931,12 +900,10 @@ namespace Laminatsia
             if (checkBoxFilterDateToReady.Checked == true)
             {
                 dateTimePickerFilterDateReady1.Enabled = true;
-                dateTimePickerFilterDateReady2.Enabled = true;
             }
             else
             {
                 dateTimePickerFilterDateReady1.Enabled = false;
-                dateTimePickerFilterDateReady2.Enabled = false;
             }
         }
         #endregion
@@ -1371,9 +1338,9 @@ namespace Laminatsia
         {
             try
             {
-                listProfile = profileDTO.GetListProfile();
-                listColour = colourDTO.GetListColour();
-                listCity = dealerDTO.GetListCity();
+                List<string> listProfile = profileDTO.GetListProfile();
+                List<string> listColour = colourDTO.GetListColour();
+                List<string> listCity = dealerDTO.GetListCity();
 
                 var arrayCity = listCity.ToArray();
                 var arrayProfile = listProfile.ToArray();
@@ -1604,27 +1571,6 @@ namespace Laminatsia
         {
             textBoxAddDealer.Enabled = true;
         }
-        //переключення мови на українську
-        private void TextBoxAddCity_Enter(object sender, EventArgs e)
-        {
-            SetKeyboardLayout(GetInputLanguageByName("uk"));
-        }
-        //встановлення розкладки по дефолту
-        private void SetKeyboardLayout(InputLanguage layout)
-        {
-            InputLanguage.CurrentInputLanguage = layout;
-        }
-        public static InputLanguage GetInputLanguageByName(string inputName)
-        {
-            foreach (InputLanguage lang in InputLanguage.InstalledInputLanguages)
-            {
-                if (lang.Culture.EnglishName.ToLower().StartsWith(inputName))
-                {
-                    return lang;
-                }
-            }
-            return null;
-        }
         #endregion
         #endregion
 
@@ -1827,6 +1773,5 @@ namespace Laminatsia
         }
 
         #endregion
-
     }
 }

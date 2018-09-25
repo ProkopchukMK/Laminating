@@ -268,15 +268,15 @@ namespace Laminatsia.DTO
         #region фільтр датагрідвью
 
         //фільтр за датою в замовлення
-        public List<ColourGoodsDTO> FilterByDateComing(List<ColourGoodsDTO> enterList, DateTime startDate, DateTime endDate)
+        public List<ColourGoodsDTO> FilterByDateComing(List<ColourGoodsDTO> enterList, DateTime startDate)
         {
-            if (startDate == null && endDate == null)
+            if (startDate == null)
             {
                 return enterList;
             }
             else
             {
-                enterList = enterList.Where(x => x.DateReady >= startDate && x.DateReady <= endDate).ToList();
+                enterList = enterList.Where(x => (x.DateReady.Date - startDate.Date).Days == 0).ToList();
                 return enterList;
             }
         }
@@ -333,15 +333,15 @@ namespace Laminatsia.DTO
             }
         }
         //фільтр за датою в роботі        
-        public List<ColourGoodsDTO> FilterByDateToWork(List<ColourGoodsDTO> enterList, DateTime startDate, DateTime endDate)
+        public List<ColourGoodsDTO> FilterByDateToWork(List<ColourGoodsDTO> enterList, DateTime startDate)
         {
-            if (startDate == null && endDate == null)
+            if (startDate == null)
             {
                 return enterList;
             }
             else
             {
-                enterList = enterList.Where(x => x.DateToWork >= startDate && x.DateToWork <= endDate).ToList();
+                enterList = enterList.Where(x => (x.DateToWork.Date - startDate.Date).Days == 0).ToList();
                 return enterList;
             }
         }
@@ -359,15 +359,15 @@ namespace Laminatsia.DTO
             }
         }
         //фільтр за датою готовності
-        public List<ColourGoodsDTO> FilterByDateReady(List<ColourGoodsDTO> enterList, DateTime startDate, DateTime endDate)
+        public List<ColourGoodsDTO> FilterByDateReady(List<ColourGoodsDTO> enterList, DateTime startDate)
         {
-            if (startDate == null && endDate == null)
+            if (startDate == null)
             {
                 return enterList;
             }
             else
             {
-                enterList = enterList.Where(x => x.DateReady >= startDate && x.DateReady <= endDate).ToList();
+                enterList = enterList.Where(x => (x.DateReady.Date - startDate.Date).Days==0).ToList();
                 return enterList;
             }
         }
@@ -385,17 +385,17 @@ namespace Laminatsia.DTO
             }
         }
         public List<ColourGoodsDTO> FilterList(
-            bool checkboxDateComing, DateTime dateTimePickerFilterDataComing1, DateTime dateTimePickerFilterDataComing2,
+            bool checkboxDateComing, DateTime dateTimePickerFilterDataComing1,
             object comboBoxFilterProfile, object comboBoxFilterCity, object comboBoxFilterDealer, object comboBoxFilterColour,
-            bool checkboxDataToWork, DateTime dateTimePickerFilterDataToWork1, DateTime dateTimePickerFilterDataToWork2,
+            bool checkboxDataToWork, DateTime dateTimePickerFilterDataToWork1,
             bool? comboBoxFilterStatusProfile,
-            bool checkboxDateReady, DateTime dateTimePickerFilterDateReady1, DateTime dateTimePickerFilterDateReady2,
+            bool checkboxDateReady, DateTime dateTimePickerFilterDateReady1,
             bool? comboBoxFilterStatusGoods)
         {
             List<ColourGoodsDTO> filteredList = this.GetListColourGoods();
             if (checkboxDateComing)
             {
-                filteredList = this.FilterByDateComing(filteredList, dateTimePickerFilterDataComing1.Date, dateTimePickerFilterDataComing2.Date);
+                filteredList = this.FilterByDateComing(filteredList, dateTimePickerFilterDataComing1.Date);
             }
             filteredList = this.FilterByProfile(filteredList, (string)comboBoxFilterProfile ?? "");
             if (comboBoxFilterDealer == null)
@@ -409,13 +409,13 @@ namespace Laminatsia.DTO
             filteredList = this.FilterByColour(filteredList, (string)comboBoxFilterColour ?? "");
             if (checkboxDataToWork)
             {
-                filteredList = this.FilterByDateToWork(filteredList, dateTimePickerFilterDataToWork1, dateTimePickerFilterDataToWork2);
+                filteredList = this.FilterByDateToWork(filteredList, dateTimePickerFilterDataToWork1.Date);
             }
 
             filteredList = this.FilterByStatusProfile(filteredList, comboBoxFilterStatusProfile);
             if (checkboxDateReady)
             {
-                filteredList = this.FilterByDateReady(filteredList, dateTimePickerFilterDateReady1, dateTimePickerFilterDateReady2);
+                filteredList = this.FilterByDateReady(filteredList, dateTimePickerFilterDateReady1.Date);
             }
 
             filteredList = this.FilterByStatusGoods(filteredList, comboBoxFilterStatusGoods);

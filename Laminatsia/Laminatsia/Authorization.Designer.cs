@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Authorization));
             this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.labelLogin = new System.Windows.Forms.Label();
@@ -43,43 +44,48 @@
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(157, 56);
+            this.textBoxLogin.Location = new System.Drawing.Point(209, 69);
+            this.textBoxLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(238, 23);
+            this.textBoxLogin.Size = new System.Drawing.Size(316, 26);
             this.textBoxLogin.TabIndex = 1;
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPassword.Location = new System.Drawing.Point(158, 99);
+            this.textBoxPassword.Location = new System.Drawing.Point(211, 122);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(237, 26);
+            this.textBoxPassword.Size = new System.Drawing.Size(315, 30);
             this.textBoxPassword.TabIndex = 2;
             // 
             // labelLogin
             // 
             this.labelLogin.AutoSize = true;
-            this.labelLogin.Location = new System.Drawing.Point(36, 56);
+            this.labelLogin.Location = new System.Drawing.Point(48, 69);
+            this.labelLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(101, 17);
+            this.labelLogin.Size = new System.Drawing.Size(134, 20);
             this.labelLogin.TabIndex = 0;
             this.labelLogin.Text = "Введіть логін :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 99);
+            this.label2.Location = new System.Drawing.Point(48, 122);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 17);
+            this.label2.Size = new System.Drawing.Size(147, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Введіть пароль:";
             // 
             // buttonLogIn
             // 
-            this.buttonLogIn.Location = new System.Drawing.Point(157, 207);
+            this.buttonLogIn.Location = new System.Drawing.Point(209, 255);
+            this.buttonLogIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonLogIn.Name = "buttonLogIn";
-            this.buttonLogIn.Size = new System.Drawing.Size(109, 42);
+            this.buttonLogIn.Size = new System.Drawing.Size(145, 52);
             this.buttonLogIn.TabIndex = 0;
             this.buttonLogIn.Text = "Вхід";
             this.buttonLogIn.UseVisualStyleBackColor = true;
@@ -87,9 +93,10 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(272, 207);
+            this.buttonExit.Location = new System.Drawing.Point(363, 255);
+            this.buttonExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(123, 42);
+            this.buttonExit.Size = new System.Drawing.Size(164, 52);
             this.buttonExit.TabIndex = 6;
             this.buttonExit.Text = "Вихід";
             this.buttonExit.UseVisualStyleBackColor = true;
@@ -107,9 +114,11 @@
             this.groupBoxAuthorization.Controls.Add(this.labelLogin);
             this.groupBoxAuthorization.Controls.Add(this.label2);
             this.groupBoxAuthorization.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxAuthorization.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxAuthorization.Location = new System.Drawing.Point(16, 15);
+            this.groupBoxAuthorization.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxAuthorization.Name = "groupBoxAuthorization";
-            this.groupBoxAuthorization.Size = new System.Drawing.Size(419, 274);
+            this.groupBoxAuthorization.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxAuthorization.Size = new System.Drawing.Size(559, 337);
             this.groupBoxAuthorization.TabIndex = 0;
             this.groupBoxAuthorization.TabStop = false;
             this.groupBoxAuthorization.Text = "Введення даних користувача";
@@ -117,9 +126,10 @@
             // labelRole
             // 
             this.labelRole.AutoSize = true;
-            this.labelRole.Location = new System.Drawing.Point(36, 142);
+            this.labelRole.Location = new System.Drawing.Point(48, 175);
+            this.labelRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(105, 17);
+            this.labelRole.Size = new System.Drawing.Size(134, 20);
             this.labelRole.TabIndex = 0;
             this.labelRole.Text = "Права доступу";
             // 
@@ -127,27 +137,30 @@
             // 
             this.comboBoxRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRole.FormattingEnabled = true;
-            this.comboBoxRole.Location = new System.Drawing.Point(158, 142);
+            this.comboBoxRole.Location = new System.Drawing.Point(211, 175);
+            this.comboBoxRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxRole.Name = "comboBoxRole";
-            this.comboBoxRole.Size = new System.Drawing.Size(237, 24);
+            this.comboBoxRole.Size = new System.Drawing.Size(315, 28);
             this.comboBoxRole.TabIndex = 3;
             // 
             // checkBoxSaveUserInfo
             // 
             this.checkBoxSaveUserInfo.AutoSize = true;
-            this.checkBoxSaveUserInfo.Location = new System.Drawing.Point(158, 175);
+            this.checkBoxSaveUserInfo.Location = new System.Drawing.Point(211, 215);
+            this.checkBoxSaveUserInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxSaveUserInfo.Name = "checkBoxSaveUserInfo";
-            this.checkBoxSaveUserInfo.Size = new System.Drawing.Size(237, 21);
+            this.checkBoxSaveUserInfo.Size = new System.Drawing.Size(303, 24);
             this.checkBoxSaveUserInfo.TabIndex = 4;
             this.checkBoxSaveUserInfo.Text = "Запам\'ятати цього користувача";
             this.checkBoxSaveUserInfo.UseVisualStyleBackColor = true;
             // 
             // Authorization
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 298);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(591, 367);
             this.Controls.Add(this.groupBoxAuthorization);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Authorization";
             this.Text = "Авторизація";
             this.groupBoxAuthorization.ResumeLayout(false);

@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_12A6A35AAA634CDBA91B9CB2BAD5D649"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_14522C297C3039DFF2B34D15FED3A276"
         "OwnerKey" = "8:_BE0ED5CDD30A45A89C2E61357C774BBD"
         "MsmSig" = "8:_UNDEFINED"
@@ -65,12 +59,6 @@
         {
         "MsmKey" = "8:_8F6A250CF5BA07D366DBFC0A69D0E06A"
         "OwnerKey" = "8:_BE0ED5CDD30A45A89C2E61357C774BBD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_94241C761EC44ADF837759D484C3FB35"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -173,6 +161,12 @@
         {
         "MsmKey" = "8:_F3E74BCE0230BB856118C15BF284EEA9"
         "OwnerKey" = "8:_14522C297C3039DFF2B34D15FED3A276"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F7A1DA8A0253448F85B4A12E4A9A8572"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -330,26 +324,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_12A6A35AAA634CDBA91B9CB2BAD5D649"
-            {
-            "SourcePath" = "8:..\\Laminatsia\\Resources\\icons8-50.ico"
-            "TargetName" = "8:icons8-50.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_14522C297C3039DFF2B34D15FED3A276"
             {
             "AssemblyRegister" = "3:1"
@@ -472,26 +446,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_94241C761EC44ADF837759D484C3FB35"
-            {
-            "SourcePath" = "8:..\\Laminatsia\\Resources\\icons8-50.ico"
-            "TargetName" = "8:icons8-50.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_165608AA80A742C7B359D2C4E660D25E"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ABBF9D4CF883A49CD4567E5D75F8A5BA"
@@ -669,6 +623,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F7A1DA8A0253448F85B4A12E4A9A8572"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\icon.ico"
+            "TargetName" = "8:icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_165608AA80A742C7B359D2C4E660D25E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -737,7 +711,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Laminatsia"
         "ProductCode" = "8:{CDFC4266-DBE6-46A0-9669-F980D45DED23}"
-        "PackageCode" = "8:{C09595DE-01B7-492B-B05A-14F120D976E0}"
+        "PackageCode" = "8:{22F23C9C-ECA7-4F80-9B38-CA13D4D8D2A1}"
         "UpgradeCode" = "8:{83EA6BDB-3C3D-49B3-840D-071FFF9304DE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -882,7 +856,7 @@
             "Target" = "8:_BE0ED5CDD30A45A89C2E61357C774BBD"
             "Folder" = "8:_D58BA2EDA6B44DD2AC9A1B07CC89EA13"
             "WorkingFolder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"
-            "Icon" = "8:_94241C761EC44ADF837759D484C3FB35"
+            "Icon" = "8:_F7A1DA8A0253448F85B4A12E4A9A8572"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F074891895E24E07BB7E84423636323E"
@@ -896,7 +870,7 @@
             "Target" = "8:_BE0ED5CDD30A45A89C2E61357C774BBD"
             "Folder" = "8:_165608AA80A742C7B359D2C4E660D25E"
             "WorkingFolder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"
-            "Icon" = "8:_12A6A35AAA634CDBA91B9CB2BAD5D649"
+            "Icon" = "8:_F7A1DA8A0253448F85B4A12E4A9A8572"
             "Feature" = "8:"
             }
         }
@@ -1186,7 +1160,7 @@
                             "ContextData" = "8:1;True=1;False=0"
                             "Attributes" = "3:0"
                             "Setting" = "3:0"
-                            "Value" = "3:1"
+                            "Value" = "3:0"
                             "DefaultValue" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }

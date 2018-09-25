@@ -53,6 +53,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Laminatsia));
             this.MenuTabControl = new System.Windows.Forms.TabControl();
             this.tabPageLaminaters = new System.Windows.Forms.TabPage();
             this.dataGridViewLaminatsia = new System.Windows.Forms.DataGridView();
@@ -116,13 +117,8 @@
             this.labelFilterStatusProfile = new System.Windows.Forms.Label();
             this.comboBoxFilterStatusGoods = new System.Windows.Forms.ComboBox();
             this.labelFilterColour = new System.Windows.Forms.Label();
-            this.dateTimePickerFilterDateComing2 = new System.Windows.Forms.DateTimePicker();
             this.labelFilterDealer = new System.Windows.Forms.Label();
-            this.dateTimePickerFilterDataToWork2 = new System.Windows.Forms.DateTimePicker();
             this.labelFilterCity = new System.Windows.Forms.Label();
-            this.dateTimePickerFilterDateReady2 = new System.Windows.Forms.DateTimePicker();
-            this.labelFilterStartDateComing = new System.Windows.Forms.Label();
-            this.labelFilterEndDateComing = new System.Windows.Forms.Label();
             this.dataGridViewTehnologes = new System.Windows.Forms.DataGridView();
             this.ColumnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDateComing = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -284,10 +280,9 @@
             this.MenuTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MenuTabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MenuTabControl.Location = new System.Drawing.Point(0, 0);
-            this.MenuTabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MenuTabControl.Name = "MenuTabControl";
             this.MenuTabControl.SelectedIndex = 0;
-            this.MenuTabControl.Size = new System.Drawing.Size(2420, 1057);
+            this.MenuTabControl.Size = new System.Drawing.Size(2309, 845);
             this.MenuTabControl.TabIndex = 11;
             this.MenuTabControl.SelectedIndexChanged += new System.EventHandler(this.MenuTabControl_SelectedIndexChanged);
             // 
@@ -296,11 +291,10 @@
             this.tabPageLaminaters.AutoScroll = true;
             this.tabPageLaminaters.Controls.Add(this.dataGridViewLaminatsia);
             this.tabPageLaminaters.Controls.Add(this.groupBoxCreateNewOrder);
-            this.tabPageLaminaters.Location = new System.Drawing.Point(4, 29);
-            this.tabPageLaminaters.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageLaminaters.Location = new System.Drawing.Point(4, 25);
             this.tabPageLaminaters.Name = "tabPageLaminaters";
-            this.tabPageLaminaters.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPageLaminaters.Size = new System.Drawing.Size(2412, 1024);
+            this.tabPageLaminaters.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLaminaters.Size = new System.Drawing.Size(2301, 816);
             this.tabPageLaminaters.TabIndex = 0;
             this.tabPageLaminaters.Text = "Ламінація";
             this.tabPageLaminaters.UseVisualStyleBackColor = true;
@@ -329,139 +323,148 @@
             this.ColumnLamDateReady,
             this.ColumnLamStatusGoods});
             this.dataGridViewLaminatsia.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewLaminatsia.Location = new System.Drawing.Point(11, 298);
-            this.dataGridViewLaminatsia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewLaminatsia.Location = new System.Drawing.Point(10, 201);
             this.dataGridViewLaminatsia.MultiSelect = false;
             this.dataGridViewLaminatsia.Name = "dataGridViewLaminatsia";
             this.dataGridViewLaminatsia.ReadOnly = true;
             this.dataGridViewLaminatsia.RowHeadersVisible = false;
+            this.dataGridViewLaminatsia.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewLaminatsia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewLaminatsia.Size = new System.Drawing.Size(2381, 714);
+            this.dataGridViewLaminatsia.Size = new System.Drawing.Size(2283, 588);
             this.dataGridViewLaminatsia.TabIndex = 30;
             this.dataGridViewLaminatsia.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewLaminatsia_CellDoubleClick);
             this.dataGridViewLaminatsia.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewLaminatsia_ColumnHeaderMouseClick);
             // 
             // ColumnLamID
             // 
-            this.ColumnLamID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnLamID.Frozen = true;
             this.ColumnLamID.HeaderText = "ID";
-            this.ColumnLamID.MinimumWidth = 50;
             this.ColumnLamID.Name = "ColumnLamID";
             this.ColumnLamID.ReadOnly = true;
             this.ColumnLamID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamID.Width = 55;
+            this.ColumnLamID.Width = 30;
             // 
             // ColumnLamDateComing
             // 
             this.ColumnLamDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle1.Format = "d";
             this.ColumnLamDateComing.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColumnLamDateComing.Frozen = true;
             this.ColumnLamDateComing.HeaderText = "Дата замовлення";
             this.ColumnLamDateComing.Name = "ColumnLamDateComing";
             this.ColumnLamDateComing.ReadOnly = true;
             this.ColumnLamDateComing.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLamDateComing.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamDateComing.Width = 99;
             // 
             // ColumnLamProfile
             // 
-            this.ColumnLamProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnLamProfile.Frozen = true;
             this.ColumnLamProfile.HeaderText = "Профіль";
             this.ColumnLamProfile.Name = "ColumnLamProfile";
             this.ColumnLamProfile.ReadOnly = true;
             this.ColumnLamProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLamProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamProfile.Width = 111;
             // 
             // ColumnLamCity
             // 
-            this.ColumnLamCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnLamCity.Frozen = true;
             this.ColumnLamCity.HeaderText = "Місто";
             this.ColumnLamCity.Name = "ColumnLamCity";
             this.ColumnLamCity.ReadOnly = true;
             this.ColumnLamCity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLamCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamCity.Width = 85;
+            this.ColumnLamCity.Width = 150;
             // 
             // ColumnLamDealer
             // 
-            this.ColumnLamDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnLamDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnLamDealer.Frozen = true;
             this.ColumnLamDealer.HeaderText = "Дилер";
             this.ColumnLamDealer.Name = "ColumnLamDealer";
             this.ColumnLamDealer.ReadOnly = true;
             this.ColumnLamDealer.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLamDealer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamDealer.Width = 150;
             // 
             // ColumnLamNotes
             // 
-            this.ColumnLamNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnLamNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnLamNotes.Frozen = true;
             this.ColumnLamNotes.HeaderText = "Примітки";
             this.ColumnLamNotes.Name = "ColumnLamNotes";
             this.ColumnLamNotes.ReadOnly = true;
             this.ColumnLamNotes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnLamNotes.Width = 180;
             // 
             // ColumnLamCounts
             // 
-            this.ColumnLamCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColumnLamCounts.HeaderText = "Кількість";
+            this.ColumnLamCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnLamCounts.Frozen = true;
+            this.ColumnLamCounts.HeaderText = "К.";
             this.ColumnLamCounts.Name = "ColumnLamCounts";
             this.ColumnLamCounts.ReadOnly = true;
             this.ColumnLamCounts.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamCounts.Width = 115;
+            this.ColumnLamCounts.Width = 40;
             // 
             // ColumnLamColour
             // 
-            this.ColumnLamColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnLamColour.Frozen = true;
             this.ColumnLamColour.HeaderText = "Колір";
             this.ColumnLamColour.Name = "ColumnLamColour";
             this.ColumnLamColour.ReadOnly = true;
             this.ColumnLamColour.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLamColour.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamColour.Width = 83;
+            this.ColumnLamColour.Width = 70;
             // 
             // ColumnLamDateToWork
             // 
             this.ColumnLamDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle2.Format = "d";
             this.ColumnLamDateToWork.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnLamDateToWork.Frozen = true;
             this.ColumnLamDateToWork.HeaderText = "Дата в роботу";
             this.ColumnLamDateToWork.Name = "ColumnLamDateToWork";
             this.ColumnLamDateToWork.ReadOnly = true;
             this.ColumnLamDateToWork.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLamDateToWork.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamDateToWork.Width = 99;
             // 
             // ColumnLamStatusProfile
             // 
-            this.ColumnLamStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnLamStatusProfile.Frozen = true;
             this.ColumnLamStatusProfile.HeaderText = "Статус профілю";
             this.ColumnLamStatusProfile.Name = "ColumnLamStatusProfile";
             this.ColumnLamStatusProfile.ReadOnly = true;
             this.ColumnLamStatusProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLamStatusProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamStatusProfile.Width = 160;
+            this.ColumnLamStatusProfile.Width = 120;
             // 
             // ColumnLamDateReady
             // 
             this.ColumnLamDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle3.Format = "d";
             this.ColumnLamDateReady.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ColumnLamDateReady.Frozen = true;
             this.ColumnLamDateReady.HeaderText = "Дата готовності";
             this.ColumnLamDateReady.Name = "ColumnLamDateReady";
             this.ColumnLamDateReady.ReadOnly = true;
             this.ColumnLamDateReady.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLamDateReady.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamDateReady.Width = 99;
             // 
             // ColumnLamStatusGoods
             // 
-            this.ColumnLamStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnLamStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnLamStatusGoods.Frozen = true;
             this.ColumnLamStatusGoods.HeaderText = "Статус виробу(ів)";
             this.ColumnLamStatusGoods.Name = "ColumnLamStatusGoods";
             this.ColumnLamStatusGoods.ReadOnly = true;
             this.ColumnLamStatusGoods.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLamStatusGoods.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnLamStatusGoods.Width = 170;
+            this.ColumnLamStatusGoods.Width = 120;
             // 
             // groupBoxCreateNewOrder
             // 
@@ -490,21 +493,18 @@
             this.groupBoxCreateNewOrder.Controls.Add(this.labelDateToWork);
             this.groupBoxCreateNewOrder.Controls.Add(this.labelProfile);
             this.groupBoxCreateNewOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxCreateNewOrder.Location = new System.Drawing.Point(11, 30);
-            this.groupBoxCreateNewOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCreateNewOrder.Location = new System.Drawing.Point(10, 7);
             this.groupBoxCreateNewOrder.Name = "groupBoxCreateNewOrder";
-            this.groupBoxCreateNewOrder.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxCreateNewOrder.Size = new System.Drawing.Size(1733, 246);
+            this.groupBoxCreateNewOrder.Size = new System.Drawing.Size(1349, 187);
             this.groupBoxCreateNewOrder.TabIndex = 29;
             this.groupBoxCreateNewOrder.TabStop = false;
             this.groupBoxCreateNewOrder.Text = "Створити нове замовлення";
             // 
             // buttonUpdateRowLaminatsia
             // 
-            this.buttonUpdateRowLaminatsia.Location = new System.Drawing.Point(1512, 191);
-            this.buttonUpdateRowLaminatsia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUpdateRowLaminatsia.Location = new System.Drawing.Point(1128, 145);
             this.buttonUpdateRowLaminatsia.Name = "buttonUpdateRowLaminatsia";
-            this.buttonUpdateRowLaminatsia.Size = new System.Drawing.Size(117, 34);
+            this.buttonUpdateRowLaminatsia.Size = new System.Drawing.Size(134, 36);
             this.buttonUpdateRowLaminatsia.TabIndex = 22;
             this.buttonUpdateRowLaminatsia.Text = "Змінити";
             this.buttonUpdateRowLaminatsia.UseVisualStyleBackColor = true;
@@ -512,64 +512,60 @@
             // 
             // buttonFindByID
             // 
-            this.buttonFindByID.Location = new System.Drawing.Point(1431, 16);
-            this.buttonFindByID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonFindByID.Location = new System.Drawing.Point(1072, 13);
             this.buttonFindByID.Name = "buttonFindByID";
-            this.buttonFindByID.Size = new System.Drawing.Size(189, 33);
+            this.buttonFindByID.Size = new System.Drawing.Size(190, 33);
             this.buttonFindByID.TabIndex = 21;
-            this.buttonFindByID.Text = "Пошук за номером";
+            this.buttonFindByID.Text = "Пошук за ID";
             this.buttonFindByID.UseVisualStyleBackColor = true;
             this.buttonFindByID.Click += new System.EventHandler(this.ButtonFindByID_Click);
             // 
             // textBoxID
             // 
-            this.textBoxID.Location = new System.Drawing.Point(1252, 21);
-            this.textBoxID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxID.Location = new System.Drawing.Point(887, 20);
             this.textBoxID.MaxLength = 9;
             this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(135, 26);
+            this.textBoxID.Size = new System.Drawing.Size(153, 23);
             this.textBoxID.TabIndex = 20;
             this.textBoxID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxID_KeyPress);
             // 
             // richTextBoxNotes
             // 
-            this.richTextBoxNotes.Location = new System.Drawing.Point(656, 135);
-            this.richTextBoxNotes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.richTextBoxNotes.MaximumSize = new System.Drawing.Size(169, 131);
+            this.richTextBoxNotes.Location = new System.Drawing.Point(503, 106);
+            this.richTextBoxNotes.MaximumSize = new System.Drawing.Size(164, 106);
             this.richTextBoxNotes.MaxLength = 200;
             this.richTextBoxNotes.Name = "richTextBoxNotes";
-            this.richTextBoxNotes.Size = new System.Drawing.Size(152, 31);
+            this.richTextBoxNotes.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBoxNotes.Size = new System.Drawing.Size(126, 26);
             this.richTextBoxNotes.TabIndex = 19;
             this.richTextBoxNotes.Text = "";
             this.richTextBoxNotes.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.RichTextBoxNotes_ContentsResized);
             // 
             // dateTimePickerDateComing
             // 
-            this.dateTimePickerDateComing.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePickerDateComing.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateComing.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateComing.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerDateComing.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateComing.Location = new System.Drawing.Point(15, 134);
-            this.dateTimePickerDateComing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerDateComing.Location = new System.Drawing.Point(5, 109);
             this.dateTimePickerDateComing.Name = "dateTimePickerDateComing";
-            this.dateTimePickerDateComing.Size = new System.Drawing.Size(135, 30);
+            this.dateTimePickerDateComing.Size = new System.Drawing.Size(97, 21);
             this.dateTimePickerDateComing.TabIndex = 0;
             // 
             // ComboBoxProfile
             // 
             this.ComboBoxProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxProfile.FormattingEnabled = true;
-            this.ComboBoxProfile.Location = new System.Drawing.Point(169, 137);
-            this.ComboBoxProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxProfile.Location = new System.Drawing.Point(107, 106);
             this.ComboBoxProfile.Name = "ComboBoxProfile";
-            this.ComboBoxProfile.Size = new System.Drawing.Size(143, 28);
+            this.ComboBoxProfile.Size = new System.Drawing.Size(126, 23);
             this.ComboBoxProfile.TabIndex = 1;
             // 
             // SaveColourGoods
             // 
-            this.SaveColourGoods.Location = new System.Drawing.Point(1512, 129);
-            this.SaveColourGoods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SaveColourGoods.Location = new System.Drawing.Point(1129, 102);
             this.SaveColourGoods.Name = "SaveColourGoods";
-            this.SaveColourGoods.Size = new System.Drawing.Size(117, 34);
+            this.SaveColourGoods.Size = new System.Drawing.Size(133, 35);
             this.SaveColourGoods.TabIndex = 10;
             this.SaveColourGoods.Text = "Створити";
             this.SaveColourGoods.UseVisualStyleBackColor = true;
@@ -578,173 +574,170 @@
             // labelCounts
             // 
             this.labelCounts.AutoSize = true;
-            this.labelCounts.Location = new System.Drawing.Point(800, 86);
-            this.labelCounts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCounts.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCounts.Location = new System.Drawing.Point(624, 77);
             this.labelCounts.Name = "labelCounts";
-            this.labelCounts.Size = new System.Drawing.Size(86, 20);
+            this.labelCounts.Size = new System.Drawing.Size(66, 17);
             this.labelCounts.TabIndex = 12;
             this.labelCounts.Text = "Кількість";
             // 
             // labelCity_ID
             // 
             this.labelCity_ID.AutoSize = true;
-            this.labelCity_ID.Location = new System.Drawing.Point(365, 86);
-            this.labelCity_ID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCity_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCity_ID.Location = new System.Drawing.Point(276, 79);
             this.labelCity_ID.Name = "labelCity_ID";
-            this.labelCity_ID.Size = new System.Drawing.Size(56, 20);
+            this.labelCity_ID.Size = new System.Drawing.Size(44, 17);
             this.labelCity_ID.TabIndex = 11;
             this.labelCity_ID.Text = "Місто";
             // 
             // textBoxCounts
             // 
-            this.textBoxCounts.Location = new System.Drawing.Point(817, 138);
-            this.textBoxCounts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxCounts.Location = new System.Drawing.Point(635, 105);
             this.textBoxCounts.MaxLength = 3;
             this.textBoxCounts.Name = "textBoxCounts";
-            this.textBoxCounts.Size = new System.Drawing.Size(48, 26);
+            this.textBoxCounts.Size = new System.Drawing.Size(47, 23);
             this.textBoxCounts.TabIndex = 5;
             this.textBoxCounts.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxCounts_KeyPress);
             // 
             // dateTimePickerDateToWork
             // 
-            this.dateTimePickerDateToWork.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePickerDateToWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateToWork.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateToWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerDateToWork.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateToWork.Location = new System.Drawing.Point(1025, 135);
-            this.dateTimePickerDateToWork.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerDateToWork.Location = new System.Drawing.Point(806, 106);
             this.dateTimePickerDateToWork.Name = "dateTimePickerDateToWork";
-            this.dateTimePickerDateToWork.Size = new System.Drawing.Size(135, 30);
+            this.dateTimePickerDateToWork.Size = new System.Drawing.Size(97, 21);
             this.dateTimePickerDateToWork.TabIndex = 7;
             // 
             // labelDateReady
             // 
             this.labelDateReady.AutoSize = true;
-            this.labelDateReady.Location = new System.Drawing.Point(1351, 86);
-            this.labelDateReady.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDateReady.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDateReady.Location = new System.Drawing.Point(1033, 61);
             this.labelDateReady.Name = "labelDateReady";
-            this.labelDateReady.Size = new System.Drawing.Size(148, 20);
+            this.labelDateReady.Size = new System.Drawing.Size(76, 34);
             this.labelDateReady.TabIndex = 16;
-            this.labelDateReady.Text = "Дата готовності";
+            this.labelDateReady.Text = "   Дата\r\nготовності";
             // 
             // ComboBoxCity
             // 
             this.ComboBoxCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxCity.FormattingEnabled = true;
-            this.ComboBoxCity.Location = new System.Drawing.Point(335, 137);
-            this.ComboBoxCity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxCity.Location = new System.Drawing.Point(239, 106);
             this.ComboBoxCity.Name = "ComboBoxCity";
-            this.ComboBoxCity.Size = new System.Drawing.Size(143, 28);
+            this.ComboBoxCity.Size = new System.Drawing.Size(130, 23);
             this.ComboBoxCity.TabIndex = 2;
             this.ComboBoxCity.SelectedIndexChanged += new System.EventHandler(this.ComboxCity_SelectedIndexChanged);
             // 
             // comboBoxStatusProfile
             // 
             this.comboBoxStatusProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStatusProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxStatusProfile.FormattingEnabled = true;
-            this.comboBoxStatusProfile.Location = new System.Drawing.Point(1180, 134);
-            this.comboBoxStatusProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxStatusProfile.Location = new System.Drawing.Point(909, 105);
             this.comboBoxStatusProfile.Name = "comboBoxStatusProfile";
-            this.comboBoxStatusProfile.Size = new System.Drawing.Size(136, 28);
+            this.comboBoxStatusProfile.Size = new System.Drawing.Size(112, 23);
             this.comboBoxStatusProfile.TabIndex = 8;
             // 
             // labelColour_ID
             // 
             this.labelColour_ID.AutoSize = true;
-            this.labelColour_ID.Location = new System.Drawing.Point(916, 86);
-            this.labelColour_ID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelColour_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelColour_ID.Location = new System.Drawing.Point(721, 79);
             this.labelColour_ID.Name = "labelColour_ID";
-            this.labelColour_ID.Size = new System.Drawing.Size(54, 20);
+            this.labelColour_ID.Size = new System.Drawing.Size(44, 17);
             this.labelColour_ID.TabIndex = 13;
             this.labelColour_ID.Text = "Колір";
             // 
             // labelNotes
             // 
             this.labelNotes.AutoSize = true;
-            this.labelNotes.Location = new System.Drawing.Point(675, 86);
-            this.labelNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNotes.Location = new System.Drawing.Point(519, 79);
             this.labelNotes.Name = "labelNotes";
-            this.labelNotes.Size = new System.Drawing.Size(87, 20);
+            this.labelNotes.Size = new System.Drawing.Size(68, 17);
             this.labelNotes.TabIndex = 18;
             this.labelNotes.Text = "Примітки";
             // 
             // labelDealer
             // 
             this.labelDealer.AutoSize = true;
-            this.labelDealer.Location = new System.Drawing.Point(529, 86);
-            this.labelDealer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDealer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDealer.Location = new System.Drawing.Point(403, 77);
             this.labelDealer.Name = "labelDealer";
-            this.labelDealer.Size = new System.Drawing.Size(62, 20);
+            this.labelDealer.Size = new System.Drawing.Size(51, 17);
             this.labelDealer.TabIndex = 10;
             this.labelDealer.Text = "Дилер";
             // 
             // LabelDateComming
             // 
             this.LabelDateComming.AutoSize = true;
-            this.LabelDateComming.Location = new System.Drawing.Point(8, 86);
-            this.LabelDateComming.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelDateComming.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelDateComming.Location = new System.Drawing.Point(6, 61);
             this.LabelDateComming.Name = "LabelDateComming";
-            this.LabelDateComming.Size = new System.Drawing.Size(158, 20);
+            this.LabelDateComming.Size = new System.Drawing.Size(91, 34);
             this.LabelDateComming.TabIndex = 8;
-            this.LabelDateComming.Text = "Дата замовлення";
+            this.LabelDateComming.Text = "     Дата\r\n замовлення";
             // 
             // dateTimePickerDateReady
             // 
-            this.dateTimePickerDateReady.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePickerDateReady.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateReady.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePickerDateReady.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerDateReady.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateReady.Location = new System.Drawing.Point(1355, 133);
-            this.dateTimePickerDateReady.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerDateReady.Location = new System.Drawing.Point(1027, 107);
             this.dateTimePickerDateReady.Name = "dateTimePickerDateReady";
-            this.dateTimePickerDateReady.Size = new System.Drawing.Size(133, 30);
+            this.dateTimePickerDateReady.Size = new System.Drawing.Size(97, 21);
             this.dateTimePickerDateReady.TabIndex = 9;
             // 
             // labelStatusProfile
             // 
             this.labelStatusProfile.AutoSize = true;
-            this.labelStatusProfile.Location = new System.Drawing.Point(1176, 86);
-            this.labelStatusProfile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelStatusProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatusProfile.Location = new System.Drawing.Point(906, 77);
             this.labelStatusProfile.Name = "labelStatusProfile";
-            this.labelStatusProfile.Size = new System.Drawing.Size(146, 20);
+            this.labelStatusProfile.Size = new System.Drawing.Size(113, 17);
             this.labelStatusProfile.TabIndex = 15;
             this.labelStatusProfile.Text = "Статус профілю";
             // 
             // ComboBoxDealer
             // 
             this.ComboBoxDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxDealer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxDealer.FormattingEnabled = true;
-            this.ComboBoxDealer.Location = new System.Drawing.Point(504, 137);
-            this.ComboBoxDealer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxDealer.Location = new System.Drawing.Point(375, 106);
             this.ComboBoxDealer.Name = "ComboBoxDealer";
-            this.ComboBoxDealer.Size = new System.Drawing.Size(143, 28);
+            this.ComboBoxDealer.Size = new System.Drawing.Size(122, 23);
             this.ComboBoxDealer.TabIndex = 3;
             // 
             // comboBoxColour
             // 
             this.comboBoxColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxColour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxColour.FormattingEnabled = true;
-            this.comboBoxColour.Location = new System.Drawing.Point(887, 137);
-            this.comboBoxColour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxColour.Location = new System.Drawing.Point(688, 105);
             this.comboBoxColour.Name = "comboBoxColour";
-            this.comboBoxColour.Size = new System.Drawing.Size(115, 28);
+            this.comboBoxColour.Size = new System.Drawing.Size(112, 23);
             this.comboBoxColour.TabIndex = 6;
             // 
             // labelDateToWork
             // 
             this.labelDateToWork.AutoSize = true;
-            this.labelDateToWork.Location = new System.Drawing.Point(1024, 86);
-            this.labelDateToWork.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDateToWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDateToWork.Location = new System.Drawing.Point(813, 61);
             this.labelDateToWork.Name = "labelDateToWork";
-            this.labelDateToWork.Size = new System.Drawing.Size(130, 20);
+            this.labelDateToWork.Size = new System.Drawing.Size(69, 34);
             this.labelDateToWork.TabIndex = 14;
-            this.labelDateToWork.Text = "Дата в роботу";
+            this.labelDateToWork.Text = "   Дата\r\n в роботу";
             // 
             // labelProfile
             // 
             this.labelProfile.AutoSize = true;
-            this.labelProfile.Location = new System.Drawing.Point(201, 86);
-            this.labelProfile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProfile.Location = new System.Drawing.Point(138, 79);
             this.labelProfile.Name = "labelProfile";
-            this.labelProfile.Size = new System.Drawing.Size(82, 20);
+            this.labelProfile.Size = new System.Drawing.Size(63, 17);
             this.labelProfile.TabIndex = 9;
             this.labelProfile.Text = "Профіль";
             // 
@@ -753,11 +746,10 @@
             this.tabPageManagers.AutoScroll = true;
             this.tabPageManagers.Controls.Add(this.groupBoxFilterTabManagers);
             this.tabPageManagers.Controls.Add(this.dataGridViewTehnologes);
-            this.tabPageManagers.Location = new System.Drawing.Point(4, 29);
-            this.tabPageManagers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageManagers.Location = new System.Drawing.Point(4, 25);
             this.tabPageManagers.Name = "tabPageManagers";
-            this.tabPageManagers.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPageManagers.Size = new System.Drawing.Size(2412, 1024);
+            this.tabPageManagers.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageManagers.Size = new System.Drawing.Size(2301, 816);
             this.tabPageManagers.TabIndex = 1;
             this.tabPageManagers.Text = "Фільтри замовлень";
             this.tabPageManagers.UseVisualStyleBackColor = true;
@@ -785,28 +777,21 @@
             this.groupBoxFilterTabManagers.Controls.Add(this.labelFilterStatusProfile);
             this.groupBoxFilterTabManagers.Controls.Add(this.comboBoxFilterStatusGoods);
             this.groupBoxFilterTabManagers.Controls.Add(this.labelFilterColour);
-            this.groupBoxFilterTabManagers.Controls.Add(this.dateTimePickerFilterDateComing2);
             this.groupBoxFilterTabManagers.Controls.Add(this.labelFilterDealer);
-            this.groupBoxFilterTabManagers.Controls.Add(this.dateTimePickerFilterDataToWork2);
             this.groupBoxFilterTabManagers.Controls.Add(this.labelFilterCity);
-            this.groupBoxFilterTabManagers.Controls.Add(this.dateTimePickerFilterDateReady2);
-            this.groupBoxFilterTabManagers.Controls.Add(this.labelFilterStartDateComing);
-            this.groupBoxFilterTabManagers.Controls.Add(this.labelFilterEndDateComing);
-            this.groupBoxFilterTabManagers.Location = new System.Drawing.Point(27, 18);
-            this.groupBoxFilterTabManagers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxFilterTabManagers.Location = new System.Drawing.Point(10, 24);
             this.groupBoxFilterTabManagers.Name = "groupBoxFilterTabManagers";
-            this.groupBoxFilterTabManagers.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxFilterTabManagers.Size = new System.Drawing.Size(1137, 246);
+            this.groupBoxFilterTabManagers.Size = new System.Drawing.Size(1119, 196);
             this.groupBoxFilterTabManagers.TabIndex = 34;
             this.groupBoxFilterTabManagers.TabStop = false;
             this.groupBoxFilterTabManagers.Text = "Фільтри";
             // 
             // buttonRemoveColourGoods
             // 
-            this.buttonRemoveColourGoods.Location = new System.Drawing.Point(516, 42);
-            this.buttonRemoveColourGoods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRemoveColourGoods.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRemoveColourGoods.Location = new System.Drawing.Point(937, 21);
             this.buttonRemoveColourGoods.Name = "buttonRemoveColourGoods";
-            this.buttonRemoveColourGoods.Size = new System.Drawing.Size(259, 38);
+            this.buttonRemoveColourGoods.Size = new System.Drawing.Size(167, 30);
             this.buttonRemoveColourGoods.TabIndex = 34;
             this.buttonRemoveColourGoods.Text = "Видалити замовлення";
             this.buttonRemoveColourGoods.UseVisualStyleBackColor = true;
@@ -816,20 +801,19 @@
             // labelFilterProfile
             // 
             this.labelFilterProfile.AutoSize = true;
-            this.labelFilterProfile.Location = new System.Drawing.Point(212, 92);
-            this.labelFilterProfile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFilterProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilterProfile.Location = new System.Drawing.Point(41, 82);
             this.labelFilterProfile.Name = "labelFilterProfile";
-            this.labelFilterProfile.Size = new System.Drawing.Size(82, 20);
+            this.labelFilterProfile.Size = new System.Drawing.Size(58, 15);
             this.labelFilterProfile.TabIndex = 16;
             this.labelFilterProfile.Text = "Профіль";
             // 
             // textBoxTehnologFindByID
             // 
-            this.textBoxTehnologFindByID.Location = new System.Drawing.Point(504, 201);
-            this.textBoxTehnologFindByID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxTehnologFindByID.Location = new System.Drawing.Point(14, 29);
             this.textBoxTehnologFindByID.MaxLength = 9;
             this.textBoxTehnologFindByID.Name = "textBoxTehnologFindByID";
-            this.textBoxTehnologFindByID.Size = new System.Drawing.Size(209, 26);
+            this.textBoxTehnologFindByID.Size = new System.Drawing.Size(153, 23);
             this.textBoxTehnologFindByID.TabIndex = 33;
             this.textBoxTehnologFindByID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxTehnologFindByID_KeyPress);
             // 
@@ -837,21 +821,18 @@
             // 
             this.dateTimePickerFilterDateComing1.Enabled = false;
             this.dateTimePickerFilterDateComing1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFilterDateComing1.Location = new System.Drawing.Point(71, 148);
-            this.dateTimePickerFilterDateComing1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerFilterDateComing1.Location = new System.Drawing.Point(373, 46);
             this.dateTimePickerFilterDateComing1.Name = "dateTimePickerFilterDateComing1";
-            this.dateTimePickerFilterDateComing1.Size = new System.Drawing.Size(108, 26);
+            this.dateTimePickerFilterDateComing1.Size = new System.Drawing.Size(129, 23);
             this.dateTimePickerFilterDateComing1.TabIndex = 1;
-            this.dateTimePickerFilterDateComing1.ValueChanged += new System.EventHandler(this.DateTimePickerFilterDateComing2_ValueChanged);
             // 
             // buttonTehnologFindByID
             // 
-            this.buttonTehnologFindByID.Location = new System.Drawing.Point(730, 192);
-            this.buttonTehnologFindByID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTehnologFindByID.Location = new System.Drawing.Point(175, 29);
             this.buttonTehnologFindByID.Name = "buttonTehnologFindByID";
-            this.buttonTehnologFindByID.Size = new System.Drawing.Size(189, 37);
+            this.buttonTehnologFindByID.Size = new System.Drawing.Size(143, 32);
             this.buttonTehnologFindByID.TabIndex = 32;
-            this.buttonTehnologFindByID.Text = "Пошук за номером";
+            this.buttonTehnologFindByID.Text = "Пошук за ID";
             this.buttonTehnologFindByID.UseVisualStyleBackColor = true;
             this.buttonTehnologFindByID.Click += new System.EventHandler(this.ButtonTehnologFindByID_Click);
             // 
@@ -859,19 +840,18 @@
             // 
             this.comboBoxFilterProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterProfile.FormattingEnabled = true;
-            this.comboBoxFilterProfile.Location = new System.Drawing.Point(191, 131);
-            this.comboBoxFilterProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxFilterProfile.Location = new System.Drawing.Point(12, 113);
             this.comboBoxFilterProfile.Name = "comboBoxFilterProfile";
-            this.comboBoxFilterProfile.Size = new System.Drawing.Size(129, 28);
+            this.comboBoxFilterProfile.Size = new System.Drawing.Size(151, 24);
             this.comboBoxFilterProfile.TabIndex = 2;
             // 
             // checkBoxFilterDateToReady
             // 
             this.checkBoxFilterDateToReady.AutoSize = true;
-            this.checkBoxFilterDateToReady.Location = new System.Drawing.Point(959, 48);
-            this.checkBoxFilterDateToReady.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxFilterDateToReady.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxFilterDateToReady.Location = new System.Drawing.Point(745, 15);
             this.checkBoxFilterDateToReady.Name = "checkBoxFilterDateToReady";
-            this.checkBoxFilterDateToReady.Size = new System.Drawing.Size(170, 24);
+            this.checkBoxFilterDateToReady.Size = new System.Drawing.Size(122, 19);
             this.checkBoxFilterDateToReady.TabIndex = 31;
             this.checkBoxFilterDateToReady.Text = "Дата готовності";
             this.checkBoxFilterDateToReady.UseVisualStyleBackColor = true;
@@ -881,20 +861,19 @@
             // 
             this.comboBoxFilterCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterCity.FormattingEnabled = true;
-            this.comboBoxFilterCity.Location = new System.Drawing.Point(323, 131);
-            this.comboBoxFilterCity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxFilterCity.Location = new System.Drawing.Point(170, 113);
             this.comboBoxFilterCity.Name = "comboBoxFilterCity";
-            this.comboBoxFilterCity.Size = new System.Drawing.Size(116, 28);
+            this.comboBoxFilterCity.Size = new System.Drawing.Size(144, 24);
             this.comboBoxFilterCity.TabIndex = 3;
             this.comboBoxFilterCity.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFilterCity_SelectedIndexChanged);
             // 
             // checkBoxFilterDateToWork
             // 
             this.checkBoxFilterDateToWork.AutoSize = true;
-            this.checkBoxFilterDateToWork.Location = new System.Drawing.Point(781, 48);
-            this.checkBoxFilterDateToWork.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxFilterDateToWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxFilterDateToWork.Location = new System.Drawing.Point(566, 15);
             this.checkBoxFilterDateToWork.Name = "checkBoxFilterDateToWork";
-            this.checkBoxFilterDateToWork.Size = new System.Drawing.Size(148, 24);
+            this.checkBoxFilterDateToWork.Size = new System.Drawing.Size(107, 19);
             this.checkBoxFilterDateToWork.TabIndex = 30;
             this.checkBoxFilterDateToWork.Text = "Дата в роботі";
             this.checkBoxFilterDateToWork.UseVisualStyleBackColor = true;
@@ -905,19 +884,18 @@
             this.comboBoxFilterDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterDealer.Enabled = false;
             this.comboBoxFilterDealer.FormattingEnabled = true;
-            this.comboBoxFilterDealer.Location = new System.Drawing.Point(442, 130);
-            this.comboBoxFilterDealer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxFilterDealer.Location = new System.Drawing.Point(327, 113);
             this.comboBoxFilterDealer.Name = "comboBoxFilterDealer";
-            this.comboBoxFilterDealer.Size = new System.Drawing.Size(133, 28);
+            this.comboBoxFilterDealer.Size = new System.Drawing.Size(147, 24);
             this.comboBoxFilterDealer.TabIndex = 4;
             // 
             // checkBoxFilterDateComing
             // 
             this.checkBoxFilterDateComing.AutoSize = true;
-            this.checkBoxFilterDateComing.Location = new System.Drawing.Point(32, 113);
-            this.checkBoxFilterDateComing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxFilterDateComing.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxFilterDateComing.Location = new System.Drawing.Point(356, 14);
             this.checkBoxFilterDateComing.Name = "checkBoxFilterDateComing";
-            this.checkBoxFilterDateComing.Size = new System.Drawing.Size(180, 24);
+            this.checkBoxFilterDateComing.Size = new System.Drawing.Size(130, 19);
             this.checkBoxFilterDateComing.TabIndex = 29;
             this.checkBoxFilterDateComing.Text = "Дата замовлення";
             this.checkBoxFilterDateComing.UseVisualStyleBackColor = true;
@@ -927,20 +905,19 @@
             // 
             this.comboBoxFilterColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterColour.FormattingEnabled = true;
-            this.comboBoxFilterColour.Location = new System.Drawing.Point(583, 130);
-            this.comboBoxFilterColour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxFilterColour.Location = new System.Drawing.Point(483, 113);
             this.comboBoxFilterColour.Name = "comboBoxFilterColour";
-            this.comboBoxFilterColour.Size = new System.Drawing.Size(117, 28);
+            this.comboBoxFilterColour.Size = new System.Drawing.Size(122, 24);
             this.comboBoxFilterColour.TabIndex = 5;
             // 
             // buttonResetFilter
             // 
-            this.buttonResetFilter.Location = new System.Drawing.Point(284, 41);
-            this.buttonResetFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonResetFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonResetFilter.Location = new System.Drawing.Point(937, 73);
             this.buttonResetFilter.Name = "buttonResetFilter";
-            this.buttonResetFilter.Size = new System.Drawing.Size(212, 41);
+            this.buttonResetFilter.Size = new System.Drawing.Size(163, 40);
             this.buttonResetFilter.TabIndex = 28;
-            this.buttonResetFilter.Text = "Скинути всі фільтри";
+            this.buttonResetFilter.Text = "Скинути всі";
             this.buttonResetFilter.UseVisualStyleBackColor = true;
             this.buttonResetFilter.Click += new System.EventHandler(this.ButtonResetFilter_Click);
             // 
@@ -948,21 +925,19 @@
             // 
             this.dateTimePickerFilterDataToWork1.Enabled = false;
             this.dateTimePickerFilterDataToWork1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFilterDataToWork1.Location = new System.Drawing.Point(806, 85);
-            this.dateTimePickerFilterDataToWork1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerFilterDataToWork1.Location = new System.Drawing.Point(577, 45);
             this.dateTimePickerFilterDataToWork1.Name = "dateTimePickerFilterDataToWork1";
-            this.dateTimePickerFilterDataToWork1.Size = new System.Drawing.Size(113, 26);
+            this.dateTimePickerFilterDataToWork1.Size = new System.Drawing.Size(135, 23);
             this.dateTimePickerFilterDataToWork1.TabIndex = 6;
-            this.dateTimePickerFilterDataToWork1.ValueChanged += new System.EventHandler(this.DateTimePickerFilterDataToWork2_ValueChanged);
             // 
             // buttonSetFilter
             // 
-            this.buttonSetFilter.Location = new System.Drawing.Point(35, 41);
-            this.buttonSetFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSetFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSetFilter.Location = new System.Drawing.Point(938, 119);
             this.buttonSetFilter.Name = "buttonSetFilter";
-            this.buttonSetFilter.Size = new System.Drawing.Size(212, 38);
-            this.buttonSetFilter.TabIndex = 27;
-            this.buttonSetFilter.Text = "Застосувати фільтри";
+            this.buttonSetFilter.Size = new System.Drawing.Size(163, 40);
+            this.buttonSetFilter.TabIndex = 0;
+            this.buttonSetFilter.Text = "Застосувати";
             this.buttonSetFilter.UseVisualStyleBackColor = true;
             this.buttonSetFilter.Click += new System.EventHandler(this.ButtonSetFilter_Click);
             // 
@@ -970,19 +945,18 @@
             // 
             this.comboBoxFilterStatusProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterStatusProfile.FormattingEnabled = true;
-            this.comboBoxFilterStatusProfile.Location = new System.Drawing.Point(191, 201);
-            this.comboBoxFilterStatusProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxFilterStatusProfile.Location = new System.Drawing.Point(616, 113);
             this.comboBoxFilterStatusProfile.Name = "comboBoxFilterStatusProfile";
-            this.comboBoxFilterStatusProfile.Size = new System.Drawing.Size(135, 28);
+            this.comboBoxFilterStatusProfile.Size = new System.Drawing.Size(153, 24);
             this.comboBoxFilterStatusProfile.TabIndex = 7;
             // 
             // labelFilterToStatusGoods
             // 
             this.labelFilterToStatusGoods.AutoSize = true;
-            this.labelFilterToStatusGoods.Location = new System.Drawing.Point(335, 167);
-            this.labelFilterToStatusGoods.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFilterToStatusGoods.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilterToStatusGoods.Location = new System.Drawing.Point(772, 84);
             this.labelFilterToStatusGoods.Name = "labelFilterToStatusGoods";
-            this.labelFilterToStatusGoods.Size = new System.Drawing.Size(174, 20);
+            this.labelFilterToStatusGoods.Size = new System.Drawing.Size(121, 15);
             this.labelFilterToStatusGoods.TabIndex = 24;
             this.labelFilterToStatusGoods.Text = "Статус замовлення";
             // 
@@ -990,20 +964,18 @@
             // 
             this.dateTimePickerFilterDateReady1.Enabled = false;
             this.dateTimePickerFilterDateReady1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFilterDateReady1.Location = new System.Drawing.Point(985, 85);
-            this.dateTimePickerFilterDateReady1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerFilterDateReady1.Location = new System.Drawing.Point(769, 44);
             this.dateTimePickerFilterDateReady1.Name = "dateTimePickerFilterDateReady1";
-            this.dateTimePickerFilterDateReady1.Size = new System.Drawing.Size(112, 26);
+            this.dateTimePickerFilterDateReady1.Size = new System.Drawing.Size(124, 23);
             this.dateTimePickerFilterDateReady1.TabIndex = 8;
-            this.dateTimePickerFilterDateReady1.ValueChanged += new System.EventHandler(this.DateTimePickerFilterDateReady2_ValueChanged);
             // 
             // labelFilterStatusProfile
             // 
             this.labelFilterStatusProfile.AutoSize = true;
-            this.labelFilterStatusProfile.Location = new System.Drawing.Point(187, 166);
-            this.labelFilterStatusProfile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFilterStatusProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilterStatusProfile.Location = new System.Drawing.Point(623, 85);
             this.labelFilterStatusProfile.Name = "labelFilterStatusProfile";
-            this.labelFilterStatusProfile.Size = new System.Drawing.Size(146, 20);
+            this.labelFilterStatusProfile.Size = new System.Drawing.Size(101, 15);
             this.labelFilterStatusProfile.TabIndex = 22;
             this.labelFilterStatusProfile.Text = "Статус профілю";
             // 
@@ -1011,94 +983,40 @@
             // 
             this.comboBoxFilterStatusGoods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFilterStatusGoods.FormattingEnabled = true;
-            this.comboBoxFilterStatusGoods.Location = new System.Drawing.Point(339, 201);
-            this.comboBoxFilterStatusGoods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxFilterStatusGoods.Location = new System.Drawing.Point(777, 113);
             this.comboBoxFilterStatusGoods.Name = "comboBoxFilterStatusGoods";
-            this.comboBoxFilterStatusGoods.Size = new System.Drawing.Size(157, 28);
+            this.comboBoxFilterStatusGoods.Size = new System.Drawing.Size(139, 24);
             this.comboBoxFilterStatusGoods.TabIndex = 9;
             // 
             // labelFilterColour
             // 
             this.labelFilterColour.AutoSize = true;
-            this.labelFilterColour.Location = new System.Drawing.Point(611, 91);
-            this.labelFilterColour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFilterColour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilterColour.Location = new System.Drawing.Point(512, 85);
             this.labelFilterColour.Name = "labelFilterColour";
-            this.labelFilterColour.Size = new System.Drawing.Size(54, 20);
+            this.labelFilterColour.Size = new System.Drawing.Size(39, 15);
             this.labelFilterColour.TabIndex = 19;
             this.labelFilterColour.Text = "Колір";
-            // 
-            // dateTimePickerFilterDateComing2
-            // 
-            this.dateTimePickerFilterDateComing2.Enabled = false;
-            this.dateTimePickerFilterDateComing2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFilterDateComing2.Location = new System.Drawing.Point(71, 185);
-            this.dateTimePickerFilterDateComing2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dateTimePickerFilterDateComing2.Name = "dateTimePickerFilterDateComing2";
-            this.dateTimePickerFilterDateComing2.Size = new System.Drawing.Size(108, 26);
-            this.dateTimePickerFilterDateComing2.TabIndex = 11;
-            this.dateTimePickerFilterDateComing2.ValueChanged += new System.EventHandler(this.DateTimePickerFilterDateComing2_ValueChanged);
             // 
             // labelFilterDealer
             // 
             this.labelFilterDealer.AutoSize = true;
-            this.labelFilterDealer.Location = new System.Drawing.Point(470, 91);
-            this.labelFilterDealer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFilterDealer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilterDealer.Location = new System.Drawing.Point(378, 85);
             this.labelFilterDealer.Name = "labelFilterDealer";
-            this.labelFilterDealer.Size = new System.Drawing.Size(62, 20);
+            this.labelFilterDealer.Size = new System.Drawing.Size(44, 15);
             this.labelFilterDealer.TabIndex = 18;
             this.labelFilterDealer.Text = "Дилер";
-            // 
-            // dateTimePickerFilterDataToWork2
-            // 
-            this.dateTimePickerFilterDataToWork2.Enabled = false;
-            this.dateTimePickerFilterDataToWork2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFilterDataToWork2.Location = new System.Drawing.Point(806, 122);
-            this.dateTimePickerFilterDataToWork2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dateTimePickerFilterDataToWork2.Name = "dateTimePickerFilterDataToWork2";
-            this.dateTimePickerFilterDataToWork2.Size = new System.Drawing.Size(113, 26);
-            this.dateTimePickerFilterDataToWork2.TabIndex = 12;
-            this.dateTimePickerFilterDataToWork2.ValueChanged += new System.EventHandler(this.DateTimePickerFilterDataToWork2_ValueChanged);
             // 
             // labelFilterCity
             // 
             this.labelFilterCity.AutoSize = true;
-            this.labelFilterCity.Location = new System.Drawing.Point(351, 93);
-            this.labelFilterCity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFilterCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilterCity.Location = new System.Drawing.Point(199, 85);
             this.labelFilterCity.Name = "labelFilterCity";
-            this.labelFilterCity.Size = new System.Drawing.Size(56, 20);
+            this.labelFilterCity.Size = new System.Drawing.Size(41, 15);
             this.labelFilterCity.TabIndex = 17;
             this.labelFilterCity.Text = "Місто";
-            // 
-            // dateTimePickerFilterDateReady2
-            // 
-            this.dateTimePickerFilterDateReady2.Enabled = false;
-            this.dateTimePickerFilterDateReady2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerFilterDateReady2.Location = new System.Drawing.Point(985, 121);
-            this.dateTimePickerFilterDateReady2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dateTimePickerFilterDateReady2.Name = "dateTimePickerFilterDateReady2";
-            this.dateTimePickerFilterDateReady2.Size = new System.Drawing.Size(112, 26);
-            this.dateTimePickerFilterDateReady2.TabIndex = 13;
-            this.dateTimePickerFilterDateReady2.ValueChanged += new System.EventHandler(this.DateTimePickerFilterDateReady2_ValueChanged);
-            // 
-            // labelFilterStartDateComing
-            // 
-            this.labelFilterStartDateComing.AutoSize = true;
-            this.labelFilterStartDateComing.Location = new System.Drawing.Point(28, 156);
-            this.labelFilterStartDateComing.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelFilterStartDateComing.Name = "labelFilterStartDateComing";
-            this.labelFilterStartDateComing.Size = new System.Drawing.Size(35, 20);
-            this.labelFilterStartDateComing.TabIndex = 14;
-            this.labelFilterStartDateComing.Text = "від";
-            // 
-            // labelFilterEndDateComing
-            // 
-            this.labelFilterEndDateComing.AutoSize = true;
-            this.labelFilterEndDateComing.Location = new System.Drawing.Point(31, 192);
-            this.labelFilterEndDateComing.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelFilterEndDateComing.Name = "labelFilterEndDateComing";
-            this.labelFilterEndDateComing.Size = new System.Drawing.Size(31, 20);
-            this.labelFilterEndDateComing.TabIndex = 15;
-            this.labelFilterEndDateComing.Text = "до";
             // 
             // dataGridViewTehnologes
             // 
@@ -1126,8 +1044,7 @@
             this.ColumnDateReady,
             this.ColumnStatusGoods});
             this.dataGridViewTehnologes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridViewTehnologes.Location = new System.Drawing.Point(27, 272);
-            this.dataGridViewTehnologes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewTehnologes.Location = new System.Drawing.Point(10, 240);
             this.dataGridViewTehnologes.Name = "dataGridViewTehnologes";
             this.dataGridViewTehnologes.ReadOnly = true;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1139,8 +1056,8 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTehnologes.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTehnologes.RowHeadersVisible = false;
-            this.dataGridViewTehnologes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTehnologes.Size = new System.Drawing.Size(1270, 731);
+            this.dataGridViewTehnologes.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTehnologes.Size = new System.Drawing.Size(2280, 548);
             this.dataGridViewTehnologes.TabIndex = 0;
             this.dataGridViewTehnologes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewManagers_CellDoubleClick);
             this.dataGridViewTehnologes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewManagers_ColumnHeaderMouseClick);
@@ -1148,12 +1065,13 @@
             // 
             // ColumnID
             // 
-            this.ColumnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnID.Frozen = true;
             this.ColumnID.HeaderText = "ID";
             this.ColumnID.Name = "ColumnID";
             this.ColumnID.ReadOnly = true;
             this.ColumnID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnID.Width = 55;
+            this.ColumnID.Width = 46;
             // 
             // ColumnDateComing
             // 
@@ -1161,6 +1079,7 @@
             dataGridViewCellStyle5.Format = "d";
             dataGridViewCellStyle5.NullValue = null;
             this.ColumnDateComing.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ColumnDateComing.Frozen = true;
             this.ColumnDateComing.HeaderText = "Дата замовлення";
             this.ColumnDateComing.Name = "ColumnDateComing";
             this.ColumnDateComing.ReadOnly = true;
@@ -1168,58 +1087,66 @@
             // 
             // ColumnProfile
             // 
-            this.ColumnProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnProfile.Frozen = true;
             this.ColumnProfile.HeaderText = "Профіль";
             this.ColumnProfile.Name = "ColumnProfile";
             this.ColumnProfile.ReadOnly = true;
             this.ColumnProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnProfile.Width = 111;
             // 
             // ColumnCity
             // 
-            this.ColumnCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnCity.Frozen = true;
             this.ColumnCity.HeaderText = "Місто";
             this.ColumnCity.Name = "ColumnCity";
             this.ColumnCity.ReadOnly = true;
             this.ColumnCity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnCity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnCity.Width = 130;
             // 
             // ColumnDealer
             // 
-            this.ColumnDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnDealer.Frozen = true;
             this.ColumnDealer.HeaderText = "Дилер";
             this.ColumnDealer.Name = "ColumnDealer";
             this.ColumnDealer.ReadOnly = true;
             this.ColumnDealer.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnDealer.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnDealer.Width = 130;
             // 
             // ColumnNotes
             // 
-            this.ColumnNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnNotes.Frozen = true;
             this.ColumnNotes.HeaderText = "Примітки";
             this.ColumnNotes.Name = "ColumnNotes";
             this.ColumnNotes.ReadOnly = true;
             this.ColumnNotes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColumnNotes.Width = 150;
             // 
             // ColumnCounts
             // 
-            this.ColumnCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ColumnCounts.HeaderText = "Кількість";
+            this.ColumnCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnCounts.Frozen = true;
+            this.ColumnCounts.HeaderText = "К.";
             this.ColumnCounts.Name = "ColumnCounts";
             this.ColumnCounts.ReadOnly = true;
             this.ColumnCounts.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnCounts.Width = 115;
+            this.ColumnCounts.Width = 30;
             // 
             // ColumnColour
             // 
-            this.ColumnColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnColour.Frozen = true;
             this.ColumnColour.HeaderText = "Колір";
             this.ColumnColour.Name = "ColumnColour";
             this.ColumnColour.ReadOnly = true;
             this.ColumnColour.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnColour.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnColour.Width = 83;
+            this.ColumnColour.Width = 69;
             // 
             // ColumnDateToWork
             // 
@@ -1227,6 +1154,7 @@
             dataGridViewCellStyle6.Format = "d";
             dataGridViewCellStyle6.NullValue = null;
             this.ColumnDateToWork.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ColumnDateToWork.Frozen = true;
             this.ColumnDateToWork.HeaderText = "Дата в роботу";
             this.ColumnDateToWork.Name = "ColumnDateToWork";
             this.ColumnDateToWork.ReadOnly = true;
@@ -1234,13 +1162,14 @@
             // 
             // ColumnStatusProfile
             // 
-            this.ColumnStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnStatusProfile.Frozen = true;
             this.ColumnStatusProfile.HeaderText = "Статус профілю";
             this.ColumnStatusProfile.Name = "ColumnStatusProfile";
             this.ColumnStatusProfile.ReadOnly = true;
             this.ColumnStatusProfile.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnStatusProfile.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnStatusProfile.Width = 160;
+            this.ColumnStatusProfile.Width = 130;
             // 
             // ColumnDateReady
             // 
@@ -1248,6 +1177,7 @@
             dataGridViewCellStyle7.Format = "d";
             dataGridViewCellStyle7.NullValue = null;
             this.ColumnDateReady.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ColumnDateReady.Frozen = true;
             this.ColumnDateReady.HeaderText = "Дата готовності";
             this.ColumnDateReady.Name = "ColumnDateReady";
             this.ColumnDateReady.ReadOnly = true;
@@ -1255,13 +1185,14 @@
             // 
             // ColumnStatusGoods
             // 
-            this.ColumnStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnStatusGoods.Frozen = true;
             this.ColumnStatusGoods.HeaderText = "Статус виробу(ів)";
             this.ColumnStatusGoods.Name = "ColumnStatusGoods";
             this.ColumnStatusGoods.ReadOnly = true;
             this.ColumnStatusGoods.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnStatusGoods.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColumnStatusGoods.Width = 170;
+            this.ColumnStatusGoods.Width = 130;
             // 
             // tabPageAddRemove
             // 
@@ -1270,11 +1201,10 @@
             this.tabPageAddRemove.Controls.Add(this.groupBoxAddUser);
             this.tabPageAddRemove.Controls.Add(this.groupBoxRemove);
             this.tabPageAddRemove.Controls.Add(this.groupBoxAdd);
-            this.tabPageAddRemove.Location = new System.Drawing.Point(4, 29);
-            this.tabPageAddRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageAddRemove.Location = new System.Drawing.Point(4, 25);
             this.tabPageAddRemove.Name = "tabPageAddRemove";
-            this.tabPageAddRemove.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPageAddRemove.Size = new System.Drawing.Size(2412, 1205);
+            this.tabPageAddRemove.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAddRemove.Size = new System.Drawing.Size(2301, 816);
             this.tabPageAddRemove.TabIndex = 3;
             this.tabPageAddRemove.Text = "Додати/Видалити";
             this.tabPageAddRemove.UseVisualStyleBackColor = true;
@@ -1287,12 +1217,10 @@
             this.groupBoxRemoveUser.Controls.Add(this.comboBoxRemoveUserName);
             this.groupBoxRemoveUser.Controls.Add(this.labelRemoveUserRole);
             this.groupBoxRemoveUser.Controls.Add(this.labelRemoveUserName);
-            this.groupBoxRemoveUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxRemoveUser.Location = new System.Drawing.Point(1005, 474);
-            this.groupBoxRemoveUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxRemoveUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxRemoveUser.Location = new System.Drawing.Point(671, 378);
             this.groupBoxRemoveUser.Name = "groupBoxRemoveUser";
-            this.groupBoxRemoveUser.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxRemoveUser.Size = new System.Drawing.Size(651, 431);
+            this.groupBoxRemoveUser.Size = new System.Drawing.Size(568, 270);
             this.groupBoxRemoveUser.TabIndex = 31;
             this.groupBoxRemoveUser.TabStop = false;
             this.groupBoxRemoveUser.Text = "Видалити користувача";
@@ -1300,10 +1228,9 @@
             // 
             // buttonCancelRemove
             // 
-            this.buttonCancelRemove.Location = new System.Drawing.Point(100, 313);
-            this.buttonCancelRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCancelRemove.Location = new System.Drawing.Point(264, 190);
             this.buttonCancelRemove.Name = "buttonCancelRemove";
-            this.buttonCancelRemove.Size = new System.Drawing.Size(192, 37);
+            this.buttonCancelRemove.Size = new System.Drawing.Size(128, 35);
             this.buttonCancelRemove.TabIndex = 5;
             this.buttonCancelRemove.Text = "Відмінити";
             this.buttonCancelRemove.UseVisualStyleBackColor = true;
@@ -1311,10 +1238,9 @@
             // 
             // buttonRemoveUser
             // 
-            this.buttonRemoveUser.Location = new System.Drawing.Point(363, 313);
-            this.buttonRemoveUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRemoveUser.Location = new System.Drawing.Point(412, 190);
             this.buttonRemoveUser.Name = "buttonRemoveUser";
-            this.buttonRemoveUser.Size = new System.Drawing.Size(229, 37);
+            this.buttonRemoveUser.Size = new System.Drawing.Size(128, 35);
             this.buttonRemoveUser.TabIndex = 4;
             this.buttonRemoveUser.Text = "Видалити користувача";
             this.buttonRemoveUser.UseVisualStyleBackColor = true;
@@ -1324,10 +1250,9 @@
             // 
             this.comboBoxRemoveUserRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRemoveUserRole.FormattingEnabled = true;
-            this.comboBoxRemoveUserRole.Location = new System.Drawing.Point(363, 128);
-            this.comboBoxRemoveUserRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxRemoveUserRole.Location = new System.Drawing.Point(317, 43);
             this.comboBoxRemoveUserRole.Name = "comboBoxRemoveUserRole";
-            this.comboBoxRemoveUserRole.Size = new System.Drawing.Size(228, 33);
+            this.comboBoxRemoveUserRole.Size = new System.Drawing.Size(222, 24);
             this.comboBoxRemoveUserRole.TabIndex = 3;
             this.comboBoxRemoveUserRole.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRemoveUserRole_SelectedIndexChanged);
             // 
@@ -1336,29 +1261,26 @@
             this.comboBoxRemoveUserName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRemoveUserName.Enabled = false;
             this.comboBoxRemoveUserName.FormattingEnabled = true;
-            this.comboBoxRemoveUserName.Location = new System.Drawing.Point(363, 206);
-            this.comboBoxRemoveUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxRemoveUserName.Location = new System.Drawing.Point(317, 105);
             this.comboBoxRemoveUserName.Name = "comboBoxRemoveUserName";
-            this.comboBoxRemoveUserName.Size = new System.Drawing.Size(228, 33);
+            this.comboBoxRemoveUserName.Size = new System.Drawing.Size(222, 24);
             this.comboBoxRemoveUserName.TabIndex = 2;
             // 
             // labelRemoveUserRole
             // 
             this.labelRemoveUserRole.AutoSize = true;
-            this.labelRemoveUserRole.Location = new System.Drawing.Point(44, 128);
-            this.labelRemoveUserRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRemoveUserRole.Location = new System.Drawing.Point(7, 43);
             this.labelRemoveUserRole.Name = "labelRemoveUserRole";
-            this.labelRemoveUserRole.Size = new System.Drawing.Size(212, 25);
+            this.labelRemoveUserRole.Size = new System.Drawing.Size(149, 17);
             this.labelRemoveUserRole.TabIndex = 1;
             this.labelRemoveUserRole.Text = "Виберіть тип доступу";
             // 
             // labelRemoveUserName
             // 
             this.labelRemoveUserName.AutoSize = true;
-            this.labelRemoveUserName.Location = new System.Drawing.Point(44, 206);
-            this.labelRemoveUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRemoveUserName.Location = new System.Drawing.Point(7, 105);
             this.labelRemoveUserName.Name = "labelRemoveUserName";
-            this.labelRemoveUserName.Size = new System.Drawing.Size(265, 25);
+            this.labelRemoveUserName.Size = new System.Drawing.Size(189, 17);
             this.labelRemoveUserName.TabIndex = 0;
             this.labelRemoveUserName.Text = "Виберіть логін користувача";
             // 
@@ -1375,12 +1297,10 @@
             this.groupBoxAddUser.Controls.Add(this.comboBoxAddUserRole);
             this.groupBoxAddUser.Controls.Add(this.textBoxAddUserPassword);
             this.groupBoxAddUser.Controls.Add(this.textBoxAddNewUser);
-            this.groupBoxAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxAddUser.Location = new System.Drawing.Point(1005, 10);
-            this.groupBoxAddUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxAddUser.Location = new System.Drawing.Point(671, 18);
             this.groupBoxAddUser.Name = "groupBoxAddUser";
-            this.groupBoxAddUser.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxAddUser.Size = new System.Drawing.Size(651, 431);
+            this.groupBoxAddUser.Size = new System.Drawing.Size(568, 344);
             this.groupBoxAddUser.TabIndex = 30;
             this.groupBoxAddUser.TabStop = false;
             this.groupBoxAddUser.Text = "Додати користувача";
@@ -1391,10 +1311,9 @@
             this.labelErrorPassword.AutoSize = true;
             this.labelErrorPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelErrorPassword.ForeColor = System.Drawing.Color.Red;
-            this.labelErrorPassword.Location = new System.Drawing.Point(64, 281);
-            this.labelErrorPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelErrorPassword.Location = new System.Drawing.Point(0, 225);
             this.labelErrorPassword.Name = "labelErrorPassword";
-            this.labelErrorPassword.Size = new System.Drawing.Size(511, 20);
+            this.labelErrorPassword.Size = new System.Drawing.Size(396, 17);
             this.labelErrorPassword.TabIndex = 10;
             this.labelErrorPassword.Text = "Пароль повинен містити тільки цифри та литинські літери.";
             this.labelErrorPassword.Visible = false;
@@ -1403,10 +1322,9 @@
             // 
             this.comboBoxEditUserRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEditUserRole.FormattingEnabled = true;
-            this.comboBoxEditUserRole.Location = new System.Drawing.Point(363, 96);
-            this.comboBoxEditUserRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxEditUserRole.Location = new System.Drawing.Point(318, 76);
             this.comboBoxEditUserRole.Name = "comboBoxEditUserRole";
-            this.comboBoxEditUserRole.Size = new System.Drawing.Size(227, 33);
+            this.comboBoxEditUserRole.Size = new System.Drawing.Size(221, 24);
             this.comboBoxEditUserRole.TabIndex = 9;
             this.comboBoxEditUserRole.Visible = false;
             this.comboBoxEditUserRole.SelectedIndexChanged += new System.EventHandler(this.comboBoxEditUserRole_SelectedIndexChanged);
@@ -1416,19 +1334,17 @@
             this.comboBoxEditUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEditUser.Enabled = false;
             this.comboBoxEditUser.FormattingEnabled = true;
-            this.comboBoxEditUser.Location = new System.Drawing.Point(361, 170);
-            this.comboBoxEditUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxEditUser.Location = new System.Drawing.Point(317, 136);
             this.comboBoxEditUser.Name = "comboBoxEditUser";
-            this.comboBoxEditUser.Size = new System.Drawing.Size(228, 33);
+            this.comboBoxEditUser.Size = new System.Drawing.Size(222, 24);
             this.comboBoxEditUser.TabIndex = 8;
             this.comboBoxEditUser.Visible = false;
             // 
             // buttonEditUser
             // 
-            this.buttonEditUser.Location = new System.Drawing.Point(100, 326);
-            this.buttonEditUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonEditUser.Location = new System.Drawing.Point(63, 261);
             this.buttonEditUser.Name = "buttonEditUser";
-            this.buttonEditUser.Size = new System.Drawing.Size(192, 43);
+            this.buttonEditUser.Size = new System.Drawing.Size(187, 35);
             this.buttonEditUser.TabIndex = 7;
             this.buttonEditUser.Text = "Змінити пароль";
             this.buttonEditUser.UseVisualStyleBackColor = true;
@@ -1436,10 +1352,9 @@
             // 
             // buttonAddNewUser
             // 
-            this.buttonAddNewUser.Location = new System.Drawing.Point(355, 325);
-            this.buttonAddNewUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddNewUser.Location = new System.Drawing.Point(311, 260);
             this.buttonAddNewUser.Name = "buttonAddNewUser";
-            this.buttonAddNewUser.Size = new System.Drawing.Size(247, 44);
+            this.buttonAddNewUser.Size = new System.Drawing.Size(240, 35);
             this.buttonAddNewUser.TabIndex = 6;
             this.buttonAddNewUser.Text = "Додати користувача";
             this.buttonAddNewUser.UseVisualStyleBackColor = true;
@@ -1448,30 +1363,27 @@
             // labelAddUserRole
             // 
             this.labelAddUserRole.AutoSize = true;
-            this.labelAddUserRole.Location = new System.Drawing.Point(63, 95);
-            this.labelAddUserRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddUserRole.Location = new System.Drawing.Point(27, 76);
             this.labelAddUserRole.Name = "labelAddUserRole";
-            this.labelAddUserRole.Size = new System.Drawing.Size(212, 25);
+            this.labelAddUserRole.Size = new System.Drawing.Size(149, 17);
             this.labelAddUserRole.TabIndex = 5;
             this.labelAddUserRole.Text = "Виберіть тип доступу";
             // 
             // labelAddUserPassword
             // 
             this.labelAddUserPassword.AutoSize = true;
-            this.labelAddUserPassword.Location = new System.Drawing.Point(63, 245);
-            this.labelAddUserPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddUserPassword.Location = new System.Drawing.Point(27, 196);
             this.labelAddUserPassword.Name = "labelAddUserPassword";
-            this.labelAddUserPassword.Size = new System.Drawing.Size(200, 25);
+            this.labelAddUserPassword.Size = new System.Drawing.Size(144, 17);
             this.labelAddUserPassword.TabIndex = 4;
             this.labelAddUserPassword.Text = "Пароль користувача";
             // 
             // labelAddUserName
             // 
             this.labelAddUserName.AutoSize = true;
-            this.labelAddUserName.Location = new System.Drawing.Point(63, 165);
-            this.labelAddUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddUserName.Location = new System.Drawing.Point(27, 132);
             this.labelAddUserName.Name = "labelAddUserName";
-            this.labelAddUserName.Size = new System.Drawing.Size(181, 25);
+            this.labelAddUserName.Size = new System.Drawing.Size(129, 17);
             this.labelAddUserName.TabIndex = 3;
             this.labelAddUserName.Text = "Логін користувача";
             // 
@@ -1479,27 +1391,24 @@
             // 
             this.comboBoxAddUserRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAddUserRole.FormattingEnabled = true;
-            this.comboBoxAddUserRole.Location = new System.Drawing.Point(363, 91);
-            this.comboBoxAddUserRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxAddUserRole.Location = new System.Drawing.Point(318, 73);
             this.comboBoxAddUserRole.Name = "comboBoxAddUserRole";
-            this.comboBoxAddUserRole.Size = new System.Drawing.Size(228, 33);
+            this.comboBoxAddUserRole.Size = new System.Drawing.Size(222, 24);
             this.comboBoxAddUserRole.TabIndex = 2;
             // 
             // textBoxAddUserPassword
             // 
-            this.textBoxAddUserPassword.Location = new System.Drawing.Point(363, 245);
-            this.textBoxAddUserPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAddUserPassword.Location = new System.Drawing.Point(318, 196);
             this.textBoxAddUserPassword.Name = "textBoxAddUserPassword";
             this.textBoxAddUserPassword.PasswordChar = '*';
-            this.textBoxAddUserPassword.Size = new System.Drawing.Size(228, 30);
+            this.textBoxAddUserPassword.Size = new System.Drawing.Size(222, 23);
             this.textBoxAddUserPassword.TabIndex = 1;
             // 
             // textBoxAddNewUser
             // 
-            this.textBoxAddNewUser.Location = new System.Drawing.Point(363, 164);
-            this.textBoxAddNewUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAddNewUser.Location = new System.Drawing.Point(318, 132);
             this.textBoxAddNewUser.Name = "textBoxAddNewUser";
-            this.textBoxAddNewUser.Size = new System.Drawing.Size(228, 30);
+            this.textBoxAddNewUser.Size = new System.Drawing.Size(222, 23);
             this.textBoxAddNewUser.TabIndex = 0;
             // 
             // groupBoxRemove
@@ -1515,12 +1424,10 @@
             this.groupBoxRemove.Controls.Add(this.labelRemoveDealer);
             this.groupBoxRemove.Controls.Add(this.buttonRemoveColour);
             this.groupBoxRemove.Controls.Add(this.buttonRemoveProfile);
-            this.groupBoxRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxRemove.Location = new System.Drawing.Point(40, 474);
-            this.groupBoxRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxRemove.Location = new System.Drawing.Point(38, 378);
             this.groupBoxRemove.Name = "groupBoxRemove";
-            this.groupBoxRemove.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxRemove.Size = new System.Drawing.Size(933, 431);
+            this.groupBoxRemove.Size = new System.Drawing.Size(627, 270);
             this.groupBoxRemove.TabIndex = 29;
             this.groupBoxRemove.TabStop = false;
             this.groupBoxRemove.Text = "Видалити інформацію з бази данних";
@@ -1529,10 +1436,9 @@
             // 
             this.comboBoxRemoveCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRemoveCity.FormattingEnabled = true;
-            this.comboBoxRemoveCity.Location = new System.Drawing.Point(159, 112);
-            this.comboBoxRemoveCity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxRemoveCity.Location = new System.Drawing.Point(17, 76);
             this.comboBoxRemoveCity.Name = "comboBoxRemoveCity";
-            this.comboBoxRemoveCity.Size = new System.Drawing.Size(199, 33);
+            this.comboBoxRemoveCity.Size = new System.Drawing.Size(193, 24);
             this.comboBoxRemoveCity.TabIndex = 13;
             this.comboBoxRemoveCity.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRemoveCity_SelectedIndexChanged);
             // 
@@ -1541,19 +1447,17 @@
             this.comboBoxRemoveDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRemoveDealer.Enabled = false;
             this.comboBoxRemoveDealer.FormattingEnabled = true;
-            this.comboBoxRemoveDealer.Location = new System.Drawing.Point(388, 111);
-            this.comboBoxRemoveDealer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxRemoveDealer.Location = new System.Drawing.Point(240, 75);
             this.comboBoxRemoveDealer.Name = "comboBoxRemoveDealer";
-            this.comboBoxRemoveDealer.Size = new System.Drawing.Size(199, 33);
+            this.comboBoxRemoveDealer.Size = new System.Drawing.Size(193, 24);
             this.comboBoxRemoveDealer.TabIndex = 14;
             // 
             // labelRemoveColour
             // 
             this.labelRemoveColour.AutoSize = true;
-            this.labelRemoveColour.Location = new System.Drawing.Point(56, 325);
-            this.labelRemoveColour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRemoveColour.Location = new System.Drawing.Point(8, 215);
             this.labelRemoveColour.Name = "labelRemoveColour";
-            this.labelRemoveColour.Size = new System.Drawing.Size(62, 25);
+            this.labelRemoveColour.Size = new System.Drawing.Size(44, 17);
             this.labelRemoveColour.TabIndex = 25;
             this.labelRemoveColour.Text = "Колір";
             // 
@@ -1561,19 +1465,17 @@
             // 
             this.comboBoxRemoveProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRemoveProfile.FormattingEnabled = true;
-            this.comboBoxRemoveProfile.Location = new System.Drawing.Point(159, 247);
-            this.comboBoxRemoveProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxRemoveProfile.Location = new System.Drawing.Point(108, 152);
             this.comboBoxRemoveProfile.Name = "comboBoxRemoveProfile";
-            this.comboBoxRemoveProfile.Size = new System.Drawing.Size(199, 33);
+            this.comboBoxRemoveProfile.Size = new System.Drawing.Size(193, 24);
             this.comboBoxRemoveProfile.TabIndex = 16;
             // 
             // labelRemoveProfile
             // 
             this.labelRemoveProfile.AutoSize = true;
-            this.labelRemoveProfile.Location = new System.Drawing.Point(56, 256);
-            this.labelRemoveProfile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRemoveProfile.Location = new System.Drawing.Point(8, 159);
             this.labelRemoveProfile.Name = "labelRemoveProfile";
-            this.labelRemoveProfile.Size = new System.Drawing.Size(93, 25);
+            this.labelRemoveProfile.Size = new System.Drawing.Size(63, 17);
             this.labelRemoveProfile.TabIndex = 24;
             this.labelRemoveProfile.Text = "Профіль";
             // 
@@ -1581,28 +1483,25 @@
             // 
             this.comboBoxRemoveColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRemoveColour.FormattingEnabled = true;
-            this.comboBoxRemoveColour.Location = new System.Drawing.Point(159, 316);
-            this.comboBoxRemoveColour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxRemoveColour.Location = new System.Drawing.Point(108, 208);
             this.comboBoxRemoveColour.Name = "comboBoxRemoveColour";
-            this.comboBoxRemoveColour.Size = new System.Drawing.Size(199, 33);
+            this.comboBoxRemoveColour.Size = new System.Drawing.Size(193, 24);
             this.comboBoxRemoveColour.TabIndex = 17;
             // 
             // labelRemoveCity
             // 
             this.labelRemoveCity.AutoSize = true;
-            this.labelRemoveCity.Location = new System.Drawing.Point(200, 64);
-            this.labelRemoveCity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRemoveCity.Location = new System.Drawing.Point(57, 37);
             this.labelRemoveCity.Name = "labelRemoveCity";
-            this.labelRemoveCity.Size = new System.Drawing.Size(65, 25);
+            this.labelRemoveCity.Size = new System.Drawing.Size(44, 17);
             this.labelRemoveCity.TabIndex = 23;
             this.labelRemoveCity.Text = "Місто";
             // 
             // buttonRemoveDealer
             // 
-            this.buttonRemoveDealer.Location = new System.Drawing.Point(619, 108);
-            this.buttonRemoveDealer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRemoveDealer.Location = new System.Drawing.Point(464, 73);
             this.buttonRemoveDealer.Name = "buttonRemoveDealer";
-            this.buttonRemoveDealer.Size = new System.Drawing.Size(131, 41);
+            this.buttonRemoveDealer.Size = new System.Drawing.Size(128, 35);
             this.buttonRemoveDealer.TabIndex = 18;
             this.buttonRemoveDealer.Text = "Видалити";
             this.buttonRemoveDealer.UseVisualStyleBackColor = true;
@@ -1611,19 +1510,17 @@
             // labelRemoveDealer
             // 
             this.labelRemoveDealer.AutoSize = true;
-            this.labelRemoveDealer.Location = new System.Drawing.Point(447, 64);
-            this.labelRemoveDealer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRemoveDealer.Location = new System.Drawing.Point(297, 37);
             this.labelRemoveDealer.Name = "labelRemoveDealer";
-            this.labelRemoveDealer.Size = new System.Drawing.Size(84, 25);
+            this.labelRemoveDealer.Size = new System.Drawing.Size(59, 17);
             this.labelRemoveDealer.TabIndex = 22;
             this.labelRemoveDealer.Text = "Дилера";
             // 
             // buttonRemoveColour
             // 
-            this.buttonRemoveColour.Location = new System.Drawing.Point(388, 316);
-            this.buttonRemoveColour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRemoveColour.Location = new System.Drawing.Point(331, 208);
             this.buttonRemoveColour.Name = "buttonRemoveColour";
-            this.buttonRemoveColour.Size = new System.Drawing.Size(131, 41);
+            this.buttonRemoveColour.Size = new System.Drawing.Size(128, 35);
             this.buttonRemoveColour.TabIndex = 21;
             this.buttonRemoveColour.Text = "Видалити";
             this.buttonRemoveColour.UseVisualStyleBackColor = true;
@@ -1631,10 +1528,9 @@
             // 
             // buttonRemoveProfile
             // 
-            this.buttonRemoveProfile.Location = new System.Drawing.Point(388, 244);
-            this.buttonRemoveProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRemoveProfile.Location = new System.Drawing.Point(331, 150);
             this.buttonRemoveProfile.Name = "buttonRemoveProfile";
-            this.buttonRemoveProfile.Size = new System.Drawing.Size(131, 41);
+            this.buttonRemoveProfile.Size = new System.Drawing.Size(128, 35);
             this.buttonRemoveProfile.TabIndex = 20;
             this.buttonRemoveProfile.Text = "Видалити";
             this.buttonRemoveProfile.UseVisualStyleBackColor = true;
@@ -1656,41 +1552,35 @@
             this.groupBoxAdd.Controls.Add(this.labelAddProfile);
             this.groupBoxAdd.Controls.Add(this.labelAddColour);
             this.groupBoxAdd.Controls.Add(this.сomboBoxAddCityDealer);
-            this.groupBoxAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxAdd.Location = new System.Drawing.Point(40, 10);
-            this.groupBoxAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxAdd.Location = new System.Drawing.Point(38, 8);
             this.groupBoxAdd.Name = "groupBoxAdd";
-            this.groupBoxAdd.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxAdd.Size = new System.Drawing.Size(933, 431);
+            this.groupBoxAdd.Size = new System.Drawing.Size(627, 344);
             this.groupBoxAdd.TabIndex = 28;
             this.groupBoxAdd.TabStop = false;
             this.groupBoxAdd.Text = "Додати інформацію до бази данних";
             // 
             // textBoxAddCity
             // 
-            this.textBoxAddCity.Location = new System.Drawing.Point(159, 176);
-            this.textBoxAddCity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAddCity.Location = new System.Drawing.Point(108, 134);
             this.textBoxAddCity.Name = "textBoxAddCity";
-            this.textBoxAddCity.Size = new System.Drawing.Size(203, 30);
+            this.textBoxAddCity.Size = new System.Drawing.Size(198, 23);
             this.textBoxAddCity.TabIndex = 16;
-            this.textBoxAddCity.Enter += new System.EventHandler(this.TextBoxAddCity_Enter);
             // 
             // labelAddCity
             // 
             this.labelAddCity.AutoSize = true;
-            this.labelAddCity.Location = new System.Drawing.Point(56, 177);
-            this.labelAddCity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddCity.Location = new System.Drawing.Point(8, 135);
             this.labelAddCity.Name = "labelAddCity";
-            this.labelAddCity.Size = new System.Drawing.Size(65, 25);
+            this.labelAddCity.Size = new System.Drawing.Size(44, 17);
             this.labelAddCity.TabIndex = 15;
             this.labelAddCity.Text = "Місто";
             // 
             // buttonAddCity
             // 
-            this.buttonAddCity.Location = new System.Drawing.Point(392, 177);
-            this.buttonAddCity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddCity.Location = new System.Drawing.Point(335, 135);
             this.buttonAddCity.Name = "buttonAddCity";
-            this.buttonAddCity.Size = new System.Drawing.Size(105, 34);
+            this.buttonAddCity.Size = new System.Drawing.Size(105, 35);
             this.buttonAddCity.TabIndex = 14;
             this.buttonAddCity.Text = "Додати";
             this.buttonAddCity.UseVisualStyleBackColor = true;
@@ -1699,34 +1589,30 @@
             // textBoxAddDealer
             // 
             this.textBoxAddDealer.Enabled = false;
-            this.textBoxAddDealer.Location = new System.Drawing.Point(388, 94);
-            this.textBoxAddDealer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAddDealer.Location = new System.Drawing.Point(234, 73);
             this.textBoxAddDealer.Name = "textBoxAddDealer";
-            this.textBoxAddDealer.Size = new System.Drawing.Size(199, 30);
+            this.textBoxAddDealer.Size = new System.Drawing.Size(193, 23);
             this.textBoxAddDealer.TabIndex = 1;
             // 
             // textBoxAddProfile
             // 
-            this.textBoxAddProfile.Location = new System.Drawing.Point(163, 251);
-            this.textBoxAddProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAddProfile.Location = new System.Drawing.Point(113, 194);
             this.textBoxAddProfile.Name = "textBoxAddProfile";
-            this.textBoxAddProfile.Size = new System.Drawing.Size(199, 30);
+            this.textBoxAddProfile.Size = new System.Drawing.Size(193, 23);
             this.textBoxAddProfile.TabIndex = 2;
             // 
             // textBoxAddColour
             // 
-            this.textBoxAddColour.Location = new System.Drawing.Point(163, 321);
-            this.textBoxAddColour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAddColour.Location = new System.Drawing.Point(113, 250);
             this.textBoxAddColour.Name = "textBoxAddColour";
-            this.textBoxAddColour.Size = new System.Drawing.Size(199, 30);
+            this.textBoxAddColour.Size = new System.Drawing.Size(193, 23);
             this.textBoxAddColour.TabIndex = 3;
             // 
             // Add_NewDealer
             // 
-            this.Add_NewDealer.Location = new System.Drawing.Point(619, 92);
-            this.Add_NewDealer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Add_NewDealer.Location = new System.Drawing.Point(459, 71);
             this.Add_NewDealer.Name = "Add_NewDealer";
-            this.Add_NewDealer.Size = new System.Drawing.Size(105, 39);
+            this.Add_NewDealer.Size = new System.Drawing.Size(105, 35);
             this.Add_NewDealer.TabIndex = 5;
             this.Add_NewDealer.Text = "Додати";
             this.Add_NewDealer.UseVisualStyleBackColor = true;
@@ -1734,10 +1620,9 @@
             // 
             // Add_NewProfile
             // 
-            this.Add_NewProfile.Location = new System.Drawing.Point(392, 245);
-            this.Add_NewProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Add_NewProfile.Location = new System.Drawing.Point(335, 189);
             this.Add_NewProfile.Name = "Add_NewProfile";
-            this.Add_NewProfile.Size = new System.Drawing.Size(105, 39);
+            this.Add_NewProfile.Size = new System.Drawing.Size(105, 35);
             this.Add_NewProfile.TabIndex = 6;
             this.Add_NewProfile.Text = "Додати";
             this.Add_NewProfile.UseVisualStyleBackColor = true;
@@ -1745,10 +1630,9 @@
             // 
             // Add_NewColour
             // 
-            this.Add_NewColour.Location = new System.Drawing.Point(392, 315);
-            this.Add_NewColour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Add_NewColour.Location = new System.Drawing.Point(335, 246);
             this.Add_NewColour.Name = "Add_NewColour";
-            this.Add_NewColour.Size = new System.Drawing.Size(105, 39);
+            this.Add_NewColour.Size = new System.Drawing.Size(105, 35);
             this.Add_NewColour.TabIndex = 7;
             this.Add_NewColour.Text = "Додати";
             this.Add_NewColour.UseVisualStyleBackColor = true;
@@ -1757,40 +1641,36 @@
             // LabelAddCityDealer
             // 
             this.LabelAddCityDealer.AutoSize = true;
-            this.LabelAddCityDealer.Location = new System.Drawing.Point(220, 44);
-            this.LabelAddCityDealer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelAddCityDealer.Location = new System.Drawing.Point(71, 33);
             this.LabelAddCityDealer.Name = "LabelAddCityDealer";
-            this.LabelAddCityDealer.Size = new System.Drawing.Size(65, 25);
+            this.LabelAddCityDealer.Size = new System.Drawing.Size(44, 17);
             this.LabelAddCityDealer.TabIndex = 8;
             this.LabelAddCityDealer.Text = "Місто";
             // 
             // labelAddDealer
             // 
             this.labelAddDealer.AutoSize = true;
-            this.labelAddDealer.Location = new System.Drawing.Point(447, 44);
-            this.labelAddDealer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddDealer.Location = new System.Drawing.Point(291, 33);
             this.labelAddDealer.Name = "labelAddDealer";
-            this.labelAddDealer.Size = new System.Drawing.Size(84, 25);
+            this.labelAddDealer.Size = new System.Drawing.Size(59, 17);
             this.labelAddDealer.TabIndex = 9;
             this.labelAddDealer.Text = "Дилера";
             // 
             // labelAddProfile
             // 
             this.labelAddProfile.AutoSize = true;
-            this.labelAddProfile.Location = new System.Drawing.Point(56, 251);
-            this.labelAddProfile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddProfile.Location = new System.Drawing.Point(8, 194);
             this.labelAddProfile.Name = "labelAddProfile";
-            this.labelAddProfile.Size = new System.Drawing.Size(93, 25);
+            this.labelAddProfile.Size = new System.Drawing.Size(63, 17);
             this.labelAddProfile.TabIndex = 10;
             this.labelAddProfile.Text = "Профіль";
             // 
             // labelAddColour
             // 
             this.labelAddColour.AutoSize = true;
-            this.labelAddColour.Location = new System.Drawing.Point(56, 321);
-            this.labelAddColour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddColour.Location = new System.Drawing.Point(8, 250);
             this.labelAddColour.Name = "labelAddColour";
-            this.labelAddColour.Size = new System.Drawing.Size(62, 25);
+            this.labelAddColour.Size = new System.Drawing.Size(44, 17);
             this.labelAddColour.TabIndex = 11;
             this.labelAddColour.Text = "Колір";
             // 
@@ -1800,10 +1680,9 @@
             this.сomboBoxAddCityDealer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.сomboBoxAddCityDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.сomboBoxAddCityDealer.FormattingEnabled = true;
-            this.сomboBoxAddCityDealer.Location = new System.Drawing.Point(159, 92);
-            this.сomboBoxAddCityDealer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.сomboBoxAddCityDealer.Location = new System.Drawing.Point(11, 71);
             this.сomboBoxAddCityDealer.Name = "сomboBoxAddCityDealer";
-            this.сomboBoxAddCityDealer.Size = new System.Drawing.Size(199, 33);
+            this.сomboBoxAddCityDealer.Size = new System.Drawing.Size(193, 24);
             this.сomboBoxAddCityDealer.TabIndex = 12;
             this.сomboBoxAddCityDealer.SelectedIndexChanged += new System.EventHandler(this.СomboxAddCity_SelectedIndexChanged);
             this.сomboBoxAddCityDealer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.СomboxAddCity_KeyDown);
@@ -1813,11 +1692,10 @@
             this.tabPageLogs.AutoScroll = true;
             this.tabPageLogs.Controls.Add(this.groupBoxArchive);
             this.tabPageLogs.Controls.Add(this.dataGridViewLogs);
-            this.tabPageLogs.Location = new System.Drawing.Point(4, 29);
-            this.tabPageLogs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageLogs.Location = new System.Drawing.Point(4, 25);
             this.tabPageLogs.Name = "tabPageLogs";
-            this.tabPageLogs.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPageLogs.Size = new System.Drawing.Size(2412, 1205);
+            this.tabPageLogs.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLogs.Size = new System.Drawing.Size(2301, 816);
             this.tabPageLogs.TabIndex = 4;
             this.tabPageLogs.Text = "Журнал операцій";
             this.tabPageLogs.UseVisualStyleBackColor = true;
@@ -1842,21 +1720,18 @@
             this.groupBoxArchive.Controls.Add(this.labelActual);
             this.groupBoxArchive.Controls.Add(this.labelArchiveCity);
             this.groupBoxArchive.Controls.Add(this.labelArchiveProfile);
-            this.groupBoxArchive.Location = new System.Drawing.Point(27, 21);
-            this.groupBoxArchive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxArchive.Location = new System.Drawing.Point(19, 17);
             this.groupBoxArchive.Name = "groupBoxArchive";
-            this.groupBoxArchive.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxArchive.Size = new System.Drawing.Size(2372, 246);
+            this.groupBoxArchive.Size = new System.Drawing.Size(1798, 137);
             this.groupBoxArchive.TabIndex = 19;
             this.groupBoxArchive.TabStop = false;
             this.groupBoxArchive.Text = "Пошук по архіву";
             // 
             // buttonUpdateGridViewArchive
             // 
-            this.buttonUpdateGridViewArchive.Location = new System.Drawing.Point(8, 116);
-            this.buttonUpdateGridViewArchive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonUpdateGridViewArchive.Location = new System.Drawing.Point(15, 92);
             this.buttonUpdateGridViewArchive.Name = "buttonUpdateGridViewArchive";
-            this.buttonUpdateGridViewArchive.Size = new System.Drawing.Size(100, 31);
+            this.buttonUpdateGridViewArchive.Size = new System.Drawing.Size(119, 38);
             this.buttonUpdateGridViewArchive.TabIndex = 9;
             this.buttonUpdateGridViewArchive.Text = "Оновити";
             this.buttonUpdateGridViewArchive.UseVisualStyleBackColor = true;
@@ -1865,19 +1740,17 @@
             // labelDateTimeUpdate
             // 
             this.labelDateTimeUpdate.AutoSize = true;
-            this.labelDateTimeUpdate.Location = new System.Drawing.Point(9, 85);
-            this.labelDateTimeUpdate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDateTimeUpdate.Location = new System.Drawing.Point(8, 68);
             this.labelDateTimeUpdate.Name = "labelDateTimeUpdate";
-            this.labelDateTimeUpdate.Size = new System.Drawing.Size(0, 20);
+            this.labelDateTimeUpdate.Size = new System.Drawing.Size(0, 17);
             this.labelDateTimeUpdate.TabIndex = 8;
             // 
             // checkBoxWithOperation
             // 
             this.checkBoxWithOperation.AutoSize = true;
-            this.checkBoxWithOperation.Location = new System.Drawing.Point(1272, 105);
-            this.checkBoxWithOperation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxWithOperation.Location = new System.Drawing.Point(1054, 15);
             this.checkBoxWithOperation.Name = "checkBoxWithOperation";
-            this.checkBoxWithOperation.Size = new System.Drawing.Size(144, 24);
+            this.checkBoxWithOperation.Size = new System.Drawing.Size(116, 21);
             this.checkBoxWithOperation.TabIndex = 18;
             this.checkBoxWithOperation.Text = "З операціями";
             this.checkBoxWithOperation.UseVisualStyleBackColor = true;
@@ -1886,19 +1759,17 @@
             // 
             this.comboBoxArchiveProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxArchiveProfile.FormattingEnabled = true;
-            this.comboBoxArchiveProfile.Location = new System.Drawing.Point(376, 101);
-            this.comboBoxArchiveProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxArchiveProfile.Location = new System.Drawing.Point(331, 81);
             this.comboBoxArchiveProfile.Name = "comboBoxArchiveProfile";
-            this.comboBoxArchiveProfile.Size = new System.Drawing.Size(124, 28);
+            this.comboBoxArchiveProfile.Size = new System.Drawing.Size(121, 24);
             this.comboBoxArchiveProfile.TabIndex = 1;
             // 
             // textBoxIDColourGoods
             // 
-            this.textBoxIDColourGoods.Location = new System.Drawing.Point(197, 102);
-            this.textBoxIDColourGoods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxIDColourGoods.Location = new System.Drawing.Point(191, 82);
             this.textBoxIDColourGoods.MaxLength = 8;
             this.textBoxIDColourGoods.Name = "textBoxIDColourGoods";
-            this.textBoxIDColourGoods.Size = new System.Drawing.Size(132, 26);
+            this.textBoxIDColourGoods.Size = new System.Drawing.Size(129, 23);
             this.textBoxIDColourGoods.TabIndex = 17;
             this.textBoxIDColourGoods.TextChanged += new System.EventHandler(this.TextBoxIDColourGoods_TextChanged);
             this.textBoxIDColourGoods.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxIDColourGoods_KeyPress);
@@ -1907,20 +1778,18 @@
             // 
             this.comboBoxArchiveCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxArchiveCity.FormattingEnabled = true;
-            this.comboBoxArchiveCity.Location = new System.Drawing.Point(529, 101);
-            this.comboBoxArchiveCity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxArchiveCity.Location = new System.Drawing.Point(458, 81);
             this.comboBoxArchiveCity.Name = "comboBoxArchiveCity";
-            this.comboBoxArchiveCity.Size = new System.Drawing.Size(160, 28);
+            this.comboBoxArchiveCity.Size = new System.Drawing.Size(156, 24);
             this.comboBoxArchiveCity.TabIndex = 2;
             this.comboBoxArchiveCity.SelectedIndexChanged += new System.EventHandler(this.ComboBoxArchiveCity_SelectedIndexChanged);
             // 
             // labelIDColourGoods
             // 
             this.labelIDColourGoods.AutoSize = true;
-            this.labelIDColourGoods.Location = new System.Drawing.Point(193, 52);
-            this.labelIDColourGoods.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelIDColourGoods.Location = new System.Drawing.Point(188, 42);
             this.labelIDColourGoods.Name = "labelIDColourGoods";
-            this.labelIDColourGoods.Size = new System.Drawing.Size(132, 20);
+            this.labelIDColourGoods.Size = new System.Drawing.Size(104, 17);
             this.labelIDColourGoods.TabIndex = 16;
             this.labelIDColourGoods.Text = "ID замовлення";
             // 
@@ -1928,18 +1797,16 @@
             // 
             this.comboBoxArchiveDealer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxArchiveDealer.FormattingEnabled = true;
-            this.comboBoxArchiveDealer.Location = new System.Drawing.Point(735, 101);
-            this.comboBoxArchiveDealer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxArchiveDealer.Location = new System.Drawing.Point(622, 81);
             this.comboBoxArchiveDealer.Name = "comboBoxArchiveDealer";
-            this.comboBoxArchiveDealer.Size = new System.Drawing.Size(160, 28);
+            this.comboBoxArchiveDealer.Size = new System.Drawing.Size(156, 24);
             this.comboBoxArchiveDealer.TabIndex = 3;
             // 
             // buttonResetArchiveFilter
             // 
-            this.buttonResetArchiveFilter.Location = new System.Drawing.Point(1447, 52);
-            this.buttonResetArchiveFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonResetArchiveFilter.Location = new System.Drawing.Point(1054, 45);
             this.buttonResetArchiveFilter.Name = "buttonResetArchiveFilter";
-            this.buttonResetArchiveFilter.Size = new System.Drawing.Size(183, 38);
+            this.buttonResetArchiveFilter.Size = new System.Drawing.Size(177, 35);
             this.buttonResetArchiveFilter.TabIndex = 15;
             this.buttonResetArchiveFilter.Text = "Скинути Фільтри";
             this.buttonResetArchiveFilter.UseVisualStyleBackColor = true;
@@ -1949,19 +1816,17 @@
             // 
             this.comboBoxArchiveColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxArchiveColour.FormattingEnabled = true;
-            this.comboBoxArchiveColour.Location = new System.Drawing.Point(935, 101);
-            this.comboBoxArchiveColour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxArchiveColour.Location = new System.Drawing.Point(787, 81);
             this.comboBoxArchiveColour.Name = "comboBoxArchiveColour";
-            this.comboBoxArchiveColour.Size = new System.Drawing.Size(101, 28);
+            this.comboBoxArchiveColour.Size = new System.Drawing.Size(98, 24);
             this.comboBoxArchiveColour.TabIndex = 4;
             // 
             // labelArchiveUser
             // 
             this.labelArchiveUser.AutoSize = true;
-            this.labelArchiveUser.Location = new System.Drawing.Point(1089, 52);
-            this.labelArchiveUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelArchiveUser.Location = new System.Drawing.Point(911, 42);
             this.labelArchiveUser.Name = "labelArchiveUser";
-            this.labelArchiveUser.Size = new System.Drawing.Size(107, 20);
+            this.labelArchiveUser.Size = new System.Drawing.Size(85, 17);
             this.labelArchiveUser.TabIndex = 14;
             this.labelArchiveUser.Text = "Користувач";
             // 
@@ -1969,28 +1834,25 @@
             // 
             this.comboBoxArchiveUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxArchiveUser.FormattingEnabled = true;
-            this.comboBoxArchiveUser.Location = new System.Drawing.Point(1069, 101);
-            this.comboBoxArchiveUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxArchiveUser.Location = new System.Drawing.Point(892, 81);
             this.comboBoxArchiveUser.Name = "comboBoxArchiveUser";
-            this.comboBoxArchiveUser.Size = new System.Drawing.Size(160, 28);
+            this.comboBoxArchiveUser.Size = new System.Drawing.Size(156, 24);
             this.comboBoxArchiveUser.TabIndex = 5;
             // 
             // labelColour
             // 
             this.labelColour.AutoSize = true;
-            this.labelColour.Location = new System.Drawing.Point(955, 52);
-            this.labelColour.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelColour.Location = new System.Drawing.Point(805, 42);
             this.labelColour.Name = "labelColour";
-            this.labelColour.Size = new System.Drawing.Size(54, 20);
+            this.labelColour.Size = new System.Drawing.Size(44, 17);
             this.labelColour.TabIndex = 13;
             this.labelColour.Text = "Колір";
             // 
             // buttonSetArchiveFilter
             // 
-            this.buttonSetArchiveFilter.Location = new System.Drawing.Point(1447, 97);
-            this.buttonSetArchiveFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSetArchiveFilter.Location = new System.Drawing.Point(1054, 81);
             this.buttonSetArchiveFilter.Name = "buttonSetArchiveFilter";
-            this.buttonSetArchiveFilter.Size = new System.Drawing.Size(183, 38);
+            this.buttonSetArchiveFilter.Size = new System.Drawing.Size(177, 35);
             this.buttonSetArchiveFilter.TabIndex = 6;
             this.buttonSetArchiveFilter.Text = "Застосувати";
             this.buttonSetArchiveFilter.UseVisualStyleBackColor = true;
@@ -1999,40 +1861,36 @@
             // labelArchiveDealer
             // 
             this.labelArchiveDealer.AutoSize = true;
-            this.labelArchiveDealer.Location = new System.Drawing.Point(775, 52);
-            this.labelArchiveDealer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelArchiveDealer.Location = new System.Drawing.Point(665, 42);
             this.labelArchiveDealer.Name = "labelArchiveDealer";
-            this.labelArchiveDealer.Size = new System.Drawing.Size(62, 20);
+            this.labelArchiveDealer.Size = new System.Drawing.Size(51, 17);
             this.labelArchiveDealer.TabIndex = 12;
             this.labelArchiveDealer.Text = "Дилер";
             // 
             // labelActual
             // 
             this.labelActual.AutoSize = true;
-            this.labelActual.Location = new System.Drawing.Point(4, 52);
-            this.labelActual.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelActual.Location = new System.Drawing.Point(3, 42);
             this.labelActual.Name = "labelActual";
-            this.labelActual.Size = new System.Drawing.Size(130, 20);
+            this.labelActual.Size = new System.Drawing.Size(102, 17);
             this.labelActual.TabIndex = 7;
             this.labelActual.Text = "Інформація на";
             // 
             // labelArchiveCity
             // 
             this.labelArchiveCity.AutoSize = true;
-            this.labelArchiveCity.Location = new System.Drawing.Point(583, 52);
-            this.labelArchiveCity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelArchiveCity.Location = new System.Drawing.Point(511, 42);
             this.labelArchiveCity.Name = "labelArchiveCity";
-            this.labelArchiveCity.Size = new System.Drawing.Size(56, 20);
+            this.labelArchiveCity.Size = new System.Drawing.Size(44, 17);
             this.labelArchiveCity.TabIndex = 11;
             this.labelArchiveCity.Text = "Місто";
             // 
             // labelArchiveProfile
             // 
             this.labelArchiveProfile.AutoSize = true;
-            this.labelArchiveProfile.Location = new System.Drawing.Point(401, 52);
-            this.labelArchiveProfile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelArchiveProfile.Location = new System.Drawing.Point(356, 42);
             this.labelArchiveProfile.Name = "labelArchiveProfile";
-            this.labelArchiveProfile.Size = new System.Drawing.Size(82, 20);
+            this.labelArchiveProfile.Size = new System.Drawing.Size(63, 17);
             this.labelArchiveProfile.TabIndex = 10;
             this.labelArchiveProfile.Text = "Профіль";
             // 
@@ -2041,9 +1899,8 @@
             this.dataGridViewLogs.AllowUserToAddRows = false;
             this.dataGridViewLogs.AllowUserToDeleteRows = false;
             this.dataGridViewLogs.AllowUserToResizeRows = false;
-            this.dataGridViewLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewLogs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -2062,143 +1919,162 @@
             this.ColumnArchiveUser,
             this.ColumnArchiveDateOperation,
             this.ColumnArchiveOperatsia});
-            this.dataGridViewLogs.Location = new System.Drawing.Point(27, 298);
-            this.dataGridViewLogs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewLogs.Location = new System.Drawing.Point(19, 160);
             this.dataGridViewLogs.MultiSelect = false;
             this.dataGridViewLogs.Name = "dataGridViewLogs";
             this.dataGridViewLogs.ReadOnly = true;
             this.dataGridViewLogs.RowHeadersVisible = false;
+            this.dataGridViewLogs.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewLogs.Size = new System.Drawing.Size(2372, 895);
+            this.dataGridViewLogs.Size = new System.Drawing.Size(1798, 608);
             this.dataGridViewLogs.TabIndex = 0;
             // 
             // ColumnArchiveID
             // 
-            this.ColumnArchiveID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnArchiveID.HeaderText = "ID Замовлення";
+            this.ColumnArchiveID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveID.Frozen = true;
+            this.ColumnArchiveID.HeaderText = "ID";
             this.ColumnArchiveID.MinimumWidth = 20;
             this.ColumnArchiveID.Name = "ColumnArchiveID";
             this.ColumnArchiveID.ReadOnly = true;
-            this.ColumnArchiveID.Width = 150;
+            this.ColumnArchiveID.Width = 50;
             // 
             // ColumnArchiveDateComing
             // 
-            this.ColumnArchiveDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnArchiveDateComing.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle9.Format = "d";
             dataGridViewCellStyle9.NullValue = null;
             this.ColumnArchiveDateComing.DefaultCellStyle = dataGridViewCellStyle9;
+            this.ColumnArchiveDateComing.Frozen = true;
             this.ColumnArchiveDateComing.HeaderText = "Дата замовлення";
             this.ColumnArchiveDateComing.Name = "ColumnArchiveDateComing";
             this.ColumnArchiveDateComing.ReadOnly = true;
-            this.ColumnArchiveDateComing.Width = 171;
             // 
             // ColumnArchiveProfile
             // 
-            this.ColumnArchiveProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnArchiveProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveProfile.Frozen = true;
             this.ColumnArchiveProfile.HeaderText = "Профіль";
             this.ColumnArchiveProfile.Name = "ColumnArchiveProfile";
             this.ColumnArchiveProfile.ReadOnly = true;
-            this.ColumnArchiveProfile.Width = 111;
             // 
             // ColumnArchiveCity
             // 
-            this.ColumnArchiveCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnArchiveCity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveCity.Frozen = true;
             this.ColumnArchiveCity.HeaderText = "Місто";
             this.ColumnArchiveCity.MinimumWidth = 100;
             this.ColumnArchiveCity.Name = "ColumnArchiveCity";
             this.ColumnArchiveCity.ReadOnly = true;
+            this.ColumnArchiveCity.Width = 140;
             // 
             // ColumnArchiveDealer
             // 
-            this.ColumnArchiveDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnArchiveDealer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveDealer.Frozen = true;
             this.ColumnArchiveDealer.HeaderText = "Дилер";
             this.ColumnArchiveDealer.MinimumWidth = 100;
             this.ColumnArchiveDealer.Name = "ColumnArchiveDealer";
             this.ColumnArchiveDealer.ReadOnly = true;
+            this.ColumnArchiveDealer.Width = 140;
             // 
             // ColumnArchiveNotes
             // 
-            this.ColumnArchiveNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnArchiveNotes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveNotes.Frozen = true;
             this.ColumnArchiveNotes.HeaderText = "Примітки";
             this.ColumnArchiveNotes.MinimumWidth = 100;
             this.ColumnArchiveNotes.Name = "ColumnArchiveNotes";
             this.ColumnArchiveNotes.ReadOnly = true;
+            this.ColumnArchiveNotes.Width = 204;
             // 
             // ColumnArchiveCounts
             // 
-            this.ColumnArchiveCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnArchiveCounts.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveCounts.Frozen = true;
             this.ColumnArchiveCounts.HeaderText = "Кількість";
             this.ColumnArchiveCounts.Name = "ColumnArchiveCounts";
             this.ColumnArchiveCounts.ReadOnly = true;
-            this.ColumnArchiveCounts.Width = 115;
+            this.ColumnArchiveCounts.Width = 50;
             // 
             // ColumnArchiveColour
             // 
-            this.ColumnArchiveColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnArchiveColour.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveColour.Frozen = true;
             this.ColumnArchiveColour.HeaderText = "Колір";
             this.ColumnArchiveColour.Name = "ColumnArchiveColour";
             this.ColumnArchiveColour.ReadOnly = true;
-            this.ColumnArchiveColour.Width = 83;
+            this.ColumnArchiveColour.Width = 70;
             // 
             // ColumnArchiveDateToWork
             // 
-            this.ColumnArchiveDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnArchiveDateToWork.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle10.Format = "d";
             dataGridViewCellStyle10.NullValue = null;
             this.ColumnArchiveDateToWork.DefaultCellStyle = dataGridViewCellStyle10;
+            this.ColumnArchiveDateToWork.Frozen = true;
             this.ColumnArchiveDateToWork.HeaderText = "Дата в роботу";
             this.ColumnArchiveDateToWork.Name = "ColumnArchiveDateToWork";
             this.ColumnArchiveDateToWork.ReadOnly = true;
-            this.ColumnArchiveDateToWork.Width = 145;
             // 
             // ColumnArchiveStatusProfile
             // 
-            this.ColumnArchiveStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ColumnArchiveStatusProfile.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveStatusProfile.Frozen = true;
             this.ColumnArchiveStatusProfile.HeaderText = "Статус профілю";
             this.ColumnArchiveStatusProfile.Name = "ColumnArchiveStatusProfile";
             this.ColumnArchiveStatusProfile.ReadOnly = true;
-            this.ColumnArchiveStatusProfile.Width = 160;
+            this.ColumnArchiveStatusProfile.Width = 120;
             // 
             // ColumnArchiveDateReady
             // 
-            this.ColumnArchiveDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnArchiveDateReady.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle11.Format = "d";
             dataGridViewCellStyle11.NullValue = null;
             this.ColumnArchiveDateReady.DefaultCellStyle = dataGridViewCellStyle11;
+            this.ColumnArchiveDateReady.Frozen = true;
             this.ColumnArchiveDateReady.HeaderText = "Дата готовності";
             this.ColumnArchiveDateReady.Name = "ColumnArchiveDateReady";
             this.ColumnArchiveDateReady.ReadOnly = true;
             // 
             // ColumnArchiveStatusGoods
             // 
-            this.ColumnArchiveStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnArchiveStatusGoods.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveStatusGoods.Frozen = true;
             this.ColumnArchiveStatusGoods.HeaderText = "Статус виробу(ів)";
             this.ColumnArchiveStatusGoods.Name = "ColumnArchiveStatusGoods";
             this.ColumnArchiveStatusGoods.ReadOnly = true;
+            this.ColumnArchiveStatusGoods.Width = 140;
             // 
             // ColumnArchiveUser
             // 
-            this.ColumnArchiveUser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnArchiveUser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveUser.Frozen = true;
             this.ColumnArchiveUser.HeaderText = "Користувач";
             this.ColumnArchiveUser.Name = "ColumnArchiveUser";
             this.ColumnArchiveUser.ReadOnly = true;
+            this.ColumnArchiveUser.Width = 80;
             // 
             // ColumnArchiveDateOperation
             // 
-            this.ColumnArchiveDateOperation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnArchiveDateOperation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle12.Format = "g";
             dataGridViewCellStyle12.NullValue = null;
             this.ColumnArchiveDateOperation.DefaultCellStyle = dataGridViewCellStyle12;
+            this.ColumnArchiveDateOperation.Frozen = true;
             this.ColumnArchiveDateOperation.HeaderText = "Дата операції";
             this.ColumnArchiveDateOperation.Name = "ColumnArchiveDateOperation";
             this.ColumnArchiveDateOperation.ReadOnly = true;
+            this.ColumnArchiveDateOperation.Width = 140;
             // 
             // ColumnArchiveOperatsia
             // 
-            this.ColumnArchiveOperatsia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnArchiveOperatsia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArchiveOperatsia.Frozen = true;
             this.ColumnArchiveOperatsia.HeaderText = "Операція";
             this.ColumnArchiveOperatsia.Name = "ColumnArchiveOperatsia";
             this.ColumnArchiveOperatsia.ReadOnly = true;
+            this.ColumnArchiveOperatsia.Width = 240;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -2520,12 +2396,13 @@
             // 
             // Laminatsia
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2420, 1057);
+            this.ClientSize = new System.Drawing.Size(2309, 845);
             this.Controls.Add(this.MenuTabControl);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Laminatsia";
             this.Text = "Ламінація";
             this.Load += new System.EventHandler(this.LaminatsiaForm_Load);
@@ -2620,11 +2497,6 @@
         private System.Windows.Forms.ComboBox comboBoxFilterProfile;
         private System.Windows.Forms.DateTimePicker dateTimePickerFilterDateComing1;
         private System.Windows.Forms.RichTextBox richTextBoxNotes;
-        private System.Windows.Forms.DateTimePicker dateTimePickerFilterDateComing2;
-        private System.Windows.Forms.DateTimePicker dateTimePickerFilterDataToWork2;
-        private System.Windows.Forms.Label labelFilterEndDateComing;
-        private System.Windows.Forms.Label labelFilterStartDateComing;
-        private System.Windows.Forms.DateTimePicker dateTimePickerFilterDateReady2;
         private System.Windows.Forms.Label labelFilterToStatusGoods;
         private System.Windows.Forms.Label labelFilterStatusProfile;
         private System.Windows.Forms.Label labelFilterColour;
@@ -2690,49 +2562,10 @@
         private System.Windows.Forms.TextBox textBoxAddNewUser;
         private System.Windows.Forms.CheckBox checkBoxWithOperation;
         private System.Windows.Forms.GroupBox groupBoxFilterTabManagers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateComing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProfile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDealer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNotes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCounts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnColour;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateToWork;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusProfile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateReady;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusGoods;
         private System.Windows.Forms.GroupBox groupBoxArchive;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateComing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveProfile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveCity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDealer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveNotes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveCounts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveColour;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateToWork;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveStatusProfile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateReady;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveStatusGoods;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveUser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateOperation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveOperatsia;
         private System.Windows.Forms.Button buttonRemoveColourGoods;
         private System.Windows.Forms.Button buttonEditUser;
         private System.Windows.Forms.ComboBox comboBoxEditUser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDateComing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamProfile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamCity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDealer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamNotes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamCounts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamColour;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDateToWork;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamStatusProfile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDateReady;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamStatusGoods;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
@@ -2762,5 +2595,44 @@
         private System.Windows.Forms.ComboBox comboBoxEditUserRole;
         private System.Windows.Forms.Label labelErrorPassword;
         private System.Windows.Forms.Button buttonCancelRemove;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateComing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveProfile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDealer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveNotes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveCounts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveColour;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateToWork;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveStatusProfile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateReady;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveStatusGoods;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveDateOperation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArchiveOperatsia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateComing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProfile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDealer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNotes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCounts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnColour;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateToWork;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusProfile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateReady;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStatusGoods;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDateComing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamProfile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDealer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamNotes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamCounts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamColour;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDateToWork;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamStatusProfile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamDateReady;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLamStatusGoods;
     }
 }
