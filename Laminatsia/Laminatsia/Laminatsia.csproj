@@ -130,7 +130,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewGetAllArchive.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewGetAllColourGoods.cs">
       <DependentUpon>LaminatsiaModel.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Authorization.resx">

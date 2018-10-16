@@ -283,7 +283,7 @@
             {
             "Enabled" = "11:TRUE"
             "PromptEnabled" = "11:TRUE"
-            "PrerequisitesLocation" = "2:2"
+            "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
                 "Items"
@@ -1274,7 +1274,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BE0ED5CDD30A45A89C2E61357C774BBD"
             {
-            "SourcePath" = "8:..\\Laminatsia\\obj\\Debug\\Laminatsia.exe"
+            "SourcePath" = "8:..\\Laminatsia\\obj\\Release\\Laminatsia.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"

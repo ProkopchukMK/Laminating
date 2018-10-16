@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="LaminatsiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="Archive">
           <Key>
             <PropertyRef Name="ID" />
@@ -66,6 +66,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameProfile" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -74,6 +84,74 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllArchive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewGetAllArchive">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_ColourGoods" />
+            <PropertyRef Name="DateComing" />
+            <PropertyRef Name="Profile" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Dealer" />
+            <PropertyRef Name="Counts" />
+            <PropertyRef Name="Colour" />
+            <PropertyRef Name="DateToWork" />
+            <PropertyRef Name="DateReady" />
+            <PropertyRef Name="StatusProfile" />
+            <PropertyRef Name="StatusGoods" />
+            <PropertyRef Name="Action" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="DataTimeChange" />
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ColourGoods" Type="int" Nullable="false" />
+          <Property Name="DateComing" Type="datetime" Nullable="false" />
+          <Property Name="Profile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Dealer" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Counts" Type="tinyint" Nullable="false" />
+          <Property Name="Colour" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateToWork" Type="datetime" Nullable="false" />
+          <Property Name="DateReady" Type="datetime" Nullable="false" />
+          <Property Name="StatusProfile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StatusGoods" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataTimeChange" Type="datetime" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllColourGoods' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewGetAllColourGoods">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="DateComing" />
+            <PropertyRef Name="Counts" />
+            <PropertyRef Name="DateToWork" />
+            <PropertyRef Name="StatusProfile" />
+            <PropertyRef Name="DateReady" />
+            <PropertyRef Name="StatusGoods" />
+            <PropertyRef Name="NameProfile" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Colour" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateComing" Type="datetime" Nullable="false" />
+          <Property Name="NameProfile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DealerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="Counts" Type="tinyint" Nullable="false" />
+          <Property Name="Colour" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateToWork" Type="datetime" Nullable="false" />
+          <Property Name="StatusProfile" Type="bit" Nullable="false" />
+          <Property Name="DateReady" Type="datetime" Nullable="false" />
+          <Property Name="StatusGoods" Type="bit" Nullable="false" />
+          <Property Name="DateRemove" Type="datetime" />
         </EntityType>
         <Association Name="FK_ColourGoods_ColourProfile">
           <End Role="ColourProfile" Type="Self.ColourProfile" Multiplicity="1" />
@@ -117,7 +195,46 @@
           <EntitySet Name="ColourProfile" EntityType="Self.ColourProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dealer" EntityType="Self.Dealer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewGetAllArchive" EntityType="Self.ViewGetAllArchive" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ViewGetAllArchive].[ID] AS [ID], 
+[ViewGetAllArchive].[ID_ColourGoods] AS [ID_ColourGoods], 
+[ViewGetAllArchive].[DateComing] AS [DateComing], 
+[ViewGetAllArchive].[Profile] AS [Profile], 
+[ViewGetAllArchive].[City] AS [City], 
+[ViewGetAllArchive].[Dealer] AS [Dealer], 
+[ViewGetAllArchive].[Notes] AS [Notes], 
+[ViewGetAllArchive].[Counts] AS [Counts], 
+[ViewGetAllArchive].[Colour] AS [Colour], 
+[ViewGetAllArchive].[DateToWork] AS [DateToWork], 
+[ViewGetAllArchive].[DateReady] AS [DateReady], 
+[ViewGetAllArchive].[StatusProfile] AS [StatusProfile], 
+[ViewGetAllArchive].[StatusGoods] AS [StatusGoods], 
+[ViewGetAllArchive].[Action] AS [Action], 
+[ViewGetAllArchive].[UserName] AS [UserName], 
+[ViewGetAllArchive].[DataTimeChange] AS [DataTimeChange], 
+[ViewGetAllArchive].[Role] AS [Role]
+FROM [dbo].[ViewGetAllArchive] AS [ViewGetAllArchive]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewGetAllColourGoods" EntityType="Self.ViewGetAllColourGoods" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ViewGetAllColourGoods].[ID] AS [ID], 
+[ViewGetAllColourGoods].[DateComing] AS [DateComing], 
+[ViewGetAllColourGoods].[NameProfile] AS [NameProfile], 
+[ViewGetAllColourGoods].[City] AS [City], 
+[ViewGetAllColourGoods].[DealerName] AS [DealerName], 
+[ViewGetAllColourGoods].[Notes] AS [Notes], 
+[ViewGetAllColourGoods].[Counts] AS [Counts], 
+[ViewGetAllColourGoods].[Colour] AS [Colour], 
+[ViewGetAllColourGoods].[DateToWork] AS [DateToWork], 
+[ViewGetAllColourGoods].[StatusProfile] AS [StatusProfile], 
+[ViewGetAllColourGoods].[DateReady] AS [DateReady], 
+[ViewGetAllColourGoods].[StatusGoods] AS [StatusGoods], 
+[ViewGetAllColourGoods].[DateRemove] AS [DateRemove]
+FROM [dbo].[ViewGetAllColourGoods] AS [ViewGetAllColourGoods]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
             <End Role="ColourProfile" EntitySet="ColourProfile" />
             <End Role="ColourGoods" EntitySet="ColourGoods" />
@@ -131,8 +248,7 @@
             <End Role="ColourGoods" EntitySet="ColourGoods" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LaminatsiaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -267,7 +383,84 @@
             <End Role="Profile" EntitySet="Profile" />
             <End Role="ColourGoods" EntitySet="ColourGoods" />
           </AssociationSet>
+          <EntitySet Name="ViewGetAllArchive" EntityType="LaminatsiaModel.ViewGetAllArchive" />
+          <EntitySet Name="ViewGetAllColourGoods" EntityType="LaminatsiaModel.ViewGetAllColourGoods" />
+          <EntitySet Name="sysdiagrams" EntityType="LaminatsiaModel.sysdiagrams" />
         </EntityContainer>
+        <EntityType Name="ViewGetAllArchive">
+          <Key>
+            <PropertyRef Name="ID_ColourGoods" />
+            <PropertyRef Name="DateComing" />
+            <PropertyRef Name="Profile" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Dealer" />
+            <PropertyRef Name="Counts" />
+            <PropertyRef Name="Colour" />
+            <PropertyRef Name="DateToWork" />
+            <PropertyRef Name="DateReady" />
+            <PropertyRef Name="StatusProfile" />
+            <PropertyRef Name="StatusGoods" />
+            <PropertyRef Name="Action" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="DataTimeChange" />
+            <PropertyRef Name="Role" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID_ColourGoods" Type="Int32" Nullable="false" />
+          <Property Name="DateComing" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Profile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Dealer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Counts" Type="Byte" Nullable="false" />
+          <Property Name="Colour" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusProfile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusGoods" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataTimeChange" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="ViewGetAllColourGoods">
+          <Key>
+            <PropertyRef Name="DateComing" />
+            <PropertyRef Name="NameProfile" />
+            <PropertyRef Name="City" />
+            <PropertyRef Name="Counts" />
+            <PropertyRef Name="Colour" />
+            <PropertyRef Name="DateToWork" />
+            <PropertyRef Name="StatusProfile" />
+            <PropertyRef Name="DateReady" />
+            <PropertyRef Name="StatusGoods" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DateComing" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NameProfile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Counts" Type="Byte" Nullable="false" />
+          <Property Name="Colour" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusProfile" Type="Boolean" Nullable="false" />
+          <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusGoods" Type="Boolean" Nullable="false" />
+          <Property Name="DateRemove" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -347,6 +540,59 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewGetAllArchive">
+            <EntityTypeMapping TypeName="LaminatsiaModel.ViewGetAllArchive">
+              <MappingFragment StoreEntitySet="ViewGetAllArchive">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="DataTimeChange" ColumnName="DataTimeChange" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
+                <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
+                <ScalarProperty Name="DateReady" ColumnName="DateReady" />
+                <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="Counts" ColumnName="Counts" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Dealer" ColumnName="Dealer" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="DateComing" ColumnName="DateComing" />
+                <ScalarProperty Name="ID_ColourGoods" ColumnName="ID_ColourGoods" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewGetAllColourGoods">
+            <EntityTypeMapping TypeName="LaminatsiaModel.ViewGetAllColourGoods">
+              <MappingFragment StoreEntitySet="ViewGetAllColourGoods">
+                <ScalarProperty Name="DateRemove" ColumnName="DateRemove" />
+                <ScalarProperty Name="StatusGoods" ColumnName="StatusGoods" />
+                <ScalarProperty Name="DateReady" ColumnName="DateReady" />
+                <ScalarProperty Name="StatusProfile" ColumnName="StatusProfile" />
+                <ScalarProperty Name="DateToWork" ColumnName="DateToWork" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="Counts" ColumnName="Counts" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="DealerName" ColumnName="DealerName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="NameProfile" ColumnName="NameProfile" />
+                <ScalarProperty Name="DateComing" ColumnName="DateComing" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LaminatsiaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -131,5 +131,82 @@
       <End Role="Profile" EntitySet="Profile" />
       <End Role="ColourGoods" EntitySet="ColourGoods" />
     </AssociationSet>
+    <EntitySet Name="ViewGetAllArchive" EntityType="LaminatsiaModel.ViewGetAllArchive" />
+    <EntitySet Name="ViewGetAllColourGoods" EntityType="LaminatsiaModel.ViewGetAllColourGoods" />
+    <EntitySet Name="sysdiagrams" EntityType="LaminatsiaModel.sysdiagrams" />
   </EntityContainer>
+  <EntityType Name="ViewGetAllArchive">
+    <Key>
+      <PropertyRef Name="ID_ColourGoods" />
+      <PropertyRef Name="DateComing" />
+      <PropertyRef Name="Profile" />
+      <PropertyRef Name="City" />
+      <PropertyRef Name="Dealer" />
+      <PropertyRef Name="Counts" />
+      <PropertyRef Name="Colour" />
+      <PropertyRef Name="DateToWork" />
+      <PropertyRef Name="DateReady" />
+      <PropertyRef Name="StatusProfile" />
+      <PropertyRef Name="StatusGoods" />
+      <PropertyRef Name="Action" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="DataTimeChange" />
+      <PropertyRef Name="Role" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID_ColourGoods" Type="Int32" Nullable="false" />
+    <Property Name="DateComing" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Profile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Dealer" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Counts" Type="Byte" Nullable="false" />
+    <Property Name="Colour" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StatusProfile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StatusGoods" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataTimeChange" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="ViewGetAllColourGoods">
+    <Key>
+      <PropertyRef Name="DateComing" />
+      <PropertyRef Name="NameProfile" />
+      <PropertyRef Name="City" />
+      <PropertyRef Name="Counts" />
+      <PropertyRef Name="Colour" />
+      <PropertyRef Name="DateToWork" />
+      <PropertyRef Name="StatusProfile" />
+      <PropertyRef Name="DateReady" />
+      <PropertyRef Name="StatusGoods" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="DateComing" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NameProfile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Counts" Type="Byte" Nullable="false" />
+    <Property Name="Colour" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateToWork" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StatusProfile" Type="Boolean" Nullable="false" />
+    <Property Name="DateReady" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StatusGoods" Type="Boolean" Nullable="false" />
+    <Property Name="DateRemove" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

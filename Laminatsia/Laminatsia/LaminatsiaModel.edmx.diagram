@@ -14,6 +14,9 @@
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_ColourProfile" ManuallyRouted="false" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Dealer" ManuallyRouted="false" />
         <AssociationConnector Association="LaminatsiaModel.FK_ColourGoods_Profile" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LaminatsiaModel.ViewGetAllArchive" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="LaminatsiaModel.ViewGetAllColourGoods" Width="1.5" PointX="7.375" PointY="7.375" />
+        <EntityTypeShape EntityType="LaminatsiaModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

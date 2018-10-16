@@ -152,23 +152,28 @@ namespace Laminatsia.DTO
         {
             try
             {
-                List<ColourGoods> listColourGoods = _entity.ColourGoods.Where(x => x.ID != 0).ToList();
+                //List<ColourGoods> listColourGoods = _entity.ColourGoods.Where(x => x.ID != 0).ToList();
+                var listColourGoods = _entity.ViewGetAllColourGoods.Where(x => x.ID != 0).ToList();
                 List<ColourGoodsDTO> listColourGoodsDTO = new List<ColourGoodsDTO>(listColourGoods.Count);
                 for (int i = 0; i < listColourGoods.Count; i++)
                 {
-                    int id_profile = listColourGoods[i].Profile_ID;
-                    int id_dealer = listColourGoods[i].Dealer_ID;
-                    int id_colour = listColourGoods[i].Colour_ID;
+                    //int id_profile = listColourGoods[i].Profile_ID;
+                    //int id_dealer = listColourGoods[i].Dealer_ID;
+                    //int id_colour = listColourGoods[i].Colour_ID;
                     ColourGoodsDTO newcolourGoodsDTO = new ColourGoodsDTO
                     {
                         ID = listColourGoods[i].ID,
                         DateComing = listColourGoods[i].DateComing.Date,
-                        Profile = _entity.Profile.FirstOrDefault(x => x.ID == id_profile).NameProfile,
-                        City = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).City,
-                        Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).DealerName,
+                        //Profile = _entity.Profile.FirstOrDefault(x => x.ID == id_profile).NameProfile,
+                        //City = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).City,
+                        //Dealer = _entity.Dealer.FirstOrDefault(x => x.ID == id_dealer).DealerName,
+                        Profile = listColourGoods[i].NameProfile,
+                        City = listColourGoods[i].City,
+                        Dealer = listColourGoods[i].DealerName,
                         Notes = listColourGoods[i].Notes,
                         Counts = (byte)listColourGoods[i].Counts,
-                        Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == id_colour).Colour,
+                        //Colour = _entity.ColourProfile.FirstOrDefault(x => x.ID == id_colour).Colour,
+                        Colour = listColourGoods[i].Colour,
                         DateToWork = listColourGoods[i].DateToWork.Date,
                         StatusProfile = listColourGoods[i].StatusProfile,
                         DateReady = listColourGoods[i].DateReady.Date,
@@ -177,7 +182,7 @@ namespace Laminatsia.DTO
                     };
                     listColourGoodsDTO.Add(newcolourGoodsDTO);
                 }
-                return listColourGoodsDTO.OrderByDescending(x => x.DateComing).ToList();
+                return listColourGoodsDTO.OrderByDescending(x => x.ID).ToList();
             }
             catch { return null; }
         }

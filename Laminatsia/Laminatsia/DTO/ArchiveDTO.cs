@@ -56,7 +56,7 @@ namespace Laminatsia.DTO
         {
             try
             {
-                List<Archive> listAllArchive = _entity.Archive.Where(x => x.ID != 0).ToList();
+                var listAllArchive = _entity.ViewGetAllArchive.Where(x => x.ID_ColourGoods != 0).ToList();
                 List<ArchiveDTO> listArchiveDTO = new List<ArchiveDTO>(listAllArchive.Count);
                 for (int i = 0; i < listAllArchive.Count; i++)
                 {
@@ -89,7 +89,7 @@ namespace Laminatsia.DTO
         {
             try
             {
-                List<Archive> listArchive = _entity.Archive.Where(x => x.Action == "Створено").ToList();
+                var listArchive = _entity.ViewGetAllArchive.Where(x => x.Action == "Створено").ToList();
                 List<ArchiveDTO> listArchiveDTO = new List<ArchiveDTO>(listArchive.Count);
                 for (int i = 0; i < listArchive.Count; i++)
                 {

@@ -31,5 +31,8 @@ namespace Laminatsia
         public DbSet<Dealer> Dealer { get; set; }
         public DbSet<Profile> Profile { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<ViewGetAllArchive> ViewGetAllArchive { get; set; }
+        public DbSet<ViewGetAllColourGoods> ViewGetAllColourGoods { get; set; }
+        public DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }
