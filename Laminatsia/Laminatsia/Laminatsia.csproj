@@ -104,6 +104,9 @@
     <Compile Include="DTO\ProfileDTO.cs" />
     <Compile Include="DTO\ServerDateTime.cs" />
     <Compile Include="DTO\UsersDTO.cs" />
+    <Compile Include="GetColourGoodsByNotes_Result.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Laminatsia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +133,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>LaminatsiaModel.tt</DependentUpon>
     </Compile>
@@ -139,7 +148,19 @@
     <Compile Include="ViewGetAllArchive.cs">
       <DependentUpon>LaminatsiaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewGetAllColour.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewGetAllColourGoods.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewGetAllDealer.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewGetAllProfile.cs">
+      <DependentUpon>LaminatsiaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewGetAllUser.cs">
       <DependentUpon>LaminatsiaModel.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Authorization.resx">

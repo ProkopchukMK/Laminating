@@ -130,5 +130,64 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ViewGetAllColours">
+      <EntityTypeMapping TypeName="LaminatsiaModel.ViewGetAllColour">
+        <MappingFragment StoreEntitySet="ViewGetAllColour">
+          <ScalarProperty Name="Colour" ColumnName="Colour" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewGetAllDealers">
+      <EntityTypeMapping TypeName="LaminatsiaModel.ViewGetAllDealer">
+        <MappingFragment StoreEntitySet="ViewGetAllDealer">
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="DealerName" ColumnName="DealerName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewGetAllProfiles">
+      <EntityTypeMapping TypeName="LaminatsiaModel.ViewGetAllProfile">
+        <MappingFragment StoreEntitySet="ViewGetAllProfile">
+          <ScalarProperty Name="NameProfile" ColumnName="NameProfile" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewGetAllUsers">
+      <EntityTypeMapping TypeName="LaminatsiaModel.ViewGetAllUser">
+        <MappingFragment StoreEntitySet="ViewGetAllUsers">
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="LaminatsiaModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="LaminatsiaModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="LaminatsiaModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="LaminatsiaModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LaminatsiaModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="LaminatsiaModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LaminatsiaModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="LaminatsiaModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="GetColourGoodsByNotes" FunctionName="LaminatsiaModel.Store.GetColourGoodsByNotes" />
   </EntityContainerMapping>
 </Mapping>

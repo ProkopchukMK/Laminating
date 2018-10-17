@@ -120,6 +120,16 @@ warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllArchive' does not have a 
     <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllColour' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewGetAllColour">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Colour" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Colour" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllColourGoods' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ViewGetAllColourGoods">
     <Key>
@@ -147,6 +157,41 @@ warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllColourGoods' does not hav
     <Property Name="DateReady" Type="datetime" Nullable="false" />
     <Property Name="StatusGoods" Type="bit" Nullable="false" />
     <Property Name="DateRemove" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllDealer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewGetAllDealer">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="City" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DealerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllProfile' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewGetAllProfile">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NameProfile" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameProfile" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ViewGetAllUsers">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserPassword" />
+      <PropertyRef Name="Role" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_ColourGoods_ColourProfile">
     <End Role="ColourProfile" Type="Self.ColourProfile" Multiplicity="1" />
@@ -184,6 +229,39 @@ warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllColourGoods' does not hav
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GetColourGoodsByNotes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FindInNotes" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
   <EntityContainer Name="LaminatsiaModelStoreContainer">
     <EntitySet Name="Archive" EntityType="Self.Archive" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ColourGoods" EntityType="Self.ColourGoods" Schema="dbo" store:Type="Tables" />
@@ -213,6 +291,12 @@ warning 6002: The table/view 'Laminatsia.dbo.ViewGetAllColourGoods' does not hav
 [ViewGetAllArchive].[Role] AS [Role]
 FROM [dbo].[ViewGetAllArchive] AS [ViewGetAllArchive]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="ViewGetAllColour" EntityType="Self.ViewGetAllColour" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[ViewGetAllColour].[ID] AS [ID], 
+[ViewGetAllColour].[Colour] AS [Colour]
+FROM [dbo].[ViewGetAllColour] AS [ViewGetAllColour]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="ViewGetAllColourGoods" EntityType="Self.ViewGetAllColourGoods" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
 [ViewGetAllColourGoods].[ID] AS [ID], 
@@ -229,6 +313,27 @@ FROM [dbo].[ViewGetAllArchive] AS [ViewGetAllArchive]</DefiningQuery>
 [ViewGetAllColourGoods].[StatusGoods] AS [StatusGoods], 
 [ViewGetAllColourGoods].[DateRemove] AS [DateRemove]
 FROM [dbo].[ViewGetAllColourGoods] AS [ViewGetAllColourGoods]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewGetAllDealer" EntityType="Self.ViewGetAllDealer" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[ViewGetAllDealer].[ID] AS [ID], 
+[ViewGetAllDealer].[DealerName] AS [DealerName], 
+[ViewGetAllDealer].[City] AS [City]
+FROM [dbo].[ViewGetAllDealer] AS [ViewGetAllDealer]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewGetAllProfile" EntityType="Self.ViewGetAllProfile" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[ViewGetAllProfile].[ID] AS [ID], 
+[ViewGetAllProfile].[NameProfile] AS [NameProfile]
+FROM [dbo].[ViewGetAllProfile] AS [ViewGetAllProfile]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ViewGetAllUsers" EntityType="Self.ViewGetAllUsers" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[ViewGetAllUsers].[ID] AS [ID], 
+[ViewGetAllUsers].[UserName] AS [UserName], 
+[ViewGetAllUsers].[UserPassword] AS [UserPassword], 
+[ViewGetAllUsers].[Role] AS [Role]
+FROM [dbo].[ViewGetAllUsers] AS [ViewGetAllUsers]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_ColourGoods_ColourProfile" Association="Self.FK_ColourGoods_ColourProfile">
       <End Role="ColourProfile" EntitySet="ColourProfile" />

@@ -65,21 +65,21 @@ namespace Laminatsia.DTO
         }
         public List<string> GetListDealer()
         {
-            var listDealer = _entity.Dealer.Select(x => x.DealerName).ToList<string>();
+            var listDealer = _entity.ViewGetAllDealers.Select(x => x.DealerName).ToList<string>();
             listDealer = listDealer.Distinct().ToList();
             listDealer.Sort();
             return listDealer;
         }
         public List<string> GetListCity()
         {
-            var listCity = _entity.Dealer.Select(x => x.City).ToList<string>();
+            var listCity = _entity.ViewGetAllDealers.Select(x => x.City).ToList<string>();
             listCity = listCity.Distinct().ToList();
             listCity.Sort();
             return listCity;
         }
         public List<string> GetListDealerByCity(string cityName)
         {
-            var listDealer = _entity.Dealer.Where(x => x.City == cityName && x.DealerName != null).Select(c => c.DealerName).ToList();
+            var listDealer = _entity.ViewGetAllDealers.Where(x => x.City == cityName && x.DealerName != null).Select(c => c.DealerName).ToList();
             listDealer.Sort();
             return listDealer;
         }

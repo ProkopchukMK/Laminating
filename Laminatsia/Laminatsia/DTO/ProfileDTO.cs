@@ -46,7 +46,7 @@ namespace Laminatsia.DTO
         }
         public List<string> GetListProfile()
         {
-            var listProfile = _entity.Profile.Select(x => x.NameProfile).ToList<string>();
+            var listProfile = _entity.ViewGetAllProfiles.Select(x => x.NameProfile).ToList<string>();
             return listProfile;
         }
     }

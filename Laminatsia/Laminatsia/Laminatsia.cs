@@ -46,7 +46,7 @@ namespace Laminatsia
                 MenuTabControl.TabIndex = 0;
                 dataGridViewLaminatsia.Focus();
                 //MenuTabControl.TabPages.Remove(tabPageLaminaters);
-                //MenuTabControl.TabPages.Remove(tabPageManagers);
+                //MenuTabControl.TabPages.Remove(tabPageTehnologes);
                 //MenuTabControl.TabPages.Remove(tabPageAddRemove);
                 //MenuTabControl.TabPages.Remove(tabPageLogs);
                 FillAllComponentAddRemoveTab();
@@ -56,19 +56,19 @@ namespace Laminatsia
             {
                 MenuTabControl.TabIndex = 1;
                 MenuTabControl.TabPages.Remove(tabPageLaminaters);
-                //MenuTabControl.TabPages.Remove(tabPageManagers);
+                //MenuTabControl.TabPages.Remove(tabPageTehnologes);
                 MenuTabControl.TabPages.Remove(tabPageAddRemove);
                 //MenuTabControl.TabPages.Remove(tabPageLogs);
-                FillAllComponentManagersTab();
+                FillAllComponentTehnologesTab();
             }
             else if (role == "Менеджери")
             {
                 MenuTabControl.TabIndex = 2;
                 MenuTabControl.TabPages.Remove(tabPageLaminaters);
-                //MenuTabControl.TabPages.Remove(tabPageManagers);
+                //MenuTabControl.TabPages.Remove(tabPageTehnologes);
                 MenuTabControl.TabPages.Remove(tabPageAddRemove);
                 //MenuTabControl.TabPages.Remove(tabPageLogs);
-                FillAllComponentManagersTab();
+                FillAllComponentTehnologesTab();
             }
             else if (role == "Адміністратори")
             {
@@ -84,23 +84,35 @@ namespace Laminatsia
             {
                 //вкладки ламінація
                 CleareAllComponentLaminatsiaTab();
+                CleareAllComponentTehnologesTab();
+                CleareAllComponentAddRemoveTab();
+                CleareAllComponentArchiveTab();
                 FillAllComponentLaminatsiaTab();
             }
-            else if (MenuTabControl.SelectedTab == tabPageManagers)
+            else if (MenuTabControl.SelectedTab == tabPageTehnologes)
             {
-                //вкладки для менеджерів
-                CleareAllComponentManagersTab();
-                FillAllComponentManagersTab();
+                //вкладки для технологів
+                CleareAllComponentLaminatsiaTab();
+                CleareAllComponentTehnologesTab();
+                CleareAllComponentAddRemoveTab();
+                CleareAllComponentArchiveTab();
+                FillAllComponentTehnologesTab();
             }
             else if (MenuTabControl.SelectedTab == tabPageAddRemove)
             {
                 //вкладка додавання інфи
+                CleareAllComponentLaminatsiaTab();
+                CleareAllComponentTehnologesTab();
                 CleareAllComponentAddRemoveTab();
+                CleareAllComponentArchiveTab();
                 FillAllComponentAddRemoveTab();
             }
             else if (MenuTabControl.SelectedTab == tabPageLogs)
             {
                 //вкладка архів
+                CleareAllComponentLaminatsiaTab();
+                CleareAllComponentTehnologesTab();
+                CleareAllComponentAddRemoveTab();
                 CleareAllComponentArchiveTab();
                 FillAllComponentArciveTab();
             }
@@ -632,12 +644,12 @@ namespace Laminatsia
 
         #region Заповнення всіх елементів у вкладці Менеджери Технологи
         //заповнення грід вью
-        private void FillGridViewManagers(List<ColourGoodsDTO> enterList)
+        private void FillGridViewTehnologes(List<ColourGoodsDTO> enterList)
         {
             FillGridView(enterList, dataGridViewTehnologes);
         }
-        //заповнення всіх компонентів  у вкладці менеджери
-        private void FillAllComponentManagersTab()
+        //заповнення всіх компонентів  у вкладці технологи
+        private void FillAllComponentTehnologesTab()
         {
             if (Role == "Ламінація")
             {
@@ -665,10 +677,10 @@ namespace Laminatsia
             comboBoxFilterStatusGoods.Items.Add("");
             comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
 
-            FillGridViewManagers(null);
+            FillGridViewTehnologes(null);
         }
-        //очищення всіх компонентів у вкладці менеджери
-        private void CleareAllComponentManagersTab()
+        //очищення всіх компонентів у вкладці технологи
+        private void CleareAllComponentTehnologesTab()
         {
             comboBoxFilterProfile.Items.Clear();
             comboBoxFilterCity.Items.Clear();
@@ -682,9 +694,9 @@ namespace Laminatsia
         }
         #endregion
 
-        #region сортування gridviewManagers
+        #region сортування gridviewTehnologes
         //сортування по кліку на заголовок колонки
-        private void DataGridViewManagers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DataGridViewTehnologes_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
@@ -715,7 +727,7 @@ namespace Laminatsia
                 MessageBox.Show("Сталася помилка DataGridViewLaminatsia_CellDoubleClick! Детальніше: " + ex.Message);
             }
         }
-        private void DataGridViewManagers_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void DataGridViewTehnologes_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             foreach (DataGridViewColumn column in dataGridViewTehnologes.Columns)
             {
@@ -759,8 +771,7 @@ namespace Laminatsia
         //пошук за ID
         private void ButtonTehnologFindByID_Click(object sender, EventArgs e)
         {
-            int id;
-            if (int.TryParse(textBoxTehnologFindByID.Text, out id))
+            if (int.TryParse(textBoxTehnologFindByID.Text, out int id))
             {
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
                 colourGoodsDTO = colourGoodsDTO.GetColourGoodsByID(id);
@@ -772,13 +783,37 @@ namespace Laminatsia
                 else
                 {
                     dataGridViewTehnologes.Rows.Clear();
-                    FillGridViewManagers(new List<ColourGoodsDTO> { colourGoodsDTO });
+                    FillGridViewTehnologes(new List<ColourGoodsDTO> { colourGoodsDTO });
                     textBoxTehnologFindByID.Clear();
                 }
             }
             else
             {
                 MessageBox.Show("Не вірний номер замовлення!");
+            }
+        }
+        private void ButtonFindByNotes_Click(object sender, EventArgs e)
+        {
+            if (textBoxFindByNotes.Text == "")
+            {
+                textBoxFindByNotes.Text = "";
+                MessageBox.Show("Ви не ввели значення для пошуку!");
+            }
+            else
+            {
+                ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
+                var listByNotes = colourGoodsDTO.GetColourGoodsByNotes(textBoxFindByNotes.Text);
+                if (listByNotes != null)
+                {
+                    dataGridViewTehnologes.Rows.Clear();
+                    textBoxFindByNotes.Clear();
+                    FillGridViewTehnologes(listByNotes);                    
+                }
+                else
+                {
+                    textBoxFindByNotes.Clear();
+                    MessageBox.Show("Інформації на ваш запит не знайдено!");
+                }
             }
         }
         //застосовуємо фільтри
@@ -819,17 +854,15 @@ namespace Laminatsia
                 }
                 ColourGoodsDTO colourGoodsDTO = new ColourGoodsDTO();
                 filteredList = colourGoodsDTO.FilterList(
-                        checkBoxFilterDateComing.Checked, dateTimePickerFilterDateComing1.Value, // true
+                        checkBoxFilterDateComing.Checked, dateTimePickerFilterDateComing.Value, // true
                         comboBoxFilterProfile.SelectedItem, comboBoxFilterCity.SelectedItem, comboBoxFilterDealer.SelectedItem, comboBoxFilterColour.SelectedItem,
-                checkBoxFilterDateToWork.Checked, dateTimePickerFilterDataToWork1.Value, // true
+                checkBoxFilterDateToWork.Checked, dateTimePickerFilterDataToWork.Value, // true
                 filterStatusProfile,
-                checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady1.Value,// true
+                checkBoxFilterDateToReady.Checked, dateTimePickerFilterDateReady.Value,// true
                 filterStatusGoods);
-
                 filteredList = filteredList.OrderByDescending(x => x.ID).ToList();
                 dataGridViewTehnologes.Rows.Clear();
-
-                this.FillGridViewManagers(filteredList);
+                this.FillGridViewTehnologes(filteredList);
             }
             catch (Exception ex)
             {
@@ -842,28 +875,28 @@ namespace Laminatsia
             try
             {
                 var dateTimeNow = serverDataTime.GetDateTimeServer();
-                dateTimePickerFilterDateComing1.Value = dateTimeNow;
+                dateTimePickerFilterDateComing.Value = dateTimeNow;
                 comboBoxFilterProfile.Items.Clear();
                 comboBoxFilterCity.Items.Clear();
                 comboBoxFilterDealer.Items.Clear();
                 comboBoxFilterColour.Items.Clear();
-                dateTimePickerFilterDataToWork1.Value = dateTimeNow;
+                dateTimePickerFilterDataToWork.Value = dateTimeNow;
                 comboBoxFilterStatusProfile.Items.Clear();
-                dateTimePickerFilterDateReady1.Value = dateTimeNow;
+                dateTimePickerFilterDateReady.Value = dateTimeNow;
                 comboBoxFilterStatusGoods.Items.Clear();
                 comboBoxFilterDealer.Enabled = false;
                 checkBoxFilterDateComing.Checked = false;
                 checkBoxFilterDateToReady.Checked = false;
                 checkBoxFilterDateToWork.Checked = false;
 
-                FillAllComponentManagersTab();
+                FillAllComponentTehnologesTab();
                 //comboBoxFilterProfile.Items.AddRange(listProfile.ToArray());
                 //comboBoxFilterCity.Items.AddRange(listCity.ToArray());
                 //comboBoxFilterColour.Items.AddRange(listColour.ToArray());
                 //comboBoxFilterStatusProfile.Items.AddRange(new object[] { "ГОТОВИЙ", "НЕ ГОТОВИЙ" });
                 //comboBoxFilterStatusGoods.Items.AddRange(new object[] { "В РОБОТІ", "НЕ В РОБОТІ" });
                 this.dataGridViewTehnologes.Rows.Clear();
-                this.FillGridViewManagers(null);
+                this.FillGridViewTehnologes(null);
             }
             catch (Exception ex)
             {
@@ -877,33 +910,33 @@ namespace Laminatsia
         {
             if (checkBoxFilterDateToWork.Checked == true)
             {
-                dateTimePickerFilterDataToWork1.Enabled = true;
+                dateTimePickerFilterDataToWork.Enabled = true;
             }
             else
             {
-                dateTimePickerFilterDataToWork1.Enabled = false;
+                dateTimePickerFilterDataToWork.Enabled = false;
             }
         }
         private void CheckBoxFilterDateComing_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxFilterDateComing.Checked == true)
             {
-                dateTimePickerFilterDateComing1.Enabled = true;
+                dateTimePickerFilterDateComing.Enabled = true;
             }
             else
             {
-                dateTimePickerFilterDateComing1.Enabled = false;
+                dateTimePickerFilterDateComing.Enabled = false;
             }
         }
         private void CheckBoxFilterDateToReady_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxFilterDateToReady.Checked == true)
             {
-                dateTimePickerFilterDateReady1.Enabled = true;
+                dateTimePickerFilterDateReady.Enabled = true;
             }
             else
             {
-                dateTimePickerFilterDateReady1.Enabled = false;
+                dateTimePickerFilterDateReady.Enabled = false;
             }
         }
         #endregion
@@ -911,7 +944,7 @@ namespace Laminatsia
 
         #region Update для технологів
 
-        private void DataGridViewManagers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewTehnologes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -935,8 +968,7 @@ namespace Laminatsia
                             if (colourGoodsDTO.UpdateStatusGood(id, editStatusGoods))
                             {
                                 MessageBox.Show("Зміни збережені до бази даних!");
-                                CleareAllComponentManagersTab();
-                                FillAllComponentManagersTab();
+                                SetFilter();                                
                             }
                             else
                             {
@@ -956,7 +988,7 @@ namespace Laminatsia
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Сталася помилка DataGridViewManagers_CellDoubleClick! Детальніше: " + ex.Message);
+                MessageBox.Show("Сталася помилка DataGridViewTehnologes_CellDoubleClick! Детальніше: " + ex.Message);
             }
         }
         #endregion
@@ -983,8 +1015,8 @@ namespace Laminatsia
                             if (colourGoodsDTO.UpdateDateRemove(id))
                             {
                                 MessageBox.Show("Замовлення буде видалено через три дні!");
-                                CleareAllComponentManagersTab();
-                                FillAllComponentManagersTab();
+                                CleareAllComponentTehnologesTab();
+                                FillAllComponentTehnologesTab();
                             }
                             else
                             {
@@ -1773,5 +1805,6 @@ namespace Laminatsia
         }
 
         #endregion
+
     }
 }

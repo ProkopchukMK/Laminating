@@ -11,6 +11,11 @@ namespace Laminatsia
 {
     public partial class Authorization : Form
     {
+        /// <summary>
+        /// TODO:
+        /// 1. Stored procedure for insert and update.
+        /// 2. Connect Create data base with stored procedure and view.       
+        /// </summary>
         private string[] userSaveData = null;
         //виставити розташування файлу в папці з програмою, де записуються дані останього збереженого користувача
         private string fileName = Directory.GetCurrentDirectory() + @"\UserData.txt";
@@ -31,7 +36,7 @@ namespace Laminatsia
             if (userSaveData.Length > 0)
             {//якщо файл є, то ми витягуємо з нього інфу та заповнюємо текст боксами
                 textBoxLogin.Text = userSaveData[0];
-                textBoxPassword.Text = OperationOXR(userSaveData[1], false);
+                textBoxPassword.Text = CodingASCII(userSaveData[1], false);
                 comboBoxRole.SelectedItem = userSaveData[2];
                 checkBoxSaveUserInfo.Checked = true;
             }
@@ -80,7 +85,7 @@ namespace Laminatsia
                                         if (checkBoxSaveUserInfo.Checked)
                                         {
                                             //відправляємо пароль на шифруваня для запису в файл OperationOXR
-                                            string codingUserPasword = OperationOXR(userPassword, true);
+                                            string codingUserPasword = CodingASCII(userPassword, true);
                                             File.WriteAllLines(fileName, new string[] { userName, codingUserPasword, role });
                                         }
                                         //запускаємо Ламінацію відповідно до прав користувача
@@ -114,31 +119,28 @@ namespace Laminatsia
         }
         //шифратор і дешифратор пароля, для запису і зчитування у тимчасовий файл. 
         //Перше значення для значення, а друге при true - шифрує, а при false - розшифровує.
-        private string OperationOXR(string input, bool coding)
+        
+        private string CodingASCII(string input, bool coding)
         {
-            const string key = "2018";
             string output = "";
             if (coding)
             {
-                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-                byte[] res = new byte[inputBytes.Length];
-
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
                 for (int i = 0; i < inputBytes.Length; i++)
                 {
-                    res[i] = (byte)(inputBytes[i] ^ key[i % key.Length]);
-                }
-                output = System.Text.Encoding.UTF8.GetString(res);
+                    output += inputBytes[i].ToString() + " ";
+                }                               
             }
             else
             {
-                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-                byte[] res = new byte[inputBytes.Length];
-
-                for (int i = 0; i < inputBytes.Length; i++)
+                string[] str = input.TrimEnd().Split(new char[] { ' ' });                
+                byte[] inputBytes = new byte[str.Length];
+                for (int i = 0; i < str.Length; i++)
                 {
-                    res[i] = (byte)(inputBytes[i] ^ key[i % key.Length]);
-                }
-                output = System.Text.Encoding.UTF8.GetString(res);
+                    Byte.TryParse(str[i],out inputBytes[i]);                     
+                }                                
+                char[] chars = System.Text.Encoding.ASCII.GetChars(inputBytes);
+                output = new string (chars);
             }
             return output;
         }

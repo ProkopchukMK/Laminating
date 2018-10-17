@@ -134,6 +134,42 @@
     <EntitySet Name="ViewGetAllArchive" EntityType="LaminatsiaModel.ViewGetAllArchive" />
     <EntitySet Name="ViewGetAllColourGoods" EntityType="LaminatsiaModel.ViewGetAllColourGoods" />
     <EntitySet Name="sysdiagrams" EntityType="LaminatsiaModel.sysdiagrams" />
+    <EntitySet Name="ViewGetAllColours" EntityType="LaminatsiaModel.ViewGetAllColour" />
+    <EntitySet Name="ViewGetAllDealers" EntityType="LaminatsiaModel.ViewGetAllDealer" />
+    <EntitySet Name="ViewGetAllProfiles" EntityType="LaminatsiaModel.ViewGetAllProfile" />
+    <EntitySet Name="ViewGetAllUsers" EntityType="LaminatsiaModel.ViewGetAllUser" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(LaminatsiaModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(LaminatsiaModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetColourGoodsByNotes" EntitySet="ViewGetAllColourGoods" ReturnType="Collection(LaminatsiaModel.ViewGetAllColourGoods)">
+      <Parameter Name="FindInNotes" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="ViewGetAllArchive">
     <Key>
@@ -209,4 +245,67 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="ViewGetAllColour">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Colour" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Colour" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ViewGetAllDealer">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="City" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DealerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ViewGetAllProfile">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NameProfile" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameProfile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ViewGetAllUser">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserPassword" />
+      <PropertyRef Name="Role" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetColourGoodsByNotes_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="DateTime" Name="DateComing" Nullable="false" Precision="23" />
+    <Property Type="String" Name="NameProfile" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="City" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="DealerName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Notes" Nullable="true" MaxLength="200" />
+    <Property Type="Byte" Name="Counts" Nullable="false" />
+    <Property Type="String" Name="Colour" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="DateToWork" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="StatusProfile" Nullable="false" />
+    <Property Type="DateTime" Name="DateReady" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="StatusGoods" Nullable="false" />
+    <Property Type="DateTime" Name="DateRemove" Nullable="true" Precision="23" />
+  </ComplexType>
 </Schema>

@@ -23,7 +23,7 @@ namespace Laminatsia.DTO
         }
         public List<UsersDTO> GetListUsersDTO()
         {
-            var list = _entity.Users.Where(x => x.ID != 0).ToList();
+            var list = _entity.ViewGetAllUsers.Where(x => x.ID != 0).ToList();
             List<UsersDTO> listUserDTO = new List<UsersDTO>();
             for (int i = 0; i < list.Count; i++)
             {
@@ -38,7 +38,7 @@ namespace Laminatsia.DTO
         }
         public UsersDTO GetUserByNameRole(string name, string role)
         {
-            Users user = _entity.Users.FirstOrDefault(x => x.UserName == name && x.Role == role);
+            var user = _entity.ViewGetAllUsers.FirstOrDefault(x => x.UserName == name && x.Role == role);
             if (user != null)
             {
                 UsersDTO usersDTO = new UsersDTO();
