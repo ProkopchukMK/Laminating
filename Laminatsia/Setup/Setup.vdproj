@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_027320B437E6483299CA6208F72D7F90"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_14522C297C3039DFF2B34D15FED3A276"
         "OwnerKey" = "8:_BE0ED5CDD30A45A89C2E61357C774BBD"
         "MsmSig" = "8:_UNDEFINED"
@@ -45,6 +51,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_237080D42AA24654AE44456FF5298455"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4CCEF6F4EC724C219D49199DAD9EC00F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5AB4D25EA023A974C43DFD75FF68577B"
         "OwnerKey" = "8:_BE0ED5CDD30A45A89C2E61357C774BBD"
         "MsmSig" = "8:_UNDEFINED"
@@ -53,6 +71,42 @@
         {
         "MsmKey" = "8:_5AB4D25EA023A974C43DFD75FF68577B"
         "OwnerKey" = "8:_14522C297C3039DFF2B34D15FED3A276"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5F913EB70F5649FA9B56C75523369A6A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6183AFE62AE04712AAE986F779D24F09"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6D66AB07463F44498EB23C4B6BE45F26"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7953E46055EE4629B6854AAF69844036"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7F176B36713B4CCD8A6BDF5119F9DBAF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8C452106D8724AD29CF257CC15D85A7C"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -77,6 +131,12 @@
         {
         "MsmKey" = "8:_ABBF9D4CF883A49CD4567E5D75F8A5BA"
         "OwnerKey" = "8:_BCE7985BC4A6ACCC46EF144593D29AFA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BA34158C930F430D8F68E5A2DA158579"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -324,6 +384,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_027320B437E6483299CA6208F72D7F90"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\CreateViewGetAllColourGoods.sql"
+            "TargetName" = "8:CreateViewGetAllColourGoods.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_4170B5E682F94FAEAF6858241294BA81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_14522C297C3039DFF2B34D15FED3A276"
             {
             "AssemblyRegister" = "3:1"
@@ -386,6 +466,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_237080D42AA24654AE44456FF5298455"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\CreateViewGetAllUsers.sql"
+            "TargetName" = "8:CreateViewGetAllUsers.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_4170B5E682F94FAEAF6858241294BA81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4CCEF6F4EC724C219D49199DAD9EC00F"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\CreateViewGetAllColour.sql"
+            "TargetName" = "8:CreateViewGetAllColour.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_4170B5E682F94FAEAF6858241294BA81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5AB4D25EA023A974C43DFD75FF68577B"
             {
             "AssemblyRegister" = "3:1"
@@ -415,6 +535,126 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5F913EB70F5649FA9B56C75523369A6A"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\CreateProcedureGetColourGoodsByNotes.sql"
+            "TargetName" = "8:CreateProcedureGetColourGoodsByNotes.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_4170B5E682F94FAEAF6858241294BA81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6183AFE62AE04712AAE986F779D24F09"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\CreateViewGetAllArchive.sql"
+            "TargetName" = "8:CreateViewGetAllArchive.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_4170B5E682F94FAEAF6858241294BA81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6D66AB07463F44498EB23C4B6BE45F26"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\DotNetFX452\\NDP452-KB2901907-x86-x64-AllOS-ENU.exe"
+            "TargetName" = "8:NDP452-KB2901907-x86-x64-AllOS-ENU.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_8E2405CD4003448E9CF909E28AA888B3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7953E46055EE4629B6854AAF69844036"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\CreateDataBaseLaminatsia.sql"
+            "TargetName" = "8:CreateDataBaseLaminatsia.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_4170B5E682F94FAEAF6858241294BA81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F176B36713B4CCD8A6BDF5119F9DBAF"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\CreateViewGetAllProfile.sql"
+            "TargetName" = "8:CreateViewGetAllProfile.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_4170B5E682F94FAEAF6858241294BA81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8C452106D8724AD29CF257CC15D85A7C"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\CreateViewGetAllDealer.sql"
+            "TargetName" = "8:CreateViewGetAllDealer.sql"
+            "Tag" = "8:"
+            "Folder" = "8:_4170B5E682F94FAEAF6858241294BA81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8F6A250CF5BA07D366DBFC0A69D0E06A"
@@ -477,6 +717,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BA34158C930F430D8F68E5A2DA158579"
+            {
+            "SourcePath" = "8:..\\Laminatsia\\Resources\\ScriptForManadgmentStudio.txt"
+            "TargetName" = "8:ScriptForManadgmentStudio.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_4170B5E682F94FAEAF6858241294BA81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BCE7985BC4A6ACCC46EF144593D29AFA"
@@ -659,6 +919,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_4170B5E682F94FAEAF6858241294BA81"
+                    {
+                    "Name" = "8:SQL"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_D332AC70917947DDA83C4B670AEC7184"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_8E2405CD4003448E9CF909E28AA888B3"
+                    {
+                    "Name" = "8:DotNetFX452"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_EE112E5F65944FD1AABC890DB2F337BE"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_7AA1E9E6ED4F4639A84117746D26A7E2"
@@ -711,7 +993,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Laminatsia"
         "ProductCode" = "8:{CDFC4266-DBE6-46A0-9669-F980D45DED23}"
-        "PackageCode" = "8:{22F23C9C-ECA7-4F80-9B38-CA13D4D8D2A1}"
+        "PackageCode" = "8:{A6B048DD-8C29-4FE7-A2C9-677118D16EAF}"
         "UpgradeCode" = "8:{83EA6BDB-3C3D-49B3-840D-071FFF9304DE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1274,7 +1556,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BE0ED5CDD30A45A89C2E61357C774BBD"
             {
-            "SourcePath" = "8:..\\Laminatsia\\obj\\Release\\Laminatsia.exe"
+            "SourcePath" = "8:..\\Laminatsia\\obj\\Debug\\Laminatsia.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"

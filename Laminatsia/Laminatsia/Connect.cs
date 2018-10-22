@@ -79,8 +79,7 @@ namespace Laminatsia
         //тест на зєднання до серверу
         private void ButtonTestConnectingToServer_Click(object sender, EventArgs e)
         {
-            IPAddress ipAddress;
-            if (IPAddress.TryParse(maskedTextBoxIPServer.Text.Trim(), out ipAddress))
+            if (IPAddress.TryParse(maskedTextBoxIPServer.Text.Trim(), out IPAddress ipAddress))
             {
                 if (IsConnectedToServer(maskedTextBoxIPServer.Text.Trim()))
                 {
@@ -143,8 +142,10 @@ namespace Laminatsia
         private void ButtonSaveConfig_Click(object sender, EventArgs e)
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            EntityConnectionStringBuilder builder = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString);
-            builder.ProviderConnectionString = "data source=" + maskedTextBoxIPServer.Text + ";initial catalog=" + comboBoxLilstDbIPServer.SelectedItem.ToString() + ";integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            EntityConnectionStringBuilder builder = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString)
+            {
+                ProviderConnectionString = "data source=" + maskedTextBoxIPServer.Text + ";initial catalog=" + comboBoxLilstDbIPServer.SelectedItem.ToString() + ";integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+            };
             var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
             connectionStringsSection.ConnectionStrings["LaminatsiaEntities"].ConnectionString = builder.ConnectionString;
 
@@ -154,7 +155,7 @@ namespace Laminatsia
             MessageBox.Show("Конфігурацію збережено! Детальніше: " + ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString);
         }
         //при виборці бази даних вкл кнопки
-        private void comboBoxLilstDbIPServer_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxLilstDbIPServer_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxLilstDbIPServer.SelectedIndex != -1)
             {
@@ -168,12 +169,12 @@ namespace Laminatsia
         private List<string> listServers = new List<string>();
         private List<string> listDatabases = new List<string>();
         //асинхронні метод для заповнення листу серверів
-        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             GetAllServers();
         }
         //асинхроний метод для заповнення баз даних
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             GetAllDatabases();
         }
@@ -197,14 +198,14 @@ namespace Laminatsia
             }
         }
         //при завершенні асинхроних методів
-        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             progressBarConnectToDB.Visible = false;
             comboBoxListServerName.Enabled = true;
             comboBoxListServerName.Items.AddRange(listServers.ToArray());
             tabControlConnect.Enabled = true;
         }
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             progressBarConnectToDB.Visible = false;
             comboBoxListServerName.Enabled = true;
@@ -212,7 +213,7 @@ namespace Laminatsia
             comboBoxListDataBase.Items.AddRange(listDatabases.ToArray());
         }
         //кнопка для пошуку доступних серверів
-        private void buttonSearchServers_Click(object sender, EventArgs e)
+        private void ButtonSearchServers_Click(object sender, EventArgs e)
         {
             progressBarConnectToDB.Visible = true;
             buttonSaveConfogServerName.Enabled = false;
@@ -223,15 +224,15 @@ namespace Laminatsia
             backgroundWorker.RunWorkerAsync();
         }
         //заповнення листу баз даних до вибраного серверу
-        private void comboBoxListServerName_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxListServerName_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 if (comboBoxListServerName.SelectedItem.ToString() != null)
-                {   
+                {
                     comboBoxListDataBase.Enabled = true;
                     string serverName = comboBoxListServerName.SelectedItem.ToString();
-                    server = new Server(serverName);                    
+                    server = new Server(serverName);
                     backgroundWorker1.RunWorkerAsync();
                     progressBarConnectToDB.Visible = true;
                     buttonSaveConfogServerName.Enabled = false;
@@ -256,15 +257,7 @@ namespace Laminatsia
                 {
                     try
                     {
-                        //string writeToDB = @"INSERT INTO Users (UserName, UserPassword, Role) values('Test', 'Test','Адміністратори')";
-                        //string updateDB = @"DELETE FROM Users WHERE UserName='Test'";
                         sql.Open();
-                        //SqlCommand sqlCreateUser = new SqlCommand(writeToDB, sql);
-                        //sqlCreateUser.ExecuteNonQuery();
-                        //SqlCommand sqlDeleteUser = new SqlCommand(updateDB, sql);
-                        //sqlDeleteUser.ExecuteNonQuery();
-                        //sql.Close();
-                        //MessageBox.Show("Запис та видалення даних пройшли успішно!");
                         MessageBox.Show("Дана база даних доступна!");
                         buttonSaveConfogServerName.Enabled = true;
                     }
@@ -272,6 +265,10 @@ namespace Laminatsia
                     {
                         buttonSaveConfogServerName.Enabled = false;
                         MessageBox.Show("Сталася помилка! Детальніше: " + ex.Message);
+                    }
+                    finally
+                    {
+                        sql.Close();
                     }
                 }
             }
@@ -284,8 +281,10 @@ namespace Laminatsia
         private void ButtonSaveConfogServerName_Click(object sender, EventArgs e)
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            EntityConnectionStringBuilder builder = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString);
-            builder.ProviderConnectionString = "data source=" + comboBoxListServerName.SelectedItem.ToString() + ";initial catalog=" + comboBoxListDataBase.SelectedItem.ToString() + ";integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            EntityConnectionStringBuilder builder = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString)
+            {
+                ProviderConnectionString = "data source=" + comboBoxListServerName.SelectedItem.ToString() + ";initial catalog=" + comboBoxListDataBase.SelectedItem.ToString() + ";integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+            };
             var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
             connectionStringsSection.ConnectionStrings["LaminatsiaEntities"].ConnectionString = builder.ConnectionString;
 
@@ -295,7 +294,7 @@ namespace Laminatsia
             MessageBox.Show("Конфігурацію збережено! Детальніше: " + ConfigurationManager.ConnectionStrings["LaminatsiaEntities"].ConnectionString);
         }
         //при вибору бази даних 
-        private void comboBoxListDataBase_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxListDataBase_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxListDataBase.SelectedIndex != -1)
             {
@@ -309,8 +308,7 @@ namespace Laminatsia
         //тест на підключення до серверу
         private void ButtonTestConnToCreateDB_Click(object sender, EventArgs e)
         {
-            IPAddress ipAddress;
-            if (IPAddress.TryParse(maskedTextBoxIpServerCreateDB.Text.Trim(), out ipAddress))
+            if (IPAddress.TryParse(maskedTextBoxIpServerCreateDB.Text.Trim(), out IPAddress ipAddress))
             {
                 if (IsConnectedToServer(maskedTextBoxIpServerCreateDB.Text.Trim()))
                 {
@@ -336,96 +334,31 @@ namespace Laminatsia
         //створити базу даних
         private void ButtonCreateDB_Click(object sender, EventArgs e)
         {
-            #region script
-            string scriptCreated = "CREATE DATABASE [Laminatsia];";
-            string script = @"
-                USE [Laminatsia];
-                SET ANSI_NULLS ON;
-                SET QUOTED_IDENTIFIER ON;
-                CREATE TABLE [dbo].[Archive](
-	                [ID] [int] IDENTITY(1,1) NOT NULL,
-	                [ID_Colourods] [int] NOT NULL,
-	                [DateComing] [datetime] NOT NULL,
-	                [Profile] [nvarchar](50) NOT NULL,
-	                [City] [nvarchar](100) NOT NULL,
-	                [Dealer] [nvarchar](100) NOT NULL,
-	                [Notes] [nvarchar](200) NULL,
-	                [Counts] [tinyint] NOT NULL,
-	                [Colour] [nvarchar](50) NOT NULL,
-	                [DateToWork] [datetime] NOT NULL,
-	                [StatusProfile] [nvarchar](50) NOT NULL,
-	                [DateReady] [datetime] NOT NULL,
-	                [Statusods] [nvarchar](50) NOT NULL,
-	                [Action] [nvarchar](50) NOT NULL,
-	                [UserName] [nvarchar](50) NOT NULL,
-	                [DataTimeChange] [datetime] NOT NULL,
-	                [Role] [nvarchar](50) NOT NULL,
-                 CONSTRAINT [PK_Archive] PRIMARY KEY CLUSTERED ([ID] ASC)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]) ON [PRIMARY];
-                SET ANSI_NULLS ON;
-                SET QUOTED_IDENTIFIER ON;
-                CREATE TABLE [dbo].[Users](
-	                [ID] [int] IDENTITY(1,1) NOT NULL,
-	                [UserName] [nvarchar](50) NOT NULL,
-	                [UserPassword] [nvarchar](50) NOT NULL,
-	                [Role] [nvarchar](50) NOT NULL,
-                 CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED([ID] ASC)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]) ON [PRIMARY];
-                SET ANSI_NULLS ON;
-                SET QUOTED_IDENTIFIER ON;
-                CREATE TABLE [dbo].[Profile](
-	                [ID] [int] IDENTITY(1,1) NOT NULL,
-	                [NameProfile] [nvarchar](50) NOT NULL,
-                 CONSTRAINT [PK_Profile] PRIMARY KEY CLUSTERED([ID] ASC)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]) ON [PRIMARY];
-                SET ANSI_NULLS ON;
-                SET QUOTED_IDENTIFIER ON;
-                CREATE TABLE [dbo].[Dealer](
-	                [ID] [int] IDENTITY(1,1) NOT NULL,
-	                [DealerName] [nvarchar](100) NULL,
-	                [City] [nvarchar](100) NOT NULL,
-                 CONSTRAINT [PK_Dealer] PRIMARY KEY CLUSTERED ( [ID] ASC )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY] ) ON [PRIMARY];
-                SET ANSI_NULLS ON;
-                SET QUOTED_IDENTIFIER ON;
-                CREATE TABLE [dbo].[ColourProfile](
-	                [ID] [int] IDENTITY(1,1) NOT NULL,
-	                [Colour] [nvarchar](50) NOT NULL,
-                 CONSTRAINT [PK_ColourProfile] PRIMARY KEY CLUSTERED([ID] ASC)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]) ON [PRIMARY];
-                SET ANSI_NULLS ON;
-                SET QUOTED_IDENTIFIER ON;
-                CREATE TABLE [dbo].[Colourods](
-	                [ID] [int] IDENTITY(1,1) NOT NULL,
-	                [DateComing] [datetime] NOT NULL,
-	                [Profile_ID] [int] NOT NULL,
-	                [Dealer_ID] [int] NOT NULL,
-	                [Notes] [nvarchar](200) NULL,
-	                [Counts] [tinyint] NOT NULL,
-	                [Colour_ID] [int] NOT NULL,
-	                [DateToWork] [datetime] NOT NULL,
-	                [StatusProfile] [bit] NOT NULL,
-	                [DateReady] [datetime] NOT NULL,
-	                [Statusods] [bit] NOT NULL,
-	                [DateRemove] [datetime] NULL,
-                 CONSTRAINT [PK_Colourods] PRIMARY KEY CLUSTERED([ID] ASC)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]) ON [PRIMARY];
-                ALTER TABLE [dbo].[Colourods]  WITH CHECK ADD  CONSTRAINT [FK_Colourods_ColourProfile] FOREIGN KEY([Colour_ID]) REFERENCES [dbo].[ColourProfile] ([ID]);
-                ALTER TABLE [dbo].[Colourods] CHECK CONSTRAINT [FK_Colourods_ColourProfile];
-                ALTER TABLE [dbo].[Colourods]  WITH CHECK ADD  CONSTRAINT [FK_Colourods_Dealer] FOREIGN KEY([Dealer_ID]) REFERENCES [dbo].[Dealer] ([ID]);
-                ALTER TABLE [dbo].[Colourods] CHECK CONSTRAINT [FK_Colourods_Dealer];
-                ALTER TABLE [dbo].[Colourods]  WITH CHECK ADD  CONSTRAINT [FK_Colourods_Profile] FOREIGN KEY([Profile_ID]) REFERENCES [dbo].[Profile] ([ID]);
-                ALTER TABLE [dbo].[Colourods] CHECK CONSTRAINT [FK_Colourods_Profile];
-                INSERT [dbo].[Users] (UserName, UserPassword, Role)  
-                    VALUES ('Адміністратор', 'qgu9w5461', 'Адміністратори');";
-            #endregion
             try
             {
+                string pathScriptFile = Directory.GetCurrentDirectory() + @"\SQL\";
+                string[] scripts = new string[] {
+            "CREATE DATABASE [Laminatsia];",
+            File.ReadAllText(pathScriptFile + "CreateDataBaseLaminatsia.sql").ToString(),
+            File.ReadAllText(pathScriptFile + "CreateViewGetAllArchive.sql").ToString(),
+            File.ReadAllText(pathScriptFile + "CreateViewGetAllColour.sql").ToString(),
+            File.ReadAllText(pathScriptFile + "CreateViewGetAllColourGoods.sql").ToString(),
+            File.ReadAllText(pathScriptFile + "CreateViewGetAllDealer.sql").ToString(),
+            File.ReadAllText(pathScriptFile + "CreateViewGetAllProfile.sql").ToString(),
+            File.ReadAllText(pathScriptFile + "CreateViewGetAllUsers.sql").ToString(),
+            File.ReadAllText(pathScriptFile + "CreateProcedureGetColourGoodsByNotes.sql").ToString()
+            };
                 if (!String.IsNullOrEmpty(maskedTextBoxIpServerCreateDB.Text) && !maskedTextBoxIpServerCreateDB.Enabled)
                 {
                     Server server = new Server(maskedTextBoxIpServerCreateDB.Text.Trim());
                     using (SqlConnection sql = new SqlConnection(server.ConnectionContext.ConnectionString))
                     {
                         sql.Open();
-                        //SqlCommand sqlCreateDBCreated = new SqlCommand("DROP DATABASE [Laminatsia];", sql);
-                        SqlCommand sqlCreateDBCreated = new SqlCommand(scriptCreated, sql);
-                        sqlCreateDBCreated.ExecuteNonQuery();
-                        SqlCommand sqlCreateDB = new SqlCommand(script, sql);
-                        sqlCreateDB.ExecuteNonQuery();
+                        for (int i = 0; i < scripts.Length; i++)
+                        {
+                            SqlCommand sqlScript = new SqlCommand(scripts[i], sql);
+                            sqlScript.ExecuteNonQuery();
+                        }
                         sql.Close();
                         MessageBox.Show("Базу даних на сервері " + server.Name + "створено з назвою [Laminatsia] !");
                     }
@@ -436,21 +369,23 @@ namespace Laminatsia
                     {
                         using (FileStream fs = File.Open(fileName, FileMode.OpenOrCreate)) { }
                     }
-                    byte[] codingUserPasword = Encoding.UTF8.GetBytes("qgu9w5461");
-                    const string key = "2018";
-                    byte[] res = new byte[codingUserPasword.Length];
-
-                    for (int i = 0; i < codingUserPasword.Length; i++)
+                    byte[] inputBytes = Encoding.ASCII.GetBytes("1");
+                    string output = "";
+                    for (int i = 0; i < inputBytes.Length; i++)
                     {
-                        res[i] = (byte)(codingUserPasword[i] ^ key[i % key.Length]);
+                        output += inputBytes[i].ToString() + " ";
                     }
-                    File.WriteAllLines(fileName, new string[] { "Адміністратор", Encoding.UTF8.GetString(res), "Адміністратори" });
+                    File.WriteAllLines(fileName, new string[] { "Адміністратор", output, "Адміністратори" });
                 }
                 else { MessageBox.Show("Введіть спочатку IP адресу!"); }
             }
             catch (SqlException sqlEx)
             {
-                MessageBox.Show(@"Помилка бази даних! 
+                string path = Directory.GetCurrentDirectory() + @"\SQL\ScriptForManadgmentStudio.txt";
+                MessageBox.Show(@"Помилка на рівні доступу до бази даних! 
+1. Перевірте на наявність дозволу на створення бази даних на сервері користувачем.
+2. Запустіть програму на компютері де знаходиться серер SQL.
+3. Скористайтеся скріптом з файла " + path + @" запустивши його, як запит на SQL сервері від користувача який має дозвіл на створення баз даних. 
                                     Детальніше: " + sqlEx.Message);
             }
             catch (Exception ex)
@@ -459,7 +394,6 @@ namespace Laminatsia
                                     Детальніше: " + ex.Message);
             }
         }
-
         #endregion
 
     }

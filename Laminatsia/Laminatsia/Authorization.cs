@@ -13,8 +13,7 @@ namespace Laminatsia
     {
         /// <summary>
         /// TODO:
-        /// 1. Stored procedure for insert and update.
-        /// 2. Connect Create data base with stored procedure and view.       
+        /// 1. Stored procedure for insert and update     
         /// </summary>
         private string[] userSaveData = null;
         //виставити розташування файлу в папці з програмою, де записуються дані останього збереженого користувача
@@ -26,11 +25,11 @@ namespace Laminatsia
         }
         private void FillAllAuthorization()
         {
-            comboBoxRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори" });
+            comboBoxRole.Items.AddRange(new String[] { "Ламінація", "Менеджери", "Технологи", "Адміністратори"});
             //якщо такого файлу не було знайдено створюємо пустий текстовий файл
             if (!File.Exists(fileName))
             {
-                using (FileStream fs = File.Open(fileName, FileMode.OpenOrCreate)) { }
+                using (FileStream fs = File.Open(fileName, FileMode.OpenOrCreate)) { File.WriteAllLines(fileName, new string[] { "Адміністратор", CodingASCII("1", true), "Адміністратори" }); }
             }
             userSaveData = File.ReadAllLines(fileName);
             if (userSaveData.Length > 0)
@@ -47,7 +46,7 @@ namespace Laminatsia
             {//перевіряємо конект до бази даних, якщо немає конеткту і логін і пароль та роль адмін запускаємо налаштування конекту
                 if (!this.IsServerConnected())
                 {
-                    if (comboBoxRole.SelectedItem.ToString() == "Адміністратори" && textBoxLogin.Text.Trim() == "Адміністратор" && textBoxPassword.Text.Trim() == "qgu9w5461")
+                    if (comboBoxRole.SelectedItem.ToString() == "Адміністратори" && textBoxLogin.Text.Trim() == "Адміністратор"  && textBoxPassword.Text == "1")
                     {
                         Connect connectForm = new Connect();
                         connectForm.Closed += (s, args) => this.Close();
@@ -61,9 +60,6 @@ namespace Laminatsia
                         this.Close();
                     }
                 }
-                string userName;
-                string userPassword;
-                string role;
                 LaminatsiaEntities _entity = new LaminatsiaEntities();
                 //не допускаємо пустий логін
                 if (textBoxLogin.Text.Trim() != "")
@@ -72,9 +68,9 @@ namespace Laminatsia
                     {   //не допускаємо не вибрану роль 
                         if (comboBoxRole.SelectedItem != null)
                         { //перевіряємо наявність такаго юзера з такими правами доступа
-                            userName = textBoxLogin.Text.Trim();
-                            userPassword = textBoxPassword.Text.Trim();
-                            role = comboBoxRole.SelectedItem.ToString();
+                            string userName = textBoxLogin.Text.Trim();
+                            string userPassword = textBoxPassword.Text.Trim();
+                            string role = comboBoxRole.SelectedItem.ToString();
                             //чи існує такий логін
                             if (_entity.Users.FirstOrDefault(x => x.UserName == userName) != null)
                             {   //чи вірний пароль до логіна
@@ -144,7 +140,6 @@ namespace Laminatsia
             }
             return output;
         }
-
         private bool IsServerConnected()
         {//цей метод перевіряє на наявність конекта до бази даних            
             try
@@ -158,9 +153,9 @@ namespace Laminatsia
             }
             catch (Exception ex)
             {
-                MessageBox.Show(@"Не можливо зєднатися з базою даних! Перевірте підключення до мережі або налаштуйте підключення!
-    Детальніше про помилку: "
-+ ex.Message);
+                MessageBox.Show(@"Не можливо зєднатися з базою даних! 
+Перевірте підключення до мережі або налаштуйте SQL сервер! 
+Детальніше про помилку: " + ex.Message);
                 return false;
             }
         }

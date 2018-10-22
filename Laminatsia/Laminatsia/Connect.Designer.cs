@@ -114,7 +114,7 @@
             this.comboBoxLilstDbIPServer.Name = "comboBoxLilstDbIPServer";
             this.comboBoxLilstDbIPServer.Size = new System.Drawing.Size(187, 28);
             this.comboBoxLilstDbIPServer.TabIndex = 10;
-            this.comboBoxLilstDbIPServer.SelectedIndexChanged += new System.EventHandler(this.comboBoxLilstDbIPServer_SelectedIndexChanged);
+            this.comboBoxLilstDbIPServer.SelectedIndexChanged += new System.EventHandler(this.ComboBoxLilstDbIPServer_SelectedIndexChanged);
             // 
             // buttonConnectToIPServer
             // 
@@ -247,7 +247,7 @@
             this.comboBoxListServerName.Name = "comboBoxListServerName";
             this.comboBoxListServerName.Size = new System.Drawing.Size(212, 28);
             this.comboBoxListServerName.TabIndex = 8;
-            this.comboBoxListServerName.SelectedIndexChanged += new System.EventHandler(this.comboBoxListServerName_SelectedIndexChanged);
+            this.comboBoxListServerName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxListServerName_SelectedIndexChanged);
             // 
             // labelDBName
             // 
@@ -267,7 +267,7 @@
             this.comboBoxListDataBase.Name = "comboBoxListDataBase";
             this.comboBoxListDataBase.Size = new System.Drawing.Size(212, 28);
             this.comboBoxListDataBase.TabIndex = 9;
-            this.comboBoxListDataBase.SelectedIndexChanged += new System.EventHandler(this.comboBoxListDataBase_SelectedIndexChanged);
+            this.comboBoxListDataBase.SelectedIndexChanged += new System.EventHandler(this.ComboBoxListDataBase_SelectedIndexChanged);
             // 
             // labelServerName
             // 
@@ -342,13 +342,13 @@
             // 
             // backgroundWorker
             // 
-            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
-            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted);
             // 
             // backgroundWorker1
             // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
             // 
             // buttonSearchServers
             // 
@@ -358,7 +358,7 @@
             this.buttonSearchServers.TabIndex = 15;
             this.buttonSearchServers.Text = "Пошук серверів";
             this.buttonSearchServers.UseVisualStyleBackColor = true;
-            this.buttonSearchServers.Click += new System.EventHandler(this.buttonSearchServers_Click);
+            this.buttonSearchServers.Click += new System.EventHandler(this.ButtonSearchServers_Click);
             // 
             // Connect
             // 

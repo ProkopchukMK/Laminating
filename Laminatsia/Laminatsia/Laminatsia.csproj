@@ -182,7 +182,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="app.manifest" />
     <EntityDeploy Include="LaminatsiaModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -201,6 +203,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\uninstall.bat" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -224,6 +227,18 @@
       <DependentUpon>LaminatsiaModel.edmx</DependentUpon>
       <LastGenOutput>LaminatsiaModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\CreateDataBaseLaminatsia.sql" />
+    <Content Include="Resources\ScriptForManadgmentStudio.txt" />
+    <Content Include="Resources\CreateProcedureGetColourGoodsByNotes.sql" />
+    <Content Include="Resources\CreateViewGetAllColourGoods.sql" />
+    <Content Include="Resources\CreateViewGetAllDealer.sql" />
+    <Content Include="Resources\CreateViewGetAllProfile.sql" />
+    <Content Include="Resources\CreateViewGetAllUsers.sql" />
+    <Content Include="Resources\CreateViewGetAllColour.sql" />
+    <Content Include="Resources\CreateViewGetAllArchive.sql" />
+    <Content Include="Resources\DotNetFX452\NDP452-KB2901907-x86-x64-AllOS-ENU.exe" />
+    <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\ReadMe.txt" />
     <Content Include="Resources\UserData.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
