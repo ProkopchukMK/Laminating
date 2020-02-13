@@ -888,7 +888,7 @@
             "SourcePath" = "8:..\\Laminatsia\\Resources\\icon.ico"
             "TargetName" = "8:icon.ico"
             "Tag" = "8:"
-            "Folder" = "8:_165608AA80A742C7B359D2C4E660D25E"
+            "Folder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -992,15 +992,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Laminatsia"
-        "ProductCode" = "8:{CDFC4266-DBE6-46A0-9669-F980D45DED23}"
-        "PackageCode" = "8:{A6B048DD-8C29-4FE7-A2C9-677118D16EAF}"
+        "ProductCode" = "8:{3707AD5F-85B0-4999-BDE0-BF35F35E22B2}"
+        "PackageCode" = "8:{EC223C7C-AFC8-4F40-83FB-6C7D38052E08}"
         "UpgradeCode" = "8:{83EA6BDB-3C3D-49B3-840D-071FFF9304DE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Prokopchuk"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1010,7 +1010,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_F7A1DA8A0253448F85B4A12E4A9A8572"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -1113,6 +1113,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1C61B7748A3B41608ED5D2434CDF1A49"
+            {
+            "Name" = "8:Laminatsia"
+            "Arguments" = "8:"
+            "Description" = "8:This is sparta!"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_BE0ED5CDD30A45A89C2E61357C774BBD"
+            "Folder" = "8:_D58BA2EDA6B44DD2AC9A1B07CC89EA13"
+            "WorkingFolder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"
+            "Icon" = "8:_F7A1DA8A0253448F85B4A12E4A9A8572"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B86830DBA3A142978B419C2A7AB6AB3A"
             {
             "Name" = "8:Uninstall.bat"
@@ -1125,20 +1139,6 @@
             "Folder" = "8:_165608AA80A742C7B359D2C4E660D25E"
             "WorkingFolder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"
             "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C54E37DD1B4D4F16AF5BEDCF1FBCBCF9"
-            {
-            "Name" = "8:Laminatsia"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_BE0ED5CDD30A45A89C2E61357C774BBD"
-            "Folder" = "8:_D58BA2EDA6B44DD2AC9A1B07CC89EA13"
-            "WorkingFolder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"
-            "Icon" = "8:_F7A1DA8A0253448F85B4A12E4A9A8572"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F074891895E24E07BB7E84423636323E"
@@ -1556,7 +1556,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BE0ED5CDD30A45A89C2E61357C774BBD"
             {
-            "SourcePath" = "8:..\\Laminatsia\\obj\\Debug\\Laminatsia.exe"
+            "SourcePath" = "8:..\\Laminatsia\\obj\\Release\\Laminatsia.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0BD80C49C8534793A3D8A2F33C1C03B0"

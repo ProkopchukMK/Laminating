@@ -29,8 +29,8 @@ namespace Laminatsia.DTO
             ColourGoods newColourGoods = new ColourGoods
             {
                 DateComing = dateComing.Date,
-                Profile = _entity.Profile.FirstOrDefault(x => x.NameProfile == profile),
-                Dealer = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealer),
+                Profile = _entity.Profile.FirstOrDefault(x => x.NameProfile == profile),                
+                Dealer = _entity.Dealer.FirstOrDefault(x => x.DealerName == dealer && x.City == city),
                 Notes = notes,
                 Counts = counts,
                 ColourProfile = _entity.ColourProfile.FirstOrDefault(x => x.Colour == colour),

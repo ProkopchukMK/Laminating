@@ -50,3 +50,4 @@ D:\Ламінація\Laminatsia\Laminatsia\bin\Debug\Microsoft.SqlServer.Servic
 D:\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.Connect.resources
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csproj.CoreCompileInputs.cache
 C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csproj.CopyComplete
+C:\Users\Логист\Desktop\Ламінація\Laminatsia\Laminatsia\obj\Debug\Laminatsia.csprojAssemblyReference.cache
